@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corporate Training & Services - CEFORED Institute</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero.corporate-hero {
+      position: relative;
+      background: url('projectbg.jpg') center/cover no-repeat !important;
+      min-height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero.corporate-hero .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .hero.corporate-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem 2rem 1rem;
+      background: transparent !important;
+    }
+    .hero.corporate-hero h1 {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.7), 0 0 2px #222;
+    }
+    .hero.corporate-hero .hero-subheading {
+      color: #e0e0e0;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 0;
+      opacity: 0.95;
+    }
+    .program-section {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      margin: 2.5rem auto 2rem auto;
+      max-width: 800px;
+      padding: 2.2rem 2rem 2.2rem 2rem;
+      text-align: left;
+    }
+    .program-section h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+    }
+    .program-section p {
+      color: #222;
+      font-size: 1.13rem;
+      margin-bottom: 0.5rem;
+    }
+    .collapsible {
+      background: #f8fafd;
+      border-radius: 1.1rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+      margin-bottom: 2.2rem;
+      border-left: 6px solid var(--primary, #1a237e);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .collapsible-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.25rem;
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      background: #e3e8f7;
+      border-radius: 1.1rem 1.1rem 0 0;
+      border: none;
+      outline: none;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    .collapsible.active .collapsible-title {
+      background: var(--primary);
+      color: #fff;
+    }
+    .collapsible-content {
+      display: none;
+      padding: 1.2rem 1.5rem 1.7rem 1.5rem;
+      color: #222;
+      font-size: 1.08rem;
+      background: #fafbfc;
+      border-radius: 0 0 1.1rem 1.1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .collapsible.active .collapsible-content {
+      display: block !important;
+    }
+    .realm-label {
+      font-weight: 700;
+      color: #e65100;
+      font-size: 1.08rem;
+      margin-bottom: 0.2rem;
+      display: inline-block;
+    }
+    .service-list {
+      margin: 0.5rem 0 0 1.2rem;
+      padding: 0;
+      color: #222;
+      font-size: 1.08rem;
+    }
+    .service-list li {
+      margin-bottom: 0.3rem;
+      line-height: 1.6;
+    }
+    html.dark-mode {
+      --primary: #e0e0e0;
+      --secondary: #181a20;
+      --accent: #FFD700;
+      --accent-alt: #FFA500;
+      background: #181a20;
+      color: #e0e0e0;
+    }
+    html.dark-mode header, html.dark-mode footer {
+      background: #23242b;
+      color: #e0e0e0;
+    }
+    html.dark-mode .hero-content, html.dark-mode .program-section, html.dark-mode .faq-section, html.dark-mode .main-content, html.dark-mode .card, html.dark-mode .collapsible, html.dark-mode .realm-card, html.dark-mode .section {
+      background: #23242b;
+      color: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    html.dark-mode .section, html.dark-mode .card, html.dark-mode .realm-card, html.dark-mode .collapsible {
+      background: rgba(35,36,43,0.98);
+      color: #fff;
+    }
+    html.dark-mode .realm-content {
+      background: rgba(35,36,43,0.98) !important;
+      color: #fff !important;
+      border-color: #444 !important;
+    }
+    html.dark-mode .realm-item {
+      background: rgba(35,36,43,0.98) !important;
+      color: #fff !important;
+      border-color: #444 !important;
+    }
+    html.dark-mode .testimonials, html.dark-mode .testimonial-card {
+      background: #23242b;
+      color: #fff;
+      border-color: #444;
+    }
+    html.dark-mode .testimonial-card p, html.dark-mode .testimonial-author {
+      color: #fff;
+    }
+    html.dark-mode .testimonials h2, html.dark-mode .testimonials h3, html.dark-mode .testimonials h4 {
+      color: var(--accent);
+    }
+    html.dark-mode .cta-button {
+      background: var(--accent);
+      color: #23242b;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+    }
+    html.dark-mode .cta-button:hover {
+      background: var(--accent-alt);
+      color: #23242b;
+    }
+    html.dark-mode nav a {
+      color: #fff;
+    }
+    html.dark-mode nav a.active, html.dark-mode nav a:hover {
+      color: var(--accent);
+    }
+    html.dark-mode .floating-cta {
+      background: var(--accent);
+      color: #23242b;
+    }
+    html.dark-mode .floating-cta:hover {
+      background: var(--accent-alt);
+      color: #23242b;
+    }
+    html.dark-mode .why-cefored {
+      background: #23242b !important;
+      color: #fff !important;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    html.dark-mode .why-cefored h2,
+    html.dark-mode .why-cefored ul,
+    html.dark-mode .why-cefored li,
+    html.dark-mode .why-cefored p,
+    html.dark-mode .why-cefored em,
+    html.dark-mode .why-cefored span {
+      color: #fff !important;
+      text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    }
+    html.dark-mode .why-cefored .cta-button {
+      background: var(--accent);
+      color: #23242b;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+    }
+    html.dark-mode .why-cefored .cta-button:hover {
+      background: var(--accent-alt);
+      color: #23242b;
+    }
+    /* Corporate Training Page Specific Dark Mode */
+    html.dark-mode .corporate-training-page .program-section,
+    html.dark-mode .corporate-training-page .collapsible,
+    html.dark-mode .corporate-training-page .program-section *,
+    html.dark-mode .corporate-training-page .collapsible * {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible-title {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-title {
+      background: var(--accent) !important;
+      color: #23242b !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible-content {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content ul,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content li {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label {
+      color: var(--accent) !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .service-list,
+    html.dark-mode .corporate-training-page .collapsible.active .service-list li {
+      color: #fff !important;
+    }
+    /* Dark background for realm sections even when active */
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label {
+      background: #23242b !important;
+      color: var(--accent) !important;
+      padding: 0.5rem 0;
+      margin-top: 1rem;
+      display: block;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label + ul {
+      background: #23242b !important;
+      color: #fff !important;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 0.5rem;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label + ul li {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    /* White text for program section description */
+    html.dark-mode .corporate-training-page .program-section p {
+      color: #fff !important;
+    }
+    /* More specific rule to override any conflicts */
+    html.dark-mode .corporate-training-page .program-section p,
+    html.dark-mode .corporate-training-page .program-section * p {
+      color: #fff !important;
+      background: #23242b !important;
+    }
+    /* Maximum specificity to override the color:#222 rule */
+    html.dark-mode .corporate-training-page .program-section p {
+      color: #fff !important;
+    }
+    /* Override the specific .program-section p rule */
+    html.dark-mode .program-section p {
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .hero {
+      color: #fff;
+      text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    }
+    html.dark-mode .corporate-training-page .hero .hero-dark-overlay {
+      display: block;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.68);
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .corporate-training-page .hero .hero-dark-overlay { display: none; }
+    html.dark-mode .corporate-training-page .hero > *:not(.hero-dark-overlay) {
+      position: relative;
+      z-index: 2;
+    }
+    /* FORCE DARK MODE FOR ALL COLLAPSIBLE CONTENT */
+    html.dark-mode .corporate-training-page .collapsible-content,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content,
+    html.dark-mode .corporate-training-page .collapsible-content *,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content * {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label {
+      color: var(--accent) !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label + ul {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible.active .realm-label + ul li {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    /* EXTREMELY AGGRESSIVE OVERRIDE */
+    html.dark-mode .corporate-training-page .collapsible .collapsible-content,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content,
+    html.dark-mode .corporate-training-page .collapsible .collapsible-content *,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content *,
+    html.dark-mode .corporate-training-page .collapsible .collapsible-content ul,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content ul,
+    html.dark-mode .corporate-training-page .collapsible .collapsible-content li,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content li,
+    html.dark-mode .corporate-training-page .collapsible .service-list,
+    html.dark-mode .corporate-training-page .collapsible.active .service-list,
+    html.dark-mode .corporate-training-page .collapsible .service-list li,
+    html.dark-mode .corporate-training-page .collapsible.active .service-list li {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    /* FINAL OVERRIDE - FORCE DARK MODE FOR COLLAPSIBLE CONTENT */
+    html.dark-mode .corporate-training-page .collapsible-content,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .collapsible-content *,
+    html.dark-mode .corporate-training-page .collapsible.active .collapsible-content * {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    html.dark-mode .corporate-training-page .realm-label {
+      color: var(--accent) !important;
+    }
+    html.dark-mode .corporate-training-page .service-list,
+    html.dark-mode .corporate-training-page .service-list li {
+      color: #fff !important;
+    }
+    /* MODERN TECH-INSPIRED DARK BACKGROUND */
+    html.dark-mode .corporate-training-page {
+      background: 
+        linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0f 100%),
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255, 255, 255, 0.01) 40px, rgba(255, 255, 255, 0.01) 41px),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(255, 255, 255, 0.01) 40px, rgba(255, 255, 255, 0.01) 41px);
+      background-attachment: fixed;
+      position: relative;
+    }
+    
+    /* Digital circuit lines overlay */
+    html.dark-mode .corporate-training-page::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 98.5%, transparent 99%),
+        linear-gradient(0deg, transparent 98%, rgba(0, 255, 255, 0.1) 98.5%, transparent 99%);
+      background-size: 100px 100px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    /* Floating geometric elements */
+    html.dark-mode .corporate-training-page::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 0, 0.03) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    /* Ensure content stays above background layers */
+    html.dark-mode .corporate-training-page > * {
+      position: relative;
+      z-index: 3;
+    }
+    /* FAQ-STYLE DROPDOWN SYSTEM */
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+    .faq-item {
+      background-color: white;
+      border-left: 5px solid var(--accent);
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      overflow: hidden;
+      border-bottom: 2px solid #e0e0e0;
+      border: 1px solid #e0e0e0;
+      border-left: 5px solid var(--accent);
+    }
+    .faq-item:last-child {
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .faq-question {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 1rem;
+      width: 100%;
+      text-align: left;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-question:hover {
+      background-color: #f0f0e6;
+    }
+    .faq-answer {
+      padding: 0 1rem 1rem 1rem;
+      display: none;
+      color: #333;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .faq-answer a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    .icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-left: 1rem;
+      transition: transform 0.2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* DARK MODE FOR FAQ-STYLE DROPDOWNS */
+    html.dark-mode .faq-item {
+      background: #23242b !important;
+      border: 1px solid #444 !important;
+      border-left: 5px solid #FFD700 !important;
+      color: #fff !important;
+    }
+    html.dark-mode .faq-item:last-child {
+      border-bottom: 1px solid #444 !important;
+    }
+    html.dark-mode .faq-question {
+      color: #fff !important;
+      background: none !important;
+    }
+    html.dark-mode .faq-question:hover {
+      background-color: #333 !important;
+    }
+    html.dark-mode .faq-answer {
+      color: #fff !important;
+      background: none !important;
+    }
+    html.dark-mode .faq-answer a {
+      color: #FFD700 !important;
+    }
+    html.dark-mode .icon {
+      color: #FFD700 !important;
+    }
+    /* Force white text for service lists in dark mode */
+    html.dark-mode .faq-answer .service-list,
+    html.dark-mode .faq-answer .service-list li,
+    html.dark-mode .faq-answer .service-list li span {
+      color: #fff !important;
+    }
+    html.dark-mode .faq-answer ul,
+    html.dark-mode .faq-answer ul li {
+      color: #fff !important;
+    }
+    .faq-answer .cta-button {
+      background: var(--accent) !important;
+      color: #23242b !important;
+      border: none;
+      box-shadow: 0 2px 8px #0002;
+      font-weight: bold;
+      text-shadow: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      margin-top: 1.5rem;
+      display: inline-block;
+      font-size: 1.08rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .faq-answer .cta-button:hover {
+      background: var(--accent-alt) !important;
+      color: #23242b !important;
+      filter: brightness(1.1) contrast(1.1);
+      opacity: 0.95;
+    }
+    html.dark-mode .faq-answer .cta-button {
+      background: var(--accent) !important;
+      color: #23242b !important;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+      font-weight: bold;
+      text-shadow: none;
+    }
+    html.dark-mode .faq-answer .cta-button:hover {
+      background: var(--accent-alt) !important;
+      color: #23242b !important;
+    }
+  </style>
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body class="corporate-training-page" id="body-root">
+  <!-- Header and Navigation -->
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html" class="active">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero corporate-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Corporate Training & Services</h1>
+      <div class="hero-subheading">AI-powered training and consultancy for organizations, NGOs, and government institutions.</div>
+    </div>
+  </section>
+  <!-- Program Overview Section -->
+  <section class="program-section">
+    <h2 class="main-section-title">Our Corporate Training & Services</h2>
+    <p>At Cefored Institute of Relief & Development, we deliver cutting-edge corporate training and AI-powered consultancy services tailored to the needs of organizations, NGOs, and government institutions. Our corporate offerings are designed to ignite operational excellence and digital transformation across sectors.</p>
+  </section>
+  <!-- REALM 1 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 1: AI in Logistics & Supply Chain Management<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI in Supply Chain Optimization (Corporate Training)<br><span style="color:#388e3c;">💰 $5,500</span> (Up to 10 employees; includes materials, tools, and certification)</li>
+        <li>AI-Driven Warehouse Automation<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 employees)</li>
+        <li>AI-Powered Transportation & Fleet Management<br><span style="color:#388e3c;">💰 $6,200</span> (Up to 10 employees)</li>
+        <li>AI for Risk Management in Logistics<br><span style="color:#388e3c;">💰 $5,800</span> (Up to 10 employees)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI Logistics Consultation<br><span style="color:#1976d2;">💼 $1,500</span> per consultation (Includes action plan report)</li>
+        <li>AI-Driven Supply Chain Audit<br><span style="color:#1976d2;">🧾 $3,000</span> (Includes AI audit report + recommendations)</li>
+        <li>AI Logistics Software Implementation<br><span style="color:#1976d2;">💻 $10,000</span> (One-time fee; excludes software licenses)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- REALM 2 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 2: AI in Business Management<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI Strategy for Executives & Leadership<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 staff)</li>
+        <li>AI-Driven Marketing & Sales Acceleration<br><span style="color:#388e3c;">💰 $5,800</span> (Up to 10 staff)</li>
+        <li>AI-Tools for Financial Intelligence Management<br><span style="color:#388e3c;">💰 $6,200</span> (Up to 10 staff)</li>
+        <li>AI in HR & Talent<br><span style="color:#388e3c;">💰 $5,500</span> (Up to 10 staff)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI Business Intelligence Setup<br><span style="color:#1976d2;">💼 $2,500</span> (Includes analytics dashboard setup)</li>
+        <li>AI-Based Business Process Automation<br><span style="color:#1976d2;">💻 $8,500</span> (Custom automation setup)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- REALM 3 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 3: AI in Health Management<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI in Hospital Optimization & Patient Experience<br><span style="color:#388e3c;">💰 $6,500</span> (Up to 10 staff)</li>
+        <li>AI for Public Health & Outbreak Response<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 staff)</li>
+        <li>Health Data Analytics with AI Tools<br><span style="color:#388e3c;">💰 $5,800</span> (Up to 10 staff)</li>
+        <li>AI Integration in Electronic Medical Records (EMR)<br><span style="color:#388e3c;">💰 $5,900</span> (Up to 10 staff)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI Health System Consultation<br><span style="color:#1976d2;">💼 $2,200</span> (Includes assessment & action plan)</li>
+        <li>AI-Powered Outbreak Prediction Report<br><span style="color:#1976d2;">📊 $3,000</span> (Custom regional forecast)</li>
+        <li>Health Data Dashboard Implementation (AI-Based)<br><span style="color:#1976d2;">💻 $9,000</span> (Includes training + setup)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- REALM 4 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 4: AI in Project Management<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI in Development Project Lifecycle<br><span style="color:#388e3c;">💰 $6,200</span> (Up to 10 staff)</li>
+        <li>AI for M&E and Data-Driven Decision Making<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 staff)</li>
+        <li>AI-Integrated Project Budgeting & Control Systems<br><span style="color:#388e3c;">💰 $5,800</span> (Up to 10 staff)</li>
+        <li>AI in Humanitarian Project Risk Management<br><span style="color:#388e3c;">💰 $6,400</span> (Up to 10 staff)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI-Based Project Assessment & Planning Consultation<br><span style="color:#1976d2;">💼 $2,000</span> per project</li>
+        <li>Smart MEL Systems Setup with AI Tools<br><span style="color:#1976d2;">📊 $4,500</span> (Includes dashboard + training)</li>
+        <li>AI-Powered Donor Compliance Reporting Automation<br><span style="color:#1976d2;">📁 $3,800</span> (Customized solution per donor profile)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- REALM 5 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 5: AI in IT & Digital Transformation<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI-Driven IT Transformation Leadership<br><span style="color:#388e3c;">💰 $6,500</span> (Up to 10 staff)</li>
+        <li>AI Automation for NGOs & Enterprises<br><span style="color:#388e3c;">💰 $6,200</span> (Up to 10 staff)</li>
+        <li>AI Cybersecurity Risk Training<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 staff)</li>
+        <li>Cloud AI & Infrastructure Optimization<br><span style="color:#388e3c;">💰 $6,300</span> (Up to 10 staff)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI Integration Audit for IT Systems<br><span style="color:#1976d2;">💼 $2,500</span> (Includes full integration report)</li>
+        <li>Custom AI Workflow Automation Setup<br><span style="color:#1976d2;">🛠️ $4,800</span> (Includes 3 workflows + user training)</li>
+        <li>NGO Cybersecurity Shield with AI Monitoring<br><span style="color:#1976d2;">🔐 $6,000</span> (Setup + monitoring tools)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- REALM 6 -->
+  <div class="faq-item">
+    <button class="faq-question">🔥 REALM 6: AI in Humanitarian, Relief & Disaster Management<span class="icon">+</span></button>
+    <div class="faq-answer">
+      <div class="realm-label">AI-Powered Corporate Training Programs</div>
+      <ul>
+        <li>AI in Humanitarian Crisis Response<br><span style="color:#388e3c;">💰 $6,400</span> (Up to 10 staff)</li>
+        <li>AI for Emergency Logistics Management<br><span style="color:#388e3c;">💰 $6,000</span> (Up to 10 staff)</li>
+        <li>Ethical AI for Refugee Protection & Data Use<br><span style="color:#388e3c;">💰 $5,800</span> (Up to 10 staff)</li>
+        <li>Predictive Analytics for Disaster Risk Reduction<br><span style="color:#388e3c;">💰 $6,200</span> (Up to 10 staff)</li>
+      </ul>
+      <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
+      <ul class="service-list">
+        <li>AI-Powered Crisis Simulation & Planning Tools<br><span style="color:#1976d2;">💼 $4,500</span> (Custom setup + scenario training)</li>
+        <li>Disaster Relief Logistics AI Audit<br><span style="color:#1976d2;">🛠️ $3,000</span> (Includes process recommendations + tool integration)</li>
+        <li>AI Dashboards for Humanitarian Monitoring<br><span style="color:#1976d2;">🖥️ $5,800</span> (Includes design, deployment, and training)</li>
+      </ul>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // FAQ-style dropdown functionality
+      document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const answer = btn.nextElementSibling;
+          const icon = btn.querySelector('.icon');
+          const isOpen = answer.style.display === 'block';
+          // Close all answers before opening the new one
+          document.querySelectorAll('.faq-answer').forEach(a => {
+            if (a !== answer) {
+              a.style.display = 'none';
+              a.previousElementSibling.querySelector('.icon').textContent = '+';
+            }
+          });
+          
+          if (!isOpen) {
+            answer.style.display = 'block';
+            icon.textContent = '–';
+          } else {
+            answer.style.display = 'none';
+            icon.textContent = '+';
+          }
+        });
+      });
+    });
+  </script>
+    <script src="theme.js" defer></script>
+</body>
+</html> 

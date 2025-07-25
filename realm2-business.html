@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REALM 2: AI in Business Management - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+<nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <section class="hero" style="background: url('businessmgmt.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 2: AI in Business Management</h1>
+    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Empowering next-gen business leaders with AI strategy, intelligence, and automation</p>
+  </section>
+
+  <section class="program-section">
+    <div class="card">
+      <h3 class="card-title">Program Overview</h3>
+      <p>
+        This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
+        <strong>Ideal for:</strong> Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.
+      </p>
+    </div>
+
+    <h3 class="section-heading">Courses Offered</h3>
+
+    <div class="accordion">
+      <!-- COURSE 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI for Business Strategy & Leadership</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Learn to integrate AI into strategic planning, decision-making, and leadership transformation.</li>
+            <li><strong>Who Can Take This Course:</strong> Business Owners, Managers, C-Level Executives</li>
+            <li><strong>Requirements:</strong> Basic leadership or business background</li>
+            <li><strong>Duration:</strong> 4 weeks</li>
+            <li><strong>Course Fee:</strong> $480</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+      <!-- COURSE 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI in Marketing & Customer Insights</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Use AI for predictive analytics, targeted advertising, customer segmentation, and trend detection.</li>
+            <li><strong>Target Audience:</strong> Marketing Teams, Brand Managers, Entrepreneurs</li>
+            <li><strong>Duration:</strong> 4 weeks</li>
+            <li><strong>Course Fee:</strong> $470</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+      <!-- COURSE 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI-Powered Sales & CRM Automation</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Learn tools for sales forecasting, personalized engagement, AI chatbots, and CRM optimization.</li>
+            <li><strong>Target Audience:</strong> Sales Teams, Startups, Business Development Leads</li>
+            <li><strong>Duration:</strong> 3 weeks</li>
+            <li><strong>Course Fee:</strong> $460</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+      <!-- COURSE 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI in Finance & Business Analytics</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Automate financial reporting, budgeting, fraud detection, and performance analytics.</li>
+            <li><strong>Target Audience:</strong> Finance Officers, Accountants, Analysts</li>
+            <li><strong>Duration:</strong> 4 weeks</li>
+            <li><strong>Course Fee:</strong> $480</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+      <!-- COURSE 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI in Human Resource Management</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> AI for recruitment automation, performance analysis, retention prediction, and workforce planning.</li>
+            <li><strong>Target Audience:</strong> HR Managers, Team Leads, Organizational Developers</li>
+            <li><strong>Duration:</strong> 3 weeks</li>
+            <li><strong>Course Fee:</strong> $450</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+  .program-section {
+    background-color: var(--secondary);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  .program-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .program-section .overview {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-left: 5px solid var(--accent);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  .section-heading {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .accordion .accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .accordion-header {
+    width: 100%;
+    text-align: left;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+  }
+  .accordion-header:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+  }
+  .accordion-body {
+    display: none;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+  }
+  .accordion-body ul {
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
+  body.dark-mode {
+    --primary: #e0e0e0;
+    --secondary: #181a20;
+    --accent: #FFD700;
+    --accent-alt: #FFA500;
+    background: #181a20;
+    color: #e0e0e0;
+  }
+  body.dark-mode header, body.dark-mode footer {
+    background: #23242b;
+    color: #e0e0e0;
+  }
+  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+    background: #23242b !important;
+    color: #fff !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  }
+  body.dark-mode .hero {
+    background: url('businessmgmt.jpg') center/cover no-repeat !important;
+  }
+  body.dark-mode .hero .hero-dark-overlay {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.68);
+    z-index: 1;
+    border-radius: inherit;
+  }
+  .hero .hero-dark-overlay { display: none; }
+  body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
+  body.dark-mode .cta-button {
+    background: var(--accent);
+    color: #23242b;
+    border: none;
+    box-shadow: 0 2px 8px #000;
+  }
+  body.dark-mode .cta-button:hover {
+    background: var(--accent-alt);
+    color: #23242b;
+  }
+  body.dark-mode nav a {
+    color: #fff;
+  }
+  body.dark-mode nav a.active, body.dark-mode nav a:hover {
+    color: var(--accent);
+  }
+  body.dark-mode .accordion .accordion-item,
+  body.dark-mode .accordion-body {
+    background-color: #23242b !important;
+    color: #fff !important;
+    border-color: #444 !important;
+  }
+  body.dark-mode .accordion-header {
+    background-color: #23242b !important;
+    color: #fff !important;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #444 !important;
+  }
+  body.dark-mode .accordion-header:hover {
+    background-color: var(--accent) !important;
+    color: #23242b !important;
+  }
+  body.dark-mode .accordion-body ul li,
+  body.dark-mode .accordion-body ul {
+    color: #fff !important;
+  }
+  nav a {
+    position: relative;
+    transition: color 0.2s;
+  }
+  nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+  nav a:hover::after, nav a.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  </style>
+
+  <script src="main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const body = header.nextElementSibling;
+          body.style.display = (body.style.display === 'block') ? 'none' : 'block';
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+    <script src="theme.js" defer></script>
+</body>
+</html> 

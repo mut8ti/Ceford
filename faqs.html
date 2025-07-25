@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body style="margin:0; padding:0;" id="body-root">
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+<nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html" class="active">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <section class="hero faq-hero" id="faq-hero">
+    <div class="hero-content">
+      <h1>Frequently Asked Questions</h1>
+      <p>Find answers to common questions about CEFORED Institute, our programs, admissions, and more.</p>
+    </div>
+  </section>
+
+  <hr style="width: 80%; max-width: 700px; margin: 2.5rem auto 2rem auto; border: none; border-top: 2.5px solid #bbb; background: none;">
+  <section class="faq-section">
+    <h2>General Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">What is CEFORED Institute of Relief and Development?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          CEFORED is a pioneering training institute leveraging AI to transform learning in logistics, business, health, project management, humanitarian relief, and digital transformation.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Who can enroll in your programs?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          Our programs are open to professionals, students, and organizations seeking to enhance their skills in AI-driven fields. Each program lists its ideal audience and prerequisites.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are your courses available online?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          Yes! We offer distance learning, live virtual classes, and in-person options for most programs.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do I apply for admission?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          You can apply online via our <a href="contact.html">Contact</a> page.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you offer corporate or custom training?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          Yes, we provide tailored training for organizations, NGOs, and businesses. Please <a href="contact.html">contact us</a> for details.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Will I receive a certificate?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          All our programs include certification upon successful completion.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How can I get more information?<span class="icon">+</span></button>
+        <div class="faq-answer">
+          Visit our <a href="contact.html">Contact Us</a> page or email us at <a href="mailto:info@cefored.com">info@cefored.com</a>.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+  .faq-section {
+    background: var(--secondary);
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+    color: var(--primary);
+  }
+  .faq-section h2 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  .faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .faq-item {
+    background-color: white;
+    border-left: 5px solid var(--accent);
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .faq-item:last-child {
+    border-bottom: none;
+  }
+  .faq-question {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-question:hover {
+    background-color: #f0f0e6;
+  }
+  .faq-answer {
+    padding: 0 1rem 1rem 1rem;
+    display: none;
+    color: #333;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  .faq-answer a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  .icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-left: 1rem;
+    transition: transform 0.2s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  body.dark-mode {
+    --primary: #e0e0e0;
+    --secondary: #181a20;
+    --accent: #FFD700;
+    --accent-alt: #FFA500;
+    background: #181a20;
+    color: #e0e0e0;
+  }
+  body.dark-mode header, body.dark-mode footer {
+    background: #23242b;
+    color: #e0e0e0;
+  }
+  body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+    background: #23242b !important;
+    color: #fff !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  }
+  body.dark-mode .hero {
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    position: relative;
+    background: none !important;
+  }
+  body.dark-mode #faq-hero {
+    background: linear-gradient(rgba(24,26,32,0.38), rgba(24,26,32,0.38)), url('faqbg.jpg') center/cover no-repeat !important;
+  }
+  body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
+  body.dark-mode .cta-button {
+    background: var(--accent);
+    color: #23242b;
+    border: none;
+    box-shadow: 0 2px 8px #000;
+  }
+  body.dark-mode .cta-button:hover {
+    background: var(--accent-alt);
+    color: #23242b;
+  }
+  body.dark-mode nav a {
+    color: #fff;
+  }
+  body.dark-mode nav a.active, body.dark-mode nav a:hover {
+    color: var(--accent);
+  }
+  body.dark-mode .faq-section {
+    background: #23242b !important;
+    color: #fff !important;
+  }
+  body.dark-mode .faq-item {
+    background: #23242b !important;
+    border-left: 5px solid #222 !important;
+    color: #fff !important;
+    border-bottom: 2px solid #333 !important;
+  }
+  body.dark-mode .faq-item:last-child {
+    border-bottom: none !important;
+  }
+  body.dark-mode .faq-question {
+    color: #fff !important;
+    background: none !important;
+  }
+  body.dark-mode .faq-answer {
+    color: #fff !important;
+    background: none !important;
+  }
+  body.dark-mode .faq-answer a {
+    color: #FFD700 !important;
+  }
+  body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.dark-mode, html.dark-mode {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.dark-mode hr {
+    border-top: 2.5px solid #444 !important;
+  }
+  .faq-hero {
+    background: url('faqbg.jpg') center/cover no-repeat;
+    height: 320px;
+    min-height: 280px;
+    max-height: 340px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .faq-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+  .faq-hero h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    letter-spacing: 0.01em;
+  }
+  .faq-hero p {
+    margin: 0;
+    color: #fff;
+    font-size: 1.13rem;
+    text-shadow: 0 1px 4px #000;
+  }
+  #faq-hero {
+    background: url('faqbg.jpg') center/cover no-repeat !important;
+    height: 320px;
+    min-height: 280px;
+    max-height: 340px;
+  }
+  html body #faq-hero {
+    background: url('faqbg.jpg') center/cover no-repeat !important;
+  }
+
+  /* Testimonials Section Styles */
+  .testimonials-section {
+    background: var(--secondary);
+    padding: 4rem 2rem;
+    margin: 0;
+    color: var(--primary);
+  }
+
+  .testimonials-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonials-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+  }
+
+  .testimonials-header p {
+    font-size: 1.2rem;
+    color: #444;
+    margin: 0 0 3rem 0;
+  }
+
+  .testimonials-carousel {
+    position: relative;
+    margin: 2rem 0;
+    min-height: 300px;
+    overflow: hidden;
+  }
+
+  .testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .testimonial-slide.prev {
+    transform: translateX(-100%);
+  }
+
+  .testimonial-content {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 0 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: var(--primary);
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .quote-icon {
+    font-size: 3rem;
+    color: #FFA500;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+  }
+
+  .testimonial-content blockquote {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 1rem 0 2rem 0;
+    color: var(--primary);
+    font-style: italic;
+    position: relative;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .author-info h4 {
+    color: #FFA500;
+    font-size: 1.2rem;
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+  }
+
+  .author-info p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .carousel-arrow {
+    background: rgba(255, 165, 0, 0.2);
+    border: 2px solid #FFA500;
+    color: #FFA500;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .carousel-arrow:hover {
+    background: #FFA500;
+    color: #000020;
+    transform: scale(1.1);
+  }
+
+  .carousel-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: #FFA500;
+    transform: scale(1.2);
+  }
+
+  .dot:hover {
+    background: rgba(255, 165, 0, 0.7);
+  }
+
+  .testimonials-cta {
+    margin-top: 3rem;
+  }
+
+  .testimonials-cta .cta-button {
+    background: linear-gradient(45deg, #FFA500, #FF8C00);
+    color: #000020;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+  }
+
+  .testimonials-cta .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.4);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .testimonials-header h2 {
+      font-size: 2rem;
+    }
+
+    .testimonial-content {
+      padding: 2rem 1.5rem;
+      margin: 0 0.5rem;
+    }
+
+    .testimonial-content blockquote {
+      font-size: 1.1rem;
+    }
+
+    .carousel-controls {
+      gap: 1rem;
+    }
+
+    .carousel-arrow {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .testimonials-section {
+      padding: 3rem 1rem;
+    }
+
+    .testimonials-header h2 {
+      font-size: 1.8rem;
+    }
+
+    .testimonial-content {
+      padding: 1.5rem 1rem;
+    }
+
+    .testimonial-content blockquote {
+      font-size: 1rem;
+    }
+  }
+
+  /* Dark mode compatibility */
+  body.dark-mode .testimonials-section {
+    background: #000020 !important;
+  }
+
+  body.dark-mode .testimonial-content {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 165, 0, 0.3) !important;
+  }
+  </style>
+
+  <script src="main.js" defer></script>
+  <script>
+    // Testimonials Carousel Class Definition
+    class TestimonialsCarousel {
+      constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.testimonial-slide');
+        this.dots = document.querySelectorAll('.dot');
+        this.prevArrow = document.querySelector('.prev-arrow');
+        this.nextArrow = document.querySelector('.next-arrow');
+        this.carousel = document.querySelector('.testimonials-carousel');
+        this.autoPlayInterval = null;
+        this.autoPlayDelay = 6000;
+
+        if (this.slides.length > 0) {
+          this.init();
+        }
+      }
+
+      init() {
+        this.bindEvents();
+        this.startAutoPlay();
+        this.updateArrows();
+      }
+
+      bindEvents() {
+        this.prevArrow.addEventListener('click', () => this.prevSlide());
+        this.nextArrow.addEventListener('click', () => this.nextSlide());
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => this.goToSlide(index));
+        });
+        this.carousel.addEventListener('mouseenter', () => this.pauseAutoPlay());
+        this.carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+      }
+
+      goToSlide(index) {
+        this.slides[this.currentSlide].classList.remove('active');
+        this.dots[this.currentSlide].classList.remove('active');
+        this.currentSlide = index;
+        this.slides[this.currentSlide].classList.add('active');
+        this.dots[this.currentSlide].classList.add('active');
+        this.updateArrows();
+      }
+      
+      nextSlide() {
+        let nextIndex = (this.currentSlide + 1) % this.slides.length;
+        this.goToSlide(nextIndex);
+      }
+
+      prevSlide() {
+        let prevIndex = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.goToSlide(prevIndex);
+      }
+      
+      updateArrows() {
+        // Future accessibility improvements can go here
+      }
+
+      startAutoPlay() {
+        this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoPlayDelay);
+      }
+
+      pauseAutoPlay() {
+        clearInterval(this.autoPlayInterval);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize carousel
+      new TestimonialsCarousel();
+
+      // FAQ functionality (Accordion style)
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.icon');
+        const isOpen = answer.style.display === 'block';
+          
+          document.querySelectorAll('.faq-answer').forEach(a => {
+            if (a !== answer) {
+              a.style.display = 'none';
+              a.previousElementSibling.querySelector('.icon').textContent = '+';
+            }
+          });
+
+        if (!isOpen) {
+          answer.style.display = 'block';
+          icon.textContent = '–';
+          } else {
+            answer.style.display = 'none';
+            icon.textContent = '+';
+        }
+        });
+      });
+    });
+  </script>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section">
+    <div class="testimonials-container">
+      <div class="testimonials-header">
+        <h2>Real stories. Real results. → See Testimonials</h2>
+        <p>Hear from those we've trained</p>
+      </div>
+      
+      <div class="testimonials-carousel">
+        <div class="testimonial-slide active" data-slide="0">
+          <div class="testimonial-content">
+            <div class="quote-icon">❝</div>
+            <blockquote>
+              "CEFORED's AI-driven logistics program transformed our supply chain operations. The practical approach and real-world applications made all the difference. Our efficiency improved by 40% within three months."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Operations Director, Global Logistics Co.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide" data-slide="1">
+          <div class="testimonial-content">
+            <div class="quote-icon">❝</div>
+            <blockquote>
+              "The humanitarian relief training was exactly what our NGO needed. CEFORED's expertise in crisis management and AI applications helped us respond more effectively to emergencies."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4>Michael Chen</h4>
+                <p>Program Manager, International Aid Org</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide" data-slide="2">
+          <div class="testimonial-content">
+            <div class="quote-icon">❝</div>
+            <blockquote>
+              "As a healthcare professional, the digital transformation course opened my eyes to how AI can enhance patient care. The instructors were industry experts who truly understand the challenges we face."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4>Dr. Emily Rodriguez</h4>
+                <p>Chief Medical Officer, HealthTech Solutions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide" data-slide="3">
+          <div class="testimonial-content">
+            <div class="quote-icon">❝</div>
+            <blockquote>
+              "The project management certification from CEFORED gave me the skills and confidence to lead complex initiatives. The AI integration aspects were particularly valuable for modern project delivery."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4>David Thompson</h4>
+                <p>Senior Project Manager, Tech Innovations Ltd</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-slide" data-slide="4">
+          <div class="testimonial-content">
+            <div class="quote-icon">❝</div>
+            <blockquote>
+              "CEFORED's business management program helped our startup scale efficiently. The AI-driven insights and strategic frameworks they taught us were game-changing for our growth trajectory."
+            </blockquote>
+            <div class="testimonial-author">
+              <div class="author-info">
+                <h4>Lisa Wang</h4>
+                <p>CEO, StartupScale Ventures</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow prev-arrow" aria-label="Previous testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        
+        <div class="carousel-dots">
+          <button class="dot active" data-slide="0" aria-label="Go to testimonial 1"></button>
+          <button class="dot" data-slide="1" aria-label="Go to testimonial 2"></button>
+          <button class="dot" data-slide="2" aria-label="Go to testimonial 3"></button>
+          <button class="dot" data-slide="3" aria-label="Go to testimonial 4"></button>
+          <button class="dot" data-slide="4" aria-label="Go to testimonial 5"></button>
+        </div>
+
+        <button class="carousel-arrow next-arrow" aria-label="Next testimonial">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+
+      
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+    <script src="theme.js" defer></script>
+</body>
+</html> 

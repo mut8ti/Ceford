@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access to contacts collection
+    match /contacts/{contact} {
+      // Allow anyone to create a contact
+      allow create: if request.auth != null || 
+                   (request.resource.data.name is string && 
+                    request.resource.data.email is string &&
+                    request.resource.data.message is string);
+                    
+      // Only allow read/update/delete by admin
+      allow read, update, delete: if request.auth != null && 
+                                 get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Newsletter subscription rules
+    match /newsletter/{subscriber} {
+      // Allow anyone to subscribe (create)
+      allow create: if request.auth != null || 
+                   (request.resource.data.name is string && 
+                    request.resource.data.email is string);
+                    
+      // Only allow read/update/delete by admin
+      allow read, update, delete: if request.auth != null && 
+                                 get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    // Admin users can read all documents
+    match /{document=**} {
+      allow read: if request.auth != null && 
+                 get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+                  
+      // For development only - allows all reads and writes
+      // WARNING: Only use this for testing, not in production
+      // allow read, write: if true;
+    }
+  }
+}

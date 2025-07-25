@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REALM 1: AI in Logistics & Supply Chain Management - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+<nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <section class="hero" style="background: url('realm1bg.webp') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 1: AI in Logistics & Supply Chain Management</h1>
+    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Transforming logistics through intelligent, AI-enhanced systems.</p>
+  </section>
+
+  <section class="program-section">
+    <div class="card">
+      <h3 class="card-title">Program Overview</h3>
+      <p>
+        This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.
+        <br><br>
+        <strong>Ideal for:</strong> Logistics managers, procurement officers, warehouse coordinators, and supply chain professionals.
+      </p>
+    </div>
+
+    <h3 class="section-heading">Courses Offered</h3>
+
+    <div class="accordion">
+      <!-- COURSE 1 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI in Procurement & Purchasing</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Understand AI in procurement, demand prediction, supplier selection, pricing optimization, and risk mitigation.</li>
+            <li><strong>Who Can Take This Course:</strong> Supply Chain Managers, Procurement Officers, Business Analysts, AI Enthusiasts</li>
+            <li><strong>Requirements:</strong> Basic understanding of procurement; no prior AI knowledge required.</li>
+            <li><strong>Duration:</strong> 4 weeks (16 hours)</li>
+            <li><strong>Course Fee:</strong> $450</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- COURSE 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI for Smart Inventory & Warehouse Management</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Automate inventory tracking, stock optimization, and warehouse layout using AI and IoT.</li>
+            <li><strong>Target Audience:</strong> Warehouse Managers, Inventory Officers, ICT Managers</li>
+            <li><strong>Requirements:</strong> Basic knowledge of warehousing/logistics</li>
+            <li><strong>Duration:</strong> 4 weeks (16 hours)</li>
+            <li><strong>Course Fee:</strong> $480</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- COURSE 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI-Powered Transportation & Fleet Management</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Use AI for route planning, vehicle tracking, fuel efficiency, and predictive maintenance.</li>
+            <li><strong>Target Audience:</strong> Fleet Managers, Operations Directors, NGOs, Logistics Firms</li>
+            <li><strong>Duration:</strong> 3 weeks (12 hours)</li>
+            <li><strong>Course Fee:</strong> $470</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- COURSE 4 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI in Demand Forecasting & Supply Chain Planning</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Leverage machine learning to improve supply-demand balancing and planning accuracy.</li>
+            <li><strong>Target Audience:</strong> Planners, Data Analysts, Program Managers</li>
+            <li><strong>Duration:</strong> 4 weeks</li>
+            <li><strong>Course Fee:</strong> $460</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+
+      <!-- COURSE 5 -->
+      <div class="accordion-item">
+        <button class="accordion-header">AI for Risk Management in Logistics</button>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Objectives:</strong> Learn how to identify, assess, and mitigate supply chain risks with AI tools.</li>
+            <li><strong>Target Audience:</strong> Logistics Coordinators, Emergency Planners, Procurement Officers</li>
+            <li><strong>Duration:</strong> 3 weeks</li>
+            <li><strong>Course Fee:</strong> $450</li>
+          </ul>
+          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <style>
+  nav a {
+    position: relative;
+    transition: color 0.2s;
+  }
+  nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.2s, transform 0.2s;
+    border-radius: 2px;
+  }
+  nav a:hover::after, nav a.active::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  .program-section {
+    background-color: var(--secondary);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  .program-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .program-section .overview {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .card {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-left: 5px solid var(--accent);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  .section-heading {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .accordion .accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .accordion-header {
+    width: 100%;
+    text-align: left;
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+  }
+  .accordion-header:hover {
+    background-color: var(--accent);
+    color: var(--primary);
+  }
+  .accordion-body {
+    display: none;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+  }
+  .accordion-body ul {
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
+  body.dark-mode {
+    --primary: #e0e0e0;
+    --secondary: #181a20;
+    --accent: #FFD700;
+    --accent-alt: #FFA500;
+    background: #181a20;
+    color: #e0e0e0;
+  }
+  body.dark-mode header, body.dark-mode footer {
+    background: #23242b;
+    color: #e0e0e0;
+  }
+  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+    background: #23242b !important;
+    color: #fff !important;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  }
+  body.dark-mode .hero {
+    color: #fff;
+    text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    position: relative;
+  }
+  body.dark-mode .hero .hero-dark-overlay {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.68);
+    z-index: 1;
+    border-radius: inherit;
+  }
+  .hero .hero-dark-overlay { display: none; }
+  body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
+  body.dark-mode .cta-button {
+    background: url('realm1bg.webp') center/cover no-repeat, var(--accent);
+    color: #fff !important;
+    border: none;
+    box-shadow: 0 2px 8px #000;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+  }
+  body.dark-mode .cta-button:hover {
+    background: var(--accent-alt);
+    color: #23242b;
+    filter: brightness(1.1) contrast(1.1);
+    opacity: 0.95;
+  }
+  body.dark-mode nav a {
+    color: #fff;
+  }
+  body.dark-mode nav a.active, body.dark-mode nav a:hover {
+    color: var(--accent);
+  }
+  body.dark-mode .hero {
+    background: url('realm1bg.webp') center/cover no-repeat !important;
+  }
+  body.dark-mode .accordion .accordion-item,
+  body.dark-mode .accordion-body {
+    background-color: #23242b !important;
+    color: #fff !important;
+    border-color: #444 !important;
+  }
+  body.dark-mode .accordion-header {
+    background-color: #23242b !important;
+    color: #fff !important;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #444 !important;
+  }
+  body.dark-mode .accordion-header:hover {
+    background-color: var(--accent) !important;
+    color: #23242b !important;
+  }
+  body.dark-mode .accordion-body ul li,
+  body.dark-mode .accordion-body ul {
+    color: #fff !important;
+  }
+  </style>
+
+  <script src="main.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const body = header.nextElementSibling;
+          body.style.display = (body.style.display === 'block') ? 'none' : 'block';
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+    <script src="theme.js" defer></script>
+</body>
+</html> 

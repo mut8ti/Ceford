@@ -1,0 +1,865 @@
+/* =========================
+   Root Variables (Colors)
+   ========================= */
+:root {
+  --primary: #000080;
+  --secondary: #f5f5dc;
+  --accent: #FFA500;
+  --accent-alt: #FFFF00;
+}
+
+/* =========================
+   Base Body Styles
+   ========================= */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* =========================
+   Header & Navigation
+   ========================= */
+header {
+  background: var(--primary);
+  color: var(--secondary);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: var(--secondary);
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a.active, nav a:hover {
+  color: var(--accent);
+}
+
+/* =========================
+   Hero Section
+   ========================= */
+.hero {
+  background: white;
+  text-align: center;
+  padding: 4rem 2rem 2rem 2rem;
+}
+
+.hero h1, .hero p {
+  color: #fff !important;
+  text-shadow:
+    0 4px 24px rgba(0,0,0,0.85),
+    0 2px 8px rgba(0,0,0,0.7),
+    0 0 2px #222;
+  letter-spacing: 0.01em;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--primary);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 1rem auto;
+}
+
+/* =========================
+   Hero Section (Dark Overlay)
+   ========================= */
+.hero.hero-dark {
+  position: relative;
+  background: url('realm1bg.webp') center/cover no-repeat;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1rem 2.5rem 1rem;
+}
+
+.hero-title {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.01em;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.7), 0 0 2px #222;
+}
+
+.hero-subheading {
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+  font-size: 1.25rem;
+  color: #e0e0e0;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 0;
+  opacity: 0.95;
+}
+
+body, html {
+  transition: background 0.3s, color 0.3s;
+
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+}
+
+/* =========================
+   Call-to-Action Button
+   ========================= */
+.cta-button {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-alt);
+  color: var(--primary);
+}
+
+/* =========================
+   Main Sections & Cards
+   ========================= */
+.sections {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.section {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem;
+  max-width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  flex: 1 1 250px;
+}
+
+.section ul, .section ol {
+  text-align: left;
+  margin: 0.5rem 0 0 1.2rem;
+}
+
+/* =========================
+   Footer
+   ========================= */
+footer {
+  background: var(--primary);
+  color: var(--secondary);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* =========================
+   Testimonials Section
+   ========================= */
+.testimonials {
+  background: var(--secondary);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.testimonials h2 {
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.testimonials h3 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.testimonials > p {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.testimonials h4 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 350px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border: 1px solid #e0e0e0;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: var(--primary);
+}
+
+.testimonial-author {
+  font-weight: 600;
+  color: var(--primary);
+  display: block;
+}
+
+/* =========================
+   Forms (Contact, Admission)
+   ========================= */
+form input, form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+form label {
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* =========================
+   Responsive Design
+   ========================= */
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+  nav a {
+    margin-left: 0;
+    margin-right: 1.2rem;
+    font-size: 1rem;
+  }
+  .sections {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .section {
+    max-width: 100%;
+    margin: 1rem 0;
+    padding: 1.2rem;
+  }
+  .program-section, .faq-section, .main-content, .card, .collapsible, .realm-card {
+    max-width: 98vw !important;
+    padding: 1.2rem 0.5rem !important;
+    margin: 1.2rem auto !important;
+  }
+  .hero, .hero-content {
+    padding: 2rem 0.5rem 1.5rem 0.5rem !important;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p, .hero .hero-subheading {
+    font-size: 1rem;
+  }
+  .cta-button {
+    width: 100%;
+    font-size: 1.08rem;
+    padding: 1rem 0;
+  }
+  form input, form textarea {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 0.5rem;
+  }
+  nav {
+    flex-direction: column;
+    gap: 0.2rem;
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+  nav a {
+    margin: 0.2rem 0;
+    font-size: 0.98rem;
+  }
+  .hero, .hero-content {
+    padding: 1.2rem 0.2rem 1rem 0.2rem !important;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+  }
+  .hero p, .hero .hero-subheading {
+    font-size: 0.98rem;
+  }
+  .sections, .program-section, .faq-section, .main-content, .card, .collapsible, .realm-card {
+    max-width: 99vw !important;
+    padding: 0.7rem 0.2rem !important;
+    margin: 0.7rem auto !important;
+  }
+  .section {
+    max-width: 100%;
+    margin: 0.7rem 0;
+    padding: 0.7rem;
+  }
+  .cta-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 0;
+  }
+  form input, form textarea {
+    width: 100%;
+    font-size: 0.98rem;
+  }
+  .testimonial-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* =========================
+   Collapsible Program Boxes
+   ========================= */
+.collapsible-title {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 2rem;
+  transition: color 0.2s;
+  margin-bottom: 0;
+}
+.collapsible-title:hover {
+  color: var(--accent);
+}
+.collapsible-content {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+  margin-top: 0;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.collapsible.active .collapsible-content {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* Realm backgrounds for clickable links */
+.realm-bg {
+  position: relative;
+  margin-bottom: 1.5em;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 220px;
+  height: 220px;
+  max-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s, filter 0.3s;
+  cursor: pointer;
+  background-size: cover !important;
+  background-position: center !important;
+  box-sizing: border-box;
+  will-change: transform;
+}
+.realm-bg:hover {
+  transform: scale(1.035) translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+  filter: brightness(1.08) saturate(1.1);
+  z-index: 2;
+}
+.realm-bg h2 {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0 1em;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  font-size: 1.3em;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.realm-bg a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+.realm-bg::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+}
+.realm1-bg {
+  background: url('logistics.jpeg') center/cover no-repeat;
+}
+/* Business meeting photo by Unsplash: https://unsplash.com/photos/1515168833906-d2a3b82b302c */
+.realm2-bg {
+  background: url('businessmeeting.png') center/cover no-repeat;
+}
+/* Laptop showing code by Arnold Francisca on Unsplash: https://unsplash.com/photos/turned-on-macbook-pro-wit-programming-codes-display-f77Bh3inUpE */
+.realm5-bg {
+  background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+}
+/* Doctor photo by Unsplash: https://unsplash.com/photos/doctor-in-white-coat-1550831107-1553da8c8464 */
+.realm3-bg {
+  background: url('https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+}
+.realm4-bg {
+  background: url('projectmanagement.jpg') center/cover no-repeat;
+}
+.realm6-bg {
+  background: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+}
+@media (max-width: 600px) {
+  .realm-bg {
+    min-height: 120px;
+    height: 120px;
+    max-height: 120px;
+  }
+  .realm-bg h2 {
+    font-size: 1em;
+    padding: 1.2em 0.5em;
+  }
+}
+
+/* =========================
+   Section & Content Spacing
+   ========================= */
+section, .content-section {
+  padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2.2rem;
+  margin-bottom: 1.1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+p, ol, ul {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  line-height: 1.7;
+}
+
+ol, ul {
+  padding-left: 1.5em;
+}
+
+/* For main content area to center and limit width */
+.main-content, .program-content {
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+} 
+
+/* =========================
+   Dark Mode (Global)
+   ========================= */
+body.dark-mode .hero {
+  background: linear-gradient(rgba(0,0,0,0.68),rgba(0,0,0,0.68)), url('about1.png') center/cover no-repeat !important;
+  color: #fff;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+  position: relative;
+}
+body.dark-mode .hero-dark-overlay {
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.68);
+  z-index: 1;
+  border-radius: inherit;
+}
+.hero-dark-overlay { display: none; }
+body.dark-mode .hero > *:not(.hero-dark-overlay) {
+  position: relative;
+  z-index: 2;
+}
+body.dark-mode .hero p {
+  color: #fff;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+}
+body.dark-mode .about-expanded, body.dark-mode .section, body.dark-mode .sections {
+  background: #23242b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+body.dark-mode .about-expanded h2, body.dark-mode .about-expanded p, body.dark-mode .about-expanded ul, body.dark-mode .about-expanded li {
+  color: #fff !important;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+}
+body.dark-mode .cta-button {
+  background: var(--accent);
+  color: #23242b;
+  border: none;
+  box-shadow: 0 2px 8px #000;
+}
+body.dark-mode .cta-button:hover {
+  background: var(--accent-alt);
+  color: #23242b;
+}
+body.dark-mode nav a {
+  color: #fff;
+}
+body.dark-mode nav a.active, body.dark-mode nav a:hover {
+  color: var(--accent);
+} 
+body.dark-mode .about-list, body.dark-mode .about-list li {
+  color: #fff !important;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+}
+body.dark-mode .about-cta a.cta-button {
+  background: var(--accent);
+  color: #23242b;
+  border: none;
+  box-shadow: 0 2px 8px #000;
+}
+body.dark-mode .about-cta a.cta-button:hover {
+  background: var(--accent-alt);
+  color: #23242b;
+}
+body.dark-mode .main-content, body.dark-mode .section {
+  background: #23242b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+} 
+body.dark-mode, html.dark-mode {
+  background: #181a20 !important;
+  color: #fff !important;
+}
+body.dark-mode .main-content,
+body.dark-mode .section,
+body.dark-mode .sections,
+body.dark-mode .about-list,
+body.dark-mode .about-cta {
+  background: #23242b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+body.dark-mode .main-content h2,
+body.dark-mode .main-content p,
+body.dark-mode .main-content ul,
+body.dark-mode .main-content li,
+body.dark-mode .about-list li,
+body.dark-mode .about-cta a {
+  color: #fff !important;
+}
+
+/* --- Corporate Training Page Specific Fixes --- */
+.corporate-training-page .hero.corporate-hero {
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('projectbg.jpg') center/cover no-repeat !important;
+  color: #fff;
+  position: relative;
+}
+.corporate-training-page .hero.corporate-hero .hero-title,
+.corporate-training-page .hero.corporate-hero .hero-subheading {
+  color: #fff !important;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.7), 0 0 2px #222;
+}
+.corporate-training-page .hero.corporate-hero .hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+.corporate-training-page .hero.corporate-hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Collapsible content text color for light/dark mode */
+.corporate-training-page .collapsible-content {
+  color: #222;
+  background: #fafbfc;
+}
+body.dark-mode .corporate-training-page .collapsible-content {
+  color: #fff;
+  background: #23242b;
+}
+
+/* Remove conflicting global hero text color for this page */
+.corporate-training-page .hero h1,
+.corporate-training-page .hero p {
+  color: #fff !important;
+} 
+
+/* --- Corporate Training Page Section Titles: More Visible --- */
+.corporate-training-page .main-section-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.01em;
+  text-align: left;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+body.dark-mode .corporate-training-page .main-section-title {
+  color: #fff;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+}
+.corporate-training-page .realm-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+  background: #e3e8f7;
+  border-radius: 1.1rem 1.1rem 0 0;
+  margin-bottom: 0;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+body.dark-mode .corporate-training-page .realm-title {
+  color: #fff;
+  background: #23242b;
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+} 
+
+/* --- Corporate Training Page Cards in Dark Mode --- */
+body.dark-mode.corporate-training-page {
+  background: #181a20 !important;
+}
+/* Removed conflicting dark mode rules for corporate training page cards */
+body.dark-mode .corporate-training-page .collapsible-title,
+body.dark-mode .corporate-training-page .realm-title,
+body.dark-mode .corporate-training-page .main-section-title,
+body.dark-mode .corporate-training-page .collapsible-content,
+body.dark-mode .corporate-training-page .collapsible-content li,
+body.dark-mode .corporate-training-page .collapsible-content p {
+  color: #fff !important;
+  border-color: #222 !important;
+}
+body.dark-mode .corporate-training-page .collapsible-content {
+  background: #181a20 !important;
+  color: #fff !important;
+} 
+
+/* --- Corporate Training Page: Match Homepage Card & Title Styles --- */
+.corporate-training-page .program-section {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem auto 2rem auto;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  text-align: left;
+}
+body.dark-mode .corporate-training-page .program-section {
+  background: rgba(35,36,43,0.98) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  border-color: #444 !important;
+}
+.corporate-training-page .collapsible {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  margin-bottom: 2.2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.dark-mode .corporate-training-page .collapsible {
+  background: rgba(35,36,43,0.98) !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+.corporate-training-page .main-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.01em;
+  text-align: left;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+body.dark-mode .corporate-training-page .main-section-title {
+  color: #fff;
+}
+.corporate-training-page .realm-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+  background: none;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  padding: 1.2rem 1.5rem;
+  border: none;
+  text-shadow: none;
+}
+body.dark-mode .corporate-training-page .realm-title {
+  color: #fff;
+  background: none;
+}
+.corporate-training-page .collapsible-title {
+  background: none;
+  color: var(--primary);
+  border-radius: 8px 8px 0 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 1.2rem 1.5rem;
+  border: none;
+  outline: none;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body.dark-mode .corporate-training-page .collapsible-title {
+  color: #fff;
+  background: none;
+}
+.corporate-training-page .collapsible-content {
+  background: #fafbfc;
+  color: #222;
+  padding: 1.2rem 1.5rem 1.7rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+}
+body.dark-mode .corporate-training-page .collapsible-content {
+  background: #23242b !important;
+  color: #fff !important;
+} 
+body.dark-mode .corporate-training-page,
+body.dark-mode .corporate-training-page * {
+  background: #181a20 !important;
+  color: #fff !important;
+} 
+body.dark-mode .corporate-training-page .program-section,
+body.dark-mode .corporate-training-page .collapsible,
+body.dark-mode .corporate-training-page .program-section *,
+body.dark-mode .corporate-training-page .collapsible * {
+  background: #23242b !important;
+  color: #fff !important;
+} 
+/* === FORCE DARK MODE FOR CORPORATE TRAINING PAGE === */
+body.dark-mode .corporate-training-page,
+body.dark-mode .corporate-training-page .program-section,
+body.dark-mode .corporate-training-page .collapsible {
+  background: #23242b !important;
+  color: #fff !important;
+}
+
+body.dark-mode .corporate-training-page .collapsible-content {
+    background: #181a20 !important;
+}
+
+/* === GLOBAL DARK MODE STYLES === */
+body.dark-mode header,
+body.dark-mode footer {
+  background: #23242b !important;
+  color: #fff !important;
+}
+body.dark-mode nav a {
+  color: #fff !important;
+}
+body.dark-mode nav a:hover {
+  color: var(--accent) !important;
+} 

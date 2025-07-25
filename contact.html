@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  <!-- Head: Meta, Title, Styles -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - CEFORED Institute of Relief</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Spinner for form loading */
+    #formLoadingSpinner {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.24);
+      transition: opacity 0.2s;
+    }
+    .spinner-overlay {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .spinner {
+      border: 5px solid #eee;
+      border-top: 5px solid #4BB543;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      animation: spin 1s linear infinite;
+      background: transparent;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Popup modal for confirmation */
+    #formSuccessPopup {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.36);
+      transition: opacity 0.2s;
+    }
+    .popup-overlay {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .popup-content {
+      background: #fff;
+      color: #222;
+      border-radius: 16px;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.18);
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      text-align: center;
+      min-width: 280px;
+      max-width: 90vw;
+      position: relative;
+      animation: popupIn 0.25s cubic-bezier(.42,0,.58,1.0);
+    }
+    .tick-circle {
+      margin-bottom: 1.1rem;
+    }
+    .popup-message {
+      font-size: 1.15rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+    .popup-close {
+      background: #4BB543;
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.4rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0002;
+      transition: background 0.18s;
+    }
+    .popup-close:hover {
+      background: #39912e;
+    }
+    @keyframes popupIn {
+      0% { opacity: 0; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    /* Dark mode for popup */
+    html.dark-mode #formSuccessPopup .popup-content {
+      background: #23242b;
+      color: #fff;
+    }
+    html.dark-mode #formSuccessPopup .popup-message {
+      color: #fff;
+    }
+    html.dark-mode .popup-close {
+      background: #4BB543;
+      color: #fff;
+    }
+    html.dark-mode #formLoadingSpinner .spinner {
+      border: 5px solid #333;
+      border-top: 5px solid #4BB543;
+    }
+    .hero.contact-hero {
+      position: relative;
+      background: url('contactbg.jpg') center/cover no-repeat !important;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero.contact-hero .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .hero.contact-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem 2rem 1rem;
+    }
+    .hero.contact-hero h1 {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.7), 0 0 2px #222;
+    }
+    .hero.contact-hero .hero-subheading, .hero.contact-hero p {
+      color: #e0e0e0;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 0;
+      opacity: 0.95;
+    }
+    body.dark-mode .hero.contact-hero {
+      background: url('contactbg.jpg') center/cover no-repeat !important;
+      color: #fff !important;
+    }
+    body.dark-mode .hero-dark-overlay {
+      display: block;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.68);
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .hero-dark-overlay { display: none; }
+    body.dark-mode .hero.contact-hero > *:not(.hero-dark-overlay) {
+      position: relative;
+      z-index: 2;
+    }
+    body.dark-mode .hero.contact-hero h1,
+    body.dark-mode .hero.contact-hero .hero-subheading,
+    body.dark-mode .hero.contact-hero p {
+      color: #fff;
+      text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+    }
+    body.dark-mode .section, body.dark-mode .sections, body.dark-mode .contact-info-box {
+      background: #23242b !important;
+      color: #fff !important;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    body.dark-mode .cta-button {
+      background: var(--accent);
+      color: #23242b;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+    }
+    body.dark-mode .cta-button:hover {
+      background: var(--accent-alt);
+      color: #23242b;
+    }
+    body.dark-mode nav a {
+      color: #fff;
+    }
+    body.dark-mode nav a.active, body.dark-mode nav a:hover {
+      color: var(--accent);
+    }
+    body.dark-mode {
+      background: #181a20 !important;
+      color: #fff !important;
+    }
+    body.dark-mode header, body.dark-mode nav, body.dark-mode footer {
+      background: #23242b !important;
+      color: #fff !important;
+    }
+    body.dark-mode .hero.contact-hero {
+      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('contactbg.jpg') center/cover no-repeat !important;
+      color: #fff !important;
+    }
+    body.dark-mode .section, body.dark-mode .sections, body.dark-mode .contact-info-box {
+      background: #23242b !important;
+      color: #fff !important;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    body.dark-mode label, body.dark-mode input, body.dark-mode textarea {
+      background: #23242b !important;
+      color: #fff !important;
+      border: 1px solid #444 !important;
+    }
+    body.dark-mode input::placeholder, body.dark-mode textarea::placeholder {
+      color: #bbb !important;
+      opacity: 1;
+    }
+    body.dark-mode .cta-button {
+      background: var(--accent) !important;
+      color: #23242b !important;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+    }
+    body.dark-mode .cta-button:hover {
+      background: var(--accent-alt) !important;
+      color: #23242b !important;
+    }
+    body.dark-mode nav a {
+      color: #fff !important;
+    }
+    body.dark-mode nav a.active, body.dark-mode nav a:hover {
+      color: var(--accent) !important;
+    }
+    body.dark-mode .contact-info-box,
+    body.dark-mode .contact-info-box h3,
+    body.dark-mode .contact-info-box ul,
+    body.dark-mode .contact-info-box li,
+    body.dark-mode .contact-info-box a {
+      color: #fff !important;
+      text-shadow: 0 1px 4px #0002;
+    }
+    nav a {
+      position: relative;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transform: scaleX(0);
+      transition: opacity 0.2s, transform 0.2s;
+      border-radius: 2px;
+    }
+    nav a:hover::after, nav a.active::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  </style>
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <!-- Header and Navigation -->
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html" class="active">Contact Us</a>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero contact-hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <div class="hero-subheading">For inquiries, course registration, partnership opportunities or corporate training requests, reach us directly through our contact form or via email.</div>
+      <p>We'd love to hear from you! Fill out the form below or reach us directly at info@cefored.org.</p>
+    </div>
+  </section>
+  <!-- Main Content Section: Contact Form -->
+  <section class="sections" style="margin-top:2rem;">
+    <div class="section" style="width:100%;max-width:500px;margin:auto;">
+      <!-- Contact Form -->
+      <form id="contactForm">
+        <!-- Name Field -->
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <!-- Email Field -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+        <!-- Phone Number Field -->
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}"><br><br>
+        <!-- Message Field -->
+        <label for="message">Message (What Course would you like to apply):</label><br>
+        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+        <!-- Submit Button -->
+        <button type="submit" class="cta-button">Send Message</button>
+        <!-- Form Message (Success/Error) -->
+        <div id="formMessage" style="margin-top:1rem;"></div>
+        <p id="wbalert"></p>
+      </form>
+  
+      </script>
+      <!-- Include the database.js module -->
+      <script type="module" src="js/database.js"></script>
+      <div class="contact-info-box">
+        <h3 style="margin-top:2.5rem; color:var(--primary); font-size:1.25rem;">Let's ignite the future. Reach out for admissions, partnerships, or Corporate collaborations.</h3>
+        <ul style="list-style:none; padding:0; margin:1.2rem 0 0 0; font-size:1.08rem; color:#222;">
+          <li>📧 <strong>Email:</strong> <a href="mailto:info@cefored.com" style="color:var(--primary);text-decoration:underline;">info@cefored.com</a></li>
+          <li>📞 <strong>Phone:</strong> <a href="tel:+254755445982" style="color:var(--primary);text-decoration:underline;">+254 755445982</a></li>
+          <li>🌐 <strong>Website:</strong> <a href="https://www.ceforedconsultancy.com" target="_blank" style="color:var(--primary);text-decoration:underline;">www.ceforedconsultancy.com</a></li>
+          <li>📍 <strong>Location:</strong> Nairobi – Kenya.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+  <!-- Firebase SDKs are now imported in database.js -->
+</script>
+  <script src="main.js" defer></script>
+      <script src="theme.js" defer></script>
+</body>
+</html> 

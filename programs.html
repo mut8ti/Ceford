@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+</style>
+
+  
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <!-- Head: Meta, Title, Styles -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .hero.programs-hero {
+      position: relative;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('programsbg.jpg') center/cover no-repeat;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero.programs-hero .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1;
+    }
+    .hero.programs-hero .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem 2rem 1rem;
+    }
+    .hero.programs-hero h1 {
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.7), 0 0 2px #222;
+    }
+    .hero.programs-hero p {
+      color: #e0e0e0;
+      font-size: 1.15rem;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 0;
+      opacity: 0.95;
+    }
+    body.dark-mode {
+      --primary: #e0e0e0;
+      --secondary: #181a20;
+      --accent: #FFD700;
+      --accent-alt: #FFA500;
+      background: #181a20;
+      color: #e0e0e0;
+    }
+    body.dark-mode header, body.dark-mode footer {
+      background: #23242b;
+      color: #e0e0e0;
+    }
+    body.dark-mode .hero, body.dark-mode .hero.programs-hero {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('programsbg.jpg') center/cover no-repeat !important;
+      color: #fff;
+      text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+      position: relative;
+    }
+    body.dark-mode .hero-dark-overlay { display: none !important; }
+    body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
+    body.dark-mode .cta-button {
+      background: var(--accent);
+      color: #23242b;
+      border: none;
+      box-shadow: 0 2px 8px #000;
+    }
+    body.dark-mode .cta-button:hover {
+      background: var(--accent-alt);
+      color: #23242b;
+    }
+    body.dark-mode nav a {
+      color: #fff;
+    }
+    body.dark-mode nav a.active, body.dark-mode nav a:hover {
+      color: var(--accent);
+    }
+    nav a {
+      position: relative;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transform: scaleX(0);
+      transition: opacity 0.2s, transform 0.2s;
+      border-radius: 2px;
+    }
+    nav a:hover::after, nav a.active::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  </style>
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <!-- Header and Navigation -->
+  <header>
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+<nav>
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html" class="active">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero programs-hero">
+    <div class="hero-content">
+      <h1>Our Programs</h1>
+      <p>Explore our hands-on training and academic programs designed to prepare you for a career in humanitarian relief and development.</p>
+    </div>
+  </section>
+  <!-- Main Content Sections -->
+  <section class="sections" style="margin-top:2rem;">
+    <div class="section collapsible">
+      <div class="realm-bg realm1-bg" onclick="window.location.href='realm1-logistics.html'" style="background: url('realm1bg.webp') center/cover no-repeat; min-height: 120px; display: flex; align-items: center; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.18);">
+        <h2 class="collapsible-title" style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">🔥 REALM 1: AI in Logistics & Supply Chain Management</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Transforming logistics through intelligent, AI-enhanced systems</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.<br>
+        <em>Perfect for: Supply chain professionals, logistics managers, and anyone interested in the future of goods movement.</em></p>
+      </div>
+    </div>
+    <div class="section collapsible">
+      <div class="realm-bg realm2-bg" onclick="window.location.href='realm2-business.html'">
+        <h2 class="collapsible-title">💼 REALM 2: AI in Business Management</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Empowering next-gen business leaders with AI strategies</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        Dive into AI-driven decision making, process automation, and data analytics for business. This program covers everything from AI-powered marketing to financial forecasting and HR management.<br>
+        <em>Perfect for: Entrepreneurs, business managers, and future-focused executives.</em></p>
+      </div>
+    </div>
+    <div class="section collapsible">
+      <div class="realm-bg realm3-bg" onclick="window.location.href='realm3-health.html'">
+        <h2 class="collapsible-title">🩺 REALM 3: AI in Health Management</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Empowering health professionals with AI for smarter care</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        Learn how AI is revolutionizing diagnostics, patient care, and health data management. Explore real-world applications in hospitals, clinics, and public health.<br>
+        <em>Perfect for: Healthcare workers, administrators, and tech enthusiasts in medicine.</em></p>
+      </div>
+    </div>
+    <div class="section collapsible">
+      <div class="realm-bg realm4-bg" onclick="window.location.href='realm4-project.html'">
+        <h2 class="collapsible-title">📊 REALM 4: AI in Project Management</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Unleashing AI to power smarter planning, real-time tracking, and risk management</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        Master AI tools for project scheduling, resource allocation, and performance analytics. This program is designed to help you deliver projects on time and on budget.<br>
+        <em>Perfect for: Project managers, team leads, and anyone managing complex initiatives.</em></p>
+      </div>
+    </div>
+    <div class="section collapsible">
+      <div class="realm-bg realm5-bg" onclick="window.location.href='realm5-it.html'">
+        <h2 class="collapsible-title">💻 REALM 5: AI in IT & Digital Transformation</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Reclaiming digital thrones through AI-powered IT solutions</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        Explore AI's role in cybersecurity, cloud computing, and digital innovation. Learn how to lead digital transformation in any organization.<br>
+        <em>Perfect for: IT professionals, digital strategists, and tech leaders.</em></p>
+      </div>
+    </div>
+    <div class="section collapsible">
+      <div class="realm-bg realm6-bg" onclick="window.location.href='realm6-humanitarian.html'">
+        <h2 class="collapsible-title">🌍 REALM 6: AI in Humanitarian, Relief & Disaster Management</h2>
+      </div>
+      <div class="collapsible-content">
+        <strong>Harnessing AI for rapid response, resource allocation, and crisis prediction</strong>
+        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+        Discover how AI is used in disaster prediction, humanitarian logistics, and relief operations. This program is ideal for those passionate about making a difference with technology.<br>
+        <em>Perfect for: NGO workers, emergency responders, and social impact innovators.</em></p>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+  <!-- Main JavaScript -->
+  <script src="main.js" defer></script>
+      <script src="theme.js" defer></script>
+</body>
+</html> 

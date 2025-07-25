@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+  // Immediately apply theme before any rendering happens
+  (function() {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.documentElement.classList.add('light-mode');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
+</script>
+<style>
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+
+  html { visibility: hidden; }
+  html.dark-mode, html.light-mode { visibility: visible; }
+
+/* Spinner Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spinner {
+  border: 5px solid #eee;
+  border-top: 5px solid #4BB543;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  animation: spin 1s linear infinite;
+  background: transparent;
+}
+</style>
+
+  
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Newsletter Page Specific Styles */
+    .newsletter-hero {
+      background-image: url('newsletterbg.jpg') !important;
+    }
+    body.dark-mode .hero.newsletter-hero {
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('newsletterbg.jpg') center/cover no-repeat !important;
+    }
+
+    /* Dark Mode Visibility Fix */
+    body.dark-mode .main-content {
+      background: #23242b;
+      color: #fff;
+    }
+    body.dark-mode .main-content h2,
+    body.dark-mode .main-content p,
+    body.dark-mode form label {
+      color: #fff;
+    }
+    body.dark-mode form input[type="text"],
+    body.dark-mode form input[type="email"] {
+      background-color: #3a3a3a;
+      border: 1px solid #555;
+      color: #fff;
+    }
+    /* Newsletter Footer Dark Mode */
+    body.dark-mode .newsletter-footer {
+      background: #111325 !important;
+      color: #fff !important;
+    }
+    /* Newsletter Header Dark Mode */
+    body.dark-mode .newsletter-header {
+      background: #111325 !important;
+      color: #fff !important;
+    }
+    body.dark-mode .newsletter-header nav a {
+      color: #fff !important;
+    }
+    body.dark-mode .newsletter-header nav a:hover {
+      color: #FFA500 !important;
+    }
+  </style>
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <!-- Loading Spinner -->
+  <div id="newsletterLoadingSpinner" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.24);transition:opacity 0.2s;">
+    <div class="spinner-overlay">
+      <div class="spinner" style="border:5px solid #eee;border-top:5px solid #4BB543;border-radius:50%;width:54px;height:54px;animation:spin 1s linear infinite;background:transparent;"></div>
+    </div>
+  </div>
+  <!-- Popup Confirmation -->
+  <div id="newsletterSuccessPopup" style="display:none;position:fixed;z-index:10000;left:0;top:0;width:100vw;height:100vh;align-items:center;justify-content:center;background:rgba(0,0,0,0.36);transition:opacity 0.2s;">
+    <div class="popup-overlay">
+      <div class="popup-content" style="background:#fff;color:#222;border-radius:16px;box-shadow:0 8px 36px rgba(0,0,0,0.18);padding:2.5rem 2.5rem 2rem 2.5rem;text-align:center;min-width:280px;max-width:90vw;position:relative;animation:popupIn 0.25s cubic-bezier(.42,0,.58,1.0);">
+        <div class="tick-circle" style="margin-bottom:1.1rem;font-size:2.5rem;color:#4BB543;">&#10003;</div>
+        <div class="popup-message" style="font-size:1.15rem;margin-bottom:1.5rem;color:#222;">Thank you for subscribing! You are now part of our newsletter.</div>
+        <button class="popup-close" onclick="document.getElementById('newsletterSuccessPopup').style.display='none'" style="background:#4BB543;color:#fff;border:none;padding:0.65rem 1.4rem;border-radius:6px;font-size:1rem;cursor:pointer;box-shadow:0 2px 8px #0002;transition:background 0.18s;">Close</button>
+      </div>
+    </div>
+  </div>
+  <header class="newsletter-header">
+    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <nav id="main-nav">
+      <a href="homepage.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    <button id="mobile-menu-toggle" aria-label="Open navigation menu" style="display: none;">&#9776;</button>
+  </header>
+  <section class="hero newsletter-hero" style="min-height: 220px; height: 32vh;">
+    <div class="hero-dark-overlay"></div>
+    <div class="hero-content">
+      <h1>Newsletter</h1>
+      <p>Stay updated with the latest news, programs, and opportunities from CEFORED Institute. Subscribe to our newsletter!</p>
+    </div>
+  </section>
+  <section class="main-content section" style="max-width: 700px; margin: 2rem auto 0 auto; text-align: center;">
+    <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 0.7rem;">"Join the Movement — Stay Ahead with AI + Impact"</h2>
+    <p style="font-size: 1.13rem; color: var(--primary); margin-bottom: 0.7rem;">Be part of Africa's most dynamic AI-driven learning revolution. Subscribe to Cefored's newsletter and get insider updates on cutting-edge training programs, expert blogs, alumni success stories, tools for humanitarian innovation, and the latest in AI for development.</p>
+    <p style="font-size: 1.08rem; color: #444;">📨 Get the latest in AI + Impact direct to your inbox — only from Cefored.</p>
+  </section>
+  <section class="main-content section" style="max-width: 500px; margin: 2.5rem auto 2rem auto;">
+    <form id="newsletterForm">
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" name="name" required style="width:100%;margin-bottom:1rem;"><br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" required style="width:100%;margin-bottom:1.5rem;"><br>
+      <button type="submit" class="cta-button" style="width:100%;">Subscribe</button>
+      <div id="newsletterMessage" style="margin-top:1rem; padding: 10px; border-radius: 4px; display: none;"></div>
+    </form>
+    
+    <!-- Include the database.js module -->
+    <script type="module" src="js/database.js"></script>
+  </section>
+  <footer class="newsletter-footer">
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
+    <script src="main.js" defer></script>
+        <script src="theme.js" defer></script>
+</body>
+</html> 
