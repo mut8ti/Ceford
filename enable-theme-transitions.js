@@ -11,7 +11,7 @@ const htmlFiles = [
   'contact.html',
   'corporatetraining.html',
   'faqs.html',
-  'homepage.html',
+  'index.html',
   'newsletter.html',
   'programs.html',
   'realm1-logistics.html',
