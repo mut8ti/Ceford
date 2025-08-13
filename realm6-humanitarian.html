@@ -36,7 +36,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body id="body-root">
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
@@ -49,91 +49,101 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <section class="hero" style="background: url('disasterbg.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 6: AI in Humanitarian, Relief & Disaster Management</h1>
-    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">AI for rapid response, relief, and resilience in humanitarian crises.</p>
-  </section>
-
-  <section class="program-section">
+  <div class="page-bordered">
+    <section class="hero" style="background: url('disasterbg.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 6: AI in Humanitarian, Relief & Disaster Management</h1>
+      <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">AI for rapid response, relief, and resilience in humanitarian crises.</p>
+    </section>
+    <div class="page-frame-inner">
+      <section class="program-section">
     <div class="card">
       <h3 class="card-title">Program Overview</h3>
       <p>
         This pioneering program prepares professionals to transform humanitarian aid, disaster response, and relief operations using the power of artificial intelligence. It covers emergency preparedness, crisis mapping, early warning systems, logistics coordination, and needs assessment—enhanced with AI tools for rapid decision-making and predictive response.<br><br>
-        <strong>Perfect for:</strong> NGO leaders, disaster responders, humanitarian project officers, and anyone committed to building resilience in the face of crisis.
+        <strong>Ideal for:</strong> NGO leaders, disaster responders, humanitarian project officers, and anyone committed to building resilience in the face of crisis.
       </p>
     </div>
 
-    <h3 class="section-heading">Courses Offered</h3>
+        <h3 class="section-heading">Courses Offered</h3>
 
-    <div class="accordion">
-      <!-- COURSE 1 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI for Disaster Preparedness & Early Warning Systems</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Learn how to use AI algorithms to predict and track natural and man-made disasters, build alert systems, and simulate response plans.</li>
-            <li><strong>Target Audience:</strong> Emergency Planners, NGO Responders, Policy Designers</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $470</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        <div class="accordion">
+          <!-- COURSE 1 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI for Disaster Preparedness & Early Warning Systems</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Learn how to use AI algorithms to predict and track natural and man-made disasters, build alert systems, and simulate response plans.</li>
+                <li><strong>Who Can Take This Course:</strong> Emergency Planners, NGO Responders, Policy Designers</li>
+                <li><strong>Requirements:</strong> Basic understanding of emergency management</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $470</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 2 -->
+          <div class="accordion-item">
+            <button class="accordion-header">Crisis Mapping & Humanitarian AI Dashboards</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Use geospatial AI and machine learning to map affected areas in real-time, coordinate responders, and visualize needs.</li>
+                <li><strong>Who Can Take This Course:</strong> GIS Analysts, Emergency Responders, Aid Coordinators</li>
+                <li><strong>Requirements:</strong> Basic GIS knowledge or mapping experience</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $460</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 3 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Refugee & IDP Management Systems</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Apply AI to monitor refugee movement, resource distribution, and vulnerability indexing with ethical oversight.</li>
+                <li><strong>Who Can Take This Course:</strong> Humanitarian Project Officers, Camp Managers, UNHCR & NGO Staff</li>
+                <li><strong>Requirements:</strong> Experience in humanitarian operations</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $480</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 4 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI for Relief Logistics & Distribution</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Optimize supply chains during emergencies using predictive logistics, drone delivery routes, and inventory AI.</li>
+                <li><strong>Who Can Take This Course:</strong> Logistics Officers, Procurement Units, Relief Program Teams</li>
+                <li><strong>Requirements:</strong> Basic logistics or supply chain background</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $470</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 5 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Post-Disaster Recovery & Needs Assessment</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Deploy AI tools to assess damage, prioritize response, and guide data-driven recovery planning.</li>
+                <li><strong>Who Can Take This Course:</strong> Field Teams, Recovery Specialists, NGO Program Leads</li>
+                <li><strong>Requirements:</strong> Field assessment or recovery planning experience</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $460</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- COURSE 2 -->
-      <div class="accordion-item">
-        <button class="accordion-header">Crisis Mapping & Humanitarian AI Dashboards</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Use geospatial AI and machine learning to map affected areas in real-time, coordinate responders, and visualize needs.</li>
-            <li><strong>Target Audience:</strong> GIS Analysts, Emergency Responders, Aid Coordinators</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $460</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 3 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Refugee & IDP Management Systems</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Apply AI to monitor refugee movement, resource distribution, and vulnerability indexing with ethical oversight.</li>
-            <li><strong>Target Audience:</strong> Humanitarian Project Officers, Camp Managers, UNHCR & NGO Staff</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $480</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 4 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI for Relief Logistics & Distribution</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Optimize supply chains during emergencies using predictive logistics, drone delivery routes, and inventory AI.</li>
-            <li><strong>Target Audience:</strong> Logistics Officers, Procurement Units, Relief Program Teams</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $470</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 5 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Post-Disaster Recovery & Needs Assessment</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Deploy AI tools to assess damage, prioritize response, and guide data-driven recovery planning.</li>
-            <li><strong>Target Audience:</strong> Field Teams, Recovery Specialists, NGO Program Leads</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $460</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
-
+  </div>
+  <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
   <style>
   nav a {
     position: relative;
@@ -194,7 +204,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   .accordion-header {
     width: 100%;
     text-align: left;
-    background-color: var(--primary);
+    background-color: #008080;
     color: white;
     padding: 1rem;
     border: none;
@@ -202,10 +212,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     font-weight: bold;
     cursor: pointer;
     border-radius: 6px 6px 0 0;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
   }
   .accordion-header:hover {
-    background-color: var(--accent);
-    color: var(--primary);
+    background-color: #009999;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
   .accordion-body {
     display: none;
@@ -217,6 +232,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     padding-left: 1rem;
     list-style-type: disc;
   }
+  
+  /* Dark mode styles */
   body.dark-mode {
     --primary: #e0e0e0;
     --secondary: #181a20;
@@ -226,10 +243,13 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     color: #e0e0e0;
   }
   body.dark-mode header, body.dark-mode footer {
-    background: #23242b;
-    color: #e0e0e0;
+    background: #23242b !important;
+    color: #e0e0e0 !important;
   }
-  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, 
+  body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, 
+  body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, 
+  body.dark-mode .why-cefored {
     background: #23242b !important;
     color: #fff !important;
     box-shadow: 0 2px 16px rgba(0,0,0,0.18);
@@ -237,6 +257,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   body.dark-mode .hero {
     background: url('disasterbg.jpg') center/cover no-repeat !important;
   }
+  body.dark-mode .hero .hero-dark-overlay {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.68);
+    z-index: 1;
+    border-radius: inherit;
+  }
+  .hero .hero-dark-overlay { display: none; }
   body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
   body.dark-mode .cta-button {
     background: var(--accent);
@@ -276,9 +305,6 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   }
   </style>
 
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
   <script src="main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -290,6 +316,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       });
     });
   </script>
-    <script src="theme.js" defer></script>
+  <script src="js/theme.js" defer></script>
 </body>
-</html> 
+</html>
+</html>

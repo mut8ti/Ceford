@@ -29,6 +29,36 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <title>Corporate Training & Services - CEFORED Institute</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Header and Footer Styles */
+    .main-header {
+      background: #008080;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .main-footer {
+      background: #008080;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+    
+    /* Dark mode styles */
+    body.dark-mode .main-header,
+    body.dark-mode .main-header a,
+    body.dark-mode .main-footer {
+      background: #23242b !important;
+      color: #e0e0e0 !important;
+    }
+    
+    body.dark-mode .main-header a:hover {
+      color: #FFD700 !important;
+    }
+    
+    /* Hero styles */
     .hero.corporate-hero {
       position: relative;
       background: url('projectbg.jpg') center/cover no-repeat !important;
@@ -383,6 +413,36 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     html.dark-mode .corporate-training-page .realm-label {
       color: var(--accent) !important;
     }
+    
+    /* Footer Styles */
+    .site-footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+    
+    .site-footer .page-frame-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .site-footer .footer-text {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Dark mode overrides */
+    html.dark-mode .site-footer {
+      background: #23242b;
+      border-top: 1px solid #444;
+    }
+    
+    html.dark-mode .site-footer .footer-text {
+      color: rgba(255, 255, 255, 0.8);
+    }
     html.dark-mode .corporate-training-page .service-list,
     html.dark-mode .corporate-training-page .service-list li {
       color: #fff !important;
@@ -571,8 +631,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </head>
 <body class="corporate-training-page" id="body-root">
   <!-- Header and Navigation -->
-  <header>
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+  <header class="main-header">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <div style="display: flex; align-items: center;">
+        <img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" />
+        <strong>CEFORED Institute</strong>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode" style="background: none; border: none; font-size: 1.7rem; cursor: pointer; color: #FFA500;">🌙</button>
+    </div>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -582,7 +648,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <!-- Hero Section -->
+  <div class="page-bordered">
+    <!-- Hero Section -->
   <section class="hero corporate-hero">
     <div class="hero-content">
       <h1 class="hero-title">Corporate Training & Services</h1>
@@ -713,10 +780,17 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </div> <!-- Close page-frame-inner -->
+  </div> <!-- Close page-bordered -->
+  
+  <footer class="main-footer">
+    <div class="page-frame-inner">
+      <p class="footer-text">
+        &copy; 2025 CEFORED Institute of Relief. All rights reserved.
+      </p>
+    </div>
   </footer>
+  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // FAQ-style dropdown functionality

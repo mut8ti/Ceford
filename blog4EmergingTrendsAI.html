@@ -22,6 +22,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
+  
+  .doodle-bg {
+    /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
+    background-color: #f5f0e6; /* Warm cream background */
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23000080" fill-opacity="0.03"/></svg>');
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    min-height: 100vh;
+  }
+  
+  html.dark-mode body.doodle-bg,
+  body.dark-mode.doodle-bg {
+    background-color: #1a1a2e !important;
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23ffffff" fill-opacity="0.05"/></svg>') !important;
+  }
 </style>
 
   
@@ -33,7 +48,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --primary: #000080;
+      --primary: #008080;
       --secondary: #f5f5dc;
       --dark-bg: #181a20;
       --accent: #FFA500;
@@ -92,8 +107,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: var(--accent);
     }
     .blog-hero {
-      background: linear-gradient(120deg, #fffbe6 60%, #f5f5dc 100%);
-      color: var(--primary);
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
       padding: 3.2rem 1.5rem 2.2rem 1.5rem;
       text-align: center;
       border-bottom: 1.5px solid #e0e0e0;
@@ -183,7 +200,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: inline-block;
       margin-top: 2.2rem;
       background: linear-gradient(90deg, #FFA500 60%, #FFFF00 100%);
-      color: #000080;
+      color: #008080;
       font-weight: 700;
       font-size: 1.13rem;
       border: none;
@@ -199,7 +216,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .blog-content-section .blog-cta:hover {
       box-shadow: 0 8px 32px #FFA50099, 0 2px 24px #0006;
       background: linear-gradient(90deg, #FFFF00 60%, #FFA500 100%);
-      color: #000080;
+      color: #008080;
       transform: scale(1.045);
     }
     /* Dark mode overrides */
@@ -212,7 +229,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #fff;
     }
     body.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #000020 60%, #181a20 100%);
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
       color: #fff;
       border-bottom: 1.5px solid #23242b;
     }
@@ -272,7 +291,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #e0e0e0 !important;
     }
     html.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #181a20 60%, #23242b 100%) !important;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp') !important;
+      background-size: cover !important;
+      background-position: center !important;
       color: #fff;
     }
     html.dark-mode .blog-hero h1 {
@@ -304,7 +325,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
   </style>
 </head>
-<body id="body-root">
+<body id="body-root" class="doodle-bg">
   <header>
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">🌙</button>
@@ -318,36 +339,40 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="blog.html">Blog</a>
     </nav>
   </header>
-  <section class="blog-hero">
-    <span class="emoji" aria-label="Trends">📈</span>
-    <h1>Emerging Trends in AI & Development</h1>
-    <p>How AI is accelerating progress, inclusion, and innovation in global development.</p>
-  </section>
-  <section class="blog-content-section">
-    <p>Artificial Intelligence (AI) is no longer a distant frontier of technology—it is a transformative force reshaping global development across sectors such as healthcare, agriculture, education, governance, and climate resilience. As AI tools become more accessible and powerful, their role in driving progress and solving complex challenges is expanding rapidly. Emerging trends in AI and development highlight not only technological innovation but also the growing intersection of ethics, inclusion, and sustainability.</p>
-    <h2>1. AI for Social Good</h2>
-    <p>One of the most impactful trends is the use of AI for social good. Governments, NGOs, and tech companies are increasingly applying AI to address global challenges. AI models are now being used to predict disease outbreaks, monitor deforestation, detect human trafficking patterns, and optimize the distribution of humanitarian aid. In agriculture, AI-powered platforms analyze satellite imagery and weather data to help smallholder farmers increase crop yields and adapt to climate change. These applications demonstrate AI’s potential to advance the Sustainable Development Goals (SDGs) and improve quality of life in underserved regions.</p>
-    <h2>2. Democratization of AI Tools</h2>
-    <p>The rise of open-source platforms, low-code tools, and cloud-based AI services has made AI more accessible than ever. This democratization means that even small organizations and individuals in developing countries can build AI applications without massive infrastructure or deep technical expertise. Platforms like TensorFlow, Hugging Face, and Google’s AutoML empower local innovators to develop AI solutions tailored to their communities' specific needs. This shift is enabling a more inclusive and decentralized AI ecosystem.</p>
-    <h2>3. Responsible and Ethical AI</h2>
-    <p>As AI systems become more integrated into development projects, ethical considerations are taking center stage. Issues such as algorithmic bias, data privacy, surveillance, and accountability are being actively debated. Responsible AI frameworks now emphasize fairness, transparency, and human-centered design. Organizations are increasingly adopting ethical guidelines, impact assessments, and bias mitigation techniques to ensure that AI does not reinforce inequality or cause unintended harm, especially in vulnerable communities.</p>
-    <h2>4. Human-AI Collaboration</h2>
-    <p>Another emerging trend is the focus on Human-AI collaboration rather than replacement. In development contexts, AI is seen as an augmenting force—supporting human decision-makers rather than replacing them. For instance, AI chatbots assist teachers in delivering personalized education, while health workers use diagnostic AI tools to improve patient outcomes in low-resource clinics. This approach maximizes both technological efficiency and human empathy, making development work smarter and more responsive.</p>
-    <h2>5. AI and Climate Resilience</h2>
-    <p>With the escalating climate crisis, AI is playing a growing role in climate adaptation and mitigation. AI models analyze large-scale environmental data to predict extreme weather, optimize renewable energy systems, and monitor carbon emissions. In Africa and Asia, AI is being used to create early warning systems for floods and droughts, helping communities prepare for and respond to natural disasters. These climate-focused AI solutions are vital in building resilience and protecting vulnerable populations.</p>
-    <h2>6. AI-Driven Policy and Governance</h2>
-    <p>Governments are beginning to integrate AI into public service delivery, regulatory oversight, and policy-making. Smart city technologies, AI-based public health surveillance, and automated legal analysis are just some examples. Additionally, AI is being used to fight corruption by analyzing financial transactions and procurement data for irregularities. However, these applications also raise concerns around transparency and surveillance, necessitating clear legal and ethical frameworks.</p>
-    <h2>7. Youth and AI Innovation</h2>
-    <p>A new generation of young tech innovators is emerging across the Global South, using AI to tackle local problems. Hackathons, incubators, and university programs are encouraging youth to develop AI-powered solutions for education, employment, health, and urban development. These grassroots efforts are helping bridge the digital divide and nurture a more equitable and locally driven AI future.</p>
-    <h2>Conclusion</h2>
-    <p>The emerging trends in AI and development reflect a powerful shift toward smarter, more inclusive, and more sustainable global progress. While the opportunities are vast, the responsible use of AI must be a guiding principle. As we move forward, it is essential to ensure that AI tools are not only technologically advanced but also ethically sound, accessible to all, and aligned with the real needs of people and communities. Only then can AI truly become a catalyst for positive and equitable development.</p>
-    <a href="blog.html" class="blog-cta">← Back to Blog</a>
-  </section>
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+  <div class="page-bordered">
+    <section class="blog-hero">
+      <span class="emoji" aria-label="Trends">📈</span>
+      <h1>Emerging Trends in AI & Development</h1>
+      <p>How AI is accelerating progress, inclusion, and innovation in global development.</p>
+    </section>
+    <div class="page-frame-inner">
+      <section class="blog-content-section">
+        <p>Artificial Intelligence (AI) is no longer a distant frontier of technology—it is a transformative force reshaping global development across sectors such as healthcare, agriculture, education, governance, and climate resilience. As AI tools become more accessible and powerful, their role in driving progress and solving complex challenges is expanding rapidly. Emerging trends in AI and development highlight not only technological innovation but also the growing intersection of ethics, inclusion, and sustainability.</p>
+        <h2>1. AI for Social Good</h2>
+        <p>One of the most impactful trends is the use of AI for social good. Governments, NGOs, and tech companies are increasingly applying AI to address global challenges. AI models are now being used to predict disease outbreaks, monitor deforestation, detect human trafficking patterns, and optimize the distribution of humanitarian aid. In agriculture, AI-powered platforms analyze satellite imagery and weather data to help smallholder farmers increase crop yields and adapt to climate change. These applications demonstrate AI’s potential to advance the Sustainable Development Goals (SDGs) and improve quality of life in underserved regions.</p>
+        <h2>2. Democratization of AI Tools</h2>
+        <p>The rise of open-source platforms, low-code tools, and cloud-based AI services has made AI more accessible than ever. This democratization means that even small organizations and individuals in developing countries can build AI applications without massive infrastructure or deep technical expertise. Platforms like TensorFlow, Hugging Face, and Google’s AutoML empower local innovators to develop AI solutions tailored to their communities' specific needs. This shift is enabling a more inclusive and decentralized AI ecosystem.</p>
+        <h2>3. Responsible and Ethical AI</h2>
+        <p>As AI systems become more integrated into development projects, ethical considerations are taking center stage. Issues such as algorithmic bias, data privacy, surveillance, and accountability are being actively debated. Responsible AI frameworks now emphasize fairness, transparency, and human-centered design. Organizations are increasingly adopting ethical guidelines, impact assessments, and bias mitigation techniques to ensure that AI does not reinforce inequality or cause unintended harm, especially in vulnerable communities.</p>
+        <h2>4. Human-AI Collaboration</h2>
+        <p>Another emerging trend is the focus on Human-AI collaboration rather than replacement. In development contexts, AI is seen as an augmenting force—supporting human decision-makers rather than replacing them. For instance, AI chatbots assist teachers in delivering personalized education, while health workers use diagnostic AI tools to improve patient outcomes in low-resource clinics. This approach maximizes both technological efficiency and human empathy, making development work smarter and more responsive.</p>
+        <h2>5. AI and Climate Resilience</h2>
+        <p>With the escalating climate crisis, AI is playing a growing role in climate adaptation and mitigation. AI models analyze large-scale environmental data to predict extreme weather, optimize renewable energy systems, and monitor carbon emissions. In Africa and Asia, AI is being used to create early warning systems for floods and droughts, helping communities prepare for and respond to natural disasters. These climate-focused AI solutions are vital in building resilience and protecting vulnerable populations.</p>
+        <h2>6. AI-Driven Policy and Governance</h2>
+        <p>Governments are beginning to integrate AI into public service delivery, regulatory oversight, and policy-making. Smart city technologies, AI-based public health surveillance, and automated legal analysis are just some examples. Additionally, AI is being used to fight corruption by analyzing financial transactions and procurement data for irregularities. However, these applications also raise concerns around transparency and surveillance, necessitating clear legal and ethical frameworks.</p>
+        <h2>7. Youth and AI Innovation</h2>
+        <p>A new generation of young tech innovators is emerging across the Global South, using AI to tackle local problems. Hackathons, incubators, and university programs are encouraging youth to develop AI-powered solutions for education, employment, health, and urban development. These grassroots efforts are helping bridge the digital divide and nurture a more equitable and locally driven AI future.</p>
+        <h2>Conclusion</h2>
+        <p>The emerging trends in AI and development reflect a powerful shift toward smarter, more inclusive, and more sustainable global progress. While the opportunities are vast, the responsible use of AI must be a guiding principle. As we move forward, it is essential to ensure that AI tools are not only technologically advanced but also ethically sound, accessible to all, and aligned with the real needs of people and communities. Only then can AI truly become a catalyst for positive and equitable development.</p>
+        <a href="blog.html" class="blog-cta">← Back to Blog</a>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  
+  <script src="theme.js" defer></script>
     <script src="theme.js" defer></script>
 </body>
-</html> 
+</html>

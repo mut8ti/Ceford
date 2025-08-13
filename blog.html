@@ -33,7 +33,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --primary: #000080;
+      --primary: #008080;
       --secondary: #181a20;
       --accent: #FFA500;
       --accent-alt: #FFFF00;
@@ -42,13 +42,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       --card-shadow: 0 8px 32px rgba(0,0,0,0.28);
       --card-shadow-hover: 0 12px 36px 2px #FFA50044, 0 2px 24px #0006;
     }
+    body {
+      background-color: transparent !important;
+      min-height: 100vh;
+    }
     html.dark-mode body {
-      background: #181a20;
       color: #fff;
     }
     html:not(.dark-mode) body {
-      background: #f5f5dc;
-      color: #000080;
+      color: #008080;
     }
     body {
       font-family: 'Inter', 'Roboto', Arial, sans-serif;
@@ -97,37 +99,126 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     nav a:hover {
       color: var(--accent);
     }
-    .blog-hero {
-      background: linear-gradient(120deg, #000020 60%, #181a20 100%);
-      padding: 3.5rem 1.5rem 2.2rem 1.5rem;
-      text-align: center;
+    .doodle-bg {
+      /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
+      background-color: #f5f0e6; /* Warm cream background */
+      background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23000080" fill-opacity="0.03"/></svg>');
+      background-size: 60px 60px;
+      background-repeat: repeat;
+      min-height: 100vh;
     }
+    .dark-mode .doodle-bg {
+      background-color: #1a1d24;
+      background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23ffffff" fill-opacity="0.03"/></svg>');
+    }
+    .blog-hero {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffcccc url('./blogbg.jpg') center/cover no-repeat fixed, #ffcccc url('blogbg.jpg') center/cover no-repeat fixed, #ffcccc;
+  background-attachment: fixed;
+  margin: 0;
+  border: 4px solid red;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.blog-hero-overlay {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 40, 0.65);
+  z-index: 1;
+}
+.blog-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem 3rem 1.5rem;
+}
+.blog-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 auto 1rem auto;
+  letter-spacing: 0.01em;
+  max-width: 900px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.blog-hero-content p {
+  color: #FFA500;
+  font-size: 1.4rem;
+  margin: 0 auto 1.2rem auto;
+  max-width: 700px;
+  font-style: italic;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  line-height: 1.5;
+}
+@media (max-width: 700px) {
+  .blog-hero-content h1 {
+    font-size: 2rem;
+  }
+  .blog-hero-content p {
+    font-size: 1rem;
+  }
+  .blog-hero {
+    min-height: 180px;
+  }
+}
     .blog-hero h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 0.5rem;
+      margin: 0 auto 1rem auto;
       letter-spacing: 0.01em;
+      max-width: 900px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
     }
     .blog-hero p {
       color: #FFA500;
-      font-size: 1.18rem;
+      font-size: 1.4rem;
       margin: 0 auto 1.2rem auto;
-      max-width: 600px;
+      max-width: 700px;
       font-style: italic;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 1;
+      line-height: 1.5;
     }
     .featured-blogs-section {
       max-width: 1200px;
-      margin: 0 auto 3.5rem auto;
-      padding: 2.5rem 1rem 1.5rem 1rem;
+      margin: 2rem auto 3.5rem auto;
+      padding: 2rem 1rem;
+      position: relative;
+      border-radius: 12px;
+      background-color: rgba(245, 240, 230, 0.8); /* Semi-transparent cream */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    .dark-mode .featured-blogs-section {
+      background-color: rgba(40, 36, 30, 0.85); /* Darker cream for dark mode */
     }
     .featured-blogs-title {
-      color: #fff;
+      color: #008080;
       font-size: 2.1rem;
       font-weight: 700;
       text-align: center;
       margin-bottom: 2.2rem;
       letter-spacing: 0.01em;
+    }
+    .dark-mode .featured-blogs-title {
+      color: #fff;
     }
     .blog-grid {
       display: grid;
@@ -348,24 +439,24 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     /* Light mode overrides */
     html:not(.dark-mode) {
       background: #f5f5dc;
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) header {
-      background: #000080;
+      background: #008080;
       color: #fff;
     }
     html:not(.dark-mode) .blog-hero {
       background: linear-gradient(120deg, #f5f5dc 60%, #e9e9e0 100%);
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) .blog-hero h1 {
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) .blog-hero p {
       color: #FFA500;
     }
     html:not(.dark-mode) .featured-blogs-title {
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) .blog-grid {
       /* no change needed */
@@ -373,7 +464,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     html:not(.dark-mode) .blog-card {
       background: #fff;
       border: 1.5px solid #e0e0e0;
-      color: #000080;
+      color: #008080;
       box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     }
     html:not(.dark-mode) .blog-card .emoji {
@@ -381,7 +472,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #FFA500;
     }
     html:not(.dark-mode) .blog-card .blog-title {
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) .blog-card .blog-teaser {
       color: #222;
@@ -401,7 +492,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     html:not(.dark-mode) .blog-card .new-badge {
       background: linear-gradient(90deg, #FFA500 60%, #FFFF00 100%);
-      color: #000080;
+      color: #008080;
       box-shadow: 0 2px 8px #FFA50044;
     }
     html:not(.dark-mode) .blog-tags {
@@ -418,20 +509,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     html:not(.dark-mode) .blog-bottom-cta-btn {
       background: linear-gradient(90deg, #FFA500 60%, #FFFF00 100%);
-      color: #000080;
+      color: #008080;
       box-shadow: 0 4px 18px #FFA50044;
     }
     html:not(.dark-mode) .blog-bottom-cta-btn:hover {
       box-shadow: 0 8px 32px #FFA50099, 0 2px 24px #0006;
       background: linear-gradient(90deg, #FFFF00 60%, #FFA500 100%);
-      color: #000080;
+      color: #008080;
     }
     html:not(.dark-mode) .blog-bottom-cta-btn .cta-icon {
       color: #FFA500;
       filter: none;
     }
     html:not(.dark-mode) footer {
-      background: #000080;
+      background: #008080;
       color: #fff;
     }
     /* Dark mode overrides */
@@ -522,7 +613,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
   </style>
 </head>
-<body id="body-root">
+  <body id="body-root" class="doodle-bg">
   <header>
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
     
@@ -536,62 +627,71 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="blog.html" class="active">Blog</a>
     </nav>
   </header>
-  <section class="blog-hero">
-    <h1>Featured Blog Posts</h1>
-    <p>Insights, stories, and trends at the intersection of AI, education, and humanitarian impact.</p>
-  </section>
-  <section class="featured-blogs-section">
-    <div class="featured-blogs-title">FEATURED BLOG POSTS</div>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <span class="emoji" aria-label="AI">🧠</span>
-        <div class="blog-tags">
-          <span class="blog-tag">#AI</span>
-          <span class="blog-tag">#CrisisResponse</span>
-          <span class="blog-tag new-badge">NEW</span>
-        </div>
-        <div class="blog-title">How AI is Transforming Crisis Response</div>
-        <div class="blog-teaser">From early warning systems and drone coordination to predictive disaster planning, AI is rapidly reshaping how humanitarian actors respond to crises. Discover how organizations are leveraging real-time data and machine learning to save lives faster, smarter, and with greater precision.</div>
-        <a class="blog-cta" href="blog1AIcrisisResponse.html"><span>👉 Read the Full Insight</span> <span class="arrow">→</span></a>
+  <div class="page-bordered">
+    <section style="min-height: 300px; background: #4a6fa5 url('blogbg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+      <div style="position: relative; z-index: 2; text-align: center; color: white; padding: 2rem;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Featured Blog Posts</h1>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #FFA500; font-style: italic;">
+          Insights, stories, and trends at the intersection of AI, education, and humanitarian impact.
+        </p>
       </div>
-      <div class="blog-card">
-        <span class="emoji" aria-label="Digital Tools">📲</span>
-        <div class="blog-tags">
-          <span class="blog-tag">#Digital</span>
-          <span class="blog-tag">#Fieldwork</span>
+    </section>
+    <div class="page-frame-inner">
+      <section class="featured-blogs-section">
+        <div class="featured-blogs-title">FEATURED BLOG POSTS</div>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <span class="emoji" aria-label="AI">🧠</span>
+            <div class="blog-tags">
+              <span class="blog-tag">#AI</span>
+              <span class="blog-tag">#CrisisResponse</span>
+              <span class="blog-tag new-badge">NEW</span>
+            </div>
+            <div class="blog-title">How AI is Transforming Crisis Response</div>
+            <div class="blog-teaser">From early warning systems and drone coordination to predictive disaster planning, AI is rapidly reshaping how humanitarian actors respond to crises. Discover how organizations are leveraging real-time data and machine learning to save lives faster, smarter, and with greater precision.</div>
+            <a class="blog-cta" href="blog1AIcrisisResponse.html"><span>👉 Read the Full Insight</span> <span class="arrow">→</span></a>
+          </div>
+          <div class="blog-card">
+            <span class="emoji" aria-label="Digital Tools">📲</span>
+            <div class="blog-tags">
+              <span class="blog-tag">#Digital</span>
+              <span class="blog-tag">#Fieldwork</span>
+            </div>
+            <div class="blog-title">Digital Tools for Modern Humanitarian Work</div>
+            <div class="blog-teaser">Fieldwork is no longer analog. AI-powered dashboards, mobile data collection apps, and automated reporting tools are redefining how frontline workers serve vulnerable communities. This blog dives into the digital essentials every relief professional must know.</div>
+            <a class="blog-cta" href="blog2DigitalHumanitarian.html"><span>👉 Explore the Tools</span> <span class="arrow">→</span></a>
+          </div>
+          <div class="blog-card">
+            <span class="emoji" aria-label="Alumni Stories">🌍</span>
+            <div class="blog-tags">
+              <span class="blog-tag">#Alumni</span>
+              <span class="blog-tag">#Impact</span>
+            </div>
+            <div class="blog-title">Real Stories from Cefored Alumni</div>
+            <div class="blog-teaser">From refugee camps to regional ministries, our alumni are harnessing the power of AI to transform systems and lives. Read their powerful journeys of resilience, innovation, and impact after training at Cefored.</div>
+            <a class="blog-cta" href="faqs.html#testimonials-section"><span>👉 Meet Our Changemakers</span> <span class="arrow">→</span></a>
+          </div>
+          <div class="blog-card">
+            <span class="emoji" aria-label="Trends">📈</span>
+            <div class="blog-tags">
+              <span class="blog-tag">#Trends</span>
+              <span class="blog-tag">#Development</span>
+            </div>
+            <div class="blog-title">Emerging Trends in AI & Development</div>
+            <div class="blog-teaser">AI in development is accelerating. This article unpacks the key trends revolutionizing project delivery, donor engagement, M&E, and disaster prevention across Africa and beyond — and what it means for decision-makers today.</div>
+            <a class="blog-cta" href="blog4EmergingTrendsAI.html"><span>👉 Discover the Trends</span> <span class="arrow">→</span></a>
+          </div>
         </div>
-        <div class="blog-title">Digital Tools for Modern Humanitarian Work</div>
-        <div class="blog-teaser">Fieldwork is no longer analog. AI-powered dashboards, mobile data collection apps, and automated reporting tools are redefining how frontline workers serve vulnerable communities. This blog dives into the digital essentials every relief professional must know.</div>
-        <a class="blog-cta" href="blog2DigitalHumanitarian.html"><span>👉 Explore the Tools</span> <span class="arrow">→</span></a>
-      </div>
-      <div class="blog-card">
-        <span class="emoji" aria-label="Alumni Stories">🌍</span>
-        <div class="blog-tags">
-          <span class="blog-tag">#Alumni</span>
-          <span class="blog-tag">#Impact</span>
+        <div class="blog-bottom-cta">
+          <a href="newsletter.html" class="blog-bottom-cta-btn"><span class="cta-icon">📧</span>Subscribe to Updates</a>
         </div>
-        <div class="blog-title">Real Stories from Cefored Alumni</div>
-        <div class="blog-teaser">From refugee camps to regional ministries, our alumni are harnessing the power of AI to transform systems and lives. Read their powerful journeys of resilience, innovation, and impact after training at Cefored.</div>
-        <a class="blog-cta" href="faqs.html#testimonials-section"><span>👉 Meet Our Changemakers</span> <span class="arrow">→</span></a>
-      </div>
-      <div class="blog-card">
-        <span class="emoji" aria-label="Trends">📈</span>
-        <div class="blog-tags">
-          <span class="blog-tag">#Trends</span>
-          <span class="blog-tag">#Development</span>
-        </div>
-        <div class="blog-title">Emerging Trends in AI & Development</div>
-        <div class="blog-teaser">AI in development is accelerating. This article unpacks the key trends revolutionizing project delivery, donor engagement, M&E, and disaster prevention across Africa and beyond — and what it means for decision-makers today.</div>
-        <a class="blog-cta" href="blog4EmergingTrendsAI.html"><span>👉 Discover the Trends</span> <span class="arrow">→</span></a>
-      </div>
+      </section>
     </div>
-    <div class="blog-bottom-cta">
-      <a href="newsletter.html" class="blog-bottom-cta-btn"><span class="cta-icon">📧</span>Subscribe to Updates</a>
-    </div>
-  </section>
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   
     <script src="theme.js" defer></script>

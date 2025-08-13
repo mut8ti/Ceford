@@ -147,7 +147,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .hero.contact-hero .hero-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.45);
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5));
       z-index: 1;
     }
     .hero.contact-hero .hero-content {
@@ -221,7 +221,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: var(--accent);
     }
     body.dark-mode {
-      background: #181a20 !important;
+      background-color: #181a20 !important;
       color: #fff !important;
     }
     body.dark-mode header, body.dark-mode nav, body.dark-mode footer {
@@ -237,10 +237,52 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #fff !important;
       box-shadow: 0 2px 16px rgba(0,0,0,0.18);
     }
-    body.dark-mode label, body.dark-mode input, body.dark-mode textarea {
-      background: #23242b !important;
+    /* Form elements in dark mode */
+    body.dark-mode .contact-form-section {
+      background: #2a2c34 !important;
+      border: 1px solid #3a3d48 !important;
+    }
+    
+    body.dark-mode label {
+      color: #e0e0e0 !important;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    body.dark-mode input[type="text"],
+    body.dark-mode input[type="email"],
+    body.dark-mode input[type="tel"],
+    body.dark-mode textarea,
+    body.dark-mode select {
+      background: #1e1f26 !important;
       color: #fff !important;
-      border: 1px solid #444 !important;
+      border: 1px solid #3a3d48 !important;
+      border-radius: 5px;
+      padding: 0.7rem 0.8rem;
+      width: 100%;
+      margin-bottom: 1.2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    body.dark-mode input:focus,
+    body.dark-mode textarea:focus,
+    body.dark-mode select:focus {
+      outline: none;
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.2);
+    }
+    
+    body.dark-mode select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 0.7em top 50% !important;
+      background-size: 1.2em auto !important;
+      padding-right: 2em !important;
+    }
+    
+    body.dark-mode .form-icon-decor {
+      color: var(--accent);
     }
     body.dark-mode input::placeholder, body.dark-mode textarea::placeholder {
       color: #bbb !important;
@@ -298,7 +340,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </head>
 <body id="body-root">
   <!-- Header and Navigation -->
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     <nav>
       <a href="index.html">Home</a>
@@ -309,37 +351,194 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html" class="active">Contact Us</a>
     </nav>
   </header>
-  <!-- Hero Section -->
-  <section class="hero contact-hero">
-    <div class="hero-content">
-      <h1>Contact Us</h1>
-      <div class="hero-subheading">For inquiries, course registration, partnership opportunities or corporate training requests, reach us directly through our contact form or via email.</div>
-      <p>We'd love to hear from you! Fill out the form below or reach us directly at info@cefored.org.</p>
-    </div>
+  <div class="page-bordered">
+    <section class="hero contact-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Contact Us</h1>
+        <div class="hero-subheading">For inquiries, course registration, partnership opportunities or corporate training requests, reach us directly through our contact form or via email.</div>
+        <p>We'd love to hear from you! Fill out the form below or reach us directly at info@cefored.org.</p>
+      </div>
   </section>
+    <div class="page-frame-inner">
   <!-- Main Content Section: Contact Form -->
   <section class="sections" style="margin-top:2rem;">
-    <div class="section" style="width:100%;max-width:500px;margin:auto;">
+    <div class="section contact-form-section">
+  <span class="form-icon-decor"><i class="fas fa-envelope-open-text"></i></span>
       <!-- Contact Form -->
       <form id="contactForm">
         <!-- Name Field -->
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
         <!-- Email Field -->
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="emailUser">Email:</label>
+        <div style="display: flex; align-items: center; gap: 0.3rem;">
+          <input type="text" id="emailUser" name="emailUser" required placeholder="your email" style="flex: 1 1 auto; min-width: 0;">
+          <span style="font-size: 1rem; color: #888; user-select: none;">@</span>
+          <select id="emailDomain" name="emailDomain" style="padding: 0.4rem 0.3rem; border-radius: 5px; border: 1.2px solid #b3b6c6; font-size: 0.98rem;">
+            <option value="gmail.com">gmail.com</option>
+            <option value="yahoo.com">yahoo.com</option>
+            <option value="outlook.com">outlook.com</option>
+            <option value="icloud.com">icloud.com</option>
+            <option value="hotmail.com">hotmail.com</option>
+            <option value="protonmail.com">protonmail.com</option>
+            <option value="aol.com">aol.com</option>
+            <option value="zoho.com">zoho.com</option>
+            <option value="mail.com">mail.com</option>
+            <option value="gmx.com">gmx.com</option>
+          </select>
+          <input type="hidden" id="email" name="email">
+        </div>
         <!-- Phone Number Field -->
-        <label for="phone">Phone Number:</label><br>
-        <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}"><br><br>
+        <label for="phone">Phone Number:</label>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <select id="countryCode" name="countryCode" style="padding: 0.5rem 0.4rem; border-radius: 5px; border: 1.2px solid #b3b6c6; font-size: 0.98rem;">
+            <option value="+254">🇰🇪 +254 (Kenya)</option>
+            <option value="+1">🇺🇸 +1 (USA)</option>
+            <option value="+44">🇬🇧 +44 (UK)</option>
+            <option value="+91">🇮🇳 +91 (India)</option>
+            <option value="+61">🇦🇺 +61 (Australia)</option>
+            <option value="+27">🇿🇦 +27 (South Africa)</option>
+            <option value="+49">🇩🇪 +49 (Germany)</option>
+            <option value="+234">🇳🇬 +234 (Nigeria)</option>
+            <option value="+81">🇯🇵 +81 (Japan)</option>
+            <option value="+86">🇨🇳 +86 (China)</option>
+            <option value="+213">🇩🇿 +213 (Algeria)</option>
+            <option value="+43">🇦🇹 +43 (Austria)</option>
+            <option value="+880">🇧🇩 +880 (Bangladesh)</option>
+            <option value="+32">🇧🇪 +32 (Belgium)</option>
+            <option value="+55">🇧🇷 +55 (Brazil)</option>
+            <option value="+359">🇧🇬 +359 (Bulgaria)</option>
+            <option value="+1-246">🇧🇧 +1-246 (Barbados)</option>
+            <option value="+1-268">🇦🇬 +1-268 (Antigua & Barbuda)</option>
+            <option value="+855">🇰🇭 +855 (Cambodia)</option>
+            <option value="+237">🇨🇲 +237 (Cameroon)</option>
+            <option value="+1-345">🇰🇾 +1-345 (Cayman Islands)</option>
+            <option value="+56">🇨🇱 +56 (Chile)</option>
+            <option value="+57">🇨🇴 +57 (Colombia)</option>
+            <option value="+420">🇨🇿 +420 (Czech Republic)</option>
+            <option value="+45">🇩🇰 +45 (Denmark)</option>
+            <option value="+20">🇪🇬 +20 (Egypt)</option>
+            <option value="+372">🇪🇪 +372 (Estonia)</option>
+            <option value="+358">🇫🇮 +358 (Finland)</option>
+            <option value="+33">🇫🇷 +33 (France)</option>
+            <option value="+30">🇬🇷 +30 (Greece)</option>
+            <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+            <option value="+36">🇭🇺 +36 (Hungary)</option>
+            <option value="+62">🇮🇩 +62 (Indonesia)</option>
+            <option value="+353">🇮🇪 +353 (Ireland)</option>
+            <option value="+972">🇮🇱 +972 (Israel)</option>
+            <option value="+39">🇮🇹 +39 (Italy)</option>
+            <option value="+962">🇯🇴 +962 (Jordan)</option>
+            <option value="+82">🇰🇷 +82 (South Korea)</option>
+            <option value="+370">🇱🇹 +370 (Lithuania)</option>
+            <option value="+352">🇱🇺 +352 (Luxembourg)</option>
+            <option value="+60">🇲🇾 +60 (Malaysia)</option>
+            <option value="+52">🇲🇽 +52 (Mexico)</option>
+            <option value="+212">🇲🇦 +212 (Morocco)</option>
+            <option value="+31">🇳🇱 +31 (Netherlands)</option>
+            <option value="+64">🇳🇿 +64 (New Zealand)</option>
+            <option value="+47">🇳🇴 +47 (Norway)</option>
+            <option value="+92">🇵🇰 +92 (Pakistan)</option>
+            <option value="+507">🇵🇦 +507 (Panama)</option>
+            <option value="+51">🇵🇪 +51 (Peru)</option>
+            <option value="+63">🇵🇭 +63 (Philippines)</option>
+            <option value="+48">🇵🇱 +48 (Poland)</option>
+            <option value="+351">🇵🇹 +351 (Portugal)</option>
+            <option value="+974">🇶🇦 +974 (Qatar)</option>
+            <option value="+40">🇷🇴 +40 (Romania)</option>
+            <option value="+7">🇷🇺 +7 (Russia)</option>
+            <option value="+966">🇸🇦 +966 (Saudi Arabia)</option>
+            <option value="+65">🇸🇬 +65 (Singapore)</option>
+            <option value="+421">🇸🇰 +421 (Slovakia)</option>
+            <option value="+27">🇿🇦 +27 (South Africa)</option>
+            <option value="+34">🇪🇸 +34 (Spain)</option>
+            <option value="+46">🇸🇪 +46 (Sweden)</option>
+            <option value="+41">🇨🇭 +41 (Switzerland)</option>
+            <option value="+66">🇹🇭 +66 (Thailand)</option>
+            <option value="+90">🇹🇷 +90 (Turkey)</option>
+            <option value="+256">🇺🇬 +256 (Uganda)</option>
+            <option value="+380">🇺🇦 +380 (Ukraine)</option>
+            <option value="+971">🇦🇪 +971 (UAE)</option>
+            <option value="+44">🇬🇧 +44 (UK)</option>
+            <option value="+1">🇺🇸 +1 (USA)</option>
+            <option value="+84">🇻🇳 +84 (Vietnam)</option>
+            <option value="+263">🇿🇼 +263 (Zimbabwe)</option>
+            <!-- Add more as needed -->
+          </select>
+          <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}" placeholder="Enter phone number">
+        </div>
         <!-- Message Field -->
-        <label for="message">Message (What Course would you like to apply):</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+        <label for="message">Message (What Course would you like to apply):</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
         <!-- Submit Button -->
         <button type="submit" class="cta-button">Send Message</button>
         <!-- Form Message (Success/Error) -->
         <div id="formMessage" style="margin-top:1rem;"></div>
         <p id="wbalert"></p>
-      </form>
+      <script>
+  // Prefill phone input with selected country code and prevent duplicate codes
+  document.addEventListener('DOMContentLoaded', function() {
+    var countryCode = document.getElementById('countryCode');
+    var phoneInput = document.getElementById('phone');
+    // Set initial value
+    phoneInput.value = countryCode.value + ' ';
+    phoneInput.addEventListener('focus', function() {
+      if (!phoneInput.value.startsWith(countryCode.value)) {
+        phoneInput.value = countryCode.value + ' ';
+      }
+    });
+    countryCode.addEventListener('change', function() {
+      // Remove old code if present
+      var val = phoneInput.value;
+      var spaceIdx = val.indexOf(' ');
+      if (val.startsWith('+') && spaceIdx > 0) {
+        val = val.substring(spaceIdx + 1);
+      }
+      phoneInput.value = countryCode.value + ' ' + val.replace(/^[\s]+/, '');
+      phoneInput.focus();
+    });
+  });
+</script>
+<script>
+  // Prefill phone input with selected country code and prevent duplicate codes
+  document.addEventListener('DOMContentLoaded', function() {
+    var countryCode = document.getElementById('countryCode');
+    var phoneInput = document.getElementById('phone');
+    var emailInput = document.getElementById('email');
+    // Set initial value for phone
+    phoneInput.value = countryCode.value + ' ';
+    phoneInput.addEventListener('focus', function() {
+      if (!phoneInput.value.startsWith(countryCode.value)) {
+        phoneInput.value = countryCode.value + ' ';
+      }
+    });
+    countryCode.addEventListener('change', function() {
+      // Remove old code if present
+      var val = phoneInput.value;
+      var spaceIdx = val.indexOf(' ');
+      if (val.startsWith('+') && spaceIdx > 0) {
+        val = val.substring(spaceIdx + 1);
+      }
+      phoneInput.value = countryCode.value + ' ' + val.replace(/^[\s]+/, '');
+      phoneInput.focus();
+    });
+    // On form submit, set the hidden email field to username + @selected domain
+    var form = document.getElementById('contactForm');
+    form.addEventListener('submit', function(e) {
+      var user = document.getElementById('emailUser').value.trim();
+      var domain = document.getElementById('emailDomain').value;
+      // Basic validation
+      if (!user || user.includes(' ')) {
+        alert('Please enter a valid email username (no spaces).');
+        e.preventDefault();
+        return false;
+      }
+      document.getElementById('email').value = user + '@' + domain;
+    });
+  });
+</script>
+</form>
   
       </script>
       <!-- Include the database.js module -->
@@ -355,10 +554,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </div>
     </div>
   </section>
-  <!-- Footer -->
-  <footer>
+    </div>
+    <footer style="background-color: #008080;">
     <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+    </footer>
+  </div>
   <!-- Firebase SDKs are now imported in database.js -->
 </script>
   <script src="main.js" defer></script>

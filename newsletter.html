@@ -109,7 +109,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </div>
     </div>
   </div>
-  <header class="newsletter-header">
+  <header class="newsletter-header" style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     <nav id="main-nav">
       <a href="index.html">Home</a>
@@ -121,35 +121,39 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu" style="display: none;">&#9776;</button>
   </header>
-  <section class="hero newsletter-hero" style="min-height: 220px; height: 32vh;">
-    <div class="hero-dark-overlay"></div>
-    <div class="hero-content">
-      <h1>Newsletter</h1>
-      <p>Stay updated with the latest news, programs, and opportunities from CEFORED Institute. Subscribe to our newsletter!</p>
+  <div class="page-bordered">
+    <section class="hero newsletter-hero" style="min-height: 220px; height: 32vh;">
+      <div class="hero-dark-overlay"></div>
+      <div class="hero-content">
+        <h1>Newsletter</h1>
+        <p>Stay updated with the latest news, programs, and opportunities from CEFORED Institute. Subscribe to our newsletter!</p>
+      </div>
+    </section>
+    <div class="page-frame-inner">
+      <section class="main-content section" style="max-width: 700px; margin: 2rem auto 0 auto; text-align: center;">
+        <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 0.7rem;">"Join the Movement — Stay Ahead with AI + Impact"</h2>
+        <p style="font-size: 1.13rem; color: var(--primary); margin-bottom: 0.7rem;">Be part of Africa's most dynamic AI-driven learning revolution. Subscribe to Cefored's newsletter and get insider updates on cutting-edge training programs, expert blogs, alumni success stories, tools for humanitarian innovation, and the latest in AI for development.</p>
+        <p style="font-size: 1.08rem; color: #444;">📨 Get the latest in AI + Impact direct to your inbox — only from Cefored.</p>
+      </section>
+      <section class="main-content section" style="max-width: 500px; margin: 2.5rem auto 2rem auto;">
+        <form id="newsletterForm">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required style="width:100%;margin-bottom:1rem;"><br>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required style="width:100%;margin-bottom:1.5rem;"><br>
+          <button type="submit" class="cta-button" style="width:100%;">Subscribe</button>
+          <div id="newsletterMessage" style="margin-top:1rem; padding: 10px; border-radius: 4px; display: none;"></div>
+        </form>
+        
+        <!-- Include the database.js module -->
+        <script type="module" src="js/database.js"></script>
+      </section>
     </div>
-  </section>
-  <section class="main-content section" style="max-width: 700px; margin: 2rem auto 0 auto; text-align: center;">
-    <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 0.7rem;">"Join the Movement — Stay Ahead with AI + Impact"</h2>
-    <p style="font-size: 1.13rem; color: var(--primary); margin-bottom: 0.7rem;">Be part of Africa's most dynamic AI-driven learning revolution. Subscribe to Cefored's newsletter and get insider updates on cutting-edge training programs, expert blogs, alumni success stories, tools for humanitarian innovation, and the latest in AI for development.</p>
-    <p style="font-size: 1.08rem; color: #444;">📨 Get the latest in AI + Impact direct to your inbox — only from Cefored.</p>
-  </section>
-  <section class="main-content section" style="max-width: 500px; margin: 2.5rem auto 2rem auto;">
-    <form id="newsletterForm">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name" required style="width:100%;margin-bottom:1rem;"><br>
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" name="email" required style="width:100%;margin-bottom:1.5rem;"><br>
-      <button type="submit" class="cta-button" style="width:100%;">Subscribe</button>
-      <div id="newsletterMessage" style="margin-top:1rem; padding: 10px; border-radius: 4px; display: none;"></div>
-    </form>
-    
-    <!-- Include the database.js module -->
-    <script type="module" src="js/database.js"></script>
-  </section>
-  <footer class="newsletter-footer">
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
-    <script src="main.js" defer></script>
-        <script src="theme.js" defer></script>
+    <footer class="newsletter-footer" style="background-color: #008080;">
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
+  <script src="main.js" defer></script>
+  <script src="theme.js" defer></script>
 </body>
 </html> 

@@ -18,184 +18,23 @@
   })();
 </script>
 <style>
-html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
-
+  :root {
+    --primary: #008080;
+    --secondary: #f5f5dc;
+    --accent: #FFA500;
+    --accent-alt: #FFFF00;
+  }
+  
+  html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
-</style>
-
   
-  
-  <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>REALM 2: AI in Business Management - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
-<body id="body-root">
-  <header>
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
-    
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
-<nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="programs.html">Programs</a>
-      <a href="faqs.html">FAQs</a>
-      <a href="corporatetraining.html">Corporate Training</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
-  </header>
-  <section class="hero" style="background: url('businessmgmt.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 2: AI in Business Management</h1>
-    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Empowering next-gen business leaders with AI strategy, intelligence, and automation</p>
-  </section>
-
-  <section class="program-section">
-    <div class="card">
-      <h3 class="card-title">Program Overview</h3>
-      <p>
-        This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
-        <strong>Ideal for:</strong> Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.
-      </p>
-    </div>
-
-    <h3 class="section-heading">Courses Offered</h3>
-
-    <div class="accordion">
-      <!-- COURSE 1 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI for Business Strategy & Leadership</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Learn to integrate AI into strategic planning, decision-making, and leadership transformation.</li>
-            <li><strong>Who Can Take This Course:</strong> Business Owners, Managers, C-Level Executives</li>
-            <li><strong>Requirements:</strong> Basic leadership or business background</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $480</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 2 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Marketing & Customer Insights</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Use AI for predictive analytics, targeted advertising, customer segmentation, and trend detection.</li>
-            <li><strong>Target Audience:</strong> Marketing Teams, Brand Managers, Entrepreneurs</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $470</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 3 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI-Powered Sales & CRM Automation</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Learn tools for sales forecasting, personalized engagement, AI chatbots, and CRM optimization.</li>
-            <li><strong>Target Audience:</strong> Sales Teams, Startups, Business Development Leads</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $460</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 4 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Finance & Business Analytics</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Automate financial reporting, budgeting, fraud detection, and performance analytics.</li>
-            <li><strong>Target Audience:</strong> Finance Officers, Accountants, Analysts</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $480</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 5 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Human Resource Management</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> AI for recruitment automation, performance analysis, retention prediction, and workforce planning.</li>
-            <li><strong>Target Audience:</strong> HR Managers, Team Leads, Organizational Developers</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $450</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <style>
-  .program-section {
+  /* Light mode styles */
+  body {
     background-color: var(--secondary);
-    padding: 2rem;
-    max-width: 1000px;
-    margin: auto;
+    color: #333;
   }
-  .program-section h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    text-align: center;
-  }
-  .program-section .overview {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-  .card {
-    background: white;
-    padding: 1rem 1.5rem;
-    border-left: 5px solid var(--accent);
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  }
-  .section-heading {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-  .accordion .accordion-item {
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: white;
-  }
-  .accordion-header {
-    width: 100%;
-    text-align: left;
-    background-color: var(--primary);
-    color: white;
-    padding: 1rem;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 6px 6px 0 0;
-  }
-  .accordion-header:hover {
-    background-color: var(--accent);
-    color: var(--primary);
-  }
-  .accordion-body {
-    display: none;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ccc;
-  }
-  .accordion-body ul {
-    padding-left: 1rem;
-    list-style-type: disc;
-  }
+  
   body.dark-mode {
     --primary: #e0e0e0;
     --secondary: #181a20;
@@ -204,9 +43,19 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     background: #181a20;
     color: #e0e0e0;
   }
-  body.dark-mode header, body.dark-mode footer {
-    background: #23242b;
-    color: #e0e0e0;
+  .main-header {
+    background: #008080;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  body.dark-mode .main-header,
+  body.dark-mode .main-header a {
+    background: #23242b !important;
+    color: #e0e0e0 !important;
   }
   body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
     background: #23242b !important;
@@ -262,6 +111,137 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   body.dark-mode .accordion-body ul {
     color: #fff !important;
   }
+  
+  /* Ensure header and footer use teal in both modes */
+  header {
+    background: var(--primary) !important;
+  }
+  
+  footer {
+    background: var(--primary) !important;
+    color: var(--secondary) !important;
+  }
+</style>
+
+  
+  
+  <!-- Theme loader - must be in head with defer to prevent flash -->
+  <script src="js/theme.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REALM 2: AI in Business Management - CEFORED Institute of Relief</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
+  </head>
+<body id="body-root">
+  <header class="main-header">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center;">
+        <img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" />
+        <strong style="color: #fff;">CEFORED Institute</strong>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode" style="background: none; border: none; font-size: 1.7rem; cursor: pointer; color: #FFA500;">🌙</button>
+    </div>
+    <nav style="margin-top: 0.7rem;">
+      <a href="index.html" style="color: #fff; margin-left: 0; margin-right: 2rem; text-decoration: none; font-weight: 500;">Home</a>
+      <a href="about.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">About Us</a>
+      <a href="programs.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">Programs</a>
+      <a href="faqs.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">FAQs</a>
+      <a href="corporatetraining.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">Corporate Training</a>
+      <a href="contact.html" style="color: #fff; text-decoration: none; font-weight: 500;">Contact Us</a>
+    </nav>
+  </header>
+  <div class="page-bordered">
+    <section class="hero" style="background: url('businessmgmt.jpg') center/cover no-repeat; min-height: 180px; height: 30vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 2: AI in Business Management</h1>
+    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Empowering next-gen business leaders with AI strategy, intelligence, and automation</p>
+  </section>
+
+    <div class="page-frame-inner">
+      <section class="program-section">
+    <div class="card">
+      <h3 class="card-title">Program Overview</h3>
+      <p>
+        This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
+        <strong>Ideal for:</strong> Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.
+      </p>
+    </div>
+
+        <h3 class="section-heading">Courses Offered</h3>
+
+        <div class="accordion">
+          <!-- COURSE 1 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI for Business Strategy & Leadership</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Learn to integrate AI into strategic planning, decision-making, and leadership transformation.</li>
+                <li><strong>Who Can Take This Course:</strong> Business Owners, Managers, C-Level Executives</li>
+                <li><strong>Requirements:</strong> Basic leadership or business background</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $480</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 5 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Human Resource Management</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> AI for recruitment automation, performance analysis, retention prediction, and workforce planning.</li>
+                <li><strong>Target Audience:</strong> HR Managers, Team Leads, Organizational Developers</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $450</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 3 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI-Powered Sales & CRM Automation</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Learn tools for sales forecasting, personalized engagement, AI chatbots, and CRM optimization.</li>
+                <li><strong>Target Audience:</strong> Sales Teams, Startups, Business Development Leads</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $460</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 2 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Healthcare Data Analytics</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Use AI for predictive analytics, disease modeling, and healthcare outcomes analysis.</li>
+                <li><strong>Target Audience:</strong> Healthcare Professionals, Medical Researchers, Healthcare Administrators</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $470</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 4 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Healthcare Operations & Management</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Automate healthcare operations, optimize resource allocation, and improve patient flow.</li>
+                <li><strong>Target Audience:</strong> Healthcare Administrators, Healthcare Professionals, Medical Researchers</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $480</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <style>
   nav a {
     position: relative;
     transition: color 0.2s;
@@ -284,11 +264,107 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     opacity: 1;
     transform: scaleX(1);
   }
+  .program-section {
+    background-color: var(--secondary);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  .program-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .program-section .overview {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .accordion-body {
+    display: none;
+    padding: 1rem;
+  }
+  .accordion-header {
+    cursor: pointer;
+    padding: 1rem;
+    width: 100%;
+    text-align: left;
+    background-color: #f8f8f8;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+    font-weight: bold;
+  }
+  .accordion-header:hover {
+    background-color: #f1f1f1;
+  }
+  .card {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-left: 5px solid var(--accent);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  .section-heading {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .accordion .accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+  }
+  .accordion-header {
+    width: 100%;
+    text-align: left;
+    background-color: #008080; /* Teal background */
+    color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .accordion-header:hover {
+    background-color: #009999; /* Lighter teal on hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  .accordion-body {
+    display: none;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+  }
+  .accordion-body ul {
+    padding-left: 1rem;
+  }
+  body.dark-mode .accordion-header {
+    background-color: #23242b !important;
+    color: #fff !important;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #444 !important;
+  }
+  body.dark-mode .accordion-header:hover {
+    background-color: var(--accent) !important;
+    color: #23242b !important;
+  }
+  body.dark-mode .accordion-body ul li,
+  body.dark-mode .accordion-body ul {
+    color: #fff !important;
+  }
   </style>
-
   <script src="main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Add click event listeners to all accordion headers
       document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', () => {
           const body = header.nextElementSibling;
@@ -297,9 +373,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       });
     });
   </script>
-  <footer>
+  <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
     <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
   </footer>
-    <script src="theme.js" defer></script>
+  <script src="js/theme.js" defer></script>
 </body>
-</html> 
+</html>

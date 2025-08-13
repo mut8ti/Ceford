@@ -140,7 +140,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </head>
 <body id="body-root">
   <!-- Header and Navigation -->
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
@@ -153,7 +153,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <!-- Hero Section -->
+  <div class="page-bordered">
+    <!-- Hero Section -->
   <section class="hero programs-hero">
     <div class="hero-content">
       <h1>Our Programs</h1>
@@ -161,80 +162,176 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </section>
   <!-- Main Content Sections -->
-  <section class="sections" style="margin-top:2rem;">
-    <div class="section collapsible">
-      <div class="realm-bg realm1-bg" onclick="window.location.href='realm1-logistics.html'" style="background: url('realm1bg.webp') center/cover no-repeat; min-height: 120px; display: flex; align-items: center; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.18);">
-        <h2 class="collapsible-title" style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">🔥 REALM 1: AI in Logistics & Supply Chain Management</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Transforming logistics through intelligent, AI-enhanced systems</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.<br>
-        <em>Perfect for: Supply chain professionals, logistics managers, and anyone interested in the future of goods movement.</em></p>
+  <style>
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .program-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 300px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    
+    .program-header {
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem;
+      transition: transform 0.5s ease;
+    }
+    
+    .program-card:hover .program-header {
+      transform: scale(1.05);
+    }
+    
+    .program-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%);
+      transition: opacity 0.3s ease;
+    }
+    
+    .program-card:hover .program-header::before {
+      opacity: 0.9;
+    }
+    
+    .program-title {
+      color: white;
+      font-size: 1.8rem;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    /* Remove unused styles */
+    
+    @media (max-width: 1200px) {
+      .programs-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+      }
+      
+      .program-card {
+        height: 280px;
+      }
+      
+      .program-title {
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 1024px) {
+      .programs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .program-card {
+        height: 300px;
+      }
+      
+      .program-title {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .programs-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        padding: 1rem;
+      }
+      
+      .program-card {
+        height: 250px;
+      }
+      
+      .program-title {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  
+  <section class="programs-grid">
+    <!-- Program Cards -->
+    <div class="program-card" onclick="window.location.href='realm1-logistics.html'" style="position: relative; min-height: 300px; overflow: hidden; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background-color: #f0f0f0; cursor: pointer;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('./realm1bg.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; display: flex; align-items: center; justify-content: center;">
+        <h2 class="program-title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); text-align: center; padding: 20px; margin: 0; font-size: 1.5rem; z-index: 2;">🔥 AI in Logistics & Supply Chain</h2>
       </div>
     </div>
-    <div class="section collapsible">
-      <div class="realm-bg realm2-bg" onclick="window.location.href='realm2-business.html'">
-        <h2 class="collapsible-title">💼 REALM 2: AI in Business Management</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Empowering next-gen business leaders with AI strategies</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        Dive into AI-driven decision making, process automation, and data analytics for business. This program covers everything from AI-powered marketing to financial forecasting and HR management.<br>
-        <em>Perfect for: Entrepreneurs, business managers, and future-focused executives.</em></p>
+    
+    <div class="program-card" onclick="window.location.href='realm2-business.html'">
+      <div class="program-header" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <h2 class="program-title">💼 AI in Business Management</h2>
       </div>
     </div>
-    <div class="section collapsible">
-      <div class="realm-bg realm3-bg" onclick="window.location.href='realm3-health.html'">
-        <h2 class="collapsible-title">🩺 REALM 3: AI in Health Management</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Empowering health professionals with AI for smarter care</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        Learn how AI is revolutionizing diagnostics, patient care, and health data management. Explore real-world applications in hospitals, clinics, and public health.<br>
-        <em>Perfect for: Healthcare workers, administrators, and tech enthusiasts in medicine.</em></p>
+    
+    <div class="program-card" onclick="window.location.href='realm3-health.html'">
+      <div class="program-header" style="background-image: url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <h2 class="program-title">🩺 AI in Health Management</h2>
       </div>
     </div>
-    <div class="section collapsible">
-      <div class="realm-bg realm4-bg" onclick="window.location.href='realm4-project.html'">
-        <h2 class="collapsible-title">📊 REALM 4: AI in Project Management</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Unleashing AI to power smarter planning, real-time tracking, and risk management</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        Master AI tools for project scheduling, resource allocation, and performance analytics. This program is designed to help you deliver projects on time and on budget.<br>
-        <em>Perfect for: Project managers, team leads, and anyone managing complex initiatives.</em></p>
+    
+    <div class="program-card" onclick="window.location.href='realm4-project.html'">
+      <div class="program-header" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80');">
+        <h2 class="program-title">📊 AI in Project Management</h2>
       </div>
     </div>
-    <div class="section collapsible">
-      <div class="realm-bg realm5-bg" onclick="window.location.href='realm5-it.html'">
-        <h2 class="collapsible-title">💻 REALM 5: AI in IT & Digital Transformation</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Reclaiming digital thrones through AI-powered IT solutions</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        Explore AI's role in cybersecurity, cloud computing, and digital innovation. Learn how to lead digital transformation in any organization.<br>
-        <em>Perfect for: IT professionals, digital strategists, and tech leaders.</em></p>
+    
+    <div class="program-card" onclick="window.location.href='realm5-it.html'">
+      <div class="program-header" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <h2 class="program-title">💻 AI in IT & Digital Transformation</h2>
       </div>
     </div>
-    <div class="section collapsible">
-      <div class="realm-bg realm6-bg" onclick="window.location.href='realm6-humanitarian.html'">
-        <h2 class="collapsible-title">🌍 REALM 6: AI in Humanitarian, Relief & Disaster Management</h2>
-      </div>
-      <div class="collapsible-content">
-        <strong>Harnessing AI for rapid response, resource allocation, and crisis prediction</strong>
-        <p><span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
-        Discover how AI is used in disaster prediction, humanitarian logistics, and relief operations. This program is ideal for those passionate about making a difference with technology.<br>
-        <em>Perfect for: NGO workers, emergency responders, and social impact innovators.</em></p>
+    
+    <div class="program-card" onclick="window.location.href='realm6-humanitarian.html'">
+      <div class="program-header" style="background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+        <h2 class="program-title">🌍 AI in Humanitarian & Disaster Relief</h2>
       </div>
     </div>
   </section>
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </div> <!-- Close page-frame-inner -->
+  
+  <footer style="background-color: #008080;">
+    <div class="page-frame-inner" style="max-width: 1200px; margin: 0 auto;">
+      <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+        &copy; 2025 CEFORED Institute of Relief. All rights reserved.
+      </p>
+    </div>
   </footer>
+  
   <!-- Main JavaScript -->
   <script src="main.js" defer></script>
-      <script src="theme.js" defer></script>
+  <script src="theme.js" defer></script>
 </body>
 </html> 

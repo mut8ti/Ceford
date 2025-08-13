@@ -36,7 +36,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body id="body-root">
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
@@ -49,12 +49,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <section class="hero" style="background: url('bestbghealth.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <div class="page-bordered">
+    <section class="hero" style="background: url('bestbghealth.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 3: AI in Health Management</h1>
     <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Empowering health professionals with AI for smarter care, analytics, and public health transformation</p>
   </section>
 
-  <section class="program-section">
+    <div class="page-frame-inner">
+      <section class="program-section">
     <div class="card">
       <h3 class="card-title">Program Overview</h3>
       <p>
@@ -63,78 +65,81 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </p>
     </div>
 
-    <h3 class="section-heading">Courses Offered</h3>
+        <h3 class="section-heading">Courses Offered</h3>
 
-    <div class="accordion">
-      <!-- COURSE 1 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Hospital & Health Facility Management</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Use AI for operational efficiency, patient scheduling, hospital resource management, and smart facility planning.</li>
-            <li><strong>Target Audience:</strong> Hospital Managers, Health Facility Supervisors</li>
-            <li><strong>Requirements:</strong> Basic healthcare management background</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $490</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+        <div class="accordion">
+          <!-- COURSE 1 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Hospital & Health Facility Management</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Use AI for operational efficiency, patient scheduling, hospital resource management, and smart facility planning.</li>
+                <li><strong>Target Audience:</strong> Hospital Managers, Health Facility Supervisors</li>
+                <li><strong>Requirements:</strong> Basic healthcare management background</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $490</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 2 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Public Health & Epidemiology</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Apply AI in disease surveillance, outbreak prediction, population health analytics, and health policy decisions.</li>
+                <li><strong>Target Audience:</strong> Public Health Officers, NGO Health Staff, Health Researchers</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $470</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 3 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Health Information Systems (HIS)</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Integrate AI with Electronic Health Records (EHR), patient monitoring, and predictive dashboards.</li>
+                <li><strong>Target Audience:</strong> Health IT Officers, HIS Managers, Data Analysts</li>
+                <li><strong>Duration:</strong> 4 weeks</li>
+                <li><strong>Course Fee:</strong> $480</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 4 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Clinical Decision Support & Diagnostics</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Explore tools for AI-based diagnosis, symptom checking, and treatment planning using machine learning models.</li>
+                <li><strong>Target Audience:</strong> Clinicians, Medical Officers, Nurses, Medical Innovators</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $460</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
+          <!-- COURSE 5 -->
+          <div class="accordion-item">
+            <button class="accordion-header">AI in Pharmaceutical Supply & Drug Forecasting</button>
+            <div class="accordion-body">
+              <ul>
+                <li><strong>Objectives:</strong> Leverage AI for pharmaceutical logistics, inventory prediction, and prescription pattern tracking.</li>
+                <li><strong>Target Audience:</strong> Pharmacists, Supply Chain Managers, Drug Policy Planners</li>
+                <li><strong>Duration:</strong> 3 weeks</li>
+                <li><strong>Course Fee:</strong> $450</li>
+              </ul>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- COURSE 2 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Public Health & Epidemiology</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Apply AI in disease surveillance, outbreak prediction, population health analytics, and health policy decisions.</li>
-            <li><strong>Target Audience:</strong> Public Health Officers, NGO Health Staff, Health Researchers</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $470</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 3 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Health Information Systems (HIS)</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Integrate AI with Electronic Health Records (EHR), patient monitoring, and predictive dashboards.</li>
-            <li><strong>Target Audience:</strong> Health IT Officers, HIS Managers, Data Analysts</li>
-            <li><strong>Duration:</strong> 4 weeks</li>
-            <li><strong>Course Fee:</strong> $480</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 4 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Clinical Decision Support & Diagnostics</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Explore tools for AI-based diagnosis, symptom checking, and treatment planning using machine learning models.</li>
-            <li><strong>Target Audience:</strong> Clinicians, Medical Officers, Nurses, Medical Innovators</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $460</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
-      <!-- COURSE 5 -->
-      <div class="accordion-item">
-        <button class="accordion-header">AI in Pharmaceutical Supply & Drug Forecasting</button>
-        <div class="accordion-body">
-          <ul>
-            <li><strong>Objectives:</strong> Leverage AI for pharmaceutical logistics, inventory prediction, and prescription pattern tracking.</li>
-            <li><strong>Target Audience:</strong> Pharmacists, Supply Chain Managers, Drug Policy Planners</li>
-            <li><strong>Duration:</strong> 3 weeks</li>
-            <li><strong>Course Fee:</strong> $450</li>
-          </ul>
-          <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
-
+    <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+  </footer>
   <style>
   nav a {
     position: relative;
@@ -195,7 +200,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   .accordion-header {
     width: 100%;
     text-align: left;
-    background-color: var(--primary);
+    background-color: #008080; /* Teal background */
     color: white;
     padding: 1rem;
     border: none;
@@ -203,10 +208,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     font-weight: bold;
     cursor: pointer;
     border-radius: 6px 6px 0 0;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
   }
   .accordion-header:hover {
-    background-color: var(--accent);
-    color: var(--primary);
+    background-color: #009999; /* Lighter teal on hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   }
   .accordion-body {
     display: none;
@@ -297,9 +307,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       });
     });
   </script>
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
-    <script src="theme.js" defer></script>
+  <script src="theme.js" defer></script>
 </body>
-</html> 
+</html>
+</html>

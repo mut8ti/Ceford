@@ -22,6 +22,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
+  
+  .doodle-bg {
+    /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
+    background-color: #f5f0e6; /* Warm cream background */
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23000080" fill-opacity="0.03"/></svg>');
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    min-height: 100vh;
+  }
+  
+  html.dark-mode body.doodle-bg,
+  body.dark-mode.doodle-bg {
+    background-color: #1a1a2e !important;
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23ffffff" fill-opacity="0.05"/></svg>') !important;
+  }
 </style>
 
   
@@ -33,7 +48,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --primary: #000080;
+      --primary: #008080;
       --secondary: #f5f5dc;
       --dark-bg: #181a20;
       --accent: #FFA500;
@@ -92,8 +107,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: var(--accent);
     }
     .blog-hero {
-      background: linear-gradient(120deg, #fffbe6 60%, #f5f5dc 100%);
-      color: var(--primary);
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
       padding: 3.2rem 1.5rem 2.2rem 1.5rem;
       text-align: center;
       border-bottom: 1.5px solid #e0e0e0;
@@ -183,7 +200,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: inline-block;
       margin-top: 2.2rem;
       background: linear-gradient(90deg, #FFA500 60%, #FFFF00 100%);
-      color: #000080;
+      color: #008080;
       font-weight: 700;
       font-size: 1.13rem;
       border: none;
@@ -199,7 +216,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .blog-content-section .blog-cta:hover {
       box-shadow: 0 8px 32px #FFA50099, 0 2px 24px #0006;
       background: linear-gradient(90deg, #FFFF00 60%, #FFA500 100%);
-      color: #000080;
+      color: #008080;
       transform: scale(1.045);
     }
     /* Dark mode overrides */
@@ -212,7 +229,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #fff;
     }
     body.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #000020 60%, #181a20 100%);
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
       color: #fff;
       border-bottom: 1.5px solid #23242b;
     }
@@ -272,7 +291,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #e0e0e0 !important;
     }
     html.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #181a20 60%, #23242b 100%) !important;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp') !important;
+      background-size: cover !important;
+      background-position: center !important;
       color: #fff;
     }
     html.dark-mode .blog-hero h1 {
@@ -304,7 +325,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
   </style>
 </head>
-<body id="body-root">
+<body id="body-root" class="doodle-bg">
   <header>
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">🌙</button>
@@ -318,36 +339,40 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="blog.html">Blog</a>
     </nav>
   </header>
-  <section class="blog-hero">
-    <span class="emoji" aria-label="AI">🧠</span>
-    <h1>How AI is Transforming Crisis Response</h1>
-    <p>AI is revolutionizing how the world prepares for and responds to disasters, pandemics, and humanitarian crises.</p>
-  </section>
-  <section class="blog-content-section">
-    <p>In an era of increasing global instability—from natural disasters and pandemics to armed conflicts and humanitarian crises—rapid, intelligent, and efficient responses are more crucial than ever. Artificial Intelligence (AI), once a futuristic concept, is now playing a pivotal role in transforming how the world prepares for and responds to crises. With the power to analyze massive data sets in real time, predict outcomes, and automate critical decisions, AI is revolutionizing the field of crisis response across multiple dimensions.</p>
-    <h2>Early Warning and Risk Assessment</h2>
-    <p>One of the most significant ways AI contributes to crisis response is through early warning systems. Machine learning models can analyze satellite imagery, climate data, seismic readings, and social media patterns to predict disasters before they happen. For instance, AI algorithms are now used to forecast hurricanes, floods, and wildfires with remarkable accuracy. These predictive models give governments and humanitarian organizations precious hours or even days to mobilize resources, issue evacuation orders, and minimize casualties.</p>
-    <p>In regions prone to conflict or disease outbreaks, AI systems monitor communication channels, news sources, and population movements to identify signs of emerging threats. Natural language processing (NLP) helps filter through massive amounts of multilingual text data to detect early indicators of unrest or epidemics, enabling proactive rather than reactive responses.</p>
-    <h2>Resource Allocation and Logistics</h2>
-    <p>When crises strike, the effective allocation of limited resources can mean the difference between life and death. AI-powered logistics systems optimize the distribution of food, medical supplies, and personnel by analyzing transportation routes, infrastructure damage, and population needs. Algorithms can prioritize delivery routes based on real-time traffic data and the severity of need, ensuring that aid reaches the most vulnerable communities first.</p>
-    <p>Additionally, AI is being used in supply chain management to forecast demand and manage inventory, helping prevent shortages of critical materials like water, vaccines, and shelter supplies during emergencies.</p>
-    <h2>Real-Time Decision-Making and Coordination</h2>
-    <p>During active crisis situations, decision-making must be fast, accurate, and well-informed. AI tools enhance situational awareness by integrating data from drones, satellites, and field sensors into a single operational picture. This allows responders to make timely decisions based on comprehensive, real-time insights.</p>
-    <p>AI is also improving inter-agency coordination. Intelligent platforms can facilitate communication between international aid organizations, government agencies, and local responders by automatically translating messages, standardizing data formats, and highlighting key updates. This results in a more unified and efficient response, reducing duplication of efforts and speeding up aid delivery.</p>
-    <h2>Humanitarian Mapping and Drone Assistance</h2>
-    <p>AI-powered drones have become invaluable in mapping disaster zones, particularly in areas that are inaccessible due to flooding, landslides, or conflict. These drones capture high-resolution imagery, which AI systems then analyze to identify damaged infrastructure, blocked roads, and stranded individuals.</p>
-    <p>For example, after an earthquake, AI algorithms can quickly compare before-and-after images to assess structural damage and guide search-and-rescue teams. In refugee camps, AI helps monitor overcrowding and hygiene conditions to prevent disease outbreaks.</p>
-    <h2>Ethical Considerations and Challenges</h2>
-    <p>While AI offers immense potential, its application in crisis response also raises ethical concerns. Issues such as data privacy, algorithmic bias, and lack of transparency must be carefully managed. Overreliance on AI could lead to decisions being made without sufficient human oversight, potentially endangering lives if systems malfunction or misinterpret data. It is therefore crucial that AI tools be used to assist—rather than replace—human judgment in high-stakes scenarios.</p>
-    <h2>Conclusion</h2>
-    <p>Artificial Intelligence is rapidly reshaping how humanity responds to crises, turning reactive strategies into proactive, data-driven solutions. From early warnings and smarter logistics to real-time decision-making and resource optimization, AI is making crisis response faster, more accurate, and more life-saving. As the technology continues to evolve, it must be guided by ethical frameworks and human-centered design to ensure that its transformative power is used for the greatest good.</p>
-    <a href="blog.html" class="blog-cta">← Back to Blog</a>
-  </section>
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+  <div class="page-bordered">
+    <section class="blog-hero">
+      <span class="emoji" aria-label="AI">🧠</span>
+      <h1>How AI is Transforming Crisis Response</h1>
+      <p>AI is revolutionizing how the world prepares for and responds to disasters, pandemics, and humanitarian crises.</p>
+    </section>
+    <div class="page-frame-inner">
+      <section class="blog-content-section">
+        <p>In an era of increasing global instability—from natural disasters and pandemics to armed conflicts and humanitarian crises—rapid, intelligent, and efficient responses are more crucial than ever. Artificial Intelligence (AI), once a futuristic concept, is now playing a pivotal role in transforming how the world prepares for and responds to crises. With the power to analyze massive data sets in real time, predict outcomes, and automate critical decisions, AI is revolutionizing the field of crisis response across multiple dimensions.</p>
+        <h2>Early Warning and Risk Assessment</h2>
+        <p>One of the most significant ways AI contributes to crisis response is through early warning systems. Machine learning models can analyze satellite imagery, climate data, seismic readings, and social media patterns to predict disasters before they happen. For instance, AI algorithms are now used to forecast hurricanes, floods, and wildfires with remarkable accuracy. These predictive models give governments and humanitarian organizations precious hours or even days to mobilize resources, issue evacuation orders, and minimize casualties.</p>
+        <p>In regions prone to conflict or disease outbreaks, AI systems monitor communication channels, news sources, and population movements to identify signs of emerging threats. Natural language processing (NLP) helps filter through massive amounts of multilingual text data to detect early indicators of unrest or epidemics, enabling proactive rather than reactive responses.</p>
+        <h2>Resource Allocation and Logistics</h2>
+        <p>When crises strike, the effective allocation of limited resources can mean the difference between life and death. AI-powered logistics systems optimize the distribution of food, medical supplies, and personnel by analyzing transportation routes, infrastructure damage, and population needs. Algorithms can prioritize delivery routes based on real-time traffic data and the severity of need, ensuring that aid reaches the most vulnerable communities first.</p>
+        <p>Additionally, AI is being used in supply chain management to forecast demand and manage inventory, helping prevent shortages of critical materials like water, vaccines, and shelter supplies during emergencies.</p>
+        <h2>Real-Time Decision-Making and Coordination</h2>
+        <p>During active crisis situations, decision-making must be fast, accurate, and well-informed. AI tools enhance situational awareness by integrating data from drones, satellites, and field sensors into a single operational picture. This allows responders to make timely decisions based on comprehensive, real-time insights.</p>
+        <p>AI is also improving inter-agency coordination. Intelligent platforms can facilitate communication between international aid organizations, government agencies, and local responders by automatically translating messages, standardizing data formats, and highlighting key updates. This results in a more unified and efficient response, reducing duplication of efforts and speeding up aid delivery.</p>
+        <h2>Humanitarian Mapping and Drone Assistance</h2>
+        <p>AI-powered drones have become invaluable in mapping disaster zones, particularly in areas that are inaccessible due to flooding, landslides, or conflict. These drones capture high-resolution imagery, which AI systems then analyze to identify damaged infrastructure, blocked roads, and stranded individuals.</p>
+        <p>For example, after an earthquake, AI algorithms can quickly compare before-and-after images to assess structural damage and guide search-and-rescue teams. In refugee camps, AI helps monitor overcrowding and hygiene conditions to prevent disease outbreaks.</p>
+        <h2>Ethical Considerations and Challenges</h2>
+        <p>While AI offers immense potential, its application in crisis response also raises ethical concerns. Issues such as data privacy, algorithmic bias, and lack of transparency must be carefully managed. Overreliance on AI could lead to decisions being made without sufficient human oversight, potentially endangering lives if systems malfunction or misinterpret data. It is therefore crucial that AI tools be used to assist—rather than replace—human judgment in high-stakes scenarios.</p>
+        <h2>Conclusion</h2>
+        <p>Artificial Intelligence is rapidly reshaping how humanity responds to crises, turning reactive strategies into proactive, data-driven solutions. From early warnings and smarter logistics to real-time decision-making and resource optimization, AI is making crisis response faster, more accurate, and more life-saving. As the technology continues to evolve, it must be guided by ethical frameworks and human-centered design to ensure that its transformative power is used for the greatest good.</p>
+        <a href="blog.html" class="blog-cta">← Back to Blog</a>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  
+  <script src="theme.js" defer></script>
     <script src="theme.js" defer></script>
 </body>
-</html> 
+</html>

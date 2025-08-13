@@ -33,12 +33,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us - CEFORED Institute of Relief</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body id="body-root" class="about-page">
   <!-- Header and Navigation -->
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
@@ -51,61 +53,172 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <!-- Hero Section -->
-  <section class="hero" style="background-image: url('about1.png'); min-height: 220px; height: 32vh;">
-    <div class="hero-content" style="padding-top: 1.2rem; padding-bottom: 1.5rem;">
-      <h1>About Us</h1>
-      <p>Cefored Institute of Relief and Development is a pioneering training institute leveraging the power of AI to transform learning in sectors that drive social impact.</p>
-    </div>
-  </section>
-  <style>
-  body.dark-mode .hero {
-    background-image: url('about1.png') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-  }
-  body.dark-mode header, body.dark-mode nav {
-    background: #23242b !important;
-    color: #fff !important;
-  }
-  body.dark-mode nav a {
-    color: #fff !important;
-  }
-  body.dark-mode nav a.active, body.dark-mode nav a:hover {
-    color: var(--accent) !important;
-  }
-  nav a {
-    position: relative;
-    transition: color 0.2s;
-  }
-  nav a::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -4px;
-    height: 2px;
-    background: var(--accent);
-    opacity: 0;
-    transform: scaleX(0);
-    transition: opacity 0.2s, transform 0.2s;
-    border-radius: 2px;
-  }
-  nav a:hover::after, nav a.active::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  body.dark-mode footer {
-    background: #23242b !important;
-    color: #fff !important;
-  }
+  <div class="page-bordered" style="position: relative; z-index: 1;">
+    <section class="hero" style="background-image: url('about1.png'); min-height: 220px; height: 32vh; position: relative; background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>About Us</h1>
+        <p>Cefored Institute of Relief and Development is a pioneering training institute leveraging the power of AI to transform learning in sectors that drive social impact.</p>
+      </div>
+    </section>
+    <div class="page-frame-inner">
+      <style>
+    /* Ensure all titles are teal */
+    h1, h2, h3 {
+      color: var(--primary, #008080) !important;
+    }
+    
+    /* Doodle Art for Dark Mode */
+    .dark-mode .page-bordered::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(45, 106, 79, 0.04) 0%, transparent 10%),
+        radial-gradient(circle at 90% 30%, rgba(69, 123, 157, 0.04) 0%, transparent 15%),
+        radial-gradient(ellipse at 30% 70%, rgba(144, 224, 239, 0.04) 0%, transparent 25%),
+        radial-gradient(ellipse at 70% 80%, rgba(42, 157, 143, 0.04) 0%, transparent 20%);
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* Add subtle grid pattern */
+    .dark-mode .page-bordered::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .about-cta {
+      display: flex !important;
+      flex-direction: row !important;
+      gap: 2rem !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-top: 2.5rem !important;
+      margin-bottom: 2.5rem !important;
+      padding: 1.5rem 0 1.5rem 0 !important;
+      flex-wrap: wrap !important;
+    }
+    .about-cta .cta-button {
+      min-width: 170px;
+      padding: 0.7em 1.5em;
+      font-size: 1.1rem;
+      margin: 0 0.3em;
+    }
+    @media (max-width: 700px) {
+      .about-cta {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        padding: 1rem 0 !important;
+      }
+      .about-cta .cta-button {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+    .three-segments {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      gap: 3.5rem !important;
+      justify-content: center !important;
+      align-items: stretch !important;
+      margin-top: 2rem !important;
+      width: 100% !important;
+    }
+    .three-segments .section {
+      flex: 1 1 420px !important;
+      min-width: 220px !important;
+      max-width: 420px !important;
+      min-height: 120px !important;
+      background: var(--card-bg, #f9f9f9) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+      padding: 1.5rem !important;
+      margin: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      border: 2px solid #d32e7e !important;
+      margin-bottom: 2rem !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    /* Dark mode specific styles for three-segments - Matching site's dark theme */
+    .dark-mode .three-segments .section {
+      background: #23242b !important; /* Matching main dark background */
+      border: 1px solid #3a3f4b !important; /* Subtle border */
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18) !important; /* Consistent shadow */
+      transition: all 0.3s ease !important;
+    }
+    
+    .dark-mode .three-segments .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    }
+    
+    .dark-mode .three-segments .section h2 {
+      color: #e0e0e0 !important; /* Bright text for headings */
+      border-bottom: 1px solid #3a3f4b; /* Subtle separator */
+      padding-bottom: 0.5em;
+      margin-bottom: 0.8em;
+    }
+    
+    .dark-mode .three-segments .section p,
+    .dark-mode .three-segments .section li {
+      color: #b0b0b0 !important; /* Slightly dimmer text for content */
+    }
+    
+    .dark-mode .three-segments .section ul {
+      list-style: none; /* Remove default bullets */
+      padding-left: 0;
+      margin: 0.5em 0 0 0;
+    }
+    
+    .dark-mode .three-segments .section li {
+      margin-bottom: 0.5em;
+      position: relative;
+      padding-left: 1.5em;
+      line-height: 1.5;
+    }
+    
+    .dark-mode .three-segments .section li:before {
+      content: '•';
+      color: var(--accent, #d32e7e);
+      position: absolute;
+      left: 0.5em;
+      font-size: 1.2em;
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      .three-segments {
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .three-segments .section {
+        max-width: 100% !important;
+      }
+    }
   </style>
+
   <section class="main-content section" style="max-width: 900px; margin: 2.5rem auto 2rem auto;">
-    <h2>Our Mission</h2>
+    <h2><i class="fas fa-bullseye" style="color:var(--accent); margin-right:0.5em;"></i>Our Mission</h2>
     <p>To build a smarter, more resilient world through practical, AI-empowered education. We specialize in real-time, AI-enhanced training programs in logistics, business management, health systems, project management, humanitarian relief, and digital transformation.</p>
-    <h2>Our Vision</h2>
+    <h2><i class="fas fa-eye" style="color:var(--accent); margin-right:0.5em;"></i>Our Vision</h2>
     <p>To become Africa's most trusted institute for AI-integrated professional training that accelerates development and humanitarian impact.</p>
     <h2>Our 6 Realms of Transformation</h2>
     <p>At Cefored Institute of Relief And Development, our AI-driven vision is ignited through six powerful realms of training and innovation. These equip professionals to lead in critical sectors with cutting-edge skills and real-world solutions.</p>
@@ -117,20 +230,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <li><strong>AI in IT & Digital Transformation</strong><br>Driving innovation through digital infrastructure, cloud, cybersecurity, and AI-powered systems.</li>
       <li><strong>AI in Humanitarian, Relief & Disaster Management</strong><br>Enhance crisis response, mapping, early warning, resource allocation and coordination with intelligent tools.</li>
     </ul>
-    <div class="about-cta" style="text-align:center; margin-top:2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+    <div class="about-cta" style="text-align:center; margin-top:2rem; display: flex; flex-direction: row; gap: 1rem; align-items: center; justify-content: center;">
       <a href="programs.html" class="cta-button" style="font-size:1.1rem;">Explore Programs</a>
       <a href="newsletter.html" class="cta-button" style="font-size:1.1rem;">Newsletter</a>
       <a href="blog.html" class="cta-button" style="font-size:1.1rem;">Visit Our Blog</a>
     </div>
   </section>
   <!-- Main Content Sections -->
-  <section class="sections main-content" style="margin-top:2rem;">
+  <section class="sections main-content three-segments">
     <div class="section">
-      <h2>Our Vision</h2>
+      <h2><i class="fas fa-eye" style="color:var(--accent); margin-right:0.5em;"></i>Our Vision</h2>
       <p>To be a leading center for humanitarian education and disaster response in Africa.</p>
     </div>
     <div class="section">
-      <h2>Our Values</h2>
+      <h2><i class="fas fa-star" style="color:var(--accent); margin-right:0.5em;"></i>Our Values</h2>
       <ul>
         <li>Integrity</li>
         <li>Compassion</li>
@@ -139,14 +252,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </ul>
     </div>
     <div class="section">
-      <h2>Our Team</h2>
+      <h2><i class="fas fa-users" style="color:var(--accent); margin-right:0.5em;"></i>Our Team</h2>
       <p>Our staff and volunteers are experienced professionals committed to relief and development work.</p>
     </div>
   </section>
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+    </div>
+    <footer style="background-color: #008080;">
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
   <!-- Main JavaScript -->
   <script src="main.js" defer></script>
       <script src="theme.js" defer></script>

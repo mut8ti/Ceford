@@ -22,6 +22,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
+  
+  .doodle-bg {
+    /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
+    background-color: #f5f0e6; /* Warm cream background */
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23000080" fill-opacity="0.03"/></svg>');
+    background-size: 60px 60px;
+    background-repeat: repeat;
+    min-height: 100vh;
+  }
+  
+  html.dark-mode body.doodle-bg,
+  body.dark-mode.doodle-bg {
+    background-color: #1a1a2e !important;
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%23ffffff" fill-opacity="0.05"/></svg>') !important;
+  }
 </style>
 
   
@@ -33,7 +48,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
-      --primary: #000080;
+      --primary: #008080;
       --secondary: #f5f5dc;
       --dark-bg: #181a20;
       --accent: #FFA500;
@@ -92,8 +107,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: var(--accent);
     }
     .blog-hero {
-      background: linear-gradient(120deg, #fffbe6 60%, #f5f5dc 100%);
-      color: var(--primary);
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
       padding: 3.2rem 1.5rem 2.2rem 1.5rem;
       text-align: center;
       border-bottom: 1.5px solid #e0e0e0;
@@ -183,7 +200,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: inline-block;
       margin-top: 2.2rem;
       background: linear-gradient(90deg, #FFA500 60%, #FFFF00 100%);
-      color: #000080;
+      color: #008080;
       font-weight: 700;
       font-size: 1.13rem;
       border: none;
@@ -199,7 +216,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .blog-content-section .blog-cta:hover {
       box-shadow: 0 8px 32px #FFA50099, 0 2px 24px #0006;
       background: linear-gradient(90deg, #FFFF00 60%, #FFA500 100%);
-      color: #000080;
+      color: #008080;
       transform: scale(1.045);
     }
     /* Dark mode overrides */
@@ -212,7 +229,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #fff;
     }
     body.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #000020 60%, #181a20 100%);
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp');
+      background-size: cover;
+      background-position: center;
       color: #fff;
       border-bottom: 1.5px solid #23242b;
     }
@@ -272,7 +291,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #e0e0e0 !important;
     }
     html.dark-mode .blog-hero {
-      background: linear-gradient(120deg, #181a20 60%, #23242b 100%) !important;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('AIbg.webp') !important;
+      background-size: cover !important;
+      background-position: center !important;
       color: #fff;
     }
     html.dark-mode .blog-hero h1 {
@@ -304,7 +325,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
   </style>
 </head>
-<body id="body-root">
+<body id="body-root" class="doodle-bg">
   <header>
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">🌙</button>
@@ -318,40 +339,44 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="blog.html">Blog</a>
     </nav>
   </header>
-  <section class="blog-hero">
-    <span class="emoji" aria-label="Digital Tools">📲</span>
-    <h1>Digital Tools for Modern Humanitarian Work</h1>
-    <p>How technology is transforming fieldwork, coordination, and impact in humanitarian response.</p>
-  </section>
-  <section class="blog-content-section">
-    <p>In today’s fast-paced and complex world, humanitarian work is becoming increasingly reliant on digital tools to meet the urgent needs of communities in crisis. From conflict zones and disaster-stricken areas to refugee camps and public health emergencies, technology has become a powerful ally in delivering aid faster, more efficiently, and more effectively. Digital tools are transforming how humanitarian organizations operate, coordinate, and communicate, marking a shift from traditional methods to data-driven, real-time response strategies.</p>
-    <h2>Enhancing Communication and Coordination</h2>
-    <p>One of the most significant advantages of digital tools is the improvement of communication among humanitarian actors. Platforms like WhatsApp, Signal, and satellite-based communication tools enable field workers, NGOs, governments, and international agencies to coordinate efforts swiftly—even in remote or unstable regions. Shared dashboards, cloud storage, and real-time messaging apps facilitate transparent decision-making and prevent duplication of efforts.</p>
-    <p>Additionally, platforms like ReliefWeb and Humanitarian Data Exchange (HDX) allow for easy access to critical information, such as disaster updates, situational reports, and resource availability, fostering better collaboration across agencies.</p>
-    <h2>Data Collection and Analysis</h2>
-    <p>Mobile data collection tools like KoboToolbox, ODK (Open Data Kit), and SurveyCTO have revolutionized how field data is gathered. These tools enable humanitarian workers to conduct needs assessments, monitor aid distribution, and track beneficiary feedback using smartphones or tablets. The data is then uploaded to centralized databases where it can be analyzed in real time.</p>
-    <p>Using this data, organizations can identify vulnerable populations, track the spread of diseases, assess damage, and plan targeted interventions. GIS (Geographic Information Systems) tools and digital mapping software such as ArcGIS help visualize the needs and movements of affected communities, offering insights that are critical to effective humanitarian planning.</p>
-    <h2>Remote Sensing and Drones</h2>
-    <p>Digital imaging technologies, especially those involving satellites and drones, have become invaluable in modern humanitarian work. Satellite imagery helps monitor droughts, deforestation, and displaced populations, while drones provide aerial views of disaster-affected areas that are otherwise inaccessible. These tools aid in damage assessment, logistics planning, and even search-and-rescue missions.</p>
-    <p>For example, drones have been used to map earthquake-impacted villages, monitor flood levels, and deliver medical supplies to isolated areas. Combined with AI, these images can be analyzed for faster and more accurate situational awareness.</p>
-    <h2>Digital Cash Transfers and Blockchain</h2>
-    <p>Digital financial tools, such as mobile money platforms (like M-Pesa) and blockchain technology, are changing how aid is delivered. Instead of distributing physical goods, humanitarian organizations can now provide digital cash transfers directly to recipients’ mobile wallets. This method promotes dignity, choice, and local market engagement.</p>
-    <p>Blockchain, in particular, ensures transparency and traceability in financial transactions, reducing fraud and improving trust among donors and beneficiaries. These innovations make humanitarian aid more flexible, accountable, and user-centered.</p>
-    <h2>E-Learning and Capacity Building</h2>
-    <p>Digital tools are also playing a key role in building the capacity of local responders and humanitarian workers. Online training platforms like DisasterReady and the Humanitarian Leadership Academy offer free, multilingual courses on topics such as emergency response, gender-based violence, logistics, and mental health. These resources help equip staff with the knowledge and skills needed to respond effectively, even in fast-changing crisis environments.</p>
-    <p>Virtual reality (VR) and simulation tools are also being used to train aid workers through immersive, realistic experiences that improve readiness and decision-making.</p>
-    <h2>Challenges and Considerations</h2>
-    <p>Despite the benefits, the use of digital tools in humanitarian work comes with challenges. Data privacy, cybersecurity, and digital inclusion are pressing concerns. Vulnerable populations often lack internet access, smartphones, or digital literacy, which can lead to their exclusion. Humanitarian actors must ensure that technology is inclusive, ethical, and respects the rights and dignity of affected people.</p>
-    <p>Additionally, reliance on digital tools should never replace the human touch that defines humanitarianism. Technology should enhance—not replace—the compassion, empathy, and presence of aid workers on the ground.</p>
-    <h2>Conclusion</h2>
-    <p>Digital tools are reshaping modern humanitarian work in profound ways. They enhance coordination, improve data-driven decision-making, facilitate rapid response, and empower communities. As crises become more frequent and complex, embracing these technologies will be essential for building a more responsive, resilient, and inclusive humanitarian sector. However, their deployment must be balanced with ethical practices and a commitment to leaving no one behind.</p>
-    <a href="blog.html" class="blog-cta">← Back to Blog</a>
-  </section>
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+  <div class="page-bordered">
+    <section class="blog-hero">
+      <span class="emoji" aria-label="Digital Tools">📲</span>
+      <h1>Digital Tools for Modern Humanitarian Work</h1>
+      <p>How technology is transforming fieldwork, coordination, and impact in humanitarian response.</p>
+    </section>
+    <div class="page-frame-inner">
+      <section class="blog-content-section">
+        <p>In today’s fast-paced and complex world, humanitarian work is becoming increasingly reliant on digital tools to meet the urgent needs of communities in crisis. From conflict zones and disaster-stricken areas to refugee camps and public health emergencies, technology has become a powerful ally in delivering aid faster, more efficiently, and more effectively. Digital tools are transforming how humanitarian organizations operate, coordinate, and communicate, marking a shift from traditional methods to data-driven, real-time response strategies.</p>
+        <h2>Enhancing Communication and Coordination</h2>
+        <p>One of the most significant advantages of digital tools is the improvement of communication among humanitarian actors. Platforms like WhatsApp, Signal, and satellite-based communication tools enable field workers, NGOs, governments, and international agencies to coordinate efforts swiftly—even in remote or unstable regions. Shared dashboards, cloud storage, and real-time messaging apps facilitate transparent decision-making and prevent duplication of efforts.</p>
+        <p>Additionally, platforms like ReliefWeb and Humanitarian Data Exchange (HDX) allow for easy access to critical information, such as disaster updates, situational reports, and resource availability, fostering better collaboration across agencies.</p>
+        <h2>Data Collection and Analysis</h2>
+        <p>Mobile data collection tools like KoboToolbox, ODK (Open Data Kit), and SurveyCTO have revolutionized how field data is gathered. These tools enable humanitarian workers to conduct needs assessments, monitor aid distribution, and track beneficiary feedback using smartphones or tablets. The data is then uploaded to centralized databases where it can be analyzed in real time.</p>
+        <p>Using this data, organizations can identify vulnerable populations, track the spread of diseases, assess damage, and plan targeted interventions. GIS (Geographic Information Systems) tools and digital mapping software such as ArcGIS help visualize the needs and movements of affected communities, offering insights that are critical to effective humanitarian planning.</p>
+        <h2>Remote Sensing and Drones</h2>
+        <p>Digital imaging technologies, especially those involving satellites and drones, have become invaluable in modern humanitarian work. Satellite imagery helps monitor droughts, deforestation, and displaced populations, while drones provide aerial views of disaster-affected areas that are otherwise inaccessible. These tools aid in damage assessment, logistics planning, and even search-and-rescue missions.</p>
+        <p>For example, drones have been used to map earthquake-impacted villages, monitor flood levels, and deliver medical supplies to isolated areas. Combined with AI, these images can be analyzed for faster and more accurate situational awareness.</p>
+        <h2>Digital Cash Transfers and Blockchain</h2>
+        <p>Digital financial tools, such as mobile money platforms (like M-Pesa) and blockchain technology, are changing how aid is delivered. Instead of distributing physical goods, humanitarian organizations can now provide digital cash transfers directly to recipients’ mobile wallets. This method promotes dignity, choice, and local market engagement.</p>
+        <p>Blockchain, in particular, ensures transparency and traceability in financial transactions, reducing fraud and improving trust among donors and beneficiaries. These innovations make humanitarian aid more flexible, accountable, and user-centered.</p>
+        <h2>E-Learning and Capacity Building</h2>
+        <p>Digital tools are also playing a key role in building the capacity of local responders and humanitarian workers. Online training platforms like DisasterReady and the Humanitarian Leadership Academy offer free, multilingual courses on topics such as emergency response, gender-based violence, logistics, and mental health. These resources help equip staff with the knowledge and skills needed to respond effectively, even in fast-changing crisis environments.</p>
+        <p>Virtual reality (VR) and simulation tools are also being used to train aid workers through immersive, realistic experiences that improve readiness and decision-making.</p>
+        <h2>Challenges and Considerations</h2>
+        <p>Despite the benefits, the use of digital tools in humanitarian work comes with challenges. Data privacy, cybersecurity, and digital inclusion are pressing concerns. Vulnerable populations often lack internet access, smartphones, or digital literacy, which can lead to their exclusion. Humanitarian actors must ensure that technology is inclusive, ethical, and respects the rights and dignity of affected people.</p>
+        <p>Additionally, reliance on digital tools should never replace the human touch that defines humanitarianism. Technology should enhance—not replace—the compassion, empathy, and presence of aid workers on the ground.</p>
+        <h2>Conclusion</h2>
+        <p>Digital tools are reshaping modern humanitarian work in profound ways. They enhance coordination, improve data-driven decision-making, facilitate rapid response, and empower communities. As crises become more frequent and complex, embracing these technologies will be essential for building a more responsive, resilient, and inclusive humanitarian sector. However, their deployment must be balanced with ethical practices and a commitment to leaving no one behind.</p>
+        <a href="blog.html" class="blog-cta">← Back to Blog</a>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </footer>
+  </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  
+  <script src="theme.js" defer></script>
     <script src="theme.js" defer></script>
 </body>
-</html> 
+</html>

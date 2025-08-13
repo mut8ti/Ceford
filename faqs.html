@@ -35,7 +35,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body style="margin:0; padding:0;" id="body-root">
-  <header>
+  <header style="background-color: #008080;">
     <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
@@ -636,120 +636,135 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     });
   </script>
 
-  <!-- Testimonials Section -->
-  <section class="testimonials-section">
-    <div class="testimonials-container">
-      <div class="testimonials-header">
-        <h2>Real stories. Real results. → See Testimonials</h2>
-        <p>Hear from those we've trained</p>
-      </div>
-      
-      <div class="testimonials-carousel">
-        <div class="testimonial-slide active" data-slide="0">
-          <div class="testimonial-content">
-            <div class="quote-icon">❝</div>
-            <blockquote>
-              "CEFORED's AI-driven logistics program transformed our supply chain operations. The practical approach and real-world applications made all the difference. Our efficiency improved by 40% within three months."
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <h4>Sarah Johnson</h4>
-                <p>Operations Director, Global Logistics Co.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide" data-slide="1">
-          <div class="testimonial-content">
-            <div class="quote-icon">❝</div>
-            <blockquote>
-              "The humanitarian relief training was exactly what our NGO needed. CEFORED's expertise in crisis management and AI applications helped us respond more effectively to emergencies."
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <h4>Michael Chen</h4>
-                <p>Program Manager, International Aid Org</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide" data-slide="2">
-          <div class="testimonial-content">
-            <div class="quote-icon">❝</div>
-            <blockquote>
-              "As a healthcare professional, the digital transformation course opened my eyes to how AI can enhance patient care. The instructors were industry experts who truly understand the challenges we face."
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <h4>Dr. Emily Rodriguez</h4>
-                <p>Chief Medical Officer, HealthTech Solutions</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide" data-slide="3">
-          <div class="testimonial-content">
-            <div class="quote-icon">❝</div>
-            <blockquote>
-              "The project management certification from CEFORED gave me the skills and confidence to lead complex initiatives. The AI integration aspects were particularly valuable for modern project delivery."
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <h4>David Thompson</h4>
-                <p>Senior Project Manager, Tech Innovations Ltd</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide" data-slide="4">
-          <div class="testimonial-content">
-            <div class="quote-icon">❝</div>
-            <blockquote>
-              "CEFORED's business management program helped our startup scale efficiently. The AI-driven insights and strategic frameworks they taught us were game-changing for our growth trajectory."
-            </blockquote>
-            <div class="testimonial-author">
-              <div class="author-info">
-                <h4>Lisa Wang</h4>
-                <p>CEO, StartupScale Ventures</p>
-              </div>
-            </div>
-          </div>
+  <div class="page-bordered">
+    <!-- Hero Section -->
+    <section class="testimonials-section">
+      <div class="testimonials-container">
+        <div class="testimonials-header">
+          <h2>Real stories. Real results. → See Testimonials</h2>
+          <p>Hear from those we've trained</p>
         </div>
       </div>
+    </section>
 
-      <div class="carousel-controls">
-        <button class="carousel-arrow prev-arrow" aria-label="Previous testimonial">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 18l-6-6 6-6"/>
-          </svg>
-        </button>
-        
-        <div class="carousel-dots">
-          <button class="dot active" data-slide="0" aria-label="Go to testimonial 1"></button>
-          <button class="dot" data-slide="1" aria-label="Go to testimonial 2"></button>
-          <button class="dot" data-slide="2" aria-label="Go to testimonial 3"></button>
-          <button class="dot" data-slide="3" aria-label="Go to testimonial 4"></button>
-          <button class="dot" data-slide="4" aria-label="Go to testimonial 5"></button>
+    <div class="page-frame-inner">
+      <!-- Testimonials Section -->
+      <section class="testimonials-section">
+        <div class="testimonials-container">
+          <div class="testimonials-carousel">
+            <div class="testimonial-slide active" data-slide="0">
+              <div class="testimonial-content">
+                <div class="quote-icon">❝</div>
+                <blockquote>
+                  "CEFORED's AI-driven logistics program transformed our supply chain operations. The practical approach and real-world applications made all the difference. Our efficiency improved by 40% within three months."
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>Operations Director, Global Logistics Co.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide" data-slide="1">
+              <div class="testimonial-content">
+                <div class="quote-icon">❝</div>
+                <blockquote>
+                  "The humanitarian relief training was exactly what our NGO needed. CEFORED's expertise in crisis management and AI applications helped us respond more effectively to emergencies."
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>Michael Chen</h4>
+                    <p>Program Manager, International Aid Org</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide" data-slide="2">
+              <div class="testimonial-content">
+                <div class="quote-icon">❝</div>
+                <blockquote>
+                  "As a healthcare professional, the digital transformation course opened my eyes to how AI can enhance patient care. The instructors were industry experts who truly understand the challenges we face."
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>Dr. Emily Rodriguez</h4>
+                    <p>Chief Medical Officer, HealthTech Solutions</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide" data-slide="3">
+              <div class="testimonial-content">
+                <div class="quote-icon">❝</div>
+                <blockquote>
+                  "The project management certification from CEFORED gave me the skills and confidence to lead complex initiatives. The AI integration aspects were particularly valuable for modern project delivery."
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>David Thompson</h4>
+                    <p>Senior Project Manager, Tech Innovations Ltd</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-slide" data-slide="4">
+              <div class="testimonial-content">
+                <div class="quote-icon">❝</div>
+                <blockquote>
+                  "CEFORED's business management program helped our startup scale efficiently. The AI-driven insights and strategic frameworks they taught us were game-changing for our growth trajectory."
+                </blockquote>
+                <div class="testimonial-author">
+                  <div class="author-info">
+                    <h4>Lisa Wang</h4>
+                    <p>CEO, StartupScale Ventures</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-arrow prev-arrow" aria-label="Previous testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            
+            <div class="carousel-dots">
+              <button class="dot active" data-slide="0" aria-label="Go to testimonial 1"></button>
+              <button class="dot" data-slide="1" aria-label="Go to testimonial 2"></button>
+              <button class="dot" data-slide="2" aria-label="Go to testimonial 3"></button>
+              <button class="dot" data-slide="3" aria-label="Go to testimonial 4"></button>
+              <button class="dot" data-slide="4" aria-label="Go to testimonial 5"></button>
+            </div>
+
+            <button class="carousel-arrow next-arrow" aria-label="Next testimonial">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+
+          
         </div>
+      </section>
 
-        <button class="carousel-arrow next-arrow" aria-label="Next testimonial">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 18l6-6-6-6"/>
-          </svg>
-        </button>
-      </div>
-
-      
+    </div> <!-- Close page-frame-inner -->
+  </div> <!-- Close page-bordered -->
+  
+  <footer style="background-color: #008080; color: white; text-align: center; padding: 2rem 1rem; margin-top: 3rem;">
+    <div class="page-frame-inner" style="max-width: 1200px; margin: 0 auto;">
+      <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+        &copy; 2025 CEFORED Institute of Relief. All rights reserved.
+      </p>
     </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
   </footer>
-    <script src="theme.js" defer></script>
+  
+  <script src="theme.js" defer></script>
 </body>
 </html> 
