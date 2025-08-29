@@ -50,10 +50,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <style>
     /* Newsletter Page Specific Styles */
     .newsletter-hero {
-      background-image: url('newsletterbg.jpg') !important;
+      background: url('images/newsletterbg.jpg') center/cover no-repeat !important;
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      left: 0;
+      right: 0;
     }
     body.dark-mode .hero.newsletter-hero {
-      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('newsletterbg.jpg') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/newsletterbg.jpg') center/cover no-repeat !important;
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      left: 0 !important;
+      right: 0 !important;
     }
 
     /* Dark Mode Visibility Fix */
@@ -76,6 +87,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     body.dark-mode .newsletter-footer {
       background: #111325 !important;
       color: #fff !important;
+      width: 100vw !important;
+      margin-left: calc(50% - 50vw) !important;
+      margin-right: calc(50% - 50vw) !important;
+      left: 0 !important;
+      right: 0 !important;
     }
     /* Newsletter Header Dark Mode */
     body.dark-mode .newsletter-header {
@@ -110,7 +126,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </div>
   <header class="newsletter-header" style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <div style="display: flex; align-items: center;"><img src="images/logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -149,8 +165,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <script type="module" src="js/database.js"></script>
       </section>
     </div>
-    <footer class="newsletter-footer" style="background-color: #008080;">
-      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer class="newsletter-footer" style="background-color: #008080; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+      </div>
     </footer>
   </div>
   <script src="main.js" defer></script>

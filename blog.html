@@ -118,7 +118,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #ffcccc url('./blogbg.jpg') center/cover no-repeat fixed, #ffcccc url('blogbg.jpg') center/cover no-repeat fixed, #ffcccc;
+  background: #ffcccc url('images/blogbg.jpg') center/cover no-repeat fixed, #ffcccc url('images/blogbg.jpg') center/cover no-repeat fixed, #ffcccc;
   background-attachment: fixed;
   margin: 0;
   border: 4px solid red;
@@ -628,9 +628,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section style="min-height: 300px; background: #4a6fa5 url('blogbg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative;">
+    <section style="min-height: 300px; background: #4a6fa5 url('images/blogbg.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-      <div style="position: relative; z-index: 2; text-align: center; color: white; padding: 2rem;">
+      <div style="position: relative; z-index: 2; text-align: center; color: white; padding: 2rem; max-width: 1200px; width: 100%;">
         <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Featured Blog Posts</h1>
         <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #FFA500; font-style: italic;">
           Insights, stories, and trends at the intersection of AI, education, and humanitarian impact.
@@ -688,8 +688,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         </div>
       </section>
     </div>
-    <footer>
-      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+      </div>
     </footer>
   </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->

@@ -136,7 +136,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     .hero.contact-hero {
       position: relative;
-      background: url('contactbg.jpg') center/cover no-repeat !important;
+      background: url('images/contactbg.jpg') center/cover no-repeat !important;
       min-height: 200px;
       display: flex;
       align-items: center;
@@ -147,7 +147,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .hero.contact-hero .hero-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+      background: linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.6));
       z-index: 1;
     }
     .hero.contact-hero .hero-content {
@@ -177,7 +177,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       opacity: 0.95;
     }
     body.dark-mode .hero.contact-hero {
-      background: url('contactbg.jpg') center/cover no-repeat !important;
+      background: url('images/contactbg.jpg') center/cover no-repeat !important;
       color: #fff !important;
     }
     body.dark-mode .hero-dark-overlay {
@@ -224,12 +224,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background-color: #181a20 !important;
       color: #fff !important;
     }
-    body.dark-mode header, body.dark-mode nav, body.dark-mode footer {
+    body.dark-mode header, body.dark-mode nav {
       background: #23242b !important;
       color: #fff !important;
     }
     body.dark-mode .hero.contact-hero {
-      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('contactbg.jpg') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('images/contactbg.jpg') center/cover no-repeat !important;
       color: #fff !important;
     }
     body.dark-mode .section, body.dark-mode .sections, body.dark-mode .contact-info-box {
@@ -334,15 +334,50 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       opacity: 1;
       transform: scaleX(1);
     }
+    </style>
+    <style>
+    header { background-color: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    body { padding-top: 80px; }
+    nav a { color: white; margin-left: 2rem; text-decoration: none; font-weight: 500; position: relative; transition: color 0.2s; }
+    nav a::after { content: ''; display: block; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--accent); opacity: 0; transform: scaleX(0); transition: opacity 0.2s, transform 0.2s; border-radius: 2px; }
+    nav a:hover::after, nav a.active::after { opacity: 1; transform: scaleX(1); }
+    nav a:hover { color: var(--accent); }
+    body.dark-mode nav a { color: #fff !important; }
+    body.dark-mode nav a.active, body.dark-mode nav a:hover { color: var(--accent) !important; }
+    body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
+    @media (max-width: 850px) { nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); padding: 1rem; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; } nav.mobile-menu-open { display: flex !important; } nav a { margin: 0.5rem 0; padding: 0.5rem 1rem; width: 100%; text-align: center; } #mobile-menu-toggle { display: block; } body.dark-mode nav { background-color: #23242b; } }
   </style>
-
+  
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <style>
+    /* Force teal navbar in LIGHT mode for this page */
+    html.light-mode header,
+    html.light-mode nav {
+      background: #008080 !important;
+      color: #fff !important;
+    }
+    html.light-mode nav a { color: #fff !important; }
+    html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
+  </style>
+</head>
 <body id="body-root">
   <!-- Header and Navigation -->
-  <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
-    <nav>
+
+  <header>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+        <img 
+          src="images/logo final.png" 
+          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          alt="Cefored Logo" 
+          style="height: 50px; width: auto; display: block;"
+          loading="lazy"
+        />
+      </div>
+      <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="programs.html">Programs</a>
@@ -351,15 +386,16 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html" class="active">Contact Us</a>
     </nav>
   </header>
-  <div class="page-bordered">
-    <section class="hero contact-hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Contact Us</h1>
-        <div class="hero-subheading">For inquiries, course registration, partnership opportunities or corporate training requests, reach us directly through our contact form or via email.</div>
-        <p>We'd love to hear from you! Fill out the form below or reach us directly at info@cefored.org.</p>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero contact-hero full-bleed" style="position: relative; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/contactbg.jpg') center/cover no-repeat; background-size: cover;">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <div class="hero-subheading">For inquiries, course registration, partnership opportunities or corporate training requests, reach us directly through our contact form or via email.</div>
+      <p>We'd love to hear from you! Fill out the form below or reach us directly at info@cefored.org.</p>
+    </div>
   </section>
+  <div class="page-bordered">
     <div class="page-frame-inner">
   <!-- Main Content Section: Contact Form -->
   <section class="sections" style="margin-top:2rem;">
@@ -555,13 +591,16 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </section>
     </div>
-    <footer style="background-color: #008080;">
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-    </footer>
+    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </div>
+   </footer>
   </div>
   <!-- Firebase SDKs are now imported in database.js -->
 </script>
   <script src="main.js" defer></script>
       <script src="theme.js" defer></script>
 </body>
+</html>
 </html> 

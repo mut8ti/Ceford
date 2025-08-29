@@ -79,4 +79,18 @@ collapsibles.forEach(title => {
   }
   // On load, set theme from localStorage
   setTheme(localStorage.getItem('theme') || 'light');
-})(); 
+})();
+
+// Close mobile menu on nav link click (ensures menu collapses after navigation)
+document.addEventListener('DOMContentLoaded', function() {
+  const mainNav = document.getElementById('main-nav') || document.querySelector('header nav');
+  if (!mainNav) return;
+  const isMobile = () => window.matchMedia('(max-width: 850px)').matches;
+  mainNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mainNav.classList.contains('mobile-menu-open') || isMobile()) {
+        mainNav.classList.remove('mobile-menu-open');
+      }
+    });
+  });
+}); 

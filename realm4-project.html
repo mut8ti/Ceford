@@ -37,7 +37,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </head>
 <body id="body-root">
   <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <div style="display: flex; align-items: center;"><img src="images/logo final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" /><strong>CEFORED Institute</strong></div>
     
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
 <nav>
@@ -50,10 +50,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="hero" style="background: url('projectbg.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 4: AI in Project Management</h1>
-    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.</p>
-  </section>
+    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/projectbg.jpg') center/cover no-repeat fixed;">
+      <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
+        <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 4: AI in Project Management</h1>
+        <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.</p>
+      </div>
+    </section>
 
     <div class="page-frame-inner">
       <section class="program-section">
@@ -123,8 +125,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         </div>
       </section>
     </div>
-    <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+      <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    </div>
   </footer>
   </div>
   </div>
@@ -239,7 +243,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     box-shadow: 0 2px 16px rgba(0,0,0,0.18);
   }
   body.dark-mode .hero {
-    background: url('projectbg.jpg') center/cover no-repeat !important;
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/projectbg.jpg') center/cover no-repeat !important;
   }
   body.dark-mode .hero .hero-dark-overlay {
     display: block;

@@ -2,7 +2,7 @@
    Root Variables (Colors)
    ========================= */
 :root {
-  --primary: #000080;
+  --primary: #008080;
   --secondary: #f5f5dc;
   --accent: #FFA500;
   --accent-alt: #FFFF00;
@@ -62,6 +62,15 @@ nav a.active, nav a:hover {
   width: 100%;
   min-width: 0;
   min-height: 280px;
+  position: relative; /* enable overlay positioning */
+  overflow: hidden;   /* contain overlay */
+}
+
+/* Utility: allow section to break out of parent padding and span full viewport width */
+.full-bleed {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
 }
 @media (max-width: 700px) {
   .hero {
@@ -544,7 +553,6 @@ body.dark-mode .contact-form-section .cta-button:hover {
   flex-direction: column;
   justify-content: stretch;
   overflow: hidden;
-}
   padding-left: 2.5vw;
   padding-right: 2.5vw;
   box-sizing: border-box;
@@ -552,7 +560,6 @@ body.dark-mode .contact-form-section .cta-button:hover {
 @media (max-width: 900px) {
   .page-bordered {
     border-width: 16px;
-  }
     padding-left: 1vw;
     padding-right: 1vw;
   }
@@ -877,6 +884,10 @@ form label {
   background: rgba(0,0,0,0.45);
   z-index: 1;
 }
+/* Slightly stronger overlay on realm cards in dark mode */
+body.dark-mode .realm-bg::before {
+  background: rgba(0,0,0,0.58);
+}
 .realm1-bg {
   background: url('logistics.jpeg') center/cover no-repeat;
 }
@@ -956,11 +967,17 @@ ol, ul {
 /* =========================
    Dark Mode (Global)
    ========================= */
-body.dark-mode .hero {
-  background: linear-gradient(rgba(0,0,0,0.68),rgba(0,0,0,0.68)), url('about1.png') center/cover no-repeat !important;
-  color: #fff;
-  text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+/* Preserve each page's own background image and add a dark overlay in dark mode */
+body.dark-mode .hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.38);
+  z-index: 1;
+}
+body.dark-mode .hero > * {
   position: relative;
+  z-index: 2;
 }
 body.dark-mode .hero-dark-overlay {
   display: block;
@@ -1002,7 +1019,12 @@ body.dark-mode nav a {
   color: #fff;
 }
 body.dark-mode nav a.active, body.dark-mode nav a:hover {
-  color: var(--accent);
+  color: #fff;
+}
+
+/* Remove the teal underline in dark mode */
+body.dark-mode nav a::after {
+  display: none !important;
 } 
 body.dark-mode .about-list, body.dark-mode .about-list li {
   color: #fff !important;
@@ -1036,15 +1058,32 @@ html.dark-mode {
   color: #fff !important;
   background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%232a2a2a" fill-opacity="0.13"/></svg>') !important;
   background-size: 60px 60px !important;
-  background-repeat: repeat !important;
-
-  background-color: #181a20 !important;
-  color: #fff !important;
-  /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
-  background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M49.4 10.6c-2.6-2.6-6.8-2.6-9.4 0s-2.6 6.8 0 9.4 6.8 2.6 9.4 0 2.6-6.8 0-9.4zM30 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-14 8c-.6 0-1 .4-1 1s.4 1 1 1 1-.4 1-1-.4-1-1-1zm38 24c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-46 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm24 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" fill="%232a2a2a" fill-opacity="0.13"/></svg>') !important;
-  background-size: 60px 60px !important;
-  background-repeat: repeat !important;
 }
+
+/* Improve image visibility in dark mode */
+html.dark-mode img,
+html.dark-mode .program-card,
+html.dark-mode .hero {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Fix for program cards in dark mode */
+html.dark-mode .program-card {
+  background-color: #1e2229 !important;
+}
+
+/* Ensure hero sections maintain proper contrast */
+html.dark-mode .hero {
+  background-blend-mode: overlay !important;
+}
+
+/* Fix for images with dark backgrounds */
+html.dark-mode img[src*='.webp'],
+html.dark-mode img[src*='.jpg'],
+html.dark-mode img[src*='.png'] {
+  opacity: 0.95;
+}
+/* Remove duplicated stray block (moved to proper selectors above) */
 html, body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   background-color: #fdf6ed !important;
@@ -1138,11 +1177,32 @@ body.dark-mode .corporate-training-page .realm-title {
   text-shadow: 0 2px 8px #000, 0 1px 2px #000;
 } 
 
-/* --- Corporate Training Page Cards in Dark Mode --- */
+/* --- Corporate Training Page in Dark Mode --- */
 body.dark-mode.corporate-training-page {
   background: #181a20 !important;
 }
-/* Removed conflicting dark mode rules for corporate training page cards */
+
+/* Corporate training cards in dark mode */
+body.dark-mode .program-card {
+  background: #1e2229 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Ensure text is visible on cards in dark mode */
+body.dark-mode .program-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Adjust hero section in dark mode */
+body.dark-mode .corporate-hero {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Fix for dark mode image overlays */
+body.dark-mode .hero-dark-overlay {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
 body.dark-mode .corporate-training-page .collapsible-title,
 body.dark-mode .corporate-training-page .realm-title,
 body.dark-mode .corporate-training-page .main-section-title,
@@ -1327,3 +1387,4 @@ body.dark-mode nav a:hover {
 }
 
 /* End of forced horizontal layout */
+}

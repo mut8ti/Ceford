@@ -22,6 +22,78 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
+  
+  /* Header styling for both themes */
+  header {
+    background: #008080 !important;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Top row with logo, name, and theme toggle */
+  header > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  /* Logo and name container */
+  header > div:first-child > div:first-child {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  /* Logo styling */
+  header img {
+    height: 38px;
+    width: auto;
+    display: block;
+    margin-right: 0.7em;
+  }
+  
+  /* Institute name styling */
+  header strong {
+    color: #fff;
+    font-size: 1.1rem;
+  }
+  
+  header nav {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  /* Theme toggle button positioning */
+  #theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    cursor: pointer;
+    color: #FFA500;
+    flex-shrink: 0;
+  }
+  
+  /* Footer styling for both themes */
+  footer {
+    background: #008080 !important;
+    color: #fff !important;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
 </style>
 
   
@@ -36,11 +108,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body id="body-root">
-  <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
-    
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
-<nav>
+  <header>
+    <div>
+      <div>
+        <img src="images/logo final.png" alt="Cefored Logo" />
+        <strong>CEFORED Institute</strong>
+      </div>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    </div>
+    <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="programs.html">Programs</a>
@@ -50,10 +126,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="hero" style="background: url('bestbghealth.jpg') center/cover no-repeat; min-height: 180px; height: 26vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">REALM 3: AI in Health Management</h1>
-    <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000;">Empowering health professionals with AI for smarter care, analytics, and public health transformation</p>
-  </section>
+    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/bestbghealth.jpg') center/cover no-repeat fixed;">
+      <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
+        <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 3: AI in Health Management</h1>
+        <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Empowering health professionals with AI for smarter care, analytics, and public health transformation</p>
+      </div>
+    </section>
 
     <div class="page-frame-inner">
       <section class="program-section">
@@ -137,9 +215,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         </div>
       </section>
     </div>
-    <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
-    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-  </footer>
+    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+      </div>
+    </footer>
   <style>
   nav a {
     position: relative;
@@ -236,9 +316,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     background: #181a20;
     color: #e0e0e0;
   }
-  body.dark-mode header, body.dark-mode footer {
-    background: #23242b;
-    color: #e0e0e0;
+  body.dark-mode header {
+    background: #23242b !important;
+    color: #e0e0e0 !important;
+  }
+  
+  body.dark-mode footer {
+    background: #23242b !important;
+    color: #e0e0e0 !important;
   }
   body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
     background: #23242b !important;
@@ -246,7 +331,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     box-shadow: 0 2px 16px rgba(0,0,0,0.18);
   }
   body.dark-mode .hero {
-    background: url('bestbghealth.jpg') center/cover no-repeat !important;
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/bestbghealth.jpg') center/cover no-repeat !important;
   }
   body.dark-mode .hero .hero-dark-overlay {
     display: block;

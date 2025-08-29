@@ -61,7 +61,17 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: relative; /* This is the key fix */
+      position: fixed; /* Changed from relative to fixed */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000; /* Ensure header stays above other content */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add subtle shadow */
+    }
+    
+    /* Add padding to body to account for fixed header */
+    body {
+      padding-top: 155px; /* Adjust this value based on your header's height */
     }
 
     nav a {
@@ -96,14 +106,19 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
 
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('businessmeeting.png') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/businessmeeting.png') center/cover no-repeat !important;
       text-align: center;
       padding: 4rem 2rem;
       color: #fff;
       position: relative;
+      min-height: calc(100vh - 155px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     body.dark-mode .hero {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('businessmeeting.png') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/businessmeeting.png') center/cover no-repeat !important;
       color: #fff;
       text-shadow: 0 2px 8px #000, 0 1px 2px #000;
     }
@@ -470,7 +485,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <header>
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-        <img src="logo%20final.png" alt="Cefored Logo" style="height: 50px; width: auto; display: block;" />
+        <img src="images/logo final.png" alt="Cefored Logo" style="height: 122.5px; width: auto; display: block;" />
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
@@ -494,11 +509,6 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
     </section>
 
     <section class="why-cefored" style="background: #fff; padding: 2.5rem 1.5rem 2rem 1.5rem; text-align: center; margin: 3rem auto 2.5rem auto; max-width: 800px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.07);">
-      <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
-        <div style="background: rgba(0, 128, 128, 0.1); padding: 16px; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.12);">
-          <img src="logo%20final.png" alt="Cefored Logo" style="height: 100px; width: auto; display: block; margin: 0 auto;">
-        </div>
-      </div>
       <h2 style="color: var(--primary); font-size: 2rem; margin: 0.5rem 0 1.2rem 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
         <i class="fas fa-graduation-cap" style="color: var(--accent); font-size: 1.8rem;"></i>
         <span>Why Choose Cefored</span>
@@ -526,7 +536,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
           </p>
           <div style="display: flex; flex-direction: column; gap: 0.7rem; align-items: center;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(1)">
-              <span><span style="font-size:1.3em;">🔥</span> <strong>REALM 1:</strong> AI in Logistics & Supply Chain Management</span>
+              <span><span style="font-size:1.3em;">🚚</span> <strong>REALM 1:</strong> AI in Logistics & Supply Chain Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm1-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -538,7 +548,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(2)">
-              <span><span style="font-size:1.3em;">🔥</span> <strong>REALM 2:</strong> AI in Business Management</span>
+              <span><span style="font-size:1.3em;">💼</span> <strong>REALM 2:</strong> AI in Business Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm2-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -550,7 +560,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(3)">
-              <span><strong>REALM 3:</strong> AI in Health Management</span>
+              <span><span style="font-size:1.3em;">🏥</span> <strong>REALM 3:</strong> AI in Health Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm3-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -562,7 +572,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(4)">
-              <span><span style="font-size:1.3em;">🔥</span> <strong>REALM 4:</strong> AI in Project Management</span>
+              <span><span style="font-size:1.3em;">📊</span> <strong>REALM 4:</strong> AI in Project Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm4-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -574,7 +584,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(5)">
-              <span><span style="font-size:1.3em;">🔥</span> <strong>REALM 5:</strong> AI in IT & Digital Transformation</span>
+              <span><span style="font-size:1.3em;">💻</span> <strong>REALM 5:</strong> AI in IT & Digital Transformation</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm5-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -586,7 +596,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(6)">
-              <span><span style="font-size:1.3em;">🔥</span> <strong>REALM 6:</strong> AI in Humanitarian, Relief & Disaster Management</span>
+              <span><span style="font-size:1.3em;">🌍</span> <strong>REALM 6:</strong> AI in Humanitarian, Relief & Disaster Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm6-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: var(--primary); border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
@@ -601,8 +611,8 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
 
         <section class="sections" style="display: flex !important; flex-direction: row !important; justify-content: center !important; align-items: stretch !important; flex-wrap: nowrap !important; width: 100% !important; padding: 2rem 5% !important; box-sizing: border-box !important; margin: 0 auto !important; max-width: 1200px !important; background-color: var(--secondary) !important;">
           <div class="section" style="flex: 1 !important; min-width: 0 !important; max-width: 30% !important; margin: 0 1% !important; padding: 1.5rem !important; box-sizing: border-box !important; border: 2px solid var(--primary) !important; ">   
-            <h2><i class="fas fa-bullseye" style="color:var(--accent); margin-right:0.5em;"></i>Our Mission</h2>
-            <p>To provide world-class education and support in humanitarian relief and disaster response.</p>
+            <h2><i class="fas fa-bullseye" style="color:var(--accent); margin-right:0.5em;"></i>Our Motto</h2>
+            <p>Empowering education through AI</p>
           </div>
           <div class="section" style="flex: 1 !important; min-width: 0 !important; max-width: 30% !important; margin: 0 1% !important; padding: 1.5rem !important; box-sizing: border-box !important; border: 2px solid var(--primary) !important; ">
             <h2><i class="fas fa-graduation-cap" style="color:var(--accent); margin-right:0.5em;"></i>Programs</h2>
@@ -689,18 +699,18 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             <span style="display:block; width:90px; height:4px; background:#FFA500; margin:0.7rem auto 0 auto; border-radius:2px;"></span>
           </h2>
           <div class="partners-logos" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:2.2rem 2.5rem; align-items:center; justify-items:center; max-width:1100px; margin:0 auto; position:relative; z-index:2;">
-            <div class="partner-block"><img src="UNlogo.png" alt="UN" class="partner-logo" /><div class="partner-label">UN</div></div>
-            <div class="partner-block"><img src="UNDPlogo.png" alt="UNDP" class="partner-logo" /><div class="partner-label">UNDP</div></div>
-            <div class="partner-block"><img src="UNICEFlogo.png" alt="UNICEF" class="partner-logo" /><div class="partner-label">UNICEF</div></div>
-            <div class="partner-block"><img src="FAO_logo.svg" alt="FAO" class="partner-logo" /><div class="partner-label">FAO</div></div>
-            <div class="partner-block"><img src="NRClogo.png" alt="NRC" class="partner-logo" /><div class="partner-label">NRC</div></div>
-            <div class="partner-block"><img src="carekenya.png" alt="CARE-Kenya" class="partner-logo" /><div class="partner-label">CARE-Kenya</div></div>
-            <div class="partner-block"><img src="worldvisionlogo.png" alt="World Vision" class="partner-logo" /><div class="partner-label">World Vision</div></div>
-            <div class="partner-block"><img src="OXFAMlogo.png" alt="OXFAM" class="partner-logo" /><div class="partner-label">OXFAM</div></div>
-            <div class="partner-block"><img src="savethechildren.png" alt="Save the Children UK" class="partner-logo" /><div class="partner-label">Save the Children UK</div></div>
-            <div class="partner-block"><img src="MSFlogo.png" alt="MSF" class="partner-logo" /><div class="partner-label">MSF</div></div>
-            <div class="partner-block"><img src="Actionagainsthungerlogo.png" alt="Action Against Hunger" class="partner-logo" /><div class="partner-label">Action Against Hunger</div></div>
-            <!-- Add more logos as needed -->
+            <div class="partner-block"><img src="images/UNlogo.png" alt="UN" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UN</div></div>
+            <div class="partner-block"><img src="images/UNDPlogo.png" alt="UNDP" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UNDP</div></div>
+            <div class="partner-block"><img src="images/UNICEFlogo.png" alt="UNICEF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UNICEF</div></div>
+            <div class="partner-block"><img src="images/FAO_logo.svg" alt="FAO" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">FAO</div></div>
+            <div class="partner-block"><img src="images/NRClogo.png" alt="NRC" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">NRC</div></div>
+            <div class="partner-block"><img src="images/carekenya.png" alt="CARE-Kenya" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">CARE-Kenya</div></div>
+            <div class="partner-block"><img src="images/worldvisionlogo.png" alt="World Vision" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">World Vision</div></div>
+            <div class="partner-block"><img src="images/OXFAMlogo.png" alt="OXFAM" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">OXFAM</div></div>
+            <div class="partner-block"><img src="images/savethechildren.png" alt="Save the Children UK" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">Save the Children UK</div></div>
+            <div class="partner-block"><img src="images/MSFlogo.png" alt="MSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">MSF</div></div>
+            <div class="partner-block"><img src="images/Actionagainsthungerlogo.png" alt="Action Against Hunger" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">Action Against Hunger</div></div>
+            <div class="partner-block"><img src="images/VSF LOGO.jpg" alt="VSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">VSF</div></div>
           </div>
           <style>
             .partners-section {
@@ -815,7 +825,6 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
         </footer>
       </div>
     </div>
-    <a href="contact.html" class="floating-cta">🎓 Apply Now</a>
   </div>
   <!-- JavaScript for functionality -->
   <script src="main.js" defer></script>

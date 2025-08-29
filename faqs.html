@@ -16,30 +16,65 @@
       document.documentElement.classList.add('light-mode');
     }
   })();
-</script>
-<style>
-html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
-
-  html { visibility: hidden; }
+  </script>
+  <style>
+  html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+    html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
-</style>
-
   
-  <!-- Theme loader - must be in head with defer to prevent flash -->
+  header { background-color: var(--primary); color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+  body { padding-top: 80px; }
+  nav a { color: white; margin-left: 2rem; text-decoration: none; font-weight: 500; position: relative; transition: color 0.2s; }
+  nav a::after { content: ''; display: block; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px; background: var(--accent); opacity: 0; transform: scaleX(0); transition: opacity 0.2s, transform 0.2s; border-radius: 2px; }
+  nav a:hover::after, nav a.active::after { opacity: 1; transform: scaleX(1); }
+  nav a:hover { color: var(--accent); }
+  body.dark-mode nav a { color: #fff !important; }
+  body.dark-mode nav a.active, body.dark-mode nav a:hover { color: var(--accent) !important; }
+  body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
+  @media (max-width: 850px) { nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); padding: 1rem; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; } nav.mobile-menu-open { display: flex !important; } nav a { margin: 0.5rem 0; padding: 0.5rem 1rem; width: 100%; text-align: center; } #mobile-menu-toggle { display: block; } body.dark-mode nav { background-color: #23242b; } }
+  
+  /* Footer styling for both themes */
+  footer {
+    background: #008080 !important;
+    color: #fff !important;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+  }
+</style>
   <script src="js/theme.js" defer></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQs - CEFORED Institute of Relief</title>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
-<body style="margin:0; padding:0;" id="body-root">
-  <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
-    
+  <style>
+    /* Force teal navbar in LIGHT mode */
+    html.light-mode header,
+    html.light-mode nav {
+      background: #008080 !important;
+      color: #fff !important;
+    }
+    html.light-mode nav a { color: #fff !important; }
+    html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
+  </style>
+</head>
+<body id="body-root">
+  <header>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+        <img 
+          src="images/logo final.png" 
+          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          alt="Cefored Logo" 
+          style="height: 50px; width: auto; display: block;"
+          loading="lazy"
+        />
+      </div>
+      <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
+    </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
-<nav>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="programs.html">Programs</a>
@@ -48,10 +83,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <section class="hero faq-hero" id="faq-hero">
+  <section class="faq-hero">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Frequently Asked Questions</h1>
-      <p>Find answers to common questions about CEFORED Institute, our programs, admissions, and more.</p>
+      <p>Find answers to common questions about our programs, admissions, and more.</p>
     </div>
   </section>
 
@@ -105,15 +141,56 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </section>
 
   <style>
+  /* FAQ Hero Section */
+  .faq-hero {
+    min-height: 300px;
+    height: 40vh;
+    position: relative;
+    background: url('images/faqbg.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+  }
+  .hero-content h1 {
+    font-size: 2.8rem;
+    margin: 0 0 1.5rem 0;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  }
+  .hero-content p {
+    font-size: 1.3rem;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  }
+
+  /* FAQ Section */
   .faq-section {
     background: var(--secondary);
     padding: 2rem;
     max-width: 900px;
-    margin: auto;
+    margin: 2rem auto;
     color: var(--primary);
   }
   .faq-section h2 {
-    color: var(--primary);
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 2rem;
@@ -153,7 +230,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     background-color: #f0f0e6;
   }
   .faq-answer {
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 1rem 1rem;
     display: none;
     color: #333;
     animation: fadeIn 0.3s ease-in-out;
@@ -172,6 +249,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* Dark Mode */
   body.dark-mode {
     --primary: #e0e0e0;
     --secondary: #181a20;
@@ -180,11 +259,23 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     background: #181a20;
     color: #e0e0e0;
   }
-  body.dark-mode header, body.dark-mode footer {
-    background: #23242b;
-    color: #e0e0e0;
+  body.dark-mode header {
+    background: #23242b !important;
+    color: #fff !important;
   }
-  body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+  
+  body.dark-mode footer {
+    background: #23242b !important;
+    color: #e0e0e0 !important;
+  }
+  body.dark-mode .program-section,
+  body.dark-mode .faq-section,
+  body.dark-mode .main-content,
+  body.dark-mode .card,
+  body.dark-mode .collapsible,
+  body.dark-mode .realm-card,
+  body.dark-mode .section,
+  body.dark-mode .why-cefored {
     background: #23242b !important;
     color: #fff !important;
     box-shadow: 0 2px 16px rgba(0,0,0,0.18);
@@ -196,7 +287,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     background: none !important;
   }
   body.dark-mode #faq-hero {
-    background: linear-gradient(rgba(24,26,32,0.38), rgba(24,26,32,0.38)), url('faqbg.jpg') center/cover no-repeat !important;
+    background: #004d4d !important;
   }
   body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
   body.dark-mode .cta-button {
@@ -251,10 +342,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     border-top: 2.5px solid #444 !important;
   }
   .faq-hero {
-    background: url('faqbg.jpg') center/cover no-repeat;
-    height: 320px;
-    min-height: 280px;
-    max-height: 340px;
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('images/faqbg.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 450px;
+    min-height: 350px;
     margin: 0;
     padding: 0;
     display: flex;
@@ -285,13 +377,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     text-shadow: 0 1px 4px #000;
   }
   #faq-hero {
-    background: url('faqbg.jpg') center/cover no-repeat !important;
-    height: 320px;
-    min-height: 280px;
-    max-height: 340px;
-  }
-  html body #faq-hero {
-    background: url('faqbg.jpg') center/cover no-repeat !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('images/faqbg.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 450px;
+    min-height: 350px;
   }
 
   /* Testimonials Section Styles */
@@ -637,19 +727,13 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </script>
 
   <div class="page-bordered">
-    <!-- Hero Section -->
-    <section class="testimonials-section">
-      <div class="testimonials-container">
-        <div class="testimonials-header">
-          <h2>Real stories. Real results. → See Testimonials</h2>
-          <p>Hear from those we've trained</p>
-        </div>
-      </div>
-    </section>
-
     <div class="page-frame-inner">
       <!-- Testimonials Section -->
       <section class="testimonials-section">
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+          <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">Testimonials</h2>
+          <div style="width: 80px; height: 4px; background: var(--accent); margin: 0 auto;"></div>
+        </div>
         <div class="testimonials-container">
           <div class="testimonials-carousel">
             <div class="testimonial-slide active" data-slide="0">
@@ -757,7 +841,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div> <!-- Close page-frame-inner -->
   </div> <!-- Close page-bordered -->
   
-  <footer style="background-color: #008080; color: white; text-align: center; padding: 2rem 1rem; margin-top: 3rem;">
+  <footer>
     <div class="page-frame-inner" style="max-width: 1200px; margin: 0 auto;">
       <p style="margin: 0; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
         &copy; 2025 CEFORED Institute of Relief. All rights reserved.
