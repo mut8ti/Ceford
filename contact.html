@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -29,8 +35,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - CEFORED Institute of Relief</title>
 
-  <link rel="stylesheet" href="styles.css">
-  <style>
+  <link rel="stylesheet" href="styles.min.v1.css">
+
+<style>
     /* Spinner for form loading */
     #formLoadingSpinner {
       display: none;
@@ -136,13 +143,17 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     .hero.contact-hero {
       position: relative;
-      background: url('images/contactbg.jpg') center/cover no-repeat !important;
-      min-height: 200px;
+      background: url('images/contactbg.webp') center center no-repeat !important;
+      background-size: cover !important;
+      height: calc(100vh - 80px);
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       overflow: hidden;
+      margin-top: 0;
+      box-sizing: border-box;
     }
     .hero.contact-hero .hero-overlay {
       position: absolute;
@@ -177,7 +188,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       opacity: 0.95;
     }
     body.dark-mode .hero.contact-hero {
-      background: url('images/contactbg.jpg') center/cover no-repeat !important;
+      background: url('images/contactbg.webp') center center no-repeat !important;
+      background-size: cover !important;
       color: #fff !important;
     }
     body.dark-mode .hero-dark-overlay {
@@ -229,7 +241,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #fff !important;
     }
     body.dark-mode .hero.contact-hero {
-      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('images/contactbg.jpg') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), url('images/contactbg.webp') center center no-repeat !important;
+      background-size: cover !important;
       color: #fff !important;
     }
     body.dark-mode .section, body.dark-mode .sections, body.dark-mode .contact-info-box {
@@ -359,6 +372,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     html.light-mode nav a { color: #fff !important; }
     html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body id="body-root">
   <!-- Header and Navigation -->
@@ -367,8 +381,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
         <img 
-          src="images/logo final.png" 
-          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          src="images/logo-final.webp" 
+          srcset="images/logo-final.webp 1x, images/logo-final.webp 2x" 
           alt="Cefored Logo" 
           style="height: 50px; width: auto; display: block;"
           loading="lazy"
@@ -376,7 +390,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -387,7 +401,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <!-- Hero Section -->
-  <section class="hero contact-hero full-bleed" style="position: relative; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/contactbg.jpg') center/cover no-repeat; background-size: cover;">
+  <section class="hero contact-hero" style="position: relative; width: 100%; height: calc(100vh - 80px); background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/contactbg.webp') center center no-repeat; background-size: cover;">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Contact Us</h1>
@@ -582,10 +596,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <div class="contact-info-box">
         <h3 style="margin-top:2.5rem; color:var(--primary); font-size:1.25rem;">Let's ignite the future. Reach out for admissions, partnerships, or Corporate collaborations.</h3>
         <ul style="list-style:none; padding:0; margin:1.2rem 0 0 0; font-size:1.08rem; color:#222;">
-          <li>📧 <strong>Email:</strong> <a href="mailto:info@cefored.com" style="color:var(--primary);text-decoration:underline;">info@cefored.com</a></li>
+          <li>✉️ <strong>Email:</strong> <a href="mailto:info@cefored.com" style="color:var(--primary);text-decoration:underline;">info@cefored.com</a></li>
           <li>📞 <strong>Phone:</strong> <a href="tel:+254755445982" style="color:var(--primary);text-decoration:underline;">+254 755445982</a></li>
           <li>🌐 <strong>Website:</strong> <a href="https://www.ceforedconsultancy.com" target="_blank" style="color:var(--primary);text-decoration:underline;">www.ceforedconsultancy.com</a></li>
-          <li>📍 <strong>Location:</strong> Nairobi – Kenya.</li>
+          <li>📍 <strong>Location:</strong> Nairobi, Kenya.</li>
         </ul>
       </div>
     </div>
@@ -599,8 +613,23 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </div>
   <!-- Firebase SDKs are now imported in database.js -->
 </script>
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
       <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 </html> 
+

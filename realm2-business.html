@@ -29,77 +29,11 @@
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
   
-  /* Header styling for both themes */
-  header {
-    background: #008080 !important;
-    color: #fff;
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  /* Top row with logo, name, and theme toggle */
-  header > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  /* Logo and name container */
-  header > div:first-child > div:first-child {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-  
-  /* Logo styling */
-  header img {
-    height: 38px;
-    width: auto;
-    display: block;
-    margin-right: 0.7em;
-  }
-  
-  /* Institute name styling */
-  header strong {
-    color: #fff;
-    font-size: 1.1rem;
-  }
-  
-  header nav {
-    margin-top: 0.7rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  header nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  
-  /* Theme toggle button positioning */
-  #theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.7rem;
-    cursor: pointer;
-    color: #FFA500;
-    flex-shrink: 0;
-  }
-  
   /* Light mode styles */
   body {
     background-color: var(--secondary);
     color: #333;
-    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="%23999" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.13"><path d="M10 30 Q15 10 30 10 Q45 10 50 30 Q45 50 30 50 Q15 50 10 30 Z"/><circle cx="30" cy="30" r="12"/></g></svg>');
-    background-size: 60px 60px;
-    background-repeat: repeat;
-    background-attachment: fixed;
+    padding-top: 80px; /* Account for fixed header */
   }
   
   body.dark-mode {
@@ -109,10 +43,6 @@
     --accent-alt: #FFA500;
     background: #181a20;
     color: #e0e0e0;
-    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="%23fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.13"><path d="M10 30 Q15 10 30 10 Q45 10 50 30 Q45 50 30 50 Q15 50 10 30 Z"/><circle cx="30" cy="30" r="12"/></g></svg>');
-    background-size: 60px 60px;
-    background-repeat: repeat;
-    background-attachment: fixed;
   }
   .main-header {
     background: #008080 !important; /* Teal color */
@@ -121,67 +51,57 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    margin: 0 !important;
-    border: none !important;
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 1rem !important;
   }
   
-  body.dark-mode .main-header {
-    background: #23242b !important; /* Dark background in dark mode */
-    color: #e0e0e0 !important;
-  }
-  
+  body.dark-mode .main-header,
   body.dark-mode .main-header a {
+    background: #008080 !important; /* Keep teal in dark mode */
     color: #e0e0e0 !important;
   }
-  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
+    .hero {
+      background: var(--primary) !important;
+      height: calc(100vh - 80px) !important; /* full viewport minus header */
+      width: 100% !important;
+      min-height: calc(100vh - 80px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: relative !important;
+      z-index: 1 !important;
+      overflow: hidden !important;
+    }
+
+    body.dark-mode .hero {
+      background: #23242b !important;
+      height: calc(100vh - 80px) !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-top: 0 !important;
+      position: relative !important;
+      z-index: 1 !important;
+    }
+  
+  body.dark-mode .hero-content, body.dark-mode .program-section, body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, body.dark-mode .why-cefored {
     background: #23242b !important;
     color: #fff !important;
     box-shadow: 0 2px 16px rgba(0,0,0,0.18);
   }
-  .hero {
-    position: relative;
-    background-color: var(--secondary);
-    min-height: 250px;
-    height: 35vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  body.dark-mode .hero .hero-dark-overlay {
+    display: block;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.68);
+    z-index: 1;
+    border-radius: inherit;
   }
-  
-  /* Doodle art background from index.html */
-  .hero::before {
-    content: none !important;
-    display: none !important;
-  }
-  
-  /* Dark mode doodle art */
-  body.dark-mode .hero::before {
-    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="%23fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.13"><path d="M10 30 Q15 10 30 10 Q45 10 50 30 Q45 50 30 50 Q15 50 10 30 Z"/><circle cx="30" cy="30" r="12"/></g></svg>');
-    opacity: 0.23;
-    mix-blend-mode: lighten;
-  }
-  
-  /* Simple hero background */
-  .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/businessmeeting.png') center 30% no-repeat;
-    background-size: cover;
-  }
-  
-  /* Dark mode hero background - identical to light mode */
-  body.dark-mode .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/businessmeeting.png') center 30% no-repeat !important;
-    background-size: cover !important;
-  }
+  .hero .hero-dark-overlay { display: none; }
+  body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
   body.dark-mode .cta-button {
     background: var(--accent);
     color: #23242b;
@@ -228,12 +148,6 @@
     background: var(--primary) !important;
     color: var(--secondary) !important;
   }
-  
-  /* Dark mode footer styling */
-  body.dark-mode footer {
-    background: #23242b !important;
-    color: #e0e0e0 !important;
-  }
 </style>
 
   
@@ -243,175 +157,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REALM 2: AI in Business Management - CEFORED Institute of Relief</title>
-  <!-- Removed styles.css to prevent conflicts -->
-  <style>
-    /* Simple, clean navbar styles */
-    :root {
-      --primary: #008080;
-      --secondary: #f5f5dc;
-      --accent: #FFA500;
-      --accent-alt: #FFFF00;
-    }
-    
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    /* Simple fixed navbar */
-    header {
-      background: #008080;
-      color: white;
-      padding: 0.2rem 1rem 0.4rem 1rem;
-      position: relative;
-      border: none;
-      outline: none;
-      box-shadow: none;
-    }
-    
-    .top-bar {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding-bottom: 0.1rem;
-      border: none;
-      outline: none;
-      box-shadow: none;
-    }
-    
-    .header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      border: none;
-      outline: none;
-      box-shadow: none;
-    }
-    
-    /* Logo and title */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .logo-box {
-      background: transparent;
-      padding: 0;
-      border-radius: 0;
-      box-shadow: none;
-    }
-    
-    .logo-box img {
-      height: 34px;
-      width: auto;
-      display: block;
-    }
-    
-    .institute-name {
-      font-size: 1rem;
-      color: white;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-    
-    /* Navigation */
-    nav {
-      display: flex;
-      gap: 0.6rem;
-    }
-    
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-      font-size: 0.95rem;
-      padding: 0.1rem 0.2rem;
-    }
-    
-    nav a:hover {
-      color: var(--accent);
-    }
-    
-    /* Theme toggle */
-    #theme-toggle {
-      background: none;
-      border: none;
-      font-size: 1.7rem;
-      cursor: pointer;
-      color: var(--accent);
-      margin-left: auto;
-    }
-    
-    /* Body base */
-    body {
-      padding-top: 0;
-    }
-    
-    /* Dark mode */
-    body.dark-mode header,
-    body.dark-mode .top-bar,
-    body.dark-mode .header-row,
-    body.dark-mode nav {
-      background: #23242b !important;
-      color: #e0e0e0 !important;
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-    body.dark-mode .logo-box img { filter: none; }
-    body.dark-mode .institute-name { color: #e0e0e0; }
-    body.dark-mode nav a { color: #e0e0e0; }
-    body.dark-mode nav a:hover, body.dark-mode nav a.active { color: var(--accent); }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   </head>
 <body id="body-root">
-
-    <header>
-    <div class="top-bar">
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
-    </div>
-    <div class="header-row">
-      <div class="logo-container">
-        <div class="logo-box">
-          <img 
-            src="images/logo final.png" 
-            srcset="images/logo final.png 1x, images/logo final.png 2x" 
-            alt="Cefored Logo" 
-            loading="lazy"
-          />
-        </div>
-        <strong class="institute-name">CEFORED Institute</strong>
+  <header class="main-header">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center;">
+        <img src="images/logo-final.webp" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" />
+        <strong style="color: #fff;">CEFORED Institute</strong>
       </div>
-      <nav id="main-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="programs.html">Programs</a>
-        <a href="faqs.html">FAQs</a>
-        <a href="corporatetraining.html">Corporate Training</a>
-        <a href="contact.html">Contact Us</a>
-      </nav>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode" style="background: none; border: none; font-size: 1.7rem; cursor: pointer; color: #FFA500;">🌙</button>
     </div>
+    <nav style="margin-top: 0.7rem;">
+      <a href="index.html" style="color: #fff; margin-left: 0; margin-right: 2rem; text-decoration: none; font-weight: 500;">Home</a>
+      <a href="about.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">About Us</a>
+      <a href="programs.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">Programs</a>
+      <a href="faqs.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">FAQs</a>
+      <a href="corporatetraining.html" style="color: #fff; margin-right: 2rem; text-decoration: none; font-weight: 500;">Corporate Training</a>
+      <a href="contact.html" style="color: #fff; text-decoration: none; font-weight: 500;">Contact Us</a>
+    </nav>
   </header>
-      <div class="page-bordered">
-      <section class="hero" style="min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
-          <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 2: AI in Business & Management</h1>
-          <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Empowering business leaders with AI-driven decision-making tools.</p>
-      </div>
-    </section>
+  <section class="hero">
+    <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem;">
+      <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1rem 0;">REALM 2: AI in Business & Management</h1>
+      <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0;">Empowering business leaders with AI-driven decision-making tools.</p>
+    </div>
+  </section>
+  <div class="page-bordered">
 
-    <section class="program-section">
+    <div class="page-frame-inner">
+      <section class="program-section">
     <div class="card">
-      <h3 class="card-title" style="font-size: 1.6rem; margin-bottom: 1rem;">Program Overview</h3>
-      <p style="font-size: 1.1rem; line-height: 1.7;">
+      <h3 class="card-title">Program Overview</h3>
+      <p>
         This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
-        <strong style="font-size: 1.15rem;">Ideal for:</strong> <span style="font-size: 1.1rem;">Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.</span>
+        <strong>Ideal for:</strong> Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.
       </p>
     </div>
 
@@ -489,15 +271,6 @@
     </div>
   </div>
   <style>
-  /* Footer styling for both themes */
-  footer {
-    background: #008080 !important;
-    color: #fff !important;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-  }
-  
   nav a {
     position: relative;
     transition: color 0.2s;
@@ -520,6 +293,33 @@
     opacity: 1;
     transform: scaleX(1);
   }
+  /* Hero content positioning */
+  .hero > div {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  /* Override any external CSS that might be interfering */
+  section.hero,
+  .page-bordered .hero,
+  body .hero {
+    background: var(--primary) !important;
+    height: calc(100vh - 80px) !important;
+    width: 100% !important;
+    min-height: calc(100vh - 80px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative !important;
+    z-index: 1 !important;
+    overflow: hidden !important;
+  }
+  
   .program-section {
     background-color: var(--secondary);
     padding: 2rem;
@@ -629,10 +429,8 @@
       });
     });
   </script>
-  <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-      <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-    </div>
+  <footer style="background-color: #008080; color: white; text-align: center; padding: 1rem 0; margin-top: 2rem;">
+    <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
   </footer>
   <script src="js/theme.js" defer></script>
 </body>

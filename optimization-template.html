@@ -1,0 +1,45 @@
+﻿<!-- Add this in the head section of each HTML file -->
+
+<!-- DNS Prefetch -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+<!-- Preload Critical Assets -->
+<link rel="preload" href="styles.min.v1.css" as="style">
+<link rel="preload" href="images/logo-final.webp" as="image" type="image/webp">
+<link rel="preload" href="js/theme.js" as="script">
+
+<!-- Stylesheets with version numbers -->
+<link rel="stylesheet" href="styles.min.v1.css">
+
+<!-- Deferred JavaScript with version numbers -->
+<script src="main.v1.js" defer></script>
+<script src="theme.v1.js" defer></script>
+
+<!-- Add this before closing body tag -->
+<script>
+// Add version to localStorage for cache busting
+localStorage.setItem('asset_version', '1.0.0');
+
+// Simple performance monitoring
+window.addEventListener('load', function() {
+    // Report load time
+    const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+    console.log('Page load time:', loadTime + 'ms');
+    
+    // Check if assets are loaded from cache
+    const entries = performance.getEntriesByType('resource');
+    entries.forEach(entry => {
+        if (entry.transferSize === 0) {
+            console.log('Loaded from cache:', entry.name);
+        }
+    });
+});
+</script>
+
+

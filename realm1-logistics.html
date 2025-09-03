@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -193,22 +199,23 @@
   
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REALM 1: AI in Logistics & Supply Chain Management - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <script src='js/error-handler.js'></script>
+</head>
 <body id="body-root">
   <header>
     <div>
       <div>
-        <img src="images/logo final.png" alt="Cefored Logo" />
+        <img src="images/logo-final.webp" alt="Cefored Logo" />
         <strong>CEFORED Institute</strong>
       </div>
-      <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      <button id="theme-toggle" aria-label="Toggle dark/light mode">ðŸŒ™</button>
     </div>
     <nav>
       <a href="index.html">Home</a>
@@ -220,7 +227,7 @@
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('images/logistics-bg.jpg') center/cover no-repeat fixed;">
+    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('images/logistics-bg.webp') center/cover no-repeat fixed;">
       <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
         <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 1: AI in Logistics & Supply Chain Management</h1>
         <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Transforming logistics through intelligent, AI-enhanced systems.</p>
@@ -251,7 +258,7 @@
                 <li><strong>Duration:</strong> 4 weeks (16 hours)</li>
                 <li><strong>Course Fee:</strong> $450</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
 
@@ -266,7 +273,7 @@
                 <li><strong>Duration:</strong> 4 weeks (16 hours)</li>
                 <li><strong>Course Fee:</strong> $480</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
 
@@ -280,7 +287,7 @@
                 <li><strong>Duration:</strong> 3 weeks (12 hours)</li>
                 <li><strong>Course Fee:</strong> $470</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
 
@@ -294,7 +301,7 @@
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $460</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
 
@@ -308,7 +315,7 @@
                 <li><strong>Duration:</strong> 3 weeks</li>
                 <li><strong>Course Fee:</strong> $450</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
       </div>
@@ -322,7 +329,7 @@
   </div>
   </div>
   </div>
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Add click event listeners to all accordion headers
@@ -334,7 +341,7 @@
       });
     });
   </script>
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <style>
   nav a {
     position: relative;
@@ -410,6 +417,14 @@
     border-left: 5px solid var(--accent);
     margin-bottom: 2rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    color: #000000;
+  }
+  .accordion-body {
+    color: #000000;
+  }
+  body.dark-mode .card,
+  body.dark-mode .accordion-body {
+    color: #ffffff !important;
   }
   .section-heading {
     font-size: 1.5rem;
@@ -437,5 +452,20 @@
     color: #fff !important;
   }
   </style>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

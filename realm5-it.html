@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -27,19 +33,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REALM 5: AI in IT & Digital Transformation - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <script src='js/error-handler.js'></script>
+</head>
 <body id="body-root">
   <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="images/logo final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" /><strong>CEFORED Institute</strong></div>
+    <div style="display: flex; align-items: center;"><img src="images/logo-final.webp" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" /><strong>CEFORED Institute</strong></div>
     
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
 <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -50,7 +57,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/it-bg.jpg') center/cover no-repeat fixed;">
+    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/it-bg.webp') center/cover no-repeat fixed;">
       <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
         <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 5: AI in IT & Digital Transformation</h1>
         <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Reclaiming digital thrones through automation, cybersecurity, smart infrastructure, and next-gen IT skills.</p>
@@ -79,7 +86,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $480</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 2 -->
@@ -92,7 +99,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 3 weeks</li>
                 <li><strong>Course Fee:</strong> $450</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 3 -->
@@ -105,7 +112,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $490</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 4 -->
@@ -118,7 +125,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $470</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 5 -->
@@ -131,7 +138,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 3 weeks</li>
                 <li><strong>Course Fee:</strong> $480</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem;display:inline-block;">Apply Now</a>
+              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
             </div>
           </div>
         </div>
@@ -189,6 +196,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     border-left: 5px solid var(--accent);
     margin-bottom: 2rem;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    color: #000000;
+  }
+  .accordion-body {
+    color: #000000;
+  }
+  body.dark-mode .card,
+  body.dark-mode .accordion-body {
+    color: #ffffff !important;
   }
   .section-heading {
     font-size: 1.5rem;
@@ -256,14 +271,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   }
   .hero {
     position: relative;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.png') center/cover no-repeat !important;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.webp') center/cover no-repeat !important;
   }
   
   /* Ensure background image stays consistent in all themes */
   body.dark-mode .hero,
   body.light-mode .hero,
   .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.png') center/cover no-repeat !important;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.webp') center/cover no-repeat !important;
   }
   body.dark-mode .hero .hero-dark-overlay {
     display: block;
@@ -280,8 +295,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   #body-root .hero,
   .page-bordered .hero,
   .page-frame-inner .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.png') center/cover no-repeat !important;
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.png') !important;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.webp') center/cover no-repeat !important;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/tek4.webp') !important;
   }
   
   body.dark-mode .cta-button {
@@ -335,7 +350,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     color: #fff !important;
   }
   </style>
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Add click event listeners to all accordion headers
@@ -347,6 +362,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       });
     });
   </script>
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

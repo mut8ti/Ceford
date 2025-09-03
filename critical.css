@@ -1,0 +1,116 @@
+/* Critical CSS for above-the-fold content - CEFORED Institute */
+:root {
+  --primary: #008080;
+  --secondary: #f5f5dc;
+  --accent: #FFA500;
+  --accent-alt: #FFFF00;
+}
+
+/* Essential body and layout styles */
+html { visibility: hidden; }
+html.dark-mode, html.light-mode { visibility: visible; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--secondary);
+  color: #000000;
+  padding-top: 155px;
+}
+
+/* Header styles */
+header {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Navigation styles */
+nav a {
+  color: white;
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--accent);
+}
+
+/* Hero section - most critical for LCP */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/businessmeeting.webp') center/cover no-repeat;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #fff;
+  position: relative;
+  min-height: calc(100vh - 155px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 8px #000, 0 1px 2px #000;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 1rem auto;
+  color: #fff;
+  text-shadow: 1px 1px 4px #000, 0 1px 2px #000;
+  line-height: 1.6;
+}
+
+/* CTA button styles */
+.cta-button {
+  background-color: var(--accent);
+  color: var(--primary);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: var(--accent-alt);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 700px) {
+  .hero {
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 120px);
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+}
+

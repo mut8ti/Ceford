@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -20,7 +26,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corporate Training & Services - CEFORED Institute</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
 
   <style>
   /* CSS Reset - Remove all spacing */
@@ -68,7 +74,7 @@
     /* Hero styles */
     .hero.corporate-hero {
       position: relative;
-      background: url('images/businessmeeting.png') center/cover no-repeat !important;
+      background: url('images/businessmeeting.webp') center/cover no-repeat !important;
       background-size: cover !important;
       min-height: 270px;
       width: 100vw;
@@ -358,7 +364,7 @@
     }
     /* Hero section styles for both themes - identical */
     html.light-mode .corporate-training-page .corporate-hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.png') center 30% no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.webp') center 30% no-repeat !important;
       background-size: cover !important;
       width: 100vw !important;
       margin-left: calc(50% - 50vw) !important;
@@ -369,7 +375,7 @@
     }
     
     html.dark-mode .corporate-training-page .corporate-hero {
-      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.png') center 30% no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.webp') center 30% no-repeat !important;
       background-size: cover !important;
       width: 100vw !important;
       margin-left: calc(50% - 50vw) !important;
@@ -656,6 +662,7 @@
     html.light-mode nav a { color: #fff !important; }
     html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body class="corporate-training-page" id="body-root">
   <!-- Header Section -->
@@ -663,8 +670,8 @@
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
         <img 
-          src="images/logo final.png" 
-          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          src="images/logo-final.webp" 
+          srcset="images/logo-final.webp 1x, images/logo-final.webp 2x" 
           alt="Cefored Logo" 
           style="height: 50px; width: auto; display: block;"
           loading="lazy"
@@ -672,7 +679,7 @@
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -683,7 +690,7 @@
     </nav>
   </header>
   <!-- Hero Section -->
-  <section class="hero corporate-hero" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.png') center 30% no-repeat; background-size: cover; width: 100vw; min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0;">
+  <section class="hero corporate-hero" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/businessmeeting.webp') center 30% no-repeat; background-size: cover; width: 100vw; min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0;">
     <div style="position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 0 20px;">
       <h1 style="color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.8); margin: 0 0 1.5rem 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; font-weight: 700;">Corporate Training & Services</h1>
       <p style="color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin: 0; font-size: clamp(1rem, 2vw, 1.25rem); max-width: 90%;">AI-powered training and consultancy for organizations, NGOs, and government institutions.</p>
@@ -697,7 +704,7 @@
     </section>
   <!-- REALM 1 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 1: AI in Logistics & Supply Chain Management<span class="icon">+</span></button>
+    <button class="faq-question">🚚 REALM 1: AI in Logistics & Supply Chain Management<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -709,7 +716,7 @@
       <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
       <ul class="service-list">
         <li>AI Logistics Consultation<br><span style="color:#1976d2;">💼 $1,500</span> per consultation (Includes action plan report)</li>
-        <li>AI-Driven Supply Chain Audit<br><span style="color:#1976d2;">🧾 $3,000</span> (Includes AI audit report + recommendations)</li>
+        <li>AI-Driven Supply Chain Audit<br><span style="color:#1976d2;">👨‍💼 $3,000</span> (Includes AI audit report + recommendations)</li>
         <li>AI Logistics Software Implementation<br><span style="color:#1976d2;">💻 $10,000</span> (One-time fee; excludes software licenses)</li>
       </ul>
       <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
@@ -717,7 +724,7 @@
   </div>
   <!-- REALM 2 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 2: AI in Business Management<span class="icon">+</span></button>
+    <button class="faq-question">💼 REALM 2: AI in Business Management<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -736,7 +743,7 @@
   </div>
   <!-- REALM 3 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 3: AI in Health Management<span class="icon">+</span></button>
+    <button class="faq-question">🏥 REALM 3: AI in Health Management<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -756,7 +763,7 @@
   </div>
   <!-- REALM 4 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 4: AI in Project Management<span class="icon">+</span></button>
+    <button class="faq-question">📋 REALM 4: AI in Project Management<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -776,7 +783,7 @@
   </div>
   <!-- REALM 5 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 5: AI in IT & Digital Transformation<span class="icon">+</span></button>
+    <button class="faq-question">💻 REALM 5: AI in IT & Digital Transformation<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -788,7 +795,7 @@
       <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
       <ul class="service-list">
         <li>AI Integration Audit for IT Systems<br><span style="color:#1976d2;">💼 $2,500</span> (Includes full integration report)</li>
-        <li>Custom AI Workflow Automation Setup<br><span style="color:#1976d2;">🛠️ $4,800</span> (Includes 3 workflows + user training)</li>
+        <li>Custom AI Workflow Automation Setup<br><span style="color:#1976d2;">⚙️ $4,800</span> (Includes 3 workflows + user training)</li>
         <li>NGO Cybersecurity Shield with AI Monitoring<br><span style="color:#1976d2;">🔐 $6,000</span> (Setup + monitoring tools)</li>
       </ul>
       <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
@@ -796,7 +803,7 @@
   </div>
   <!-- REALM 6 -->
   <div class="faq-item">
-    <button class="faq-question">🔥 REALM 6: AI in Humanitarian, Relief & Disaster Management<span class="icon">+</span></button>
+    <button class="faq-question">🌍 REALM 6: AI in Humanitarian, Relief & Disaster Management<span class="icon">+</span></button>
     <div class="faq-answer">
       <div class="realm-label">AI-Powered Corporate Training Programs</div>
       <ul>
@@ -808,14 +815,13 @@
       <div class="realm-label" style="margin-top:1.2rem;">AI-Powered Corporate Services</div>
       <ul class="service-list">
         <li>AI-Powered Crisis Simulation & Planning Tools<br><span style="color:#1976d2;">💼 $4,500</span> (Custom setup + scenario training)</li>
-        <li>Disaster Relief Logistics AI Audit<br><span style="color:#1976d2;">🛠️ $3,000</span> (Includes process recommendations + tool integration)</li>
-        <li>AI Dashboards for Humanitarian Monitoring<br><span style="color:#1976d2;">🖥️ $5,800</span> (Includes design, deployment, and training)</li>
+        <li>Disaster Relief Logistics AI Audit<br><span style="color:#1976d2;">⚙️ $3,000</span> (Includes process recommendations + tool integration)</li>
+        <li>AI Dashboards for Humanitarian Monitoring<br><span style="color:#1976d2;">📊 $5,800</span> (Includes design, deployment, and training)</li>
       </ul>
       <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
     </div> <!-- Close page-frame-inner -->
-  </div> <!-- Close page-bordered -->
   
   <footer class="main-footer">
     <div class="page-frame-inner">
@@ -843,7 +849,7 @@
           
           if (!isOpen) {
             answer.style.display = 'block';
-            icon.textContent = '–';
+            icon.textContent = 'â€“';
           } else {
             answer.style.display = 'none';
             icon.textContent = '+';
@@ -853,6 +859,21 @@
     });
   </script>
   
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

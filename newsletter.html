@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -42,15 +48,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Newsletter - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
   <style>
     /* Newsletter Page Specific Styles */
     .newsletter-hero {
-      background: url('images/newsletterbg.jpg') center/cover no-repeat !important;
+      background: url('images/newsletterbg.webp') center/cover no-repeat !important;
       position: relative;
       width: 100vw;
       margin-left: calc(50% - 50vw);
@@ -59,7 +65,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       right: 0;
     }
     body.dark-mode .hero.newsletter-hero {
-      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/newsletterbg.jpg') center/cover no-repeat !important;
+      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/newsletterbg.webp') center/cover no-repeat !important;
       width: 100vw !important;
       margin-left: calc(50% - 50vw) !important;
       margin-right: calc(50% - 50vw) !important;
@@ -107,7 +113,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </style>
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <script src='js/error-handler.js'></script>
+</head>
 <body id="body-root">
   <!-- Loading Spinner -->
   <div id="newsletterLoadingSpinner" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;align-items:center;justify-content:center;background:rgba(0,0,0,0.24);transition:opacity 0.2s;">
@@ -126,7 +133,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </div>
   <header class="newsletter-header" style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="images/logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <div style="display: flex; align-items: center;"><img src="images/logo-final.webp" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -147,9 +154,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </section>
     <div class="page-frame-inner">
       <section class="main-content section" style="max-width: 700px; margin: 2rem auto 0 auto; text-align: center;">
-        <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 0.7rem;">"Join the Movement — Stay Ahead with AI + Impact"</h2>
+        <h2 style="color: var(--primary); font-size: 1.6rem; margin-bottom: 0.7rem;">"Join the Movement â€” Stay Ahead with AI + Impact"</h2>
         <p style="font-size: 1.13rem; color: var(--primary); margin-bottom: 0.7rem;">Be part of Africa's most dynamic AI-driven learning revolution. Subscribe to Cefored's newsletter and get insider updates on cutting-edge training programs, expert blogs, alumni success stories, tools for humanitarian innovation, and the latest in AI for development.</p>
-        <p style="font-size: 1.08rem; color: #444;">📨 Get the latest in AI + Impact direct to your inbox — only from Cefored.</p>
+        <p style="font-size: 1.08rem; color: #444;">ðŸ“¨ Get the latest in AI + Impact direct to your inbox â€” only from Cefored.</p>
       </section>
       <section class="main-content section" style="max-width: 500px; margin: 2.5rem auto 2rem auto;">
         <form id="newsletterForm">
@@ -171,7 +178,22 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </div>
     </footer>
   </div>
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
   <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
+

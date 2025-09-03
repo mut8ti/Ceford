@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -26,7 +32,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
     
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Contact Form</title>
@@ -84,7 +90,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </style>
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <script src='js/error-handler.js'></script>
+</head>
 <body>
   <div class="page-bordered">
     <!-- Hero Section -->
@@ -122,5 +129,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <script src="theme.js" defer></script>
     </footer>
   </div>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+

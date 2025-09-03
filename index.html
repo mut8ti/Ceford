@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
     (function() {
       try {
@@ -30,10 +36,31 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CEFORED Institute of Relief</title>
+  
+  <!-- Preload critical resources for LCP optimization -->
+  <link rel="preload" href="images/businessmeeting.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="images/logo-final.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="styles.min.css" as="style">
+  
+  <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Load fonts with display=swap for better performance -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
+  
+  <!-- Load Font Awesome asynchronously -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  
+  <!-- Load fonts and styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
     :root {
@@ -52,6 +79,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background-size: 60px 60px;
       background-repeat: repeat;
       background-attachment: fixed;
+      padding-top: 80px;
+      overflow-x: hidden;
     }
 
     header {
@@ -61,18 +90,17 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed; /* Changed from relative to fixed */
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 1000; /* Ensure header stays above other content */
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add subtle shadow */
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      height: 80px;
+      box-sizing: border-box;
     }
     
-    /* Add padding to body to account for fixed header */
-    body {
-      padding-top: 155px; /* Adjust this value based on your header's height */
-    }
+
 
     nav a {
       color: white;
@@ -106,21 +134,30 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
 
     .hero {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/businessmeeting.png') center/cover no-repeat !important;
-      text-align: center;
-      padding: 4rem 2rem;
-      color: #fff;
-      position: relative;
-      min-height: calc(100vh - 155px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/businessmeeting.webp') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      z-index: 1;
+      margin: 0;
+      padding-top: 80px;
+      overflow: hidden;
     }
     body.dark-mode .hero {
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/businessmeeting.png') center/cover no-repeat !important;
-      color: #fff;
-      text-shadow: 0 2px 8px #000, 0 1px 2px #000;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/businessmeeting.webp') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
     }
     .hero .hero-dark-overlay { display: none !important; }
 
@@ -136,6 +173,16 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       margin: 1rem auto;
       color: #fff;
       text-shadow: 1px 1px 4px #000, 0 1px 2px #000;
+    }
+    
+    /* Ensure proper content flow after hero */
+    #main-content {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    
+    .why-cefored {
+      margin-top: 2rem;
     }
 
     .cta-button {
@@ -369,6 +416,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     body.dark-mode .testimonials {
       color: #fff !important;
     }
+    
+    body.dark-mode .programs-intro {
+      color: #fff !important;
+    }
     body.dark-mode .testimonials h2, 
     body.dark-mode .testimonials h3, 
     body.dark-mode .testimonials h4 {
@@ -461,7 +512,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         align-items: center;
         padding: 1rem 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000; /* Ensure it's on top */
+        z-index: 999; /* Below header but above other content */
       }
       nav.mobile-menu-open {
         display: flex !important; /* Show the nav when this class is added */
@@ -480,16 +531,249 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       }
     }
   </style>
+  <script src='js/error-handler.js'></script>
+  
+  <!-- Critical CSS inline for above-the-fold content -->
+  <style>
+    /* Critical CSS for above-the-fold content - CEFORED Institute */
+    :root {
+      --primary: #008080;
+      --secondary: #f5f5dc;
+      --accent: #FFA500;
+      --accent-alt: #FFFF00;
+    }
+    
+    /* Essential body and layout styles */
+    html { visibility: hidden; }
+    html.dark-mode, html.light-mode { visibility: visible; }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--secondary);
+      color: #000000;
+      padding-top: 80px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    /* Header styles */
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      height: 80px;
+      box-sizing: border-box;
+    }
+    
+    /* Navigation styles */
+    nav a {
+      color: white;
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav a:hover, nav a.active {
+      color: var(--accent);
+    }
+    
+    /* Hero section - most critical for LCP */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/businessmeeting.webp') center center no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+      background-attachment: fixed;
+      z-index: 1;
+      margin: 0;
+      padding-top: 80px; /* Space for fixed header */
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px #000, 0 1px 2px #000;
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      color: #fff;
+      text-shadow: 1px 1px 4px #000, 0 1px 2px #000;
+      line-height: 1.6;
+    }
+    
+    /* CTA button styles */
+    .cta-button {
+      background-color: var(--accent);
+      color: var(--primary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    /* Ensure content flows properly after hero */
+    #main-content {
+      margin-top: 0;
+      padding-top: 0;
+    }
+    
+    /* Remove any default margins from sections after hero */
+    .why-cefored {
+      margin-top: 0;
+    }
+    
+    /* Ensure proper spacing for sections after hero */
+    .sections {
+      margin-top: 2rem;
+    }
+    
+    /* Fix any potential overflow issues */
+    .hero {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Ensure hero fills viewport on all screen sizes */
+    @media (min-width: 769px) {
+      .hero {
+        width: 100% !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding-top: 80px !important;
+      }
+    }
+    
+
+    
+    .cta-button:hover {
+      background-color: var(--accent-alt);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3);
+    }
+    
+    /* Desktop and laptop screens */
+    @media (min-width: 1024px) {
+      .hero {
+        width: 100% !important;
+        height: calc(100vh - 80px) !important;
+        background-attachment: fixed !important;
+        background-position: center center !important;
+      }
+      
+      .hero h1 {
+        font-size: 3rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+      
+      .hero p {
+        font-size: 1.4rem !important;
+        max-width: 800px !important;
+      }
+    }
+    
+    /* Tablet screens */
+    @media (min-width: 769px) and (max-width: 1023px) {
+      .hero {
+        width: 100% !important;
+        height: calc(100vh - 80px) !important;
+        background-attachment: fixed !important;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem !important;
+        margin-bottom: 1.2rem !important;
+      }
+      
+      .hero p {
+        font-size: 1.3rem !important;
+        max-width: 750px !important;
+      }
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .hero {
+        width: 100% !important;
+        height: calc(100vh - 80px) !important;
+        background-attachment: scroll !important;
+        padding: 1.5rem 1rem !important;
+        margin: 0 !important;
+      }
+      
+      .hero h1 {
+        font-size: 2rem !important;
+        line-height: 1.3 !important;
+      }
+      
+      .hero p {
+        font-size: 1.1rem !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        padding: 1.25rem 0.75rem !important;
+        padding-top: 80px !important;
+      }
+      
+      .hero h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .hero p {
+        font-size: 1rem !important;
+      }
+    }
+  </style>
+  
+  <!-- Load non-critical CSS asynchronously -->
+  <link rel="stylesheet" href="styles.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
 </head>
 <body id="body-root">
   <header>
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-        <img src="images/logo final.png" alt="Cefored Logo" style="height: 122.5px; width: auto; display: block;" />
+        <img src="images/logo-final.webp" alt="Cefored Logo" style="height: 36px; width: auto; display: block;" />
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
     <nav id="main-nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About Us</a>
@@ -514,11 +798,11 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
         <span>Why Choose Cefored</span>
       </h2>
       <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; font-size: 1.15rem; color: #000000; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <li>🌍 Trusted by NGOs, governments, and international organizations</li>
+        <li>➕ Trusted by NGOs, governments, and international organizations</li>
         <li>🤝 Hands-on, practical training with real tools</li>
-        <li>🎓 AI-powered curriculum tailored to real-world challenges</li>
+        <li>💻 AI-powered curriculum tailored to real-world challenges</li>
         <li>🌐 Alumni network across East Africa and beyond</li>
-        <li>🧠 Distance learning + live virtual classes + in-person options</li>
+        <li>🅰️  Distance learning + live virtual classes + in-person options</li>
         <li>🔍 Certification backed by applied AI learning</li>
       </ul>
       <p style="font-size: 1.15rem; color: #000000; font-style: italic; margin-bottom: 2rem;">"Start your journey with the leading institute of applied AI training."</p>
@@ -531,7 +815,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
         <!-- AI-Powered Programs Section -->
         <section class="ai-programs" style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
           <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Our AI-Powered Programs</h2>
-          <p style="max-width: 700px; margin: 0 auto 2rem auto; font-size: 1.1rem; line-height: 1.6; color: #000000;">
+          <p style="max-width: 700px; margin: 0 auto 2rem auto; font-size: 1.1rem; line-height: 1.6; color: #000000;" class="programs-intro">
             At Cefored Institute, our 6 groundbreaking programs combine real-world expertise with artificial intelligence to prepare you for next-generation leadership. Choose a realm below to ignite your journey.
           </p>
           <div style="display: flex; flex-direction: column; gap: 0.7rem; align-items: center;">
@@ -541,7 +825,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <div id="realm1-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Transforming logistics through intelligent, AI-enhanced systems.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📚</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.<br><br>
               <em>Perfect for logistics managers, procurement officers, warehouse coordinators, and supply chain professionals.</em>
               <br><a href="realm1-logistics.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
@@ -553,7 +837,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <div id="realm2-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Empowering next-gen business leaders with AI strategy, intelligence, and automation.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
               <em>Ideal for business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.</em>
               <br><a href="realm2-business.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
@@ -565,19 +849,19 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <div id="realm3-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Empowering health professionals with AI for smarter care, analytics, and public health transformation.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program equips healthcare leaders and professionals to integrate AI into patient care, public health, hospital management, and medical analytics. Participants will explore how machine learning, predictive diagnostics, AI-assisted treatments, and health information systems are reshaping the future of healthcare.<br><br>
               <em>Ideal for hospital administrators, health project officers, clinicians, medical data analysts, and NGO health managers.</em>
               <br><a href="realm3-health.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(4)">
-              <span><span style="font-size:1.3em;">📊</span> <strong>REALM 4:</strong> AI in Project Management</span>
+              <span><span style="font-size:1.3em;">📈</span> <strong>REALM 4:</strong> AI in Project Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm4-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program introduces project managers and development professionals to AI tools that transform the way projects are planned, executed, and evaluated. Learn how AI supports real-time project monitoring, automated risk management, budgeting, and team collaboration.<br><br>
               <em>Perfect for development practitioners, project coordinators, M&E officers, and grant/project managers.</em>
               <br><a href="realm4-project.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
@@ -589,19 +873,19 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             </div>
             <div id="realm5-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: #000000; border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Reclaiming digital thrones through automation, cybersecurity, smart infrastructure, and next-gen IT skills.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This cutting-edge program equips IT professionals, digital officers, and tech-driven leaders with the skills to integrate AI into systems design, infrastructure, automation, and cybersecurity. Learn how to lead IT transformations that power intelligent operations across industries and humanitarian settings.<br><br>
               <em>Ideal for digital officers, IT specialists, tech consultants, NGO IT leads, and innovators ready for the AI shift.</em>
               <br><a href="realm5-it.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(6)">
-              <span><span style="font-size:1.3em;">🌍</span> <strong>REALM 6:</strong> AI in Humanitarian, Relief & Disaster Management</span>
+              <span><span style="font-size:1.3em;">🌎</span> <strong>REALM 6:</strong> AI in Humanitarian, Relief & Disaster Management</span>
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm6-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: var(--primary); border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
               <strong>Where compassion meets innovation — and AI powers resilience across crises.</strong><br><br>
-              <span style="font-size:1.2em;">📘</span> <strong>PROGRAM OVERVIEW</strong><br>
+              <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This pioneering program prepares professionals to transform humanitarian aid, disaster response, and relief operations using the power of artificial intelligence. It covers emergency preparedness, crisis mapping, early warning systems, logistics coordination, and needs assessment—enhanced with AI tools for rapid decision-making and predictive response.<br><br>
               <em>Perfect for NGO leaders, disaster responders, humanitarian project officers, and anyone committed to building resilience in the face of crisis.</em>
               <br><a href="realm6-humanitarian.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
@@ -663,7 +947,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
           <h3>"Stories That Speak for Themselves"</h3>
           <p>Our impact is not just measured in numbers — it's felt in communities, classrooms, and boardrooms across Africa and beyond. Hear it from the changemakers we've trained.</p>
                  
-          <h4>🌟 Highlighted Testimonials</h4>
+          <h4>⭐ Highlighted Testimonials</h4>
           <div class="testimonial-grid">
             <div class="testimonial-card">
               <div class="testimonial-image">
@@ -699,18 +983,18 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
             <span style="display:block; width:90px; height:4px; background:#FFA500; margin:0.7rem auto 0 auto; border-radius:2px;"></span>
           </h2>
           <div class="partners-logos" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:2.2rem 2.5rem; align-items:center; justify-items:center; max-width:1100px; margin:0 auto; position:relative; z-index:2;">
-            <div class="partner-block"><img src="images/UNlogo.png" alt="UN" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UN</div></div>
-            <div class="partner-block"><img src="images/UNDPlogo.png" alt="UNDP" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UNDP</div></div>
-            <div class="partner-block"><img src="images/UNICEFlogo.png" alt="UNICEF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">UNICEF</div></div>
-            <div class="partner-block"><img src="images/FAO_logo.svg" alt="FAO" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">FAO</div></div>
-            <div class="partner-block"><img src="images/NRClogo.png" alt="NRC" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">NRC</div></div>
-            <div class="partner-block"><img src="images/carekenya.png" alt="CARE-Kenya" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">CARE-Kenya</div></div>
-            <div class="partner-block"><img src="images/worldvisionlogo.png" alt="World Vision" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">World Vision</div></div>
-            <div class="partner-block"><img src="images/OXFAMlogo.png" alt="OXFAM" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">OXFAM</div></div>
-            <div class="partner-block"><img src="images/savethechildren.png" alt="Save the Children UK" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">Save the Children UK</div></div>
-            <div class="partner-block"><img src="images/MSFlogo.png" alt="MSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">MSF</div></div>
-            <div class="partner-block"><img src="images/Actionagainsthungerlogo.png" alt="Action Against Hunger" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">Action Against Hunger</div></div>
-            <div class="partner-block"><img src="images/VSF LOGO.jpg" alt="VSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" /><div class="partner-label">VSF</div></div>
+            <div class="partner-block"><img src="images/UNlogo.webp" alt="UN" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">UN</div></div>
+            <div class="partner-block"><img src="images/UNDPlogo.webp" alt="UNDP" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">UNDP</div></div>
+            <div class="partner-block"><img src="images/UNICEFlogo.webp" alt="UNICEF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">UNICEF</div></div>
+            <div class="partner-block"><img src="images/FAO_logo.svg" alt="FAO" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">FAO</div></div>
+            <div class="partner-block"><img src="images/NRClogo.webp" alt="NRC" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">NRC</div></div>
+            <div class="partner-block"><img src="images/carekenya.webp" alt="CARE-Kenya" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">CARE-Kenya</div></div>
+            <div class="partner-block"><img src="images/worldvisionlogo.webp" alt="World Vision" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">World Vision</div></div>
+            <div class="partner-block"><img src="images/OXFAMlogo.webp" alt="OXFAM" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">OXFAM</div></div>
+            <div class="partner-block"><img src="images/savethechildren.webp" alt="Save the Children UK" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">Save the Children UK</div></div>
+            <div class="partner-block"><img src="images/MSFlogo.webp" alt="MSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">MSF</div></div>
+            <div class="partner-block"><img src="images/Actionagainsthungerlogo.webp" alt="Action Against Hunger" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">Action Against Hunger</div></div>
+            <div class="partner-block"><img src="images/VSF-LOGO.webp" alt="VSF" class="partner-logo" style="max-height: 60px; max-width: 120px; object-fit: contain;" loading="lazy" /><div class="partner-label">VSF</div></div>
           </div>
           <style>
             .partners-section {
@@ -826,9 +1110,24 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
       </div>
     </div>
   </div>
-  <!-- JavaScript for functionality -->
-  <script src="main.js" defer></script>
+  <!-- JavaScript for functionality - optimized loading -->
+  <script src="main.min.js" defer></script>
   <script src="theme.js" defer></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('SW registered: ', registration);
+          })
+          .catch(function(registrationError) {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
   <script>
     // Realm dropdown functionality
     function toggleRealm(realmNumber) {
@@ -923,5 +1222,21 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
         });
     });
   </script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+
+

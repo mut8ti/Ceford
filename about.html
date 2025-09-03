@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
     (function() {
       try {
@@ -98,35 +104,38 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
   <style>
     :root {
       --primary: #008080;
       --secondary: #f5f5dc;
       --accent: #FFA500;
       --accent-alt: #FFFF00;
+      --text: #000000;
+      --title: #0066cc;
     }
   </style>
   <style>
     /* Force same hero background in both light and dark modes */
     .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.png') !important;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.webp') !important;
       background-size: cover !important;
       background-position: center center !important;
       background-repeat: no-repeat !important;
     }
     body.dark-mode .hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.png') !important;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.webp') !important;
     }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body id="body-root" class="about-page">
   <header>
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
         <img 
-          src="images/logo final.png" 
-          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          src="images/logo-final.webp" 
+          srcset="images/logo-final.webp 1x, images/logo-final.webp 2x" 
           alt="Cefored Logo" 
           style="height: 50px; width: auto; display: block;"
           loading="lazy"
@@ -134,7 +143,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About Us</a>
@@ -145,7 +154,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <!-- Hero Section -->
-  <section class="hero full-bleed" style="min-height: 400px; height: 60vh; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.png') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 1rem;">
+  <section class="hero full-bleed" style="min-height: 400px; height: 60vh; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.webp') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 1rem;">
     <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
       <h1 style="font-size: 2.8rem; margin: 0 0 1.5rem 0; color: white; text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">About Us</h1>
       <p style="font-size: 1.3rem; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Cefored Institute of Relief and Development is a pioneering training institute leveraging the power of AI to transform learning in sectors that drive social impact.</p>
@@ -154,9 +163,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <div class="page-bordered" style="position: relative; z-index: 1;">
     <div class="page-frame-inner">
       <style>
-    /* Ensure all titles are teal */
+    /* Set text colors */
+    p, li {
+      color: var(--text) !important;
+    }
     h1, h2, h3 {
-      color: var(--primary, #008080) !important;
+      color: var(--title) !important;
     }
     
     /* Doodle Art for Dark Mode */
@@ -244,9 +256,16 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: flex !important;
       flex-direction: column !important;
       align-items: flex-start !important;
-      border: 2px solid #d32e7e !important;
+      border: 2px solid var(--title) !important;
       margin-bottom: 2rem !important;
       transition: all 0.3s ease !important;
+    }
+    .three-segments .section p,
+    .three-segments .section li {
+      color: var(--text) !important;
+    }
+    .three-segments .section h2 {
+      color: var(--title) !important;
     }
     
     /* Dark mode specific styles for three-segments - Matching site's dark theme */
@@ -263,7 +282,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     
     .dark-mode .three-segments .section h2 {
-      color: #e0e0e0 !important; /* Bright text for headings */
+      color: #fff !important; /* Bright text for headings */
       border-bottom: 1px solid #3a3f4b; /* Subtle separator */
       padding-bottom: 0.5em;
       margin-bottom: 0.8em;
@@ -271,7 +290,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     
     .dark-mode .three-segments .section p,
     .dark-mode .three-segments .section li {
-      color: #b0b0b0 !important; /* Slightly dimmer text for content */
+      color: #fff !important; /* White text for better readability */
     }
     
     .dark-mode .three-segments .section ul {
@@ -288,7 +307,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     
     .dark-mode .three-segments .section li:before {
-      content: '•';
+      content: 'â€¢';
       color: var(--accent, #d32e7e);
       position: absolute;
       left: 0.5em;
@@ -348,12 +367,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </section>
     </div>
-    <footer style="background-color: #008080;">
-      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+      </div>
     </footer>
   </div>
   <!-- Main JavaScript -->
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
       <script src="theme.js" defer></script>
   <script>
     // Mobile Menu Toggle (match index.html behavior)
@@ -367,5 +388,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       }
     });
   </script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

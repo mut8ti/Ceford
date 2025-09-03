@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -41,11 +47,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How AI is Transforming Crisis Response - CEFORED Blog</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
   <style>
     :root {
       --primary: #008080;
@@ -324,11 +330,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #FFD700;
     }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body id="body-root" class="doodle-bg">
   <header>
-    <div style="display: flex; align-items: center;"><img src="images/logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">🌙</button>
+    <div style="display: flex; align-items: center;"><img src="images/logo-final.webp" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">ðŸŒ™</button>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -340,9 +347,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="blog-hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 4rem 0; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/blogbg.jpg') center/cover no-repeat fixed;">
+    <section class="blog-hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 4rem 0; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/blogbg.webp') center/cover no-repeat fixed;">
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; color: white;">
-        <span class="emoji" aria-label="AI" style="font-size: 3rem; display: block; margin-bottom: 1rem;">🧠</span>
+        <span class="emoji" aria-label="AI" style="font-size: 3rem; display: block; margin-bottom: 1rem;">ðŸ§ </span>
         <h1 style="font-size: 2.5rem; margin: 0 0 1rem 0;">How AI is Transforming Crisis Response</h1>
         <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #FFA500; font-style: italic;">
           AI is revolutionizing how the world prepares for and responds to disasters, pandemics, and humanitarian crises.
@@ -351,7 +358,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </section>
     <div class="page-frame-inner">
       <section class="blog-content-section">
-        <p>In an era of increasing global instability—from natural disasters and pandemics to armed conflicts and humanitarian crises—rapid, intelligent, and efficient responses are more crucial than ever. Artificial Intelligence (AI), once a futuristic concept, is now playing a pivotal role in transforming how the world prepares for and responds to crises. With the power to analyze massive data sets in real time, predict outcomes, and automate critical decisions, AI is revolutionizing the field of crisis response across multiple dimensions.</p>
+        <p>In an era of increasing global instabilityâ€”from natural disasters and pandemics to armed conflicts and humanitarian crisesâ€”rapid, intelligent, and efficient responses are more crucial than ever. Artificial Intelligence (AI), once a futuristic concept, is now playing a pivotal role in transforming how the world prepares for and responds to crises. With the power to analyze massive data sets in real time, predict outcomes, and automate critical decisions, AI is revolutionizing the field of crisis response across multiple dimensions.</p>
         <h2>Early Warning and Risk Assessment</h2>
         <p>One of the most significant ways AI contributes to crisis response is through early warning systems. Machine learning models can analyze satellite imagery, climate data, seismic readings, and social media patterns to predict disasters before they happen. For instance, AI algorithms are now used to forecast hurricanes, floods, and wildfires with remarkable accuracy. These predictive models give governments and humanitarian organizations precious hours or even days to mobilize resources, issue evacuation orders, and minimize casualties.</p>
         <p>In regions prone to conflict or disease outbreaks, AI systems monitor communication channels, news sources, and population movements to identify signs of emerging threats. Natural language processing (NLP) helps filter through massive amounts of multilingual text data to detect early indicators of unrest or epidemics, enabling proactive rather than reactive responses.</p>
@@ -365,10 +372,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <p>AI-powered drones have become invaluable in mapping disaster zones, particularly in areas that are inaccessible due to flooding, landslides, or conflict. These drones capture high-resolution imagery, which AI systems then analyze to identify damaged infrastructure, blocked roads, and stranded individuals.</p>
         <p>For example, after an earthquake, AI algorithms can quickly compare before-and-after images to assess structural damage and guide search-and-rescue teams. In refugee camps, AI helps monitor overcrowding and hygiene conditions to prevent disease outbreaks.</p>
         <h2>Ethical Considerations and Challenges</h2>
-        <p>While AI offers immense potential, its application in crisis response also raises ethical concerns. Issues such as data privacy, algorithmic bias, and lack of transparency must be carefully managed. Overreliance on AI could lead to decisions being made without sufficient human oversight, potentially endangering lives if systems malfunction or misinterpret data. It is therefore crucial that AI tools be used to assist—rather than replace—human judgment in high-stakes scenarios.</p>
+        <p>While AI offers immense potential, its application in crisis response also raises ethical concerns. Issues such as data privacy, algorithmic bias, and lack of transparency must be carefully managed. Overreliance on AI could lead to decisions being made without sufficient human oversight, potentially endangering lives if systems malfunction or misinterpret data. It is therefore crucial that AI tools be used to assistâ€”rather than replaceâ€”human judgment in high-stakes scenarios.</p>
         <h2>Conclusion</h2>
         <p>Artificial Intelligence is rapidly reshaping how humanity responds to crises, turning reactive strategies into proactive, data-driven solutions. From early warnings and smarter logistics to real-time decision-making and resource optimization, AI is making crisis response faster, more accurate, and more life-saving. As the technology continues to evolve, it must be guided by ethical frameworks and human-centered design to ensure that its transformative power is used for the greatest good.</p>
-        <a href="blog.html" class="blog-cta">← Back to Blog</a>
+        <a href="blog.html" class="blog-cta">â† Back to Blog</a>
       </section>
     </div>
     <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center;">
@@ -380,5 +387,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   <script src="theme.js" defer></script>
     <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

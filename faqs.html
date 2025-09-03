@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -42,11 +48,11 @@
     margin-top: 3rem;
   }
 </style>
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQs - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
 
   <style>
     /* Force teal navbar in LIGHT mode */
@@ -58,14 +64,15 @@
     html.light-mode nav a { color: #fff !important; }
     html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body id="body-root">
   <header>
     <div style="display: flex; align-items: center; gap: 12px;">
       <div style="display: flex; align-items: center; background: rgba(255,255,255,0.9); padding: 6px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
         <img 
-          src="images/logo final.png" 
-          srcset="images/logo final.png 1x, images/logo final.png 2x" 
+          src="images/logo-final.webp" 
+          srcset="images/logo-final.webp 1x, images/logo-final.webp 2x" 
           alt="Cefored Logo" 
           style="height: 50px; width: auto; display: block;"
           loading="lazy"
@@ -73,7 +80,7 @@
       </div>
       <strong style="font-size: 1.4rem; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3);">CEFORED Institute</strong>
     </div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
     <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -146,7 +153,7 @@
     min-height: 300px;
     height: 40vh;
     position: relative;
-    background: url('images/faqbg.jpg') no-repeat center center;
+    background: url('images/faqbg.webp') no-repeat center center;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -342,7 +349,7 @@
     border-top: 2.5px solid #444 !important;
   }
   .faq-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('images/faqbg.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('images/faqbg.webp') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 450px;
@@ -377,7 +384,7 @@
     text-shadow: 0 1px 4px #000;
   }
   #faq-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('images/faqbg.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('images/faqbg.webp') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     height: 450px;
@@ -629,7 +636,7 @@
   }
   </style>
 
-  <script src="main.js" defer></script>
+  <script src="main.v1.js" defer></script>
   <script>
     // Testimonials Carousel Class Definition
     class TestimonialsCarousel {
@@ -716,7 +723,7 @@
 
         if (!isOpen) {
           answer.style.display = 'block';
-          icon.textContent = '–';
+          icon.textContent = 'â€“';
           } else {
             answer.style.display = 'none';
             icon.textContent = '+';
@@ -738,7 +745,7 @@
           <div class="testimonials-carousel">
             <div class="testimonial-slide active" data-slide="0">
               <div class="testimonial-content">
-                <div class="quote-icon">❝</div>
+                <div class="quote-icon">"</div>
                 <blockquote>
                   "CEFORED's AI-driven logistics program transformed our supply chain operations. The practical approach and real-world applications made all the difference. Our efficiency improved by 40% within three months."
                 </blockquote>
@@ -753,7 +760,7 @@
 
             <div class="testimonial-slide" data-slide="1">
               <div class="testimonial-content">
-                <div class="quote-icon">❝</div>
+                <div class="quote-icon">"</div>
                 <blockquote>
                   "The humanitarian relief training was exactly what our NGO needed. CEFORED's expertise in crisis management and AI applications helped us respond more effectively to emergencies."
                 </blockquote>
@@ -768,7 +775,7 @@
 
             <div class="testimonial-slide" data-slide="2">
               <div class="testimonial-content">
-                <div class="quote-icon">❝</div>
+                <div class="quote-icon">"</div>
                 <blockquote>
                   "As a healthcare professional, the digital transformation course opened my eyes to how AI can enhance patient care. The instructors were industry experts who truly understand the challenges we face."
                 </blockquote>
@@ -783,7 +790,7 @@
 
             <div class="testimonial-slide" data-slide="3">
               <div class="testimonial-content">
-                <div class="quote-icon">❝</div>
+                <div class="quote-icon">"</div>
                 <blockquote>
                   "The project management certification from CEFORED gave me the skills and confidence to lead complex initiatives. The AI integration aspects were particularly valuable for modern project delivery."
                 </blockquote>
@@ -798,7 +805,7 @@
 
             <div class="testimonial-slide" data-slide="4">
               <div class="testimonial-content">
-                <div class="quote-icon">❝</div>
+                <div class="quote-icon">"</div>
                 <blockquote>
                   "CEFORED's business management program helped our startup scale efficiently. The AI-driven insights and strategic frameworks they taught us were game-changing for our growth trajectory."
                 </blockquote>
@@ -850,5 +857,20 @@
   </footer>
   
   <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
+

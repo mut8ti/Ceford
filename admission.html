@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -26,19 +32,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corporate Training - CEFORED Institute of Relief</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  </head>
+    <script src='js/error-handler.js'></script>
+</head>
 <body id="body-root">
   <header>
-    <div style="display: flex; align-items: center;"><img src="logo%20final.png" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
+    <div style="display: flex; align-items: center;"><img src="logo-final.webp" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em; vertical-align: middle;" /><strong>CEFORED Institute</strong></div>
     
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
 <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -48,7 +55,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="contact.html">Contact Us</a>
     </nav>
   </header>
-  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('businessmgmt.jpg') center/cover no-repeat; min-height: 180px; height: 28vh;">
+  <section class="hero" style="background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('businessmgmt.webp') center/cover no-repeat; min-height: 180px; height: 28vh;">
     <h1>Corporate Training</h1>
     <p>Empowering organizations with tailored, AI-driven professional development for teams and leaders.</p>
   </section>
@@ -56,7 +63,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <section class="program-section">
     <h2>Corporate Training at CEFORED</h2>
     <p class="overview">
-      Customized training solutions for NGOs, businesses, and government agencies—delivered by Africa's leading AI-powered institute.
+      Customized training solutions for NGOs, businesses, and government agenciesâ€”delivered by Africa's leading AI-powered institute.
     </p>
 
     <div class="card">
@@ -136,6 +143,21 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     });
   </script>
   <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 </html> 
+

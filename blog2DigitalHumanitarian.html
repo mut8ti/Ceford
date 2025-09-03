@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Security Meta Tags -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Feature-Policy" content="geolocation 'none'; microphone 'none'; camera 'none'">
   <script>
   // Immediately apply theme before any rendering happens
   (function() {
@@ -41,11 +47,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 
   
   <!-- Theme loader - must be in head with defer to prevent flash -->
-  <script src="js/theme.js" defer></script>
+  <script src="js/theme.v1.js" defer></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Digital Tools for Modern Humanitarian Work - CEFORED Blog</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.min.v1.css">
   <style>
     :root {
       --primary: #008080;
@@ -324,11 +330,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       color: #FFD700;
     }
   </style>
+  <script src='js/error-handler.js'></script>
 </head>
 <body id="body-root" class="doodle-bg">
   <header>
-    <div style="display: flex; align-items: center;"><img src="images/logo%20final.png" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">🌙</button>
+    <div style="display: flex; align-items: center;"><img src="images/logo-final.webp" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);" onclick="theme.toggle()">ðŸŒ™</button>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
@@ -340,9 +347,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </nav>
   </header>
   <div class="page-bordered">
-    <section class="blog-hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 4rem 0; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/tek4.png') center/cover no-repeat fixed;">
+    <section class="blog-hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 4rem 0; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/tek4.webp') center/cover no-repeat fixed;">
       <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; color: white;">
-        <span class="emoji" aria-label="Digital Tools" style="font-size: 3rem; display: block; margin-bottom: 1rem;">📲</span>
+        <span class="emoji" aria-label="Digital Tools" style="font-size: 3rem; display: block; margin-bottom: 1rem;">ðŸ“²</span>
         <h1 style="font-size: 2.5rem; margin: 0 0 1rem 0;">Digital Tools for Modern Humanitarian Work</h1>
         <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: #FFA500; font-style: italic;">
           How technology is transforming fieldwork, coordination, and impact in humanitarian response.
@@ -351,9 +358,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </section>
     <div class="page-frame-inner">
       <section class="blog-content-section">
-        <p>In today’s fast-paced and complex world, humanitarian work is becoming increasingly reliant on digital tools to meet the urgent needs of communities in crisis. From conflict zones and disaster-stricken areas to refugee camps and public health emergencies, technology has become a powerful ally in delivering aid faster, more efficiently, and more effectively. Digital tools are transforming how humanitarian organizations operate, coordinate, and communicate, marking a shift from traditional methods to data-driven, real-time response strategies.</p>
+        <p>In todayâ€™s fast-paced and complex world, humanitarian work is becoming increasingly reliant on digital tools to meet the urgent needs of communities in crisis. From conflict zones and disaster-stricken areas to refugee camps and public health emergencies, technology has become a powerful ally in delivering aid faster, more efficiently, and more effectively. Digital tools are transforming how humanitarian organizations operate, coordinate, and communicate, marking a shift from traditional methods to data-driven, real-time response strategies.</p>
         <h2>Enhancing Communication and Coordination</h2>
-        <p>One of the most significant advantages of digital tools is the improvement of communication among humanitarian actors. Platforms like WhatsApp, Signal, and satellite-based communication tools enable field workers, NGOs, governments, and international agencies to coordinate efforts swiftly—even in remote or unstable regions. Shared dashboards, cloud storage, and real-time messaging apps facilitate transparent decision-making and prevent duplication of efforts.</p>
+        <p>One of the most significant advantages of digital tools is the improvement of communication among humanitarian actors. Platforms like WhatsApp, Signal, and satellite-based communication tools enable field workers, NGOs, governments, and international agencies to coordinate efforts swiftlyâ€”even in remote or unstable regions. Shared dashboards, cloud storage, and real-time messaging apps facilitate transparent decision-making and prevent duplication of efforts.</p>
         <p>Additionally, platforms like ReliefWeb and Humanitarian Data Exchange (HDX) allow for easy access to critical information, such as disaster updates, situational reports, and resource availability, fostering better collaboration across agencies.</p>
         <h2>Data Collection and Analysis</h2>
         <p>Mobile data collection tools like KoboToolbox, ODK (Open Data Kit), and SurveyCTO have revolutionized how field data is gathered. These tools enable humanitarian workers to conduct needs assessments, monitor aid distribution, and track beneficiary feedback using smartphones or tablets. The data is then uploaded to centralized databases where it can be analyzed in real time.</p>
@@ -362,17 +369,17 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <p>Digital imaging technologies, especially those involving satellites and drones, have become invaluable in modern humanitarian work. Satellite imagery helps monitor droughts, deforestation, and displaced populations, while drones provide aerial views of disaster-affected areas that are otherwise inaccessible. These tools aid in damage assessment, logistics planning, and even search-and-rescue missions.</p>
         <p>For example, drones have been used to map earthquake-impacted villages, monitor flood levels, and deliver medical supplies to isolated areas. Combined with AI, these images can be analyzed for faster and more accurate situational awareness.</p>
         <h2>Digital Cash Transfers and Blockchain</h2>
-        <p>Digital financial tools, such as mobile money platforms (like M-Pesa) and blockchain technology, are changing how aid is delivered. Instead of distributing physical goods, humanitarian organizations can now provide digital cash transfers directly to recipients’ mobile wallets. This method promotes dignity, choice, and local market engagement.</p>
+        <p>Digital financial tools, such as mobile money platforms (like M-Pesa) and blockchain technology, are changing how aid is delivered. Instead of distributing physical goods, humanitarian organizations can now provide digital cash transfers directly to recipientsâ€™ mobile wallets. This method promotes dignity, choice, and local market engagement.</p>
         <p>Blockchain, in particular, ensures transparency and traceability in financial transactions, reducing fraud and improving trust among donors and beneficiaries. These innovations make humanitarian aid more flexible, accountable, and user-centered.</p>
         <h2>E-Learning and Capacity Building</h2>
         <p>Digital tools are also playing a key role in building the capacity of local responders and humanitarian workers. Online training platforms like DisasterReady and the Humanitarian Leadership Academy offer free, multilingual courses on topics such as emergency response, gender-based violence, logistics, and mental health. These resources help equip staff with the knowledge and skills needed to respond effectively, even in fast-changing crisis environments.</p>
         <p>Virtual reality (VR) and simulation tools are also being used to train aid workers through immersive, realistic experiences that improve readiness and decision-making.</p>
         <h2>Challenges and Considerations</h2>
         <p>Despite the benefits, the use of digital tools in humanitarian work comes with challenges. Data privacy, cybersecurity, and digital inclusion are pressing concerns. Vulnerable populations often lack internet access, smartphones, or digital literacy, which can lead to their exclusion. Humanitarian actors must ensure that technology is inclusive, ethical, and respects the rights and dignity of affected people.</p>
-        <p>Additionally, reliance on digital tools should never replace the human touch that defines humanitarianism. Technology should enhance—not replace—the compassion, empathy, and presence of aid workers on the ground.</p>
+        <p>Additionally, reliance on digital tools should never replace the human touch that defines humanitarianism. Technology should enhanceâ€”not replaceâ€”the compassion, empathy, and presence of aid workers on the ground.</p>
         <h2>Conclusion</h2>
         <p>Digital tools are reshaping modern humanitarian work in profound ways. They enhance coordination, improve data-driven decision-making, facilitate rapid response, and empower communities. As crises become more frequent and complex, embracing these technologies will be essential for building a more responsive, resilient, and inclusive humanitarian sector. However, their deployment must be balanced with ethical practices and a commitment to leaving no one behind.</p>
-        <a href="blog.html" class="blog-cta">← Back to Blog</a>
+        <a href="blog.html" class="blog-cta">â† Back to Blog</a>
       </section>
     </div>
     <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center;">
@@ -384,5 +391,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
   <script src="theme.js" defer></script>
     <script src="theme.js" defer></script>
+    <script>
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            console.log('Page load time:', loadTime + 'ms');
+            
+            const entries = performance.getEntriesByType('resource');
+            entries.forEach(entry => {
+                if (entry.transferSize === 0) {
+                    console.log('Loaded from cache:', entry.name);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+

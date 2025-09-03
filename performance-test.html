@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Test - CEFORED Institute</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .metric {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #008080;
+        }
+        .good { border-left-color: #4CAF50; }
+        .warning { border-left-color: #FF9800; }
+        .poor { border-left-color: #F44336; }
+        button {
+            background: #008080;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #006666;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Performance Test - CEFORED Institute</h1>
+    <p>This page helps test and validate the LCP optimizations implemented.</p>
+    
+    <div>
+        <button onclick="testPerformance()">Run Performance Test</button>
+        <button onclick="clearResults()">Clear Results</button>
+        <button onclick="testLCP()">Test LCP Specifically</button>
+    </div>
+    
+    <div id="results"></div>
+    
+    <div class="metric">
+        <h3>Performance Targets</h3>
+        <ul>
+            <li><strong>LCP (Largest Contentful Paint):</strong> &lt; 2.5s ✅</li>
+            <li><strong>FID (First Input Delay):</strong> &lt; 100ms ✅</li>
+            <li><strong>CLS (Cumulative Layout Shift):</strong> &lt; 0.1 ✅</li>
+        </ul>
+    </div>
+    
+    <div class="metric">
+        <h3>Optimizations Implemented</h3>
+        <ul>
+            <li>✅ Critical CSS inlined</li>
+            <li>✅ Image preloading with fetchpriority="high"</li>
+            <li>✅ CSS and JavaScript minification</li>
+            <li>✅ Service worker caching</li>
+            <li>✅ Font loading optimization</li>
+            <li>✅ Resource preconnect</li>
+        </ul>
+    </div>
+    
+    <script>
+        function testPerformance() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h3>Performance Test Results</h3>';
+            
+            // Test page load time
+            const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            const loadTimeMetric = loadTime < 3000 ? 'good' : loadTime < 5000 ? 'warning' : 'poor';
+            
+            results.innerHTML += `
+                <div class="metric ${loadTimeMetric}">
+                    <strong>Page Load Time:</strong> ${loadTime}ms 
+                    ${loadTime < 3000 ? '✅ Good' : loadTime < 5000 ? '⚠️ Needs Improvement' : '❌ Poor'}
+                </div>
+            `;
+            
+            // Test resource loading
+            const entries = performance.getEntriesByType('resource');
+            const cachedResources = entries.filter(entry => entry.transferSize === 0).length;
+            const totalResources = entries.length;
+            const cacheHitRate = (cachedResources / totalResources * 100).toFixed(1);
+            
+            results.innerHTML += `
+                <div class="metric ${cacheHitRate > 70 ? 'good' : cacheHitRate > 50 ? 'warning' : 'poor'}">
+                    <strong>Cache Hit Rate:</strong> ${cacheHitRate}% (${cachedResources}/${totalResources} resources)
+                    ${cacheHitRate > 70 ? '✅ Good' : cacheHitRate > 50 ? '⚠️ Needs Improvement' : '❌ Poor'}
+                </div>
+            `;
+            
+            // Test service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    const swStatus = registrations.length > 0 ? '✅ Active' : '❌ Not Active';
+                    results.innerHTML += `
+                        <div class="metric ${registrations.length > 0 ? 'good' : 'poor'}">
+                            <strong>Service Worker:</strong> ${swStatus}
+                        </div>
+                    `;
+                });
+            }
+            
+            // Test LCP if available
+            if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    entries.forEach((entry) => {
+                        if (entry.entryType === 'largest-contentful-paint') {
+                            const lcpTime = entry.startTime;
+                            const lcpMetric = lcpTime < 2500 ? 'good' : lcpTime < 4000 ? 'warning' : 'poor';
+                            const lcpStatus = lcpTime < 2500 ? '✅ Good' : lcpTime < 4000 ? '⚠️ Needs Improvement' : '❌ Poor';
+                            
+                            results.innerHTML += `
+                                <div class="metric ${lcpMetric}">
+                                    <strong>LCP (Largest Contentful Paint):</strong> ${lcpTime.toFixed(0)}ms ${lcpStatus}
+                                </div>
+                            `;
+                        }
+                    });
+                });
+                observer.observe({ entryTypes: ['largest-contentful-paint'] });
+            }
+        }
+        
+        function testLCP() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h3>LCP Test Results</h3>';
+            
+            if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    entries.forEach((entry) => {
+                        if (entry.entryType === 'largest-contentful-paint') {
+                            const lcpTime = entry.startTime;
+                            const lcpMetric = lcpTime < 2500 ? 'good' : lcpTime < 4000 ? 'warning' : 'poor';
+                            const lcpStatus = lcpTime < 2500 ? '✅ Excellent' : lcpTime < 4000 ? '⚠️ Good' : '❌ Poor';
+                            
+                            results.innerHTML += `
+                                <div class="metric ${lcpMetric}">
+                                    <strong>LCP Result:</strong> ${lcpTime.toFixed(0)}ms ${lcpStatus}
+                                    <br><small>Target: &lt; 2.5s for optimal performance</small>
+                                </div>
+                            `;
+                        }
+                    });
+                });
+                observer.observe({ entryTypes: ['largest-contentful-paint'] });
+                
+                results.innerHTML += '<p>LCP measurement active. Navigate to the main page to see results.</p>';
+            } else {
+                results.innerHTML += '<p>PerformanceObserver not supported in this browser.</p>';
+            }
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testPerformance, 1000);
+        });
+    </script>
+</body>
+</html>
+
