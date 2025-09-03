@@ -1,17 +1,7 @@
 // Initialize Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyB__VrarOe_CFfI7hKL5jFsEni1Lh3Lnqs",
-  authDomain: "cefored-institute.firebaseapp.com",
-  projectId: "cefored-institute",
-  storageBucket: "cefored-institute.firebasestorage.app",
-  messagingSenderId: "460320160628",
-  appId: "1:460320160628:web:614f9decdecbdfb50a4a21",
-  measurementId: "G-HMTSZWL569"
-};
+import firebaseConfig from './config.js';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
