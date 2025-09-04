@@ -1114,7 +1114,11 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
   <script src="main.min.js" defer></script>
   <script src="theme.js" defer></script>
   
-  <!-- Service Worker Registration -->
+  <!-- Cleanup: Unregister any existing service workers and clear caches -->
+  <script src="js/unregister-sw.js"></script>
+  
+  <!-- Service Worker Registration - DISABLED -->
+  <!-- 
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
@@ -1128,6 +1132,7 @@ Empowering leaders in logistics, business, health, humanitarian aid, and digital
       });
     }
   </script>
+  -->
   <script>
     // Realm dropdown functionality
     function toggleRealm(realmNumber) {
