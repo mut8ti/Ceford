@@ -50,7 +50,6 @@ nav a.active, nav a:hover {
    Hero Section - Optimized for LCP
    ========================= */
 .hero {
-  background-image: url('images/about1.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
