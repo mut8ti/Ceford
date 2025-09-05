@@ -37,6 +37,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Featured Blog Posts - CEFORED Institute</title>
   <link rel="stylesheet" href="styles.min.v1.css">
+  <!-- Unified Navbar CSS -->
+  <link rel="stylesheet" href="css/navbar.css">
   <style>
     :root {
       --primary: #008080;
@@ -622,17 +624,22 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
 </head>
   <body id="body-root" class="doodle-bg">
   <header>
-    <div style="display: flex; align-items: center;"><img src="logo-final.webp" alt="Cefored Logo" /><strong>CEFORED Institute</strong></div>
-    
-    <nav>
+    <div class="navbar-brand">
+      <div class="navbar-logo-container">
+        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
+      </div>
+      <strong class="navbar-title">CEFORED Institute</strong>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="programs.html">Programs</a>
       <a href="faqs.html">FAQs</a>
       <a href="corporatetraining.html">Corporate Training</a>
       <a href="contact.html">Contact Us</a>
-      <a href="blog.html" class="active">Blog</a>
     </nav>
+    <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
   <div class="page-bordered">
     <section style="min-height: 300px; background: #4a6fa5 url('images/blogbg.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; position: relative; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0;">

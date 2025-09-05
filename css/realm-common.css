@@ -1,0 +1,283 @@
+/* CEFORED Realm Pages - Consolidated Styling */
+
+:root {
+  --primary: #008080;
+  --secondary: #f5f5dc;
+  --accent: #FFA500;
+  --accent-alt: #FFFF00;
+}
+
+html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
+html { visibility: hidden; }
+html.dark-mode, html.light-mode { visibility: visible; }
+
+/* Header styling removed - using unified navbar.css instead */
+
+/* Footer styling for both themes */
+footer {
+  background: #008080 !important;
+  color: #fff !important;
+  text-align: center;
+  padding: 1rem;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  left: 0;
+  right: 0;
+  position: relative;
+  margin-top: 2rem;
+}
+
+footer div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Light mode styles */
+body {
+  background-color: var(--secondary);
+  color: #333;
+}
+
+body.dark-mode {
+  --primary: #e0e0e0;
+  --secondary: #181a20;
+  --accent: #FFD700;
+  --accent-alt: #FFA500;
+  background: #181a20;
+  color: #e0e0e0;
+}
+
+body.dark-mode footer {
+  background: #23242b !important;
+  color: #e0e0e0 !important;
+}
+
+body.dark-mode .program-section, 
+body.dark-mode .faq-section, 
+body.dark-mode .main-content, 
+body.dark-mode .card, 
+body.dark-mode .collapsible, 
+body.dark-mode .realm-card, 
+body.dark-mode .section, 
+body.dark-mode .why-cefored {
+  background: #23242b !important;
+  color: #fff !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+}
+
+/* Base hero styling - background images will be set per page */
+.hero {
+  position: relative;
+  width: 100vw; 
+  margin-left: calc(50% - 50vw); 
+  margin-right: calc(50% - 50vw); 
+  left: 0; 
+  right: 0; 
+  min-height: 300px; 
+  height: 45vh; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+}
+
+/* Hero text styling */
+.hero-content {
+  position: relative; 
+  z-index: 2; 
+  text-align: center; 
+  padding: 0 1rem; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  width: 100%;
+}
+
+.hero h1 {
+  color: #fff; 
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000; 
+  margin: 0 0 1.2rem 0; 
+  font-size: 2.8rem; 
+  font-weight: 800; 
+  letter-spacing: 0.5px; 
+  line-height: 1.2;
+}
+
+.hero p {
+  color: #fff; 
+  text-shadow: 0 2px 8px #000, 0 1px 2px #000; 
+  margin: 0; 
+  font-size: 1.5rem; 
+  font-weight: 500; 
+  line-height: 1.4;
+}
+
+/* CTA Button styling */
+body.dark-mode .cta-button {
+  background: var(--accent);
+  color: #23242b;
+  border: none;
+  box-shadow: 0 2px 8px #000;
+}
+body.dark-mode .cta-button:hover {
+  background: var(--accent-alt);
+  color: #23242b;
+}
+
+/* Navigation styling */
+body.dark-mode nav a {
+  color: #fff;
+}
+body.dark-mode nav a.active, body.dark-mode nav a:hover {
+  color: var(--accent);
+}
+
+/* Accordion styling */
+body.dark-mode .accordion .accordion-item,
+body.dark-mode .accordion-body {
+  background-color: #23242b !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+body.dark-mode .accordion-header {
+  background-color: #23242b !important;
+  color: #fff !important;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid #444 !important;
+}
+body.dark-mode .accordion-header:hover {
+  background-color: var(--accent) !important;
+  color: #23242b !important;
+}
+body.dark-mode .accordion-body ul li,
+body.dark-mode .accordion-body ul {
+  color: #fff !important;
+}
+
+/* Section heading styling */
+.section-heading {
+  color: inherit;
+}
+
+/* CTA Button base styling */
+.cta-button {
+  margin-top: 1rem; 
+  display: inline-block; 
+  background-color: #008080; 
+  color: white; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  text-decoration: none; 
+  font-weight: bold; 
+  transition: all 0.3s ease;
+}
+
+/* Navigation link effects */
+nav a {
+  position: relative;
+  transition: color 0.2s;
+}
+nav a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity 0.2s, transform 0.2s;
+  border-radius: 2px;
+}
+nav a:hover::after, nav a.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Program section styling */
+.program-section {
+    background-color: var(--secondary);
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+  .program-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .program-section .overview {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+/* Card styling */
+.card {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-left: 5px solid var(--accent);
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  color: #000000;
+}
+
+/* Section heading styling */
+.section-heading {
+  color: inherit;
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+/* Accordion styling */
+.accordion .accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+}
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    background-color: #008080; /* Teal background */
+    color: white;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    margin: 0.5rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.accordion-header:hover {
+    background-color: #009999; /* Lighter teal on hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.accordion-body {
+    display: none;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+}
+.accordion-body ul {
+    padding-left: 1rem;
+    list-style-type: disc;
+}
+
+/* Dark mode overrides for cards and accordions */
+body.dark-mode .card,
+body.dark-mode .accordion-body {
+color: #ffffff !important;
+}

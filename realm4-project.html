@@ -23,12 +23,6 @@
     }
   })();
 </script>
-<style>
-html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-color 0.3s; }
-
-  html { visibility: hidden; }
-  html.dark-mode, html.light-mode { visibility: visible; }
-</style>
 
   
   
@@ -38,16 +32,32 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>REALM 4: AI in Project Management - CEFORED Institute of Relief</title>
   <link rel="stylesheet" href="styles.min.v1.css">
+  <link rel="stylesheet" href="css/realm-common.css">
+  <!-- Unified Navbar CSS - loads last to override other styles -->
+  <link rel="stylesheet" href="css/navbar.css">
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-    <script src='js/error-handler.js'></script>
+  <style>
+    /* Realm-specific hero background - overrides any CSS file conflicts */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('images/realm4bg.webp') center/cover no-repeat !important;
+    }
+    body.dark-mode .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('images/realm4bg.webp') center/cover no-repeat !important;
+    }
+  </style>
+  <script src='js/error-handler.js'></script>
 </head>
-<body id="body-root">
-  <header style="background-color: #008080;">
-    <div style="display: flex; align-items: center;"><img src="images/logo-final.webp" alt="Cefored Logo" style="height: 38px; width: auto; display: block; margin-right: 0.7em;" /><strong>CEFORED Institute</strong></div>
-    
-    <button id="theme-toggle" aria-label="Toggle dark/light mode" style="margin-left:auto; background:none; border:none; font-size:1.7rem; cursor:pointer; color:var(--accent);">ðŸŒ™</button>
-<nav>
+<body id="body-root" class="realm4">
+  <header>
+    <div class="navbar-brand">
+      <div class="navbar-logo-container">
+        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
+      </div>
+      <strong class="navbar-title">CEFORED Institute</strong>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+    <nav id="main-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="programs.html">Programs</a>
@@ -55,12 +65,13 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <a href="corporatetraining.html">Corporate Training</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+    <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
   <div class="page-bordered">
-    <section class="hero" style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; min-height: 300px; height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/projectbg.webp') center/cover no-repeat fixed;">
-      <div style="position: relative; z-index: 2; text-align: center; padding: 0 1rem; max-width: 1200px; margin: 0 auto; width: 100%;">
-        <h1 style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0 0 1.2rem 0; font-size: 2.8rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1.2;">REALM 4: AI in Project Management</h1>
-        <p style="color: #fff; text-shadow: 0 2px 8px #000, 0 1px 2px #000; margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;">Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.</p>
+    <section class="hero">
+      <div>
+        <h1>REALM 4: AI in Project Management</h1>
+        <p>Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.</p>
       </div>
     </section>
 
@@ -87,7 +98,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 3 weeks</li>
                 <li><strong>Course Fee:</strong> $470</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
+              <a href="contact.html" class="cta-button">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 3 -->
@@ -100,7 +111,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 3 weeks</li>
                 <li><strong>Course Fee:</strong> $450</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
+              <a href="contact.html" class="cta-button">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 2 -->
@@ -113,7 +124,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $490</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
+              <a href="contact.html" class="cta-button">Apply Now</a>
             </div>
           </div>
           <!-- COURSE 5 -->
@@ -126,202 +137,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <li><strong>Duration:</strong> 4 weeks</li>
                 <li><strong>Course Fee:</strong> $480</li>
               </ul>
-              <a href="contact.html" class="cta-button" style="margin-top:1rem; display:inline-block; background-color: #008080; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Apply Now</a>
+              <a href="contact.html" class="cta-button">Apply Now</a>
             </div>
           </div>
         </div>
       </section>
     </div>
-    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-      <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
-    </div>
-  </footer>
+    <footer>
+      <div>
+        <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
   </div>
-  <style>
-  nav a {
-    position: relative;
-    transition: color 0.2s;
-  }
-  nav a::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -4px;
-    height: 2px;
-    background: var(--accent);
-    opacity: 0;
-    transform: scaleX(0);
-    transition: opacity 0.2s, transform 0.2s;
-    border-radius: 2px;
-  }
-  nav a:hover::after, nav a.active::after {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  .program-section {
-    background-color: var(--secondary);
-    padding: 2rem;
-    max-width: 1000px;
-    margin: auto;
-  }
-  .program-section h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    text-align: center;
-  }
-  .program-section .overview {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-  .card {
-    background: white;
-    padding: 1rem 1.5rem;
-    border-left: 5px solid var(--accent);
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    color: #000000;
-  }
-  .accordion-body {
-    color: #000000;
-  }
-  body.dark-mode .card,
-  body.dark-mode .accordion-body {
-    color: #ffffff !important;
-  }
-  .section-heading {
-    font-size: 1.5rem;
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-  .accordion .accordion-item {
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background-color: white;
-  }
-  .accordion-header {
-    width: 100%;
-    text-align: left;
-    background-color: #008080;
-    color: white;
-    padding: 1rem;
-    border: none;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 6px 6px 0 0;
-    margin: 0.5rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-  }
-  .accordion-header:hover {
-    background-color: #009999;
-    color: white;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  }
-  .accordion-body {
-    display: none;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ccc;
-  }
-  .accordion-body ul {
-    padding-left: 1rem;
-    list-style-type: disc;
-  }
-  
-  /* Dark mode styles */
-  body.dark-mode {
-    --primary: #e0e0e0;
-    --secondary: #181a20;
-    --accent: #FFD700;
-    --accent-alt: #FFA500;
-    background: #181a20;
-    color: #e0e0e0;
-  }
-  body.dark-mode header, body.dark-mode footer {
-    background: #23242b !important;
-    color: #e0e0e0 !important;
-  }
-  body.dark-mode .hero, body.dark-mode .hero-content, body.dark-mode .program-section, 
-  body.dark-mode .faq-section, body.dark-mode .main-content, body.dark-mode .card, 
-  body.dark-mode .collapsible, body.dark-mode .realm-card, body.dark-mode .section, 
-  body.dark-mode .why-cefored {
-    background: #23242b !important;
-    color: #fff !important;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-  }
-  body.dark-mode .hero {
-    position: relative;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('images/projectbg.webp') center/cover no-repeat !important;
-  }
-  body.dark-mode .hero .hero-dark-overlay {
-    display: block;
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.68);
-    z-index: 1;
-    border-radius: inherit;
-  }
-  .hero .hero-dark-overlay { display: none; }
-  body.dark-mode .hero > *:not(.hero-dark-overlay) { position: relative; z-index: 2; }
-  body.dark-mode .cta-button {
-    background: var(--accent);
-    color: #23242b;
-    border: none;
-    box-shadow: 0 2px 8px #000;
-  }
-  body.dark-mode .cta-button:hover {
-    background: var(--accent-alt);
-    color: #23242b;
-  }
-  body.dark-mode nav a {
-    color: #fff;
-  }
-  body.dark-mode nav a.active, body.dark-mode nav a:hover {
-    color: var(--accent);
-  }
-  body.dark-mode .accordion .accordion-item,
-  body.dark-mode .accordion-body {
-    background-color: #23242b !important;
-    color: #fff !important;
-    border-color: #444 !important;
-  }
-  body.dark-mode .accordion-header {
-    background-color: #23242b !important;
-    color: #fff !important;
-    border-radius: 6px 6px 0 0;
-    border-bottom: 1px solid #444 !important;
-  }
-  body.dark-mode .accordion-header:hover {
-    background-color: var(--accent) !important;
-    color: #23242b !important;
-  }
-  body.dark-mode .accordion-body ul li,
-  body.dark-mode .accordion-body ul {
-    color: #fff !important;
-  }
-  body.dark-mode .accordion-header {
-    background-color: #23242b !important;
-    color: #fff !important;
-    border-radius: 6px 6px 0 0;
-    border-bottom: 1px solid #444 !important;
-  }
-  body.dark-mode .accordion-header:hover {
-    background-color: var(--accent) !important;
-    color: #23242b !important;
-  }
-  body.dark-mode .accordion-body ul li,
-  body.dark-mode .accordion-body ul {
-    color: #fff !important;
-  }
-  </style>
+
   <script src="main.v1.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
