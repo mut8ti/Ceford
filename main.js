@@ -8,36 +8,55 @@ navLinks.forEach(link => {
   }
 });
 
-// // Contact form validation and message
-// const contactForm = document.getElementById('contactForm');
-// if (contactForm) {
-//   // Listen for form submission
-//   contactForm.addEventListener('submit', function(e) {
-//     e.preventDefault(); // Prevent default form submission
-//     // Get form field values
-//     const name = document.getElementById('name').value.trim();
-//     const email = document.getElementById('email').value.trim();
-//     const message = document.getElementById('message').value.trim();
-//     const formMessage = document.getElementById('formMessage');
-//     // Check for empty fields
-//     if (!name || !email || !message) {
-//       formMessage.textContent = 'Please fill in all fields.';
-//       formMessage.style.color = 'red';
-//       return;
-//     }
-//     // Simple email validation
-//     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     if (!emailPattern.test(email)) {
-//       formMessage.textContent = 'Please enter a valid email address.';
-//       formMessage.style.color = 'red';
-//       return;
-//     }
-//     // Show success message and reset form
-//     formMessage.textContent = 'Thank you for contacting us! We will get back to you soon.';
-//     formMessage.style.color = 'green';
-//     contactForm.reset();
-//   });
-// }
+// Mobile Menu Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const mainNav = document.getElementById('main-nav');
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+
+  if (mainNav && mobileMenuToggle) {
+    // Toggle mobile menu
+    mobileMenuToggle.addEventListener('click', function() {
+      mainNav.classList.toggle('mobile-menu-open');
+
+      // Update aria attributes for accessibility
+      const isOpen = mainNav.classList.contains('mobile-menu-open');
+      mobileMenuToggle.setAttribute('aria-expanded', isOpen);
+      mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    // Close mobile menu when clicking on nav links
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mainNav.classList.contains('mobile-menu-open')) {
+          mainNav.classList.remove('mobile-menu-open');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+        }
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = mainNav.contains(event.target);
+      const isClickOnToggle = mobileMenuToggle.contains(event.target);
+
+      if (!isClickInsideNav && !isClickOnToggle && mainNav.classList.contains('mobile-menu-open')) {
+        mainNav.classList.remove('mobile-menu-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+    });
+
+    // Close mobile menu on window resize if screen becomes larger
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && mainNav.classList.contains('mobile-menu-open')) {
+        mainNav.classList.remove('mobile-menu-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+    });
+  }
+});
 
 // Collapsible program boxes for programs.html
 const collapsibles = document.querySelectorAll('.collapsible-title');
@@ -80,17 +99,3 @@ collapsibles.forEach(title => {
   // On load, set theme from localStorage
   setTheme(localStorage.getItem('theme') || 'light');
 })();
-
-// Close mobile menu on nav link click (ensures menu collapses after navigation)
-document.addEventListener('DOMContentLoaded', function() {
-  const mainNav = document.getElementById('main-nav') || document.querySelector('header nav');
-  if (!mainNav) return;
-  const isMobile = () => window.matchMedia('(max-width: 850px)').matches;
-  mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (mainNav.classList.contains('mobile-menu-open') || isMobile()) {
-        mainNav.classList.remove('mobile-menu-open');
-      }
-    });
-  });
-}); 

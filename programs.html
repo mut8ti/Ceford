@@ -183,35 +183,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     html.light-mode nav a { color: #fff !important; }
     html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
-  </style>
+
   <style>
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
     }
-    body { padding-top: 80px; }
-    nav a:hover::after, nav a.active::after { opacity: 1; transform: scaleX(1); }
-    nav a:hover { color: var(--accent); }
-    body.dark-mode nav a { color: #fff !important; }
-    body.dark-mode nav a.active, body.dark-mode nav a:hover { color: var(--accent) !important; }
-    body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
-    @media (max-width: 850px) {
-      nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--primary); padding: 1rem; flex-direction: column; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; }
-      nav.mobile-menu-open { display: flex !important; }
-      nav a { margin: 0.5rem 0; padding: 0.5rem 1rem; width: 100%; text-align: center; }
-      #mobile-menu-toggle { display: block; }
-      body.dark-mode nav { background-color: #23242b; }
-    }
+
+    /* Remove duplicate header positioning - navbar.css handles this */
   </style>
   <script src='js/error-handler.js'></script>
 </head>
@@ -469,6 +448,6 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
             });
         });
     </script>
+  </div>
 </body>
-</html> 
-
+</html>
