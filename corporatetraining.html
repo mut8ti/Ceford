@@ -211,7 +211,7 @@
       background: #181a20;
       color: #e0e0e0;
     }
-    html.dark-mode header, html.dark-mode nav { background: #23242b !important; color: #fff !important; }
+    body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
     html.dark-mode .hero-content, html.dark-mode .program-section, html.dark-mode .faq-section, html.dark-mode .main-content, html.dark-mode .card, html.dark-mode .collapsible, html.dark-mode .realm-card, html.dark-mode .section {
       background: #23242b;
       color: #fff;
@@ -829,6 +829,15 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mainNav = document.getElementById('main-nav');
+      if (menuToggle && mainNav) {
+        menuToggle.addEventListener('click', function() {
+          mainNav.classList.toggle('mobile-menu-open');
+        });
+      }
+      
       // FAQ-style dropdown functionality
       document.querySelectorAll('.faq-question').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -855,7 +864,20 @@
     });
   </script>
   
+  <script src="main.v1.js" defer></script>
   <script src="js/theme.v1.js" defer></script>
+  <script>
+    // Active link highlighting
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('nav a');
+      const currentPage = window.location.pathname.split('/').pop();
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {

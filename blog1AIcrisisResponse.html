@@ -72,14 +72,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
     }
-    header {
-      background: var(--primary);
-      color: #fff;
-      padding: 1.2rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    /* Header positioning handled by navbar.css - only add non-conflicting styles */
     header img {
       height: 38px;
       margin-right: 0.7em;
@@ -294,7 +287,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background: #181a20 !important;
       color: #e0e0e0 !important;
     }
-    html.dark-mode header, html.dark-mode footer {
+    body.dark-mode header, body.dark-mode footer {
       background: #23242b !important;
       color: #e0e0e0 !important;
     }
@@ -392,8 +385,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </footer>
   </div>
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
-  <script src="theme.js" defer></script>
-    <script src="theme.js" defer></script>
+    <script src="js/theme.js" defer></script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {

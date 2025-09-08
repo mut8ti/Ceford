@@ -1,4 +1,4 @@
-/* CSS Reset for navbar positioning */
+/* CSS Reset for navbar positioning - v2.0 simplified mobile */
 * {
   box-sizing: border-box;
 }
@@ -13,23 +13,16 @@ html {
   padding: 0 !important;
 }
 
-/* Unified Navbar Styles - High Specificity to Override */
+/* Unified Navbar Styles - Static positioning, consistent styling */
 body header {
   background: var(--primary) !important;
   color: white !important;
-  padding: 0.75rem 2rem !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 1000 !important;
+  padding: 1rem 2rem !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-  min-height: 80px !important;
   box-sizing: border-box !important;
-  flex-wrap: wrap !important;
   margin: 0 !important;
 }
 
@@ -75,25 +68,36 @@ body #main-nav {
 
 body #main-nav a {
   color: white !important;
+  margin-left: 2rem !important;
   text-decoration: none !important;
-  padding: 0.75rem 1rem !important;
-  border-radius: 6px !important;
   font-weight: 500 !important;
-  transition: all 0.3s ease !important;
   position: relative !important;
-  font-size: 0.95rem !important;
-  white-space: nowrap !important;
+  transition: color 0.2s !important;
 }
 
-body #main-nav a:hover {
-  background-color: rgba(255,255,255,0.15) !important;
-  color: var(--accent) !important;
+body #main-nav a::after {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important; 
+  right: 0 !important; 
+  bottom: -4px !important;
+  height: 2px !important;
+  background: var(--accent) !important;
+  opacity: 0 !important;
+  transform: scaleX(0) !important;
+  transition: opacity 0.2s, transform 0.2s !important;
+  border-radius: 2px !important;
 }
 
-body #main-nav a.active {
-  background-color: var(--accent) !important;
-  color: var(--primary) !important;
-  font-weight: 600 !important;
+body #main-nav a:hover::after, 
+body #main-nav a.active::after { 
+  opacity: 1 !important; 
+  transform: scaleX(1) !important; 
+}
+
+body #main-nav a:hover { 
+  color: var(--accent) !important; 
 }
 
 /* Theme Toggle Button */
@@ -133,43 +137,9 @@ body #mobile-menu-toggle:hover {
 }
 
 /* Mobile Responsive Styles */
-@media (max-width: 992px) {
-  body header {
-    padding: 0.75rem 1.5rem !important;
-  }
-
-  body #main-nav {
-    gap: 0.25rem !important;
-  }
-
-  body #main-nav a {
-    padding: 0.6rem 0.8rem !important;
-    font-size: 0.9rem !important;
-  }
-}
-
+/* Single mobile breakpoint - clean dropdown menu */
 @media (max-width: 768px) {
-  body header {
-    padding: 0.75rem 1rem !important;
-    min-height: 70px !important;
-    position: relative !important;
-  }
-
-  body .navbar-title {
-    font-size: 1.2rem !important;
-  }
-  
-  body .navbar-logo {
-    height: 32px !important;
-  }
-  
-  body #theme-toggle {
-    font-size: 1.5rem !important;
-    margin-left: 0 !important;
-    margin-right: 0.5rem !important;
-  }
-  
-  /* Hide desktop navigation */
+  /* Hide desktop navigation and show mobile dropdown */
   body #main-nav {
     display: none !important;
     position: absolute !important;
@@ -178,10 +148,7 @@ body #mobile-menu-toggle:hover {
     right: 0 !important;
     width: 100% !important;
     flex-direction: column !important;
-    gap: 0 !important;
     background: var(--primary) !important;
-    border-radius: 0 0 8px 8px !important;
-    overflow: hidden !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     z-index: 999 !important;
   }
@@ -191,22 +158,18 @@ body #mobile-menu-toggle:hover {
     display: flex !important;
   }
   
+  /* Clean mobile menu links */
   body #main-nav a {
     width: 100% !important;
-    text-align: left !important;
-    padding: 1rem 1.5rem !important;
-    border-radius: 0 !important;
+    text-align: center !important;
+    padding: 1rem !important;
+    margin: 0 !important;
     border-bottom: 1px solid rgba(255,255,255,0.1) !important;
     font-size: 1rem !important;
   }
   
   body #main-nav a:last-child {
     border-bottom: none !important;
-  }
-  
-  body #main-nav a:hover {
-    background-color: rgba(255,255,255,0.1) !important;
-    padding-left: 2rem !important;
   }
 
   /* Show mobile menu toggle */
@@ -215,61 +178,20 @@ body #mobile-menu-toggle:hover {
   }
 }
 
-@media (max-width: 480px) {
-  body header {
-    padding: 0.5rem 0.75rem !important;
-    min-height: 60px !important;
-  }
-
-  body .navbar-brand {
-    gap: 8px !important;
-  }
-
-  body .navbar-title {
-    font-size: 1rem !important;
-  }
-
-  body .navbar-logo {
-    height: 28px !important;
-  }
-
-  body #theme-toggle {
-    font-size: 1.3rem !important;
-    padding: 0.4rem !important;
-  }
-
-  body #mobile-menu-toggle {
-    font-size: 1.3rem !important;
-    padding: 0.4rem !important;
-  }
-}
-
 /* Dark Mode Styles */
-body.dark-mode header {
-  background: #1a1a1a !important;
-  border-bottom: 1px solid #333 !important;
+body.dark-mode header, 
+body.dark-mode nav { 
+  background: #23242b !important; 
+  color: #fff !important; 
 }
 
-body.dark-mode .navbar-logo-container {
-  background: rgba(255,255,255,0.95) !important;
+body.dark-mode nav a { 
+  color: #fff !important; 
 }
 
-body.dark-mode #main-nav {
-  background: #1a1a1a !important;
-}
-
-body.dark-mode #main-nav a {
-  color: #fff !important;
-}
-
-body.dark-mode #main-nav a:hover {
-  background-color: rgba(255,255,255,0.1) !important;
-  color: var(--accent) !important;
-}
-
-body.dark-mode #main-nav a.active {
-  background-color: var(--accent) !important;
-  color: #1a1a1a !important;
+body.dark-mode nav a.active, 
+body.dark-mode nav a:hover { 
+  color: var(--accent) !important; 
 }
 
 body.dark-mode #theme-toggle,
@@ -277,22 +199,7 @@ body.dark-mode #mobile-menu-toggle {
   color: var(--accent) !important;
 }
 
-/* Page content adjustment for fixed header */
-body {
-  padding-top: 80px !important;
-}
-
-@media (max-width: 768px) {
-  body {
-    padding-top: 70px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding-top: 60px !important;
-  }
-}
+/* No padding needed for static header */
 
 /* Prevent layout shift */
 .navbar-spacer {

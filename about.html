@@ -17,8 +17,19 @@
         } else {
           document.documentElement.classList.add('light-mode');
         }
+        // Apply to body when it's ready
+        document.addEventListener('DOMContentLoaded', function() {
+          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+          } else {
+            document.body.classList.add('light-mode');
+          }
+        });
       } catch (e) {
         document.documentElement.classList.add('light-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('light-mode');
+        });
       }
     })();
   </script>
@@ -38,15 +49,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    /* Account for fixed header */
-    body { padding-top: 80px; }
 
     nav a {
       color: white;
@@ -116,6 +120,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       --text: #000000;
       --title: #0066cc;
     }
+    
+    /* Dark mode CSS variables */
+    body.dark-mode {
+      --text: #ffffff;
+      --title: #FFD700;
+    }
   </style>
   <style>
     /* Force same hero background in both light and dark modes */
@@ -162,10 +172,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <style>
     /* Set text colors */
     p, li {
-      color: var(--text) !important;
+      color: var(--text) ;
     }
     h1, h2, h3 {
-      color: var(--title) !important;
+      color: var(--title) ;
     }
     
     /* Doodle Art for Dark Mode */
@@ -372,7 +382,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </div>
   <!-- Main JavaScript -->
   <script src="main.v1.js" defer></script>
-      <script src="theme.js" defer></script>
+      <script src="js/theme.js" defer></script>
   <script>
     // Mobile Menu Toggle (match index.html behavior)
     document.addEventListener('DOMContentLoaded', function() {

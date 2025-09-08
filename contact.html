@@ -18,8 +18,19 @@
       } else {
         document.documentElement.classList.add('light-mode');
       }
+      // Apply to body when it's ready
+      document.addEventListener('DOMContentLoaded', function() {
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.add('light-mode');
+        }
+      });
     } catch (e) {
       document.documentElement.classList.add('light-mode');
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('light-mode');
+      });
     }
   })();
 </script>
@@ -600,8 +611,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </div>
   <!-- Firebase SDKs are now imported in database.js -->
 </script>
-  <script src="main.v1.js" defer></script>
-      <script src="theme.js" defer></script>
+    <script src="main.v1.js" defer></script>
+  <script src="js/theme.js" defer></script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {
