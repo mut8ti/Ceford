@@ -106,10 +106,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background: #181a20;
       color: #e0e0e0;
     }
-    body.dark-mode header {
-      background: #008080 !important;
-      color: #fff !important;
-    }
+    /* Header styles handled by navbar.css */
     
     body.dark-mode footer {
       background: #23242b !important;
@@ -143,46 +140,13 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background: var(--accent-alt);
       color: #23242b;
     }
-    body.dark-mode nav a {
-      color: #fff;
-    }
-    body.dark-mode nav a.active, body.dark-mode nav a:hover {
-      color: var(--accent);
-    }
-    nav a {
-      position: relative;
-      transition: color 0.2s;
-    }
-    nav a::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -4px;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0;
-      transform: scaleX(0);
-      transition: opacity 0.2s, transform 0.2s;
-      border-radius: 2px;
-    }
-    nav a:hover::after, nav a.active::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
+    /* Nav link styles handled by navbar.css */
+    /* Nav link hover effects handled by navbar.css */
   </style>
 
   <!-- Theme initialization - prevents FOUC (Flash of Unstyled Content) -->
     <style>
-    /* Force teal navbar in LIGHT mode */
-    html.light-mode header,
-    html.light-mode nav {
-      background: #008080 !important;
-      color: #fff !important;
-    }
-    html.light-mode nav a { color: #fff !important; }
-    html.light-mode nav a:hover, html.light-mode nav a.active { color: var(--accent) !important; }
+    /* Light mode navbar styles handled by navbar.css */
 
   <style>
     body {
@@ -433,7 +397,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   
   <!-- JavaScript for functionality -->
   <script src="main.v1.js" defer></script>
-  <script src="js/theme.js" defer></script>
+
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {

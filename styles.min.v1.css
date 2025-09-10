@@ -404,6 +404,7 @@ body.dark-mode .contact-form-section {
 /* Collapsible Components */
 .collapsible-title {
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
     position: relative;
     padding-right: 2rem;
