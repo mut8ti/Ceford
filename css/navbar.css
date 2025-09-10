@@ -96,8 +96,8 @@ body #main-nav a.active::after {
   transform: scaleX(1) !important; 
 }
 
-body #main-nav a:hover { 
-  color: var(--accent) !important; 
+body #main-nav a:hover {
+  color: var(--accent) !important;
 }
 
 /* Theme Toggle Button */
@@ -186,12 +186,12 @@ body.dark-mode nav {
 }
 
 body.dark-mode nav a { 
-  color: #fff !important; 
+  color: #fff !important;
 }
 
 body.dark-mode nav a.active, 
 body.dark-mode nav a:hover { 
-  color: var(--accent) !important; 
+  color: var(--accent) !important;
 }
 
 body.dark-mode #theme-toggle,
