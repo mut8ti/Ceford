@@ -55,6 +55,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FAQs - CEFORED Institute of Relief</title>
+  <meta name="description" content="Find answers about programs, admissions, certificates, delivery formats, and corporate training at Cefored Institute.">
   <link rel="stylesheet" href="styles.min.v1.css">
   <!-- Unified Navbar CSS -->
   <link rel="stylesheet" href="css/navbar.css">
@@ -75,18 +76,18 @@
   <header>
     <div class="navbar-brand">
       <div class="navbar-logo-container">
-        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
+        <img src="images/logo-final.webp" alt="Cefored Institute of Relief and Development Logo" class="navbar-logo" />
       </div>
       <strong class="navbar-title">CEFORED Institute</strong>
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="programs.html">Programs</a>
-      <a href="faqs.html">FAQs</a>
-      <a href="corporatetraining.html">Corporate Training</a>
-      <a href="contact.html">Contact Us</a>
+      <a href="/"">Home</a>
+      <a href="/about"">About Us</a>
+      <a href="/programs"">Programs</a>
+      <a href="/faqs"">FAQs</a>
+      <a href="/corporatetraining"">Corporate Training</a>
+      <a href="/contact"">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
@@ -123,13 +124,13 @@
       <div class="faq-item">
         <button class="faq-question">How do I apply for admission?<span class="icon">+</span></button>
         <div class="faq-answer">
-          You can apply online via our <a href="contact.html">Contact</a> page.
+          You can apply online via our <a href="/contact"">Contact</a> page.
         </div>
       </div>
       <div class="faq-item">
         <button class="faq-question">Do you offer corporate or custom training?<span class="icon">+</span></button>
         <div class="faq-answer">
-          Yes, we provide tailored training for organizations, NGOs, and businesses. Please <a href="contact.html">contact us</a> for details.
+          Yes, we provide tailored training for organizations, NGOs, and businesses. Please <a href="/contact"">contact us</a> for details.
         </div>
       </div>
       <div class="faq-item">
@@ -141,7 +142,7 @@
       <div class="faq-item">
         <button class="faq-question">How can I get more information?<span class="icon">+</span></button>
         <div class="faq-answer">
-          Visit our <a href="contact.html">Contact Us</a> page or email us at <a href="mailto:info@cefored.com">info@cefored.com</a>.
+          Visit our <a href="/contact"">Contact Us</a> page or email us at <a href="mailto:info@cefored.com">info@cefored.com</a>.
         </div>
       </div>
     </div>
@@ -522,7 +523,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
+              -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   }
 
   .carousel-arrow:hover {
