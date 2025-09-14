@@ -10,28 +10,17 @@
   <script>
     (function() {
       try {
-        var savedTheme = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.documentElement.classList.add('dark-mode');
-        } else {
-          document.documentElement.classList.add('light-mode');
-        }
-        // Apply to body when it's ready
-        document.addEventListener('DOMContentLoaded', function() {
-          if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            document.body.classList.add('dark-mode');
-          } else {
-            document.body.classList.add('light-mode');
-          }
-        });
-      } catch (e) {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+      } else {
         document.documentElement.classList.add('light-mode');
-        document.addEventListener('DOMContentLoaded', function() {
-          document.body.classList.add('light-mode');
-        });
       }
-    })();
+    } catch (e) {
+      document.documentElement.classList.add('light-mode');
+    }
+  })();
   </script>
 
 <style>
@@ -40,65 +29,6 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   html { visibility: hidden; }
   html.dark-mode, html.light-mode { visibility: visible; }
 </style>
-
-  <style>
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    nav a {
-      color: white;
-      margin-left: 2rem;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      transition: color 0.2s;
-    }
-    nav a::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0; right: 0; bottom: -4px;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0;
-      transform: scaleX(0);
-      transition: opacity 0.2s, transform 0.2s;
-      border-radius: 2px;
-    }
-    nav a:hover::after, nav a.active::after { opacity: 1; transform: scaleX(1); }
-    nav a:hover { color: var(--accent); }
-
-    /* Dark mode adjustments matching index */
-    body.dark-mode nav a { color: #fff !important; }
-    body.dark-mode nav a.active, body.dark-mode nav a:hover { color: var(--accent) !important; }
-    body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
-
-    @media (max-width: 850px) {
-      nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0; right: 0;
-        background: var(--primary);
-        padding: 1rem;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000;
-      }
-      nav.mobile-menu-open { display: flex !important; }
-      nav a { margin: 0.5rem 0; padding: 0.5rem 1rem; width: 100%; text-align: center; }
-      #mobile-menu-toggle { display: block; }
-      body.dark-mode nav { background-color: #23242b; }
-    }
-  </style>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -112,20 +42,13 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.min.v1.css">
   <!-- Unified Navbar CSS -->
   <link rel="stylesheet" href="css/navbar.css">
+  <script src='js/navbar.js' defer></script>
   <style>
     :root {
       --primary: #008080;
       --secondary: #f5f5dc;
       --accent: #FFA500;
       --accent-alt: #FFFF00;
-      --text: #000000;
-      --title: #0066cc;
-    }
-    
-    /* Dark mode CSS variables */
-    body.dark-mode {
-      --text: #ffffff;
-      --title: #FFD700;
     }
   </style>
   <style>
@@ -152,20 +75,20 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="/"">Home</a>
-      <a href="/about"">About Us</a>
-      <a href="/programs"">Programs</a>
-      <a href="/faqs"">FAQs</a>
-      <a href="/corporatetraining"">Corporate Training</a>
-      <a href="/contact"">Contact Us</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
   <!-- Hero Section -->
   <section class="hero full-bleed" style="min-height: 400px; height: 60vh; position: relative; background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/about1.webp') no-repeat center center; background-size: cover; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 1rem;">
     <div style="position: relative; z-index: 2; max-width: 800px; margin: 0 auto;">
-      <h1 style="font-size: 2.8rem; margin: 0 0 1.5rem 0; color: white; text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">About Us</h1>
-      <p style="font-size: 1.3rem; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.7);">Cefored Institute of Relief and Development is a pioneering training institute leveraging the power of AI to transform learning in sectors that drive social impact.</p>
+      <h1 style="color: white; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); margin: 0 0 1.5rem 0;">About Us</h1>
+      <p style="color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.7); margin: 0; line-height: 1.5;">Cefored Institute of Relief and Development is a pioneering training institute leveraging the power of AI to transform learning in sectors that drive social impact.</p>
     </div>
   </section>
   <div class="page-bordered" style="position: relative; z-index: 1;">
@@ -333,14 +256,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
   </style>
 
-  <section class="main-content section" style="max-width: 900px; margin: 2.5rem auto 2rem auto;">
-    <h2><i class="fas fa-bullseye" style="color:var(--accent); margin-right:0.5em;"></i>Our Mission</h2>
+  <section class="main-content section">
+    <h2><i class="fas fa-bullseye"></i>Our Mission</h2>
     <p>To build a smarter, more resilient world through practical, AI-empowered education. We specialize in real-time, AI-enhanced training programs in logistics, business management, health systems, project management, humanitarian relief, and digital transformation.</p>
-    <h2><i class="fas fa-eye" style="color:var(--accent); margin-right:0.5em;"></i>Our Vision</h2>
+    <h2><i class="fas fa-eye"></i>Our Vision</h2>
     <p>To become Africa's most trusted institute for AI-integrated professional training that accelerates development and humanitarian impact.</p>
     <h2>Our 6 Realms of Transformation</h2>
     <p>At Cefored Institute of Relief And Development, our AI-driven vision is ignited through six powerful realms of training and innovation. These equip professionals to lead in critical sectors with cutting-edge skills and real-world solutions.</p>
-    <ul class="about-list" style="font-size:1.08rem; line-height:1.7; padding-left:1.2em;">
+    <ul class="about-list">
       <li><strong>AI in Logistics & Supply Chain Management</strong><br>Empowering supply chain professionals with AI tools to optimize procurement, inventory, fleet, and warehouse operations with excellence.</li>
       <li><strong>AI in Business Management</strong><br>Redefining business strategy through automation, intelligent analytics, and decision-making driven by AI.</li>
       <li><strong>AI in Health Management</strong><br>Revolutionizing patient care, data management, and healthcare delivery with artificial intelligence.</li>
@@ -348,10 +271,10 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       <li><strong>AI in IT & Digital Transformation</strong><br>Driving innovation through digital infrastructure, cloud, cybersecurity, and AI-powered systems.</li>
       <li><strong>AI in Humanitarian, Relief & Disaster Management</strong><br>Enhance crisis response, mapping, early warning, resource allocation and coordination with intelligent tools.</li>
     </ul>
-    <div class="about-cta" style="text-align:center; margin-top:2rem; display: flex; flex-direction: row; gap: 1rem; align-items: center; justify-content: center;">
-      <a href="/programs"" class="cta-button" style="font-size:1.1rem;">Explore Programs</a>
-      <a href="/newsletter"" class="cta-button" style="font-size:1.1rem;">Newsletter</a>
-      <a href="/blog"" class="cta-button" style="font-size:1.1rem;">Visit Our Blog</a>
+    <div class="about-cta">
+      <a href="programs.html" class="cta-button">Explore Programs</a>
+      <a href="newsletter.html" class="cta-button">Newsletter</a>
+      <a href="blog.html" class="cta-button">Visit Our Blog</a>
     </div>
   </section>
   <!-- Main Content Sections -->
@@ -375,27 +298,15 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </section>
     </div>
-    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center; margin-top: 2rem;">
-      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-        <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer>
+      <div>
+        <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
       </div>
     </footer>
   </div>
   <!-- Main JavaScript -->
-  <script src="main.v1.js" defer></script>
-      <script src="js/theme.js" defer></script>
-  <script>
-    // Mobile Menu Toggle (match index.html behavior)
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const mainNav = document.getElementById('main-nav');
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-          mainNav.classList.toggle('mobile-menu-open');
-        });
-      }
-    });
-  </script>
+  <!-- Removed main.v1.js to prevent conflicts with navbar.js -->
+      <script src="js/theme.v1.js" defer></script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {

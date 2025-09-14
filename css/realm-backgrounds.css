@@ -1,0 +1,62 @@
+/* Realm-specific background images */
+
+/* REALM 1: Logistics */
+.realm1 .hero,
+body.light-mode .realm1 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/realm1bg.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm1 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/realm1bg.webp') center/cover no-repeat fixed !important;
+}
+
+/* REALM 2: Business */
+.realm2 .hero,
+body.light-mode .realm2 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/businessmeeting.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm2 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/businessmeeting.webp') center/cover no-repeat fixed !important;
+}
+
+/* REALM 3: Health */
+.realm3 .hero,
+body.light-mode .realm3 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/bestbghealth.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm3 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/bestbghealth.webp') center/cover no-repeat fixed !important;
+}
+
+/* REALM 4: Project Management */
+.realm4 .hero,
+body.light-mode .realm4 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/realm4bg.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm4 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/realm4bg.webp') center/cover no-repeat fixed !important;
+}
+
+/* REALM 5: IT */
+.realm5 .hero,
+body.light-mode .realm5 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/realm5bg.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm5 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/realm5bg.webp') center/cover no-repeat fixed !important;
+}
+
+/* REALM 6: Humanitarian */
+.realm6 .hero,
+body.light-mode .realm6 .hero {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../images/realm6bg.webp') center/cover no-repeat fixed !important;
+}
+
+body.dark-mode .realm6 .hero {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/realm6bg.webp') center/cover no-repeat fixed !important;
+}
+

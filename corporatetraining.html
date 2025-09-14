@@ -26,10 +26,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Corporate Training & Services - CEFORED Institute</title>
-  <meta name="description" content="Tailored AI corporate training and consulting. Upskill teams in strategy, logistics, health, IT, and humanitarian operations.">
   <link rel="stylesheet" href="styles.min.v1.css">
   <!-- Unified Navbar CSS -->
   <link rel="stylesheet" href="css/navbar.css">
+  <script src='js/navbar.js' defer></script>
 
   <style>
   /* CSS Reset - Remove all spacing */
@@ -79,15 +79,14 @@
       background: url('images/businessmeeting.webp') center/cover no-repeat !important;
       background-size: cover !important;
       min-height: 270px;
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
+      width: 100%;
+      margin: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      left: 0;
-      right: 0;
+      box-sizing: border-box;
     }
     .hero.corporate-hero .hero-overlay {
       position: absolute;
@@ -212,7 +211,7 @@
       background: #181a20;
       color: #e0e0e0;
     }
-    body.dark-mode header, body.dark-mode nav { background: #23242b !important; color: #fff !important; }
+    html.dark-mode header, html.dark-mode nav { background: #23242b !important; color: #fff !important; }
     html.dark-mode .hero-content, html.dark-mode .program-section, html.dark-mode .faq-section, html.dark-mode .main-content, html.dark-mode .card, html.dark-mode .collapsible, html.dark-mode .realm-card, html.dark-mode .section {
       background: #23242b;
       color: #fff;
@@ -671,18 +670,18 @@
   <header>
     <div class="navbar-brand">
       <div class="navbar-logo-container">
-        <img src="images/logo-final.webp" alt="Cefored Institute of Relief and Development Logo" class="navbar-logo" />
+        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
       </div>
       <strong class="navbar-title">CEFORED Institute</strong>
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="/"">Home</a>
-      <a href="/about"">About Us</a>
-      <a href="/programs"">Programs</a>
-      <a href="/faqs"">FAQs</a>
-      <a href="/corporatetraining"">Corporate Training</a>
-      <a href="/contact"">Contact Us</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
@@ -716,7 +715,7 @@
         <li>AI-Driven Supply Chain Audit<br><span style="color:#1976d2;">👨‍💼 $3,000</span> (Includes AI audit report + recommendations)</li>
         <li>AI Logistics Software Implementation<br><span style="color:#1976d2;">💻 $10,000</span> (One-time fee; excludes software licenses)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
   <!-- REALM 2 -->
@@ -735,7 +734,7 @@
         <li>AI Business Intelligence Setup<br><span style="color:#1976d2;">💼 $2,500</span> (Includes analytics dashboard setup)</li>
         <li>AI-Based Business Process Automation<br><span style="color:#1976d2;">💻 $8,500</span> (Custom automation setup)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
   <!-- REALM 3 -->
@@ -755,7 +754,7 @@
         <li>AI-Powered Outbreak Prediction Report<br><span style="color:#1976d2;">📊 $3,000</span> (Custom regional forecast)</li>
         <li>Health Data Dashboard Implementation (AI-Based)<br><span style="color:#1976d2;">💻 $9,000</span> (Includes training + setup)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
   <!-- REALM 4 -->
@@ -775,7 +774,7 @@
         <li>Smart MEL Systems Setup with AI Tools<br><span style="color:#1976d2;">📊 $4,500</span> (Includes dashboard + training)</li>
         <li>AI-Powered Donor Compliance Reporting Automation<br><span style="color:#1976d2;">📁 $3,800</span> (Customized solution per donor profile)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
   <!-- REALM 5 -->
@@ -795,7 +794,7 @@
         <li>Custom AI Workflow Automation Setup<br><span style="color:#1976d2;">⚙️ $4,800</span> (Includes 3 workflows + user training)</li>
         <li>NGO Cybersecurity Shield with AI Monitoring<br><span style="color:#1976d2;">🔐 $6,000</span> (Setup + monitoring tools)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
   <!-- REALM 6 -->
@@ -815,7 +814,7 @@
         <li>Disaster Relief Logistics AI Audit<br><span style="color:#1976d2;">⚙️ $3,000</span> (Includes process recommendations + tool integration)</li>
         <li>AI Dashboards for Humanitarian Monitoring<br><span style="color:#1976d2;">📊 $5,800</span> (Includes design, deployment, and training)</li>
       </ul>
-      <a href="/contact"" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
+      <a href="contact.html" class="cta-button" style="margin-top:1.5rem;display:inline-block;">Apply Now</a>
     </div>
   </div>
     </div> <!-- Close page-frame-inner -->
@@ -830,15 +829,6 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Mobile Menu Toggle
-      const menuToggle = document.getElementById('mobile-menu-toggle');
-      const mainNav = document.getElementById('main-nav');
-      if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', function() {
-          mainNav.classList.toggle('mobile-menu-open');
-        });
-      }
-      
       // FAQ-style dropdown functionality
       document.querySelectorAll('.faq-question').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -855,7 +845,7 @@
           
           if (!isOpen) {
             answer.style.display = 'block';
-            icon.textContent = '-';
+            icon.textContent = 'â€“';
           } else {
             answer.style.display = 'none';
             icon.textContent = '+';
@@ -865,20 +855,7 @@
     });
   </script>
   
-  <script src="main.v1.js" defer></script>
   <script src="js/theme.v1.js" defer></script>
-  <script>
-    // Active link highlighting
-    document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('nav a');
-      const currentPage = window.location.pathname.split('/').pop();
-      navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-          link.classList.add('active');
-        }
-      });
-    });
-  </script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {

@@ -50,6 +50,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link rel="stylesheet" href="styles.min.v1.css">
   <!-- Unified Navbar CSS -->
   <link rel="stylesheet" href="css/navbar.css">
+  <script src='js/navbar.js' defer></script>
   <style>
     .hero.programs-hero {
       position: relative;
@@ -170,12 +171,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="/"">Home</a>
-      <a href="/about"">About Us</a>
-      <a href="/programs"">Programs</a>
-      <a href="/faqs"">FAQs</a>
-      <a href="/corporatetraining"">Corporate Training</a>
-      <a href="/contact"">Contact Us</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
@@ -395,10 +396,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </div>
   </footer>
   
-  <!-- JavaScript for functionality -->
-  <script src="main.v1.js" defer></script>
-
-    <script>
+  <!-- JavaScript for functionality - optimized loading -->
+  <!-- Removed main.v1.js to prevent conflicts with navbar.js -->    <script>
         // Performance monitoring
         window.addEventListener('load', function() {
             const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;

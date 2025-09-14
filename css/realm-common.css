@@ -281,3 +281,150 @@ body.dark-mode .card,
 body.dark-mode .accordion-body {
 color: #ffffff !important;
 }
+
+/* RESPONSIVE DESIGN FOR REALM PAGES */
+
+/* Tablet and smaller screens */
+@media (max-width: 768px) {
+  /* Fix hero section overflow and sizing */
+  .hero {
+    width: 100% !important;
+    margin: 0 !important;
+    min-height: 250px !important;
+    height: auto !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  .hero-content {
+    padding: 0 1rem !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hero-content p {
+    font-size: clamp(1rem, 3vw, 1.2rem) !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+  
+  /* Program sections responsive */
+  .program-section {
+    padding: 1rem !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .card {
+    margin: 1rem 0 !important;
+    padding: 1.5rem !important;
+    box-sizing: border-box !important;
+  }
+  
+  .card-title {
+    font-size: clamp(1.3rem, 4vw, 1.6rem) !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .section-heading {
+    font-size: clamp(1.2rem, 4vw, 1.5rem) !important;
+    margin: 1.5rem 0 1rem 0 !important;
+  }
+  
+  /* Accordion responsive */
+  .accordion-item {
+    margin: 0.5rem 0 !important;
+  }
+  
+  .accordion-header {
+    font-size: 0.95rem !important;
+    padding: 0.8rem !important;
+    text-align: left !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  .accordion-body {
+    padding: 1rem !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+  
+  .accordion-body ul {
+    padding-left: 0.8rem !important;
+  }
+  
+  .accordion-body li {
+    margin-bottom: 0.8rem !important;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .hero {
+    min-height: 200px !important;
+    padding: 0.75rem !important;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.8rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+  
+  .hero-content p {
+    font-size: 1rem !important;
+  }
+  
+  .program-section {
+    padding: 0.75rem !important;
+  }
+  
+  .card {
+    padding: 1rem !important;
+    margin: 0.75rem 0 !important;
+  }
+  
+  .card-title {
+    font-size: 1.3rem !important;
+  }
+  
+  .accordion-header {
+    font-size: 0.9rem !important;
+    padding: 0.7rem !important;
+  }
+  
+  .accordion-body {
+    padding: 0.8rem !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .accordion-body ul {
+    padding-left: 0.6rem !important;
+  }
+}
+
+/* Footer responsiveness for realm pages */
+@media (max-width: 768px) {
+  footer {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 1.5rem 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+  
+  footer div {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 1.5rem 0.75rem !important;
+  }
+}

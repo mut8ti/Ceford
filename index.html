@@ -35,13 +35,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI-Driven Education & Training | Cefored Institute</title>
-  <meta name="description" content="Join Cefored Institute for AI-powered professional training in logistics, business, health, project management, IT, and humanitarian development. Explore courses, corporate training, and certifications.">
+  <title>CEFORED Institute of Relief</title>
   
   <!-- Preload critical resources for LCP optimization -->
   <link rel="preload" href="images/businessmeeting.webp" as="image" fetchpriority="high">
   <link rel="preload" href="images/logo-final.webp" as="image" fetchpriority="high">
-  <link rel="preload" href="styles.min.v1.css" as="style">
+  <link rel="preload" href="styles.min.css" as="style">
   
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,28 +63,26 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    :root {
-      --primary: #008080;
-      --secondary: #f5f5dc;
-      --accent: #FFA500;
-      --accent-alt: #FFFF00;
+    :root { --primary:#008080; --secondary:#f5f5dc; --accent:#FFA500; --accent-alt:#FFFF00; }
+
+    body { margin:0; font-family:'Inter',sans-serif; background-color:var(--secondary); color:#000; background-image:url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="%23999" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.13"><path d="M10 30 Q15 10 30 10 Q45 10 50 30 Q45 50 30 50 Q15 50 10 30 Z"/><circle cx="30" cy="30" r="12"/></g></svg>'); background-size:60px 60px; background-repeat:repeat; background-attachment:fixed; padding-top:80px; overflow-x:hidden; }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      height: 80px;
+      box-sizing: border-box;
     }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--secondary);
-      color: #000000;
-      background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="%23999" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.13"><path d="M10 30 Q15 10 30 10 Q45 10 50 30 Q45 50 30 50 Q15 50 10 30 Z"/><circle cx="30" cy="30" r="12"/></g></svg>');
-      background-size: 60px 60px;
-      background-repeat: repeat;
-      background-attachment: fixed;
-      padding-top: 80px;
-      overflow-x: hidden;
-    }
-
-    /* Header styles handled by navbar.css */
-
     
 
 
@@ -121,6 +118,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
 
     .hero {
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/businessmeeting.webp') no-repeat center center;
       background-size: cover;
       background-position: center;
@@ -475,47 +477,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       opacity: 1;
     }
 
-    /* Mobile Navigation Styles */
-    #mobile-menu-toggle {
-      display: none; /* Hidden by default */
-      background: none;
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      z-index: 1001;
-    }
-
-    @media (max-width: 850px) {
-      nav {
-        display: none; /* Hide the nav by default on mobile */
-        position: absolute;
-        top: 100%; /* Position below the header */
-        left: 0;
-        width: 100%;
-        background-color: var(--primary);
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 999; /* Below header but above other content */
-      }
-      nav.mobile-menu-open {
-        display: flex !important; /* Show the nav when this class is added */
-      }
-      nav a {
-        margin: 0.5rem 0;
-        padding: 0.5rem 1rem;
-        width: 100%;
-        text-align: center;
-      }
-      #mobile-menu-toggle {
-        display: block; /* Show the hamburger icon */
-      }
-      body.dark-mode nav {
-        background-color: #23242b;
-      }
-    }
+    /* Mobile Navigation Styles - Handled by navbar.css */
   </style>
   <script src='js/error-handler.js'></script>
   
@@ -538,11 +500,28 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       font-family: 'Inter', sans-serif;
       background-color: var(--secondary);
       color: #000000;
+      padding-top: 80px;
       overflow-x: hidden;
       min-height: 100vh;
     }
     
     /* Header styles */
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      height: 80px;
+      box-sizing: border-box;
+    }
     
     /* Navigation styles */
     nav a {
@@ -562,7 +541,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/businessmeeting.webp') center center no-repeat;
       background-size: cover;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 80px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -575,6 +554,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       background-attachment: fixed;
       z-index: 1;
       margin: 0;
+      padding-top: 80px; /* Space for fixed header */
     }
     
     .hero h1 {
@@ -709,11 +689,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     
     @media (max-width: 480px) {
       .hero {
-        position: fixed !important;
+        position: relative !important;
         top: 0 !important;
         left: 0 !important;
         right: 0 !important;
-        bottom: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 80px) !important;
         padding: 1.25rem 0.75rem !important;
         padding-top: 80px !important;
       }
@@ -730,42 +711,44 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   </style>
   
   <!-- Load non-critical CSS asynchronously -->
-  <link rel="stylesheet" href="styles.min.v1.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="styles.min.v1.css"></noscript>
+  <link rel="stylesheet" href="styles.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.min.css"></noscript>
   
   <!-- Unified Navbar CSS - loaded AFTER main styles to override -->
   <link rel="stylesheet" href="css/navbar.css">
+  <script src='js/navbar.js' defer></script>
 </head>
 <body id="body-root">
   <header>
     <div class="navbar-brand">
       <div class="navbar-logo-container">
-        <img src="images/logo-final.webp" alt="Cefored Institute of Relief and Development Logo" class="navbar-logo" />
+        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
       </div>
       <strong class="navbar-title">CEFORED Institute</strong>
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="/"" class="active">Home</a>
-      <a href="/about"">About Us</a>
-      <a href="/programs"">Programs</a>
-      <a href="/faqs"">FAQs</a>
-      <a href="/corporatetraining"">Corporate Training</a>
-      <a href="/contact"">Contact Us</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
   <main id="main-content">
     <section class="hero">
-      <h1>AI-Driven Education & Training for a Changing World</h1>
-      <h2>Empowering leaders in logistics, business, health, humanitarian aid, and digital transformation with real-time, AI-optimized training.</h2>
-      <button class="cta-button">Explore AI-Powered Programs</button>
+      <h1>Welcome to CEFORED Institute of Relief</h1>
+      <p>AI-Driven Education for a Changing World
+Empowering leaders in logistics, business, health, humanitarian aid, and digital transformation with real-time, AI-optimized training.</p>
+      <button class="cta-button">Explore Our Programs</button>
     </section>
 
     <section class="why-cefored" style="background: #fff; padding: 2.5rem 1.5rem 2rem 1.5rem; text-align: center; margin: 3rem auto 2.5rem auto; max-width: 800px; border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.07);">
       <h2 style="color: var(--primary); font-size: 2rem; margin: 0.5rem 0 1.2rem 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
         <i class="fas fa-graduation-cap" style="color: var(--accent); font-size: 1.8rem;"></i>
-        <span>Why Choose Cefored?</span>
+        <span>Why Choose Cefored</span>
       </h2>
       <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; font-size: 1.15rem; color: #000000; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;">
         <li>➕ Trusted by NGOs, governments, and international organizations</li>
@@ -777,14 +760,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       </ul>
       <p style="font-size: 1.15rem; color: #000000; font-style: italic; margin-bottom: 2rem;">"Start your journey with the leading institute of applied AI training."</p>
       <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
-            <a href="/programs"" class="cta-button" style="min-width: 180px;">Explore Programs</a>
-            <a href="/corporatetraining"" class="cta-button" style="min-width: 180px;">Corporate Training</a>
+            <a href="programs.html" class="cta-button" style="min-width: 180px;">Explore Programs</a>
+            <a href="corporatetraining.html" class="cta-button" style="min-width: 180px;">Corporate Training</a>
           </div>
         </section>
 
         <!-- AI-Powered Programs Section -->
         <section class="ai-programs" style="margin-top: 3rem; margin-bottom: 2rem; text-align: center;">
-          <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Explore Our Programs</h2>
+          <h2 style="color: var(--primary); font-size: 2rem; margin-bottom: 0.5rem;">Our AI-Powered Programs</h2>
           <p style="max-width: 700px; margin: 0 auto 2rem auto; font-size: 1.1rem; line-height: 1.6; color: #000000;" class="programs-intro">
             At Cefored Institute, our 6 groundbreaking programs combine real-world expertise with artificial intelligence to prepare you for next-generation leadership. Choose a realm below to ignite your journey.
           </p>
@@ -798,7 +781,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span style="font-size:1.2em;">📚</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.<br><br>
               <em>Perfect for logistics managers, procurement officers, warehouse coordinators, and supply chain professionals.</em>
-              <br><a href="/realm1-logistics"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm1-logistics.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(2)">
@@ -810,7 +793,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.<br><br>
               <em>Ideal for business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.</em>
-              <br><a href="/realm2-business"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm2-business.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(3)">
@@ -822,7 +805,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program equips healthcare leaders and professionals to integrate AI into patient care, public health, hospital management, and medical analytics. Participants will explore how machine learning, predictive diagnostics, AI-assisted treatments, and health information systems are reshaping the future of healthcare.<br><br>
               <em>Ideal for hospital administrators, health project officers, clinicians, medical data analysts, and NGO health managers.</em>
-              <br><a href="/realm3-health"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm3-health.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(4)">
@@ -834,7 +817,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This program introduces project managers and development professionals to AI tools that transform the way projects are planned, executed, and evaluated. Learn how AI supports real-time project monitoring, automated risk management, budgeting, and team collaboration.<br><br>
               <em>Perfect for development practitioners, project coordinators, M&E officers, and grant/project managers.</em>
-              <br><a href="/realm4-project"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm4-project.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(5)">
@@ -846,7 +829,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
               This cutting-edge program equips IT professionals, digital officers, and tech-driven leaders with the skills to integrate AI into systems design, infrastructure, automation, and cybersecurity. Learn how to lead IT transformations that power intelligent operations across industries and humanitarian settings.<br><br>
               <em>Ideal for digital officers, IT specialists, tech consultants, NGO IT leads, and innovators ready for the AI shift.</em>
-              <br><a href="/realm5-it"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm5-it.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
             <hr style="width: 60%; border: 1px solid #ddd; margin: 0.5rem 0;">
             <div class="realm-item" style="font-size: 1.1rem; color: var(--primary); display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 800px; cursor: pointer; padding: 1rem 1.5rem; border-radius: 12px; transition: all 0.3s ease; border: 1px solid #e0e0e0; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.08);" onclick="toggleRealm(6)">
@@ -854,11 +837,11 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
               <span class="arrow" style="font-size: 1.4em; font-weight: bold; transition: transform 0.3s ease; color: #666;">v</span>
             </div>
             <div id="realm6-content" class="realm-content" style="display: none; width: 95%; max-width: 800px; background: #f8f9fa; padding: 1.5rem; border-radius: 0 0 12px 12px; margin-top: -0.5rem; font-size: 1rem; line-height: 1.6; color: var(--primary); border: 1px solid #e0e0e0; border-top: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-              <strong>Where compassion meets innovation - and AI powers resilience across crises.</strong><br><br>
+              <strong>Where compassion meets innovation — and AI powers resilience across crises.</strong><br><br>
               <span style="font-size:1.2em;">📊</span> <strong>PROGRAM OVERVIEW</strong><br>
-                              This pioneering program prepares professionals to transform humanitarian aid, disaster response, and relief operations using the power of artificial intelligence. It covers emergency preparedness, crisis mapping, early warning systems, logistics coordination, and needs assessment - enhanced with AI tools for rapid decision-making and predictive response.<br><br>
+              This pioneering program prepares professionals to transform humanitarian aid, disaster response, and relief operations using the power of artificial intelligence. It covers emergency preparedness, crisis mapping, early warning systems, logistics coordination, and needs assessment—enhanced with AI tools for rapid decision-making and predictive response.<br><br>
               <em>Perfect for NGO leaders, disaster responders, humanitarian project officers, and anyone committed to building resilience in the face of crisis.</em>
-              <br><a href="/realm6-humanitarian"" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
+              <br><a href="realm6-humanitarian.html" class="cta-button" style="margin-top:1.2em; display:inline-block; font-size:1em; padding:0.6em 1.4em;">View More</a>
             </div>
           </div>
         </section>
@@ -915,7 +898,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <section class="testimonials">
           <h2>✨ TESTIMONIALS</h2>
           <h3>"Stories That Speak for Themselves"</h3>
-          <p>Our impact is not just measured in numbers - it's felt in communities, classrooms, and boardrooms across Africa and beyond. Hear it from the changemakers we've trained.</p>
+          <p>Our impact is not just measured in numbers — it's felt in communities, classrooms, and boardrooms across Africa and beyond. Hear it from the changemakers we've trained.</p>
                  
           <h4>⭐ Highlighted Testimonials</h4>
           <div class="testimonial-grid">
@@ -924,7 +907,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <!-- Image placeholder for John K. -->
               </div>
               <p>"We overhauled our disaster preparedness program with Cefored's AI approach. Incredible impact."</p>
-              <span class="testimonial-author">- John K., Humanitarian Director</span>
+              <span class="testimonial-author">— John K., Humanitarian Director</span>
             </div>
             
             <div class="testimonial-card">
@@ -932,7 +915,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <!-- Image placeholder for Mary N. -->
               </div>
               <p>"The business strategy course gave us tools we now use daily. Worth every dollar."</p>
-              <span class="testimonial-author">- Mary N., SME Owner</span>
+              <span class="testimonial-author">— Mary N., SME Owner</span>
             </div>
             
             <div class="testimonial-card">
@@ -940,7 +923,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
                 <!-- Image placeholder for Dr. Amina L. -->
               </div>
               <p>"Cefored's training brought real transformation to our health systems. The AI dashboards are now central to how we operate."</p>
-              <span class="testimonial-author">- Dr. Amina L., Regional Health Officer</span>
+              <span class="testimonial-author">— Dr. Amina L., Regional Health Officer</span>
             </div>
           </div>
         </section>
@@ -1077,11 +1060,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <footer>
           <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
         </footer>
-      </main>
+      </div>
     </div>
   </div>
   <!-- JavaScript for functionality - optimized loading -->
   <script src="main.min.js" defer></script>
+  <script src="theme.js" defer></script>
   
   <!-- Cleanup: Unregister any existing service workers and clear caches -->
   <script src="js/unregister-sw.js"></script>

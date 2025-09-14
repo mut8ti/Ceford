@@ -18,19 +18,8 @@
       } else {
         document.documentElement.classList.add('light-mode');
       }
-      // Apply to body when it's ready
-      document.addEventListener('DOMContentLoaded', function() {
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-          document.body.classList.add('dark-mode');
-        } else {
-          document.body.classList.add('light-mode');
-        }
-      });
     } catch (e) {
       document.documentElement.classList.add('light-mode');
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.classList.add('light-mode');
-      });
     }
   })();
 </script>
@@ -45,12 +34,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us - CEFORED Institute of Relief</title>
-  <meta name="description" content="Get in touch with Cefored Institute: email, phone, and website for program inquiries, corporate training, and partnerships.">
 
   <link rel="stylesheet" href="styles.min.v1.css">
   
-  <!-- navbar (same across) -->
+  <!-- Unified Navbar CSS -->
   <link rel="stylesheet" href="css/navbar.css">
+  <script src='js/navbar.js' defer></script>
 
 <style>
     /* Spinner for form loading */
@@ -384,18 +373,18 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <header>
     <div class="navbar-brand">
       <div class="navbar-logo-container">
-        <img src="images/logo-final.webp" alt="Cefored Institute of Relief and Development Logo" class="navbar-logo" />
+        <img src="images/logo-final.webp" alt="Cefored Logo" class="navbar-logo" />
       </div>
       <strong class="navbar-title">CEFORED Institute</strong>
     </div>
     <button id="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
     <nav id="main-nav">
-      <a href="/"">Home</a>
-      <a href="/about"">About Us</a>
-      <a href="/programs"">Programs</a>
-      <a href="/faqs"">FAQs</a>
-      <a href="/corporatetraining"">Corporate Training</a>
-      <a href="/contact"" class="active">Contact Us</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="faqs.html">FAQs</a>
+      <a href="corporatetraining.html">Corporate Training</a>
+      <a href="contact.html" class="active">Contact Us</a>
     </nav>
     <button id="mobile-menu-toggle" aria-label="Open navigation menu">&#9776;</button>
   </header>
@@ -411,7 +400,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <div class="page-bordered">
     <div class="page-frame-inner">
   <!-- Main Content Section: Contact Form -->
-  <section class="sections" style="margin-top:2rem;">
+  <section class="sections">
     <div class="section contact-form-section">
   <span class="form-icon-decor"><i class="fas fa-envelope-open-text"></i></span>
       <!-- Contact Form -->
@@ -420,28 +409,12 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
         <!-- Email Field -->
-        <label for="emailUser">Email:</label>
-        <div style="display: flex; align-items: center; gap: 0.3rem;">
-          <input type="text" id="emailUser" name="emailUser" required placeholder="your email" style="flex: 1 1 auto; min-width: 0;">
-          <span style="font-size: 1rem; color: #888; user-select: none;">@</span>
-          <select id="emailDomain" name="emailDomain" style="padding: 0.4rem 0.3rem; border-radius: 5px; border: 1.2px solid #b3b6c6; font-size: 0.98rem;">
-            <option value="gmail.com">gmail.com</option>
-            <option value="yahoo.com">yahoo.com</option>
-            <option value="outlook.com">outlook.com</option>
-            <option value="icloud.com">icloud.com</option>
-            <option value="hotmail.com">hotmail.com</option>
-            <option value="protonmail.com">protonmail.com</option>
-            <option value="aol.com">aol.com</option>
-            <option value="zoho.com">zoho.com</option>
-            <option value="mail.com">mail.com</option>
-            <option value="gmx.com">gmx.com</option>
-          </select>
-          <input type="hidden" id="email" name="email">
-        </div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required placeholder="example@gmail.com" class="email-input-simple">
         <!-- Phone Number Field -->
         <label for="phone">Phone Number:</label>
-        <div style="display: flex; gap: 0.5rem; align-items: center;">
-          <select id="countryCode" name="countryCode" style="padding: 0.5rem 0.4rem; border-radius: 5px; border: 1.2px solid #b3b6c6; font-size: 0.98rem;">
+        <div class="phone-field-container">
+          <select id="countryCode" name="countryCode" class="country-code-select">
             <option value="+254">🇰🇪 +254 (Kenya)</option>
             <option value="+1">🇺🇸 +1 (USA)</option>
             <option value="+44">🇬🇧 +44 (UK)</option>
@@ -515,7 +488,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
             <option value="+263">🇿🇼 +263 (Zimbabwe)</option>
             <!-- Add more as needed -->
           </select>
-          <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}" placeholder="Enter phone number">
+          <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}" placeholder="Enter phone number" class="phone-input">
         </div>
         <!-- Message Field -->
         <label for="message">Message (What Course would you like to apply):</label>
@@ -523,7 +496,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
         <!-- Submit Button -->
         <button type="submit" class="cta-button">Send Message</button>
         <!-- Form Message (Success/Error) -->
-        <div id="formMessage" style="margin-top:1rem;"></div>
+        <div id="formMessage" class="form-message"></div>
         <p id="wbalert"></p>
       <script>
   // Prefill phone input with selected country code and prevent duplicate codes
@@ -549,71 +522,33 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     });
   });
 </script>
-<script>
-  // Prefill phone input with selected country code and prevent duplicate codes
-  document.addEventListener('DOMContentLoaded', function() {
-    var countryCode = document.getElementById('countryCode');
-    var phoneInput = document.getElementById('phone');
-    var emailInput = document.getElementById('email');
-    // Set initial value for phone
-    phoneInput.value = countryCode.value + ' ';
-    phoneInput.addEventListener('focus', function() {
-      if (!phoneInput.value.startsWith(countryCode.value)) {
-        phoneInput.value = countryCode.value + ' ';
-      }
-    });
-    countryCode.addEventListener('change', function() {
-      // Remove old code if present
-      var val = phoneInput.value;
-      var spaceIdx = val.indexOf(' ');
-      if (val.startsWith('+') && spaceIdx > 0) {
-        val = val.substring(spaceIdx + 1);
-      }
-      phoneInput.value = countryCode.value + ' ' + val.replace(/^[\s]+/, '');
-      phoneInput.focus();
-    });
-    // On form submit, set the hidden email field to username + @selected domain
-    var form = document.getElementById('contactForm');
-    form.addEventListener('submit', function(e) {
-      var user = document.getElementById('emailUser').value.trim();
-      var domain = document.getElementById('emailDomain').value;
-      // Basic validation
-      if (!user || user.includes(' ')) {
-        alert('Please enter a valid email username (no spaces).');
-        e.preventDefault();
-        return false;
-      }
-      document.getElementById('email').value = user + '@' + domain;
-    });
-  });
-</script>
 </form>
   
       </script>
       <!-- Include the database.js module -->
       <script type="module" src="js/database.js"></script>
       <div class="contact-info-box">
-        <h3 style="margin-top:2.5rem; color:var(--primary); font-size:1.25rem;">Let's ignite the future. Reach out for admissions, partnerships, or Corporate collaborations.</h3>
-        <ul style="list-style:none; padding:0; margin:1.2rem 0 0 0; font-size:1.08rem; color:#222;">
-          <li>✉️ <strong>Email:</strong> <a href="mailto:info@cefored.com" style="color:var(--primary);text-decoration:underline;">info@cefored.com</a></li>
-          <li>📞 <strong>Phone:</strong> <a href="tel:+254755445982" style="color:var(--primary);text-decoration:underline;">+254 755445982</a></li>
-          <li>🌐 <strong>Website:</strong> <a href="https://www.ceforedconsultancy.com" target="_blank" rel="noopener" style="color:var(--primary);text-decoration:underline;">www.ceforedconsultancy.com</a></li>
+        <h3 class="contact-info-title">Let's ignite the future. Reach out for admissions, partnerships, or Corporate collaborations.</h3>
+        <ul class="contact-info-list">
+          <li>✉️ <strong>Email:</strong> <a href="mailto:info@cefored.com">info@cefored.com</a></li>
+          <li>📞 <strong>Phone:</strong> <a href="tel:+254755445982">+254 755445982</a></li>
+          <li>🌐 <strong>Website:</strong> <a href="https://www.ceforedconsultancy.com" target="_blank" rel="noopener">www.ceforedconsultancy.com</a></li>
           <li>📍 <strong>Location:</strong> Nairobi, Kenya.</li>
         </ul>
       </div>
     </div>
   </section>
     </div>
-    <footer style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); left: 0; right: 0; position: relative; padding: 1.5rem 0; background: #008080; color: white; text-align: center;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-      <p style="margin: 0;">&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
+    <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CEFORED Institute of Relief. All rights reserved.</p>
     </div>
    </footer>
   </div>
   <!-- Firebase SDKs are now imported in database.js -->
 </script>
-  <script src="main.v1.js" defer></script>
-  <script src="js/theme.js" defer></script>
+  <!-- Removed main.v1.js to prevent conflicts with navbar.js -->
+      <script src="js/theme.v1.js" defer></script>
     <script>
         // Performance monitoring
         window.addEventListener('load', function() {
@@ -630,3 +565,5 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     </script>
 </body>
 </html>
+</html> 
+

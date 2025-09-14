@@ -72,30 +72,4 @@ collapsibles.forEach(title => {
   });
 });
 
-// --- DARK/LIGHT MODE GLOBAL LOGIC ---
-(function() {
-  // Only show the toggle on homepage, but apply theme everywhere
-  const themeToggle = document.getElementById('theme-toggle');
-  function setTheme(mode) {
-    if (mode === 'dark') {
-      document.body.classList.add('dark-mode');
-      if (themeToggle) themeToggle.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.body.classList.remove('dark-mode');
-      if (themeToggle) themeToggle.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
-    }
-  }
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      if (document.body.classList.contains('dark-mode')) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
-    });
-  }
-  // On load, set theme from localStorage
-  setTheme(localStorage.getItem('theme') || 'light');
-})();
+// Theme logic removed; handled centrally in theme.v1.js
