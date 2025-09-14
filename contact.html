@@ -403,19 +403,31 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
   <section class="sections">
     <div class="section contact-form-section">
   <span class="form-icon-decor"><i class="fas fa-envelope-open-text"></i></span>
-      <!-- Contact Form -->
-      <form id="contactForm">
+            
+      <form id="contactForm" action="#" method="post" class="responsive-form">
+        
         <!-- Name Field -->
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <div class="form-group">
+          <label for="name" class="form-label">Full Name *</label>
+          <input type="text" id="name" name="name" required 
+                 placeholder="Enter your full name" 
+                 class="form-input">
+        </div>
+
         <!-- Email Field -->
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required placeholder="example@gmail.com" class="email-input-simple">
-        <!-- Phone Number Field -->
-        <label for="phone">Phone Number:</label>
-        <div class="phone-field-container">
-          <select id="countryCode" name="countryCode" class="country-code-select">
-            <option value="+254">🇰🇪 +254 (Kenya)</option>
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address *</label>
+          <input type="email" id="email" name="email" required 
+                 placeholder="your.email@example.com" 
+                 class="form-input">
+        </div>
+
+        <!-- Phone Field -->
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number *</label>
+          <div class="phone-wrapper">
+            <select id="countryCode" name="countryCode" class="form-select country-select">
+              <option value="+254">🇰🇪 +254 (Kenya)</option>
             <option value="+1">🇺🇸 +1 (USA)</option>
             <option value="+44">🇬🇧 +44 (UK)</option>
             <option value="+91">🇮🇳 +91 (India)</option>
@@ -486,44 +498,120 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
             <option value="+1">🇺🇸 +1 (USA)</option>
             <option value="+84">🇻🇳 +84 (Vietnam)</option>
             <option value="+263">🇿🇼 +263 (Zimbabwe)</option>
-            <!-- Add more as needed -->
-          </select>
-          <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\s]{7,20}" placeholder="Enter phone number" class="phone-input">
+            </select>
+            <input type="tel" id="phone" name="phone" required 
+                   placeholder="712345678" 
+                   class="form-input phone-input">
+          </div>
         </div>
+
+        <!-- Course Selection -->
+        <div class="form-group">
+          <label for="course" class="form-label">Course Interest</label>
+          <select id="course" name="course" class="form-select">
+            <option value="">Select a course (optional)</option>
+            <option value="logistics">Logistics & Supply Chain Management</option>
+            <option value="business">Business Management & Entrepreneurship</option>
+            <option value="health">Health & Emergency Response</option>
+            <option value="project">Project Management</option>
+            <option value="it">Information Technology</option>
+            <option value="humanitarian">Humanitarian Response</option>
+
+          </select>
+        </div>
+
         <!-- Message Field -->
-        <label for="message">Message (What Course would you like to apply):</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+        <div class="form-group">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" name="message" rows="5" 
+                    placeholder="Tell us about your inquiry, goals, or any questions you have..."
+                    class="form-textarea"></textarea>
+        </div>
+
         <!-- Submit Button -->
-        <button type="submit" class="cta-button">Send Message</button>
-        <!-- Form Message (Success/Error) -->
+       <button type="submit" class="cta-button">Send Message</button>
+
+        <!-- Form Messages -->
         <div id="formMessage" class="form-message"></div>
-        <p id="wbalert"></p>
+        <p id="wbalert" class="form-alert"></p>
+      </form>
+
       <script>
-  // Prefill phone input with selected country code and prevent duplicate codes
-  document.addEventListener('DOMContentLoaded', function() {
-    var countryCode = document.getElementById('countryCode');
-    var phoneInput = document.getElementById('phone');
-    // Set initial value
-    phoneInput.value = countryCode.value + ' ';
-    phoneInput.addEventListener('focus', function() {
-      if (!phoneInput.value.startsWith(countryCode.value)) {
-        phoneInput.value = countryCode.value + ' ';
-      }
-    });
-    countryCode.addEventListener('change', function() {
-      // Remove old code if present
-      var val = phoneInput.value;
-      var spaceIdx = val.indexOf(' ');
-      if (val.startsWith('+') && spaceIdx > 0) {
-        val = val.substring(spaceIdx + 1);
-      }
-      phoneInput.value = countryCode.value + ' ' + val.replace(/^[\s]+/, '');
-      phoneInput.focus();
-    });
-  });
-</script>
-</form>
-  
+        // Modern Contact Form Handler
+        document.addEventListener('DOMContentLoaded', function() {
+          const countryCode = document.getElementById('countryCode');
+          const phoneInput = document.getElementById('phone');
+          const form = document.getElementById('contactForm');
+          const formMessage = document.getElementById('formMessage');
+
+          // Phone input prefill and validation
+          function updatePhonePrefix() {
+            const prefix = countryCode.value + ' ';
+            if (!phoneInput.value.startsWith(countryCode.value)) {
+              phoneInput.value = prefix;
+            }
+          }
+
+          // Initialize phone input
+          updatePhonePrefix();
+
+          // Handle country code changes
+          countryCode.addEventListener('change', function() {
+            const currentValue = phoneInput.value;
+            const spaceIndex = currentValue.indexOf(' ');
+            const numberPart = spaceIndex > 0 ? currentValue.substring(spaceIndex + 1) : '';
+            phoneInput.value = countryCode.value + ' ' + numberPart.trim();
+            phoneInput.focus();
+          });
+
+          // Handle phone input focus
+          phoneInput.addEventListener('focus', updatePhonePrefix);
+
+          // Form submission handler
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = phoneInput.value.trim();
+            
+            if (!name || !email || !phone) {
+              showMessage('Please fill in all required fields.', 'error');
+              return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+              showMessage('Please enter a valid email address.', 'error');
+              return;
+            }
+
+            // Phone validation (must have digits after country code)
+            const phoneNumber = phone.replace(countryCode.value + ' ', '').trim();
+            if (phoneNumber.length < 6 || !/^\d+$/.test(phoneNumber)) {
+              showMessage('Please enter a valid phone number.', 'error');
+              return;
+            }
+
+            // Success message (in real implementation, you'd send to server)
+            showMessage('Thank you! Your message has been sent successfully. We will get back to you soon.', 'success');
+            form.reset();
+            updatePhonePrefix();
+          });
+
+          function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+              formMessage.style.display = 'none';
+            }, 5000);
+          }
+        });
       </script>
       <!-- Include the database.js module -->
       <script type="module" src="js/database.js"></script>
