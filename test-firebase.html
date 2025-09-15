@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+</head>
+<body>
+    <h1>Firebase Connection Test</h1>
+    <button id="testBtn">Test Firebase Connection</button>
+    <div id="result"></div>
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        
+        // Direct Firebase config for testing
+        const firebaseConfig = {
+          apiKey: "AIzaSyB__VrarOe_CFfI7hKL5jFsEni1Lh3Lnqs",
+          authDomain: "cefored-institute.firebaseapp.com",
+          projectId: "cefored-institute",
+          storageBucket: "cefored-institute.firebasestorage.app",
+          messagingSenderId: "460320160628",
+          appId: "1:460320160628:web:614f9decdecbdfb50a4a21",
+          measurementId: "G-HMTSZWL569"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        console.log('Firebase initialized for testing');
+        
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                // Try to add a test document
+                const docRef = await addDoc(collection(db, 'test'), {
+                    message: 'Test from browser',
+                    timestamp: serverTimestamp()
+                });
+                
+                resultDiv.innerHTML = `✅ Success! Document ID: ${docRef.id}`;
+                console.log('Test document written with ID: ', docRef.id);
+            } catch (error) {
+                resultDiv.innerHTML = `❌ Error: ${error.message}`;
+                console.error('Test error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

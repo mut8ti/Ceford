@@ -20,33 +20,39 @@ html, body {
 
 /* Hide scrollbar for all browsers while maintaining scroll functionality */
 html {
-    scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Firefox legacy */
+    scrollbar-width: none; /* Firefox modern */
 }
 
 html::-webkit-scrollbar {
     width: 0; /* Chrome, Safari, Edge, Opera */
     height: 0;
     background: transparent;
+    display: none; /* Safari fallback */
 }
 
 html::-webkit-scrollbar-track {
     background: transparent;
+    display: none; /* Safari fallback */
 }
 
 html::-webkit-scrollbar-thumb {
     background: transparent;
+    display: none; /* Safari fallback */
 }
 
 body {
-    scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Firefox legacy */
+    scrollbar-width: none; /* Firefox modern */
 }
 
 body::-webkit-scrollbar {
     width: 0; /* Chrome, Safari, Edge, Opera */
     height: 0;
     background: transparent;
+    display: none; /* Safari fallback */
 }
 
 /* Hide scrollbar for any container that might have overflow */
@@ -54,8 +60,9 @@ body::-webkit-scrollbar {
 .page-frame-inner,
 .sections,
 .section {
-    scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
+    overflow: -moz-scrollbars-none; /* Firefox legacy */
+    scrollbar-width: none; /* Firefox modern */
 }
 
 .page-bordered::-webkit-scrollbar,
@@ -65,6 +72,7 @@ body::-webkit-scrollbar {
     width: 0;
     height: 0;
     background: transparent;
+    display: none; /* Safari fallback */
 }
 
 *, *::before, *::after {
@@ -80,41 +88,7 @@ body.dark-mode, html.dark-mode {
     background-repeat: repeat !important;
 }
 
-/* Header */
-header {
-    background: var(--primary);
-    color: var(--secondary);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-body.dark-mode header {
-    background: #23242b !important;
-    color: #fff !important;
-}
-
-/* Navigation */
-nav a {
-    color: var(--secondary);
-    margin-left: 2rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color .2s;
-}
-
-nav a:hover, nav a.active {
-    color: var(--accent);
-}
-
-body.dark-mode nav a {
-    color: #fff !important;
-}
-
-body.dark-mode nav a:hover {
-    color: var(--accent) !important;
-}
+/* Header and Navigation styles are now handled by css/navbar.css */
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
@@ -400,7 +374,7 @@ form label {
 
 /* Contact Form Section */
 .contact-form-section {
-    max-width: 500px !important;
+    max-width: 800px !important;
     margin: 2rem auto !important;
     width: 100% !important;
     background: linear-gradient(135deg, #f8fafc 70%, #e6eaff 100%);
@@ -859,7 +833,12 @@ body.dark-mode .corporate-training-page .main-section-title {
     display: flex;
     gap: 0.5rem;
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+@media (max-width: 768px) {
+    .phone-wrapper {
+        flex-direction: column;
+    }
 }
 
 .country-select {
@@ -1013,7 +992,7 @@ body.dark-mode .form-message.error {
 }
 
 /* Main sections styling */
-.sections {
+main.contact-form-section {
     margin-top: 2rem;
     padding: 0;
 }
@@ -1032,7 +1011,6 @@ body.dark-mode .contact-form-section {
     background: #2a2c34 !important;
     border: 1px solid #3a3d48 !important;
     color: #fff !important;
-}
 }
 
 .email-input {
@@ -1365,103 +1343,6 @@ body.dark-mode .contact-info-list a {
         max-width: 100% !important;
         resize: vertical !important;
     }
-}
-
-/* Contact Form Responsiveness */
-@media (max-width: 768px) {
-    /* Contact page sections layout */
-    .sections {
-        padding: 1rem !important;
-        margin: 1rem auto !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-        max-width: 100% !important;
-    }
-    
-    .contact-form-section {
-        padding: 1.5rem 1rem !important;
-        margin: 1rem auto !important;
-        max-width: 95% !important;
-        width: 100% !important;
-        border-radius: 15px !important;
-    }
-    
-    .contact-form-section form {
-        max-width: 100% !important;
-        gap: 1.2rem !important;
-    }
-    
-    .contact-form-section input,
-    .contact-form-section textarea,
-    .contact-form-section select {
-        width: 100% !important;
-        font-size: 1rem !important;
-        padding: 0.7rem !important;
-        margin-bottom: 1rem !important;
-        box-sizing: border-box !important;
-        border-radius: 5px !important;
-        border: 1px solid #ddd !important;
-    }
-    
-    .contact-form-section label {
-        font-size: 1rem !important;
-        margin-bottom: 0.5rem !important;
-        display: block !important;
-        font-weight: 500 !important;
-    }
-    
-    /* Email field mobile layout */
-    .email-field-container {
-        flex-wrap: wrap !important;
-        gap: 0.4rem !important;
-    }
-    
-    .email-input {
-        flex: 1 1 65% !important;
-        min-width: 150px !important;
-    }
-    
-    .email-domain-select {
-        flex: 1 1 30% !important;
-        min-width: 120px !important;
-        padding: 0.7rem 0.4rem !important;
-    }
-    
-    /* Phone field mobile layout */
-    .phone-field-container {
-        flex-direction: column !important;
-        gap: 0.7rem !important;
-        align-items: stretch !important;
-    }
-    
-    .country-code-select,
-    .phone-input {
-        width: 100% !important;
-        padding: 0.7rem !important;
-    }
-    
-    /* Form submit button responsive */
-    .contact-form-section .cta-button {
-        width: 100% !important;
-        max-width: 300px !important;
-        margin: 1.5rem auto 0 auto !important;
-        display: block !important;
-        text-align: center !important;
-        padding: 0.8rem 1.5rem !important;
-        font-size: 1rem !important;
-    }
-    
-    /* Form icon decoration responsive */
-    .form-icon-decor {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
-        text-align: center !important;
-        display: block !important;
-        color: var(--accent) !important;
-    }
-}
 }
 
 /* Small Mobile (480px and below) */

@@ -1,11 +1,14 @@
 // Initialize Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import firebaseConfig from './config.js';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+console.log('Firebase initialized successfully');
+console.log('Firebase config:', firebaseConfig.projectId);
 
 // Helper function to show messages
 function showMessage(elementId, message, isError = false) {
@@ -76,20 +79,34 @@ function showSuccessPopup(message) {
 
 // Handle contact form submission
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Database.js loaded and DOM ready');
+  
+  // Test Firebase connection
+  try {
+    console.log('Testing Firebase connection...');
+    console.log('Database instance:', db);
+  } catch (error) {
+    console.error('Firebase initialization error:', error);
+  }
   // Contact Form
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    console.log('Contact form found, adding event listener');
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      console.log('Contact form submitted');
       
       // Get form values
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone')?.value.trim() || '';
+      const course = document.getElementById('course')?.value.trim() || '';
       const message = document.getElementById('message').value.trim();
       
+      console.log('Form data:', { name, email, phone, course, message });
+      
       // Simple validation
-      if (!name || !email || !message) {
+      if (!name || !email) {
         showMessage('formMessage', 'Please fill in all required fields.', true);
         return;
       }
@@ -104,16 +121,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // Show loading spinner
       showLoadingSpinner(true);
       try {
+        console.log('Attempting to add document to Firestore...');
         // Add a new document to the 'contacts' collection
-        await addDoc(collection(db, 'contacts'), {
+        const docRef = await addDoc(collection(db, 'contacts'), {
           name,
           email,
           ...(phone && { phone }), // Only include phone if it exists
+          ...(course && { course }), // Only include course if selected
           message,
           timestamp: serverTimestamp(),
           source: 'contact-form'
         });
 
+        console.log('Document written with ID: ', docRef.id);
         // Hide spinner and show popup with tick
         showLoadingSpinner(false);
         showSuccessPopup('Thank you for contacting us! We will get back to you soon.');
@@ -121,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         showLoadingSpinner(false);
         console.error('Error adding contact:', error);
+        console.error('Error details:', error.message, error.code);
         showMessage('formMessage', 'There was an error sending your message. Please try again later.', true);
       }
     });
@@ -129,15 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // Newsletter Subscription Form
   const newsletterForm = document.getElementById('newsletterForm');
   if (newsletterForm) {
+  console.log('Newsletter form found, adding event listener');
     newsletterForm.addEventListener('submit', async (e) => {
       // Show loading spinner
       const spinner = document.getElementById('newsletterLoadingSpinner');
       if (spinner) spinner.style.display = 'flex';
       e.preventDefault();
+      console.log('Newsletter form submitted');
       
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const messageElement = document.getElementById('newsletterMessage');
+      
+      console.log('Newsletter data:', { name, email });
       
       // Validation
       if (!name || !email) {
@@ -152,26 +177,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       try {
-        // Check if email already exists
-        const q = query(
-          collection(db, 'newsletter'),
-          where('email', '==', email)
-        );
-        
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          showMessage('newsletterMessage', 'This email is already subscribed. Thank you!');
-          return;
-        }
-        
+        console.log('Adding new newsletter subscription (duplicate check removed)...');
         // Add to newsletter collection
-        await addDoc(collection(db, 'newsletter'), {
+        const docRef = await addDoc(collection(db, 'newsletter'), {
           name,
           email,
           timestamp: serverTimestamp(),
           status: 'subscribed'
         });
         
+        console.log('Newsletter subscription added with ID:', docRef.id);
         // Show success message and reset form
         // Hide spinner
         const spinner = document.getElementById('newsletterLoadingSpinner');
@@ -182,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         newsletterForm.reset();
       } catch (error) {
         console.error('Error subscribing to newsletter:', error);
+        console.error('Newsletter error details:', error.message, error.code);
         const spinner = document.getElementById('newsletterLoadingSpinner');
         if (spinner) spinner.style.display = 'none';
         showMessage('newsletterMessage', 'There was an error subscribing. Please try again later.', true);

@@ -1,28 +1,24 @@
-// Firebase configuration from environment variables
+// Firebase configuration using environment variables
+// Note: For static HTML sites, we need to reference the actual values
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyB__VrarOe_CFfI7hKL5jFsEni1Lh3Lnqs",
+  authDomain: "cefored-institute.firebaseapp.com",
+  projectId: "cefored-institute",
+  storageBucket: "cefored-institute.firebasestorage.app",
+  messagingSenderId: "460320160628",
+  appId: "1:460320160628:web:614f9decdecbdfb50a4a21",
+  measurementId: "G-HMTSZWL569"
 };
 
-// Validate that all required environment variables are present
-const requiredVars = [
-  'VITE_FIREBASE_API_KEY',
-  'VITE_FIREBASE_AUTH_DOMAIN', 
-  'VITE_FIREBASE_PROJECT_ID',
-  'VITE_FIREBASE_STORAGE_BUCKET',
-  'VITE_FIREBASE_MESSAGING_SENDER_ID',
-  'VITE_FIREBASE_APP_ID'
-];
+// Validate Firebase configuration
+const requiredFields = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'messagingSenderId', 'appId'];
+const missingFields = requiredFields.filter(field => !firebaseConfig[field]);
 
-const missingVars = requiredVars.filter(varName => !import.meta.env[varName]);
-if (missingVars.length > 0) {
-  console.error('Missing required environment variables:', missingVars);
-  throw new Error(`Missing environment variables: ${missingVars.join(', ')}`);
+if (missingFields.length > 0) {
+  console.error('Missing Firebase configuration fields:', missingFields);
+  throw new Error(`Firebase configuration incomplete. Missing: ${missingFields.join(', ')}`);
 }
+
+console.log('Firebase configuration loaded successfully for project:', firebaseConfig.projectId);
 
 export default firebaseConfig;
