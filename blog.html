@@ -68,40 +68,6 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       min-height: 100vh;
     }
     /* Header positioning handled by navbar.css - only add non-conflicting styles */
-    header img {
-      height: 38px;
-      margin-right: 0.7em;
-      vertical-align: middle;
-    }
-    nav a {
-      color: #fff;
-      margin-left: 2rem;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      transition: color 0.2s;
-    }
-    nav a::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -4px;
-      height: 2px;
-      background: var(--accent);
-      opacity: 0;
-      transform: scaleX(0);
-      transition: opacity 0.2s, transform 0.2s;
-      border-radius: 2px;
-    }
-    nav a:hover::after, nav a.active::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-    nav a:hover {
-      color: var(--accent);
-    }
     .doodle-bg {
       /* WhatsApp-style doodle pattern from Hero Patterns (licensed MIT, https://heropatterns.com/) */
       background-color: #f5f0e6; /* Warm cream background */

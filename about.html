@@ -49,6 +49,8 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
       --secondary: #f5f5dc;
       --accent: #FFA500;
       --accent-alt: #FFFF00;
+      --text: #000000;
+      --title: #008080; /* Darker teal for titles */
     }
   </style>
   <style>
@@ -95,11 +97,9 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     <div class="page-frame-inner">
       <style>
     /* Set text colors */
-    p, li {
-      color: var(--text) ;
-    }
+
     h1, h2, h3 {
-      color: var(--title) ;
+      color: var(--title); ;
     }
     
     /* Doodle Art for Dark Mode */
@@ -198,7 +198,14 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     .three-segments .section h2 {
       color: var(--title) !important;
     }
-    
+    .main-content .section p,
+    .main-content .section li {
+      color: black !important;
+    }
+    .dark-mode .main-content .section {
+      background: #23242b !important; 
+      color: #fff !important;
+    }
     /* Dark mode specific styles for three-segments - Matching site's dark theme */
     .dark-mode .three-segments .section {
       background: #23242b !important; /* Matching main dark background */
@@ -213,7 +220,7 @@ html.transitions-enabled * { transition: background 0.3s, color 0.3s, border-col
     }
     
     .dark-mode .three-segments .section h2 {
-      color: #fff !important; /* Bright text for headings */
+      /*color: #fff !important; /* Bright text for headings */
       border-bottom: 1px solid #3a3f4b; /* Subtle separator */
       padding-bottom: 0.5em;
       margin-bottom: 0.8em;

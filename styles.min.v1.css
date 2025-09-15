@@ -4,6 +4,7 @@
     --secondary: #f5f5dc;
     --accent: #FFA500;
     --accent-alt: #FFFF00;
+    --text: #000000;
 }
 
 /* Base Styles */
@@ -11,7 +12,7 @@ html, body {
     margin: 0;
     font-family: Roboto, 'Segoe UI', Arial, sans-serif;
     background-color: var(--secondary);
-    color: var(--primary);
+    color: var(--text);
     transition: background .3s, color .3s;
     overflow-x: hidden;
     width: 100%;
