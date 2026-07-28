@@ -1,0 +1,222 @@
+---
+/* The six realms as a numbered index, with a preview image that swaps as you
+   move down the rows.
+
+   The swap is pure CSS — `:has()` on the wrapper matches whichever row is
+   hovered or keyboard-focused and lifts the matching image. No JS, so it works
+   before hydration and cannot break. One rule pair per realm is repetitive but
+   explicit, and six is not enough to justify generating them.
+
+   Realm 1's image is the resting state, so the panel is never empty. */
+import { Icon } from 'astro-icon/components';
+import { realms } from '../data/realms.js';
+/* Real emitted sizes, written by .build-realm-images.mjs. Read rather than
+   assumed: sources are never upscaled, so a small original yields a smaller
+   file than the target, and a srcset descriptor claiming 1200w for an 840px
+   image makes the browser pick the wrong candidate and render it soft. */
+import sizes from '../data/realm-images.json';
+
+const srcFor = (r) => {
+  const s = sizes[r.slug];
+  const sm = r.image.replace('.webp', '-sm.webp');
+  return {
+    srcset: `${sm} ${s['-sm'][0]}w, ${r.image} ${s.card[0]}w`,
+    width: s.card[0],
+    height: s.card[1],
+  };
+};
+---
+
+<div class="index">
+  <div class="index-media" aria-hidden="true" data-reveal>
+    {realms.map((r) => (
+      <img
+        class="media-img"
+        data-realm={r.n}
+        src={r.image}
+        srcset={srcFor(r).srcset}
+        sizes="(max-width: 62rem) 1px, 44vw"
+        alt=""
+        width={srcFor(r).width}
+        height={srcFor(r).height}
+        loading="lazy"
+        decoding="async"
+      />
+    ))}
+  </div>
+
+  <ol class="index-list" data-reveal-group>
+    {realms.map((r) => (
+      <li>
+        <a
+          href={`/realms/${r.slug}`}
+          data-realm={r.n}
+          style={`--row-img: url("${r.image.replace('.webp', '-sm.webp')}")`}
+        >
+          <span class="row-n">{String(r.n).padStart(2, '0')}</span>
+          <span class="row-body">
+            <span class="row-title">{r.title}</span>
+            <span class="row-tagline">{r.tagline}</span>
+          </span>
+          <span class="row-count">{r.courses.length} courses</span>
+          <Icon name="lucide:arrow-right" class="row-arrow" />
+        </a>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .index {
+    display: grid;
+    grid-template-columns: 44% 1fr;
+    gap: var(--space-l);
+    align-items: start;
+  }
+
+  /* Sticky so the image stays beside whichever row you are on. Aspect-ratio
+     rather than a fixed height, so it scales with the column. */
+  .index-media {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-l));
+    aspect-ratio: 3 / 2;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+
+  .media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    /* A slow scale under a fixed frame reads as depth rather than as a
+       slideshow, and it means the crossfade never shows a static seam. */
+    transform: scale(1.06);
+    transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .media-img[data-realm="1"] { opacity: 1; transform: scale(1); }
+
+  /* Hover or focus a row -> raise its image. Realms 2–6 come after realm 1 in
+     the DOM, so they paint over its resting image without needing a rule to
+     hide it — and when the pointer leaves, they fade back to realm 1. */
+  .index:has(a[data-realm="1"]:hover) .media-img[data-realm="1"],
+  .index:has(a[data-realm="1"]:focus-visible) .media-img[data-realm="1"] { opacity: 1; transform: scale(1); }
+  .index:has(a[data-realm="2"]:hover) .media-img[data-realm="2"],
+  .index:has(a[data-realm="2"]:focus-visible) .media-img[data-realm="2"] { opacity: 1; transform: scale(1); }
+  .index:has(a[data-realm="3"]:hover) .media-img[data-realm="3"],
+  .index:has(a[data-realm="3"]:focus-visible) .media-img[data-realm="3"] { opacity: 1; transform: scale(1); }
+  .index:has(a[data-realm="4"]:hover) .media-img[data-realm="4"],
+  .index:has(a[data-realm="4"]:focus-visible) .media-img[data-realm="4"] { opacity: 1; transform: scale(1); }
+  .index:has(a[data-realm="5"]:hover) .media-img[data-realm="5"],
+  .index:has(a[data-realm="5"]:focus-visible) .media-img[data-realm="5"] { opacity: 1; transform: scale(1); }
+  .index:has(a[data-realm="6"]:hover) .media-img[data-realm="6"],
+  .index:has(a[data-realm="6"]:focus-visible) .media-img[data-realm="6"] { opacity: 1; transform: scale(1); }
+
+  .index-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .index-list li {
+    border-top: 1px solid var(--border);
+    transition: background-color 0.3s;
+  }
+  .index-list li:last-child { border-bottom: 1px solid var(--border); }
+  /* Background lives on the li so it stays full-bleed while the link inside
+     slides — otherwise the tinted box would slide with the content. */
+  .index-list li:has(a:hover),
+  .index-list li:has(a:focus-visible) { background: var(--surface); }
+
+  .index-list a {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: baseline;
+    gap: var(--space-s);
+    padding: var(--space-m) var(--space-2xs);
+    color: var(--text);
+    text-decoration: none;
+    /* transform, not padding: animating padding reflows the grid every frame.
+       The arrow's own translate composes with this one rather than fighting it,
+       since they sit on different elements. */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* The row shifts right instead of lifting or glowing — the same restraint as
+     the buttons, and it points toward the link target. */
+  .index-list a:hover,
+  .index-list a:focus-visible { transform: translateX(var(--space-2xs)); }
+
+  .row-n {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-light);
+    line-height: 1;
+    color: var(--brand-fg);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .row-body { display: flex; flex-direction: column; gap: var(--space-3xs); }
+  .row-title {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-snug);
+    color: var(--brand-fg);
+  }
+  .row-tagline {
+    font-size: var(--fs-200);
+    color: var(--text-muted);
+    max-width: 46ch;
+  }
+
+  .row-count {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .row-arrow {
+    width: 1.2em;
+    height: 1.2em;
+    color: var(--accent);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .index-list a:hover .row-arrow { transform: translateX(0.35em); }
+
+  /* Below the two-column threshold the preview panel goes — a sticky image
+     beside nothing is just a tall gap, and hover does not exist on touch.
+
+     Each row grows its own thumbnail instead, drawn as a background from the
+     --row-img set inline per realm. Because it only exists inside this media
+     query, desktop never requests the small files and mobile never requests
+     the large ones: one image per realm either way, no duplicate fetches. */
+  @media (max-width: 62rem) {
+    .index { grid-template-columns: 1fr; }
+    .index-media { display: none; }
+
+    .index-list a {
+      grid-template-columns: 4.75rem 1fr;
+      align-items: start;
+      row-gap: var(--space-3xs);
+      column-gap: var(--space-s);
+      padding-block: var(--space-s);
+    }
+    .index-list a::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      background-image: var(--row-img);
+      background-size: cover;
+      background-position: center;
+    }
+    .row-n { grid-column: 2; font-size: var(--fs-200); font-weight: var(--fw-medium); }
+    .row-body { grid-column: 2; }
+    .row-count { grid-column: 2; }
+    .row-arrow { display: none; }
+  }
+</style>

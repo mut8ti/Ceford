@@ -5,8 +5,9 @@ import Card from '../../components/Card.astro';
 import Button from '../../components/Button.astro';
 import Accordion from '../../components/Accordion.astro';
 import AccordionItem from '../../components/AccordionItem.astro';
-import Hero from '../../components/Hero.astro';
+import PageHead from '../../components/PageHead.astro';
 import { realms } from '../../data/realms.js';
+import sizes from '../../data/realm-images.json';
 
 export function getStaticPaths() {
   return realms.map((realm) => ({ params: { slug: realm.slug }, props: { realm } }));
@@ -36,11 +37,23 @@ const schema = {
   })),
 };
 
-const detailRows = [
-  ['audience',     'Who it is for', 'users'],
-  ['requirements', 'Requirements',  'clipboard-check'],
-  ['duration',     'Duration',      'clock'],
-];
+/* Every course in the catalogue is $450–490 and 3–4 weeks, so a fee on each row
+   is 29 near-identical numbers pretending to be information. State the range
+   once here and give the rows over to what actually differs. */
+const fees = realm.courses.map((c) => Number(String(c.fee).replace(/\D/g, ''))).filter(Boolean);
+const feeRange = fees.length
+  ? (Math.min(...fees) === Math.max(...fees)
+      ? `$${Math.min(...fees)}`
+      : `$${Math.min(...fees)}–${Math.max(...fees)}`)
+  : null;
+
+const weeks = [...new Set(realm.courses.map((c) => (c.duration || '').match(/^\d+/)?.[0]).filter(Boolean))];
+const weekRange = weeks.length ? `${weeks.sort().join('–')} weeks` : null;
+
+/* "Logistics Officers, Procurement Units, Relief Program Teams" -> discrete
+   roles, so they can be set as a list rather than a run-on sentence. */
+const rolesOf = (course) =>
+  (course.audience || '').split(',').map((s) => s.trim()).filter(Boolean);
 ---
 
 <BaseLayout
@@ -51,59 +64,73 @@ const detailRows = [
   schema={schema}
 >
 
-  <Hero
-    image={realm.bg}
-    icon={realm.icon}
-    eyebrow={`Realm ${realm.n}`}
+  <PageHead
+    eyebrow={`Realm ${String(realm.n).padStart(2, '0')}`}
+    eyebrowIcon={realm.icon}
     title={realm.title}
     lede={realm.tagline}
+    image={realm.bg}
+    imageWidth={sizes[realm.slug]['-hero'][0]}
+    imageHeight={sizes[realm.slug]['-hero'][1]}
   />
 
+  {/* Prose at a readable measure, not a bordered box. One paragraph inside
+      card chrome was the last generic panel on the page. */}
   <section class="section overview-section">
     <div class="container">
-      <Card pad="l" class="overview" data-reveal>
+      <div class="overview" data-reveal>
         <h2>Program overview</h2>
         <p>{realm.overview}</p>
         {realm.idealFor && (
           <p class="ideal"><strong>Ideal for:</strong> {realm.idealFor}</p>
         )}
-      </Card>
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Courses Offered</h2>
-      <p class="lede">
-        {realm.courses.length} courses in this realm. Every course runs online,
-        live-virtual, or in person.
-      </p>
+      <div class="section-head courses-head" data-reveal>
+        <h2>{realm.courses.length} courses</h2>
+        {/* The facts that are true of every course, stated once. */}
+        <dl class="terms">
+          {weekRange && <div><dt>Length</dt><dd>{weekRange}</dd></div>}
+          {feeRange && <div><dt>Fee</dt><dd>{feeRange}</dd></div>}
+          <div><dt>Delivery</dt><dd>Online, live-virtual, or in person</dd></div>
+        </dl>
+      </div>
 
       <Accordion width="52rem" data-reveal-group>
         {realm.courses.map((course) => (
           <AccordionItem>
             <Fragment slot="summary">
-              <span class="course-name">{course.name}</span>
-              {course.fee && <span class="course-fee">{course.fee}</span>}
+              <span class="course-head">
+                <span class="course-name">{course.name}</span>
+                {/* The signature line. Who a course is for is the one thing that
+                    genuinely differs between them, so it is never hidden. */}
+                {rolesOf(course).length > 0 && (
+                  <span class="course-for">
+                    <span class="for-label">For</span>
+                    {rolesOf(course).map((role) => (
+                      <span class="role">{role}</span>
+                    ))}
+                  </span>
+                )}
+              </span>
             </Fragment>
+
             {course.objectives && (
               <p class="course-objectives">{course.objectives}</p>
             )}
-            <dl class="course-meta">
-              {detailRows.map(([key, label, icon]) => course[key] && (
-                <div class="meta-row">
-                  <dt><Icon name={`lucide:${icon}`} class="icon-accent" /> {label}</dt>
-                  <dd>{course[key]}</dd>
-                </div>
-              ))}
-              {course.fee && (
-                <div class="meta-row">
-                  <dt><Icon name="lucide:tag" class="icon-accent" /> Course fee</dt>
-                  <dd>{course.fee}</dd>
-                </div>
+            <dl class="terms terms-inline">
+              {course.requirements && (
+                <div><dt>Requires</dt><dd>{course.requirements}</dd></div>
+              )}
+              {course.duration && (
+                <div><dt>Length</dt><dd>{course.duration}</dd></div>
               )}
             </dl>
-            <Button href="/contact" size="sm">Apply for this course</Button>
+            <Button href="/contact" size="sm" class="course-cta">Apply for this course</Button>
           </AccordionItem>
         ))}
       </Accordion>
@@ -126,7 +153,7 @@ const detailRows = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Explore other realms</h2>
+      <div class="section-head" data-reveal><h2>Explore other realms</h2></div>
       <div class="realm-links" data-reveal-group="scale">
         {others.map((r) => (
           <Card href={`/realms/${r.slug}`} class="realm-link">
@@ -145,63 +172,97 @@ const detailRows = [
   /* ---------- Overview ---------- */
   .overview-section { padding-top: var(--space-l); }
 
-  .overview {
-    max-width: 52rem;
-    margin-inline: auto;
-  }
+  .overview { max-width: 46rem; }
   .overview h2 { font-size: var(--fs-600); color: var(--brand-fg); }
+  .overview p { font-size: var(--fs-400); }
   .ideal { margin-bottom: 0; color: var(--text-muted); }
 
-  /* ---------- Courses ---------- */
+  /* ---------- Courses ----------
+     Matches the accordion's own width so the heading and the rows share a left
+     edge — down a list of five, the eye needs one edge to return to. Everything
+     else comes from .section-head. */
+  .courses-head { max-width: 52rem; margin-inline: auto; }
 
-  .course > summary {
+  /* Definition list, not a table: these are labelled facts, not tabular data.
+     Small size needs weight to hold its colour, hence the medium label. */
+  .terms {
     display: flex;
-    align-items: center;
-    gap: var(--space-s);
-    padding: var(--space-s) var(--space-m);
-    cursor: pointer;
-    list-style: none;
+    flex-wrap: wrap;
+    gap: var(--space-2xs) var(--space-m);
+    margin: 0;
+  }
+  .terms > div { display: flex; flex-direction: column; }
+  .terms dt {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .terms dd {
+    margin: 0;
+    font-size: var(--fs-200);
+    font-weight: var(--fw-semibold);
   }
 
-  .course-name {
+  /* Inside a course, the same facts read better on one line each. */
+  .terms-inline {
+    flex-direction: column;
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-s);
+  }
+  .terms-inline > div {
+    flex-direction: row;
+    align-items: baseline;
+    gap: var(--space-s);
+  }
+  .terms-inline dt { flex: none; min-width: 5.5rem; }
+  .terms-inline dd { font-weight: var(--fw-regular); }
+
+  /* flex:1 so the summary's chevron is pushed to the far edge rather than
+     sitting against the longest role line. */
+  .course-head {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+  .course-name {
     font-size: var(--fs-400);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-bold);
     color: var(--brand-fg);
   }
 
-  .course-fee {
-    flex: none;
-    padding: 0.15em 0.6em;
-    border-radius: 999px;
-    background: var(--accent);
-    color: var(--text-on-accent);
-    font-size: var(--fs-200);
-    font-weight: var(--fw-bold);
-  }
-
-  .course-objectives { font-weight: var(--fw-semibold); }
-
-  .course-meta { margin: 0 0 var(--space-s); }
-  .meta-row {
-    display: grid;
-    grid-template-columns: minmax(9rem, auto) 1fr;
-    gap: var(--space-2xs) var(--space-s);
-    padding: var(--space-2xs) 0;
-    border-top: 1px solid var(--border);
-  }
-  .meta-row dt {
+  /* The signature. "For" is a label, the roles are the content, so the label
+     recedes and the roles carry normal text weight. */
+  .course-for {
     display: flex;
-    align-items: center;
-    gap: var(--space-3xs);
-    font-weight: var(--fw-semibold);
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3xs) var(--space-2xs);
+    font-size: var(--fs-200);
     color: var(--text-muted);
   }
-  .meta-row dd { margin: 0; }
-
-  @media (max-width: 34rem) {
-    .meta-row { grid-template-columns: 1fr; gap: 0; }
+  .for-label {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
   }
+  /* Middot separators via ::before so no empty element is needed, and the
+     first role never gets a leading dot. */
+  .role + .role::before {
+    content: "·";
+    margin-right: var(--space-2xs);
+    color: var(--border);
+  }
+
+  .course-objectives {
+    font-size: var(--fs-400);
+    color: var(--text);
+  }
+  .course-cta { margin-top: var(--space-s); }
 
   /* ---------- Other realms ---------- */
   .realm-links {

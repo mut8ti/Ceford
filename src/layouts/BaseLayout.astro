@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+import { realms } from '../data/realms.js';
 import '@fontsource-variable/nunito-sans';
 /* Real italics. Without this the four italic rules on the site render as a
    browser-synthesised oblique — the roman slanted by shear, not the drawn
@@ -73,10 +75,14 @@ const isCurrent = (item) => {
 </head>
 <body>
 
+{/* Sits at the very top of the document; the header watches it to know whether
+    the page has scrolled. Zero height, so it changes no layout. */}
+<div class="scroll-sentinel" aria-hidden="true"></div>
+
 <header class="site-header">
   <a class="brand" href="/">
     <span class="brand-mark">
-      <img src="/images/logo-final.webp" alt="" width="48" height="48" fetchpriority="high" />
+      <img src="/images/logo-final.webp" alt="" width="42" height="42" fetchpriority="high" />
     </span>
     <span class="brand-text">
       CEFORED
@@ -92,8 +98,13 @@ const isCurrent = (item) => {
     ))}
   </nav>
 
-  <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
-  <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">☰</button>
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
+    <Icon name="lucide:moon" class="icon-moon" />
+    <Icon name="lucide:sun" class="icon-sun" />
+  </button>
+  <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+    <span class="bars" aria-hidden="true"><span></span><span></span></span>
+  </button>
 </header>
 
 <main>
@@ -102,14 +113,64 @@ const isCurrent = (item) => {
 
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-links">
-      <a href="/about">About</a>
-      <a href="/programs">Programs</a>
-      <a href="/admission">Admission</a>
-      <a href="/blog">Blog</a>
-      <a href="/contact">Contact</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-mark">
+          <img src="/images/logo-final.webp" alt="" width="48" height="48" loading="lazy" />
+        </span>
+        <p class="footer-name">CEFORED<span>Institute of Relief and Development</span></p>
+        <p class="footer-blurb">
+          Applied AI training for logistics, business, health, project management,
+          IT, and humanitarian teams.
+        </p>
+      </div>
+
+      {/* The six realms are the site's real structure, so the footer carries
+          them as deep links rather than making /programs the only way in. */}
+      <nav class="footer-col" aria-label="Realms">
+        <h2>Realms</h2>
+        <ul>
+          {realms.map((r) => (
+            <li>
+              <a href={`/realms/${r.slug}`}>
+                <span class="footer-n">{String(r.n).padStart(2, '0')}</span>
+                {r.short ?? r.title.replace(/^AI (in|for) /, '')}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Institute">
+        <h2>Institute</h2>
+        <ul>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/programs">Programs</a></li>
+          <li><a href="/admission">Admission</a></li>
+          <li><a href="/corporate-training">Corporate Training</a></li>
+          <li><a href="/faqs">FAQs</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h2>Get in touch</h2>
+        <ul>
+          <li><a href="mailto:info@cefored.com">info@cefored.com</a></li>
+          <li><a href="tel:+254755445982">+254 755 445 982</a></li>
+          <li class="footer-plain">Nairobi, Kenya</li>
+        </ul>
+        <a class="footer-cta" href="/newsletter">
+          Join the newsletter
+          <Icon name="lucide:arrow-right" />
+        </a>
+      </div>
     </div>
-    <p>&copy; {new Date().getFullYear()} CEFORED Institute of Relief. All rights reserved.</p>
+
+    <div class="footer-bottom">
+      <p>&copy; {new Date().getFullYear()} CEFORED Institute of Relief and Development. All rights reserved.</p>
+      <a href="/contact">Contact us</a>
+    </div>
   </div>
 </footer>
 
@@ -128,18 +189,19 @@ const isCurrent = (item) => {
      The programs accordion is native <details>, so it needs no JS. */
   const root = document.documentElement;
 
+  /* Both icons are in the DOM and CSS shows one, so the button is never empty
+     before this runs. Only the label needs updating. */
   const themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
-    const paint = () => {
-      const dark = root.classList.contains('dark-mode');
-      themeBtn.textContent = dark ? '☀️' : '🌙';
-      themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    };
-    paint();
+    const label = () => themeBtn.setAttribute(
+      'aria-label',
+      root.classList.contains('dark-mode') ? 'Switch to light mode' : 'Switch to dark mode'
+    );
+    label();
     themeBtn.addEventListener('click', () => {
       root.classList.toggle('dark-mode');
       localStorage.setItem('theme', root.classList.contains('dark-mode') ? 'dark' : 'light');
-      paint();
+      label();
     });
   }
 
@@ -147,7 +209,10 @@ const isCurrent = (item) => {
   const nav = document.querySelector('.nav');
   if (navBtn && nav) {
     const isOpen = () => navBtn.getAttribute('aria-expanded') === 'true';
-    const setOpen = (open) => navBtn.setAttribute('aria-expanded', String(open));
+    const setOpen = (open) => {
+      navBtn.setAttribute('aria-expanded', String(open));
+      navBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
 
     navBtn.addEventListener('click', () => setOpen(!isOpen()));
     document.addEventListener('click', (e) => {
@@ -157,6 +222,17 @@ const isCurrent = (item) => {
       if (e.key === 'Escape' && isOpen()) { setOpen(false); navBtn.focus(); }
     });
     nav.addEventListener('click', (e) => { if (e.target.matches('a')) setOpen(false); });
+  }
+
+  /* The header materialises once the page has moved. Observing a sentinel at
+     the top of the document costs nothing per frame, unlike a scroll handler
+     reading scrollY. */
+  const header = document.querySelector('.site-header');
+  const sentinel = document.querySelector('.scroll-sentinel');
+  if (header && sentinel) {
+    new IntersectionObserver(
+      ([entry]) => header.classList.toggle('is-scrolled', !entry.isIntersecting)
+    ).observe(sentinel);
   }
 </script>
 

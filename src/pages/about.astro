@@ -1,9 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
-import Hero from '../components/Hero.astro';
+import PageHead from '../components/PageHead.astro';
 import { realms } from '../data/realms.js';
 
 const realmBlurbs = {
@@ -16,11 +14,13 @@ const realmBlurbs = {
 };
 
 const values = [
-  ['shield-check', 'Integrity',  'We are accountable to the communities and organizations we serve.'],
-  ['heart-handshake', 'Compassion', 'Our work begins with the people affected by crisis and inequity.'],
-  ['award', 'Excellence',  'Practical, rigorous training measured by what graduates can actually do.'],
-  ['users', 'Community',   'An alumni network that keeps working together long after the course ends.'],
+  ['Integrity',  'We are accountable to the communities and organizations we serve.'],
+  ['Compassion', 'Our work begins with the people affected by crisis and inequity.'],
+  ['Excellence', 'Practical, rigorous training measured by what graduates can actually do.'],
+  ['Community',  'An alumni network that keeps working together long after the course ends.'],
 ];
+
+const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
 ---
 
 <BaseLayout
@@ -30,135 +30,208 @@ const values = [
   ogImage="/images/about1.webp"
 >
 
-  <Hero
-    image="/images/about1.webp"
+  <PageHead
     eyebrow="Who we are"
     title="About CEFORED"
     lede="A pioneering training institute leveraging the power of AI to transform learning in the sectors that drive social impact."
+    image="/images/about1.webp"
+    imageWidth={1200}
+    imageHeight={433}
   />
 
+  {/* Mission and vision were two bordered boxes side by side. They are two
+      statements of intent — prose, set against a labelled left column, so the
+      page reads as a document rather than a card deck. */}
   <section class="section">
-    <div class="container mv-grid">
-      <Card pad="l" class="mv-card" data-reveal="left">
-        <Icon name="lucide:target" class="mv-icon" />
-        <h2>Our Mission</h2>
+    <div class="container">
+      <div class="statement" data-reveal>
+        <h2>Our mission</h2>
         <p>
           To build a smarter, more resilient world through practical, AI-empowered
           education. We specialize in real-time, AI-enhanced training programs in
           logistics, business management, health systems, project management,
           humanitarian relief, and digital transformation.
         </p>
-      </Card>
-      <Card pad="l" class="mv-card" data-reveal="right">
-        <Icon name="lucide:telescope" class="mv-icon" />
-        <h2>Our Vision</h2>
+      </div>
+
+      <div class="statement" data-reveal>
+        <h2>Our vision</h2>
         <p>
           To become Africa's most trusted institute for AI-integrated professional
           training that accelerates development and humanitarian impact.
         </p>
-      </Card>
+      </div>
     </div>
   </section>
 
-  <section class="section why-band band">
+  <section class="section realms-section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Our Six Realms of Transformation</h2>
-      <p class="lede">
-        Our AI-driven vision is delivered through six realms of training and
-        innovation, equipping professionals to lead in critical sectors.
-      </p>
-      <div class="realm-grid" data-reveal-group="scale">
-        {realms.map(r => (
-          <Card href={`/realms/${r.slug}`} class="realm-card">
-            <Icon name={`lucide:${r.icon}`} class="realm-card-icon" />
-            <h3>{r.title}</h3>
-            <p>{realmBlurbs[r.slug]}</p>
-            <span class="realm-card-more">Explore realm →</span>
-          </Card>
-        ))}
+      <div class="section-head" data-reveal>
+        <h2>Six realms of transformation</h2>
+        <p class="head-note">{totalCourses} courses</p>
       </div>
+
+      <ol class="realm-list" data-reveal-group="left">
+        {realms.map((r) => (
+          <li>
+            <a href={`/realms/${r.slug}`}>
+              <span class="realm-n">{String(r.n).padStart(2, '0')}</span>
+              <span class="realm-body">
+                <span class="realm-title">{r.title}</span>
+                <span class="realm-blurb">{realmBlurbs[r.slug]}</span>
+              </span>
+              <span class="realm-count">{r.courses.length} courses</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="container">
+      <div class="section-head" data-reveal><h2>Our values</h2></div>
+      <ol class="values" data-reveal-group="left">
+        {values.map(([name, text], i) => (
+          <li>
+            <span class="value-n">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{name}</h3>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Our Values</h2>
-      <div class="value-grid" data-reveal-group>
-        {values.map(([icon, name, text]) => (
-          <Card class="value">
-            <Icon name={`lucide:${icon}`} class="icon-accent icon-lg" />
-            <h3>{name}</h3>
-            <p>{text}</p>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section team-section">
-    <div class="container">
-      <Card pad="l" class="team" data-reveal>
-        <h2>Our Team</h2>
+      <div class="statement" data-reveal>
+        <h2>Our team</h2>
         <p>
           Our staff and volunteers are experienced professionals committed to relief
           and development work, bringing field experience from NGOs, government
           agencies, and international organizations.
         </p>
         <div class="btn-row">
-          <Button href="/programs">Explore Programs</Button>
-          <Button href="/contact">Work With Us</Button>
+          <Button href="/programs">Explore programs</Button>
+          <Button href="/contact" variant="ghost">Work with us</Button>
         </div>
-      </Card>
+      </div>
     </div>
   </section>
 
 </BaseLayout>
 
 <style>
-  .mv-grid {
+  /* Label left, prose right. On narrow screens the label stacks above, which
+     keeps the reading order identical to the visual order. */
+  .statement {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-    gap: var(--space-m);
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    gap: var(--space-s) var(--space-l);
+    align-items: start;
+    max-width: 60rem;
+    padding-block: var(--space-l);
+    border-top: 1px solid var(--border);
   }
-  .mv-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
-  .mv-card h2 { font-size: var(--fs-600); color: var(--brand-fg); }
-
-  .realm-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-    gap: var(--space-m);
-  }
-  .realm-card {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3xs);
-  }
-  .realm-card-icon { width: 2em; height: 2em; color: var(--accent); }
-  .realm-card h3 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
-  .realm-card p { color: var(--text-muted); font-size: var(--fs-200); }
-  .realm-card-more {
-    margin-top: auto;
-    font-size: var(--fs-200);
+  .statement h2 {
+    margin: 0;
+    font-size: var(--fs-500);
     font-weight: var(--fw-semibold);
+    letter-spacing: 0.02em;
     color: var(--brand-fg);
   }
+  .statement p {
+    max-width: 60ch;
+    font-size: var(--fs-400);
+  }
+  .statement .btn-row { justify-content: flex-start; margin-top: var(--space-m); }
 
-  .value-grid {
+  @media (max-width: 44rem) {
+    .statement { grid-template-columns: 1fr; gap: var(--space-2xs); }
+  }
+
+  .head-note {
+    margin: 0;
+    font-size: var(--fs-100);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Same numbered-row treatment as the homepage index, minus the preview panel
+     — this page is prose about the institute, not a place to browse from. */
+  .realm-list { margin: 0; padding: 0; list-style: none; }
+  .realm-list li { border-top: 1px solid var(--border); }
+  .realm-list li:last-child { border-bottom: 1px solid var(--border); }
+  .realm-list li { transition: background-color 0.3s; }
+  .realm-list li:has(a:hover),
+  .realm-list li:has(a:focus-visible) { background: var(--surface); }
+
+  .realm-list a {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-    gap: var(--space-m);
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: var(--space-s);
+    padding: var(--space-m) var(--space-2xs);
+    color: var(--text);
+    text-decoration: none;
+    /* transform, never padding: animating padding reflows the row each frame. */
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .value {
-    text-align: center;
-  }
-  .value h3 { font-size: var(--fs-500); color: var(--brand-fg); }
-  .value p { color: var(--text-muted); font-size: var(--fs-200); margin: 0; }
+  .realm-list a:hover,
+  .realm-list a:focus-visible { transform: translateX(var(--space-2xs)); }
 
-  .team {
-    max-width: 46rem;
-    margin-inline: auto;
-    text-align: center;
+  .realm-n {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-light);
+    line-height: 1;
+    color: var(--brand-fg);
+    font-variant-numeric: tabular-nums;
   }
-  .team h2 { color: var(--brand-fg); }
-  .team .btn-row { margin-top: var(--space-m); }
+  .realm-body { display: flex; flex-direction: column; gap: var(--space-3xs); }
+  .realm-title {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-snug);
+    color: var(--brand-fg);
+  }
+  .realm-blurb { font-size: var(--fs-200); color: var(--text-muted); max-width: 52ch; }
+  .realm-count {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 44rem) {
+    .realm-list a { grid-template-columns: auto 1fr; row-gap: var(--space-2xs); }
+    .realm-count { grid-column: 2; }
+  }
+
+  .values-section {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+  .values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-l) var(--space-xl);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .values li { display: grid; gap: var(--space-3xs); align-content: start; }
+  .value-n {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.1em;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .values h3 { margin: 0; font-size: var(--fs-500); color: var(--brand-fg); }
+  .values p { margin: 0; color: var(--text-muted); }
 </style>

@@ -1,26 +1,135 @@
 ---
-/* The heading block on pages that open with type rather than a photo — the
-   counterpart to <Hero>. Five pages had identical copies of this.
+/* The opening block for every page except the homepage, which has its own
+   larger variant with authored line breaks.
 
-   Bottom padding collapses when there is nothing in the slot, so the head sits
-   tight against the section below; pages that put a button row underneath keep
-   the full section padding. */
-const { title, lede } = Astro.props;
+   Type-led and left-aligned, matching the homepage. It replaces the photo hero
+   the interior pages used to carry: a stock photograph behind a 62% black scrim
+   said nothing about the page and gave every page the same opening. Where a
+   page has a photograph worth showing, it runs full-bleed below the type as a
+   strip, so the image has presence and the words stay on the page background.
+
+   Animation is transform-only under a mask, never opacity, so the largest
+   contentful paint is not gated on it. */
+import { Icon } from 'astro-icon/components';
+
+const {
+  eyebrow,
+  eyebrowIcon,
+  title,
+  lede,
+  image,
+  imageAlt = '',
+  imageWidth,
+  imageHeight,
+} = Astro.props;
+
 const hasExtra = Astro.slots.has('default');
 ---
 
-<section class:list={['section', 'page-head', !hasExtra && 'page-head-tight']}>
+<section class:list={['page-head', !hasExtra && !image && 'page-head-tight']}>
   <div class="container">
-    <h1 data-reveal>{title}</h1>
-    {lede && <p class="lede" data-reveal>{lede}</p>}
+    {eyebrow && (
+      <p class="eyebrow">
+        <span>
+          {eyebrowIcon && <Icon name={`lucide:${eyebrowIcon}`} />}
+          {eyebrow}
+        </span>
+      </p>
+    )}
+
+    <h1><span class="line">{title}</span></h1>
+
+    {lede && <p class="page-lede">{lede}</p>}
+
     <slot />
   </div>
+
+  {image && (
+    <div class="page-head-media">
+      <img
+        src={image}
+        alt={imageAlt}
+        width={imageWidth}
+        height={imageHeight}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  )}
 </section>
 
 <style>
-  .page-head { text-align: center; }
-  .page-head-tight { padding-bottom: 0; }
-  .page-head h1 { color: var(--brand-fg); }
-  /* The button row is slotted from the page, so it carries the page's scope. */
-  .page-head :global(.btn-row) { margin-top: var(--space-m); }
+  .page-head {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+  }
+  .page-head-tight { padding-bottom: var(--space-l); }
+
+  .eyebrow {
+    overflow: hidden;
+    margin-bottom: var(--space-s);
+    font-size: var(--fs-100);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+  .eyebrow > span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    animation: head-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  .page-head h1 {
+    max-width: 20ch;
+    margin-bottom: var(--space-m);
+    color: var(--brand-fg);
+    line-height: 1.04;
+  }
+  /* The mask clips the slide; the padding/margin pair keeps it off descenders. */
+  .page-head h1 .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+    animation: head-rise 1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    animation-delay: 0.08s;
+  }
+
+  @keyframes head-rise {
+    from { transform: translateY(105%); }
+  }
+
+  .page-lede {
+    max-width: 56ch;
+    font-size: var(--fs-400);
+    color: var(--text-muted);
+    animation: head-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+  }
+
+  @keyframes head-fade {
+    from { opacity: 0; transform: translateY(1.2rem); }
+  }
+
+  .page-head :global(.btn-row) {
+    justify-content: flex-start;
+    margin-top: var(--space-l);
+  }
+
+  /* Full-bleed strip. A wide crop rather than a tall block: it is establishing
+     the sector, not competing with the type above it. */
+  .page-head-media {
+    margin-top: var(--space-xl);
+    aspect-ratio: 2.6;
+    overflow: hidden;
+  }
+  .page-head-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 48rem) {
+    .page-head-media { aspect-ratio: 16 / 9; }
+  }
 </style>

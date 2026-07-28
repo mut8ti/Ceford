@@ -31,7 +31,11 @@ import { realms } from '../data/realms.js';
 </BaseLayout>
 
 <style>
+  /* The whole page is centred — an error page has no content to align to.
+     .lede inherits the centring but no longer centres its own block, so it
+     needs the auto margin here or the measure sits flush left. */
   .notfound { text-align: center; padding-block: var(--space-2xl); }
+  .notfound .lede { margin-inline: auto; }
   .code {
     font-size: var(--fs-800);
     font-weight: var(--fw-bold);

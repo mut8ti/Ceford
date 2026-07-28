@@ -88,6 +88,7 @@ img, svg, video { max-width: 100%; height: auto; }
   background: var(--band);
   color: var(--text-on-brand);
 }
+
 .band::before {
   content: "";
   position: absolute;
@@ -102,10 +103,14 @@ img, svg, video { max-width: 100%; height: auto; }
 .band > * { position: relative; }
 .band h1, .band h2, .band h3 { color: var(--text-on-brand); }
 
-/* No decorative rule beneath the heading. It carried no meaning, it was
-   identical on every section of every page, and size plus colour already mark
-   a section title. The larger bottom margin holds the vertical rhythm the
-   removed bar used to occupy. */
+/* Centred heading, now used ONLY inside .band. A short call to action in a
+   coloured block is centred deliberately; everywhere else uses .section-head
+   below, because a centred heading over left-aligned content gives the eye no
+   edge to return to.
+
+   No decorative rule beneath it — that carried no meaning and was identical on
+   every section of every page. The larger bottom margin holds the vertical
+   rhythm the removed bar used to occupy. */
 .section-title {
   color: var(--brand-fg);
   text-align: center;
@@ -113,15 +118,36 @@ img, svg, video { max-width: 100%; height: auto; }
 }
 .band .section-title { color: var(--text-on-brand); }
 
+/* Left-aligned section heading, optionally with facts sitting on the right.
+   The centred .section-title above stays for bands and CTAs, where centring
+   actually means something. Everywhere else the eye needs a left edge to
+   return to, and this is what pages move onto as they get reworked. */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s) var(--space-l);
+  margin-bottom: var(--space-m);
+}
+.section-head h2 { margin: 0; color: var(--brand-fg); }
+.band .section-head h2 { color: var(--text-on-brand); }
+
+/* Deliberately sets no text-align and no inline margin, so it inherits from
+   whatever it sits in: left on an ordinary page, centred inside a band or on
+   the 404, which centres its whole container. Forcing `center` here was what
+   left ledes centred over left-aligned content. */
 .lede {
   max-width: var(--measure);
-  margin-inline: auto;
   margin-bottom: var(--space-l);
   font-size: var(--fs-400);
   color: var(--text-muted);
-  text-align: center;
 }
-.band .lede { color: rgb(255 255 255 / 0.85); }
+.band .lede {
+  margin-inline: auto;
+  text-align: center;
+  color: rgb(255 255 255 / 0.85);
+}
 
 /* ---------- Icons ----------
    Lucide, inlined at build time by astro-icon. Only the icons actually used
@@ -193,11 +219,33 @@ img, svg, video { max-width: 100%; height: auto; }
 
 .btn:active { transform: translateY(1px); }
 
-/* Sits on hero photography, so the fill goes to white and the label to near
-   black — not var(--text), which is near white in dark mode and would vanish. */
+/* Secondary button. Defaults to the PAGE background — brand outline, brand
+   label — because that is where most of them sit. It previously defaulted to
+   white-on-white, which was correct only inside a .band and invisible anywhere
+   else; the homepage hero lost its photo backdrop and the button vanished
+   with it. Contexts with a dark backdrop opt in below. */
 .btn-ghost {
   background: transparent;
-  border-color: rgb(255 255 255 / 0.45);
+  border-color: var(--brand-fg);
+  color: var(--brand-fg);
+
+  --btn-fill:        var(--brand-fg);
+  --btn-label-hover: var(--surface);
+}
+
+/* Any always-dark backdrop — a brand band, or the scrim over hero photography —
+   inverts it: white outline and label, filling to white with a near black
+   label. Not var(--text), which is near white in dark mode.
+
+   Keyed off .on-dark rather than .hero: the homepage hero is light type on the
+   page background and shares that class name, so a .hero selector would put
+   white-on-white right back. */
+/* :where() so the ancestor adds NO specificity — this must stay at 0,1,0, the
+   same as .btn-ghost. Written as `.band .btn-ghost` it scores 0,2,0, ties with
+   `.btn:hover` and, being later in the file, overrides the hover colour: the
+   fill turned white while the label stayed white. */
+:where(.band, .on-dark) .btn-ghost {
+  border-color: rgb(255 255 255 / 0.55);
   color: #fff;
 
   --btn-fill:        #fff;
@@ -213,7 +261,22 @@ img, svg, video { max-width: 100%; height: auto; }
   justify-content: center;
 }
 
-/* ---------- Header & nav ---------- */
+/* ---------- Header & nav ----------
+   The bar was a solid slab of saturated teal on every page — a hard edge
+   against the paper background, and the loudest thing on screen before the
+   content had said anything. It now sits on the page background and stays
+   invisible until you scroll, at which point a hairline and a soft shadow
+   separate it from the content passing underneath.
+
+   Because it takes --bg and --text, dark mode needs no header rules at all. */
+
+.scroll-sentinel {
+  position: absolute;
+  top: 0;
+  height: 1px;
+  width: 1px;
+  pointer-events: none;
+}
 
 .site-header {
   position: fixed;
@@ -224,35 +287,49 @@ img, svg, video { max-width: 100%; height: auto; }
   align-items: center;
   gap: var(--space-s);
   padding-inline: var(--space-m);
-  background: var(--brand);
-  color: var(--text-on-brand);
-  box-shadow: var(--shadow-lg);
+  color: var(--text);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.35s, border-color 0.35s, box-shadow 0.35s;
 }
-html.dark-mode .site-header { background: var(--band); }
+
+/* .is-scrolled is set from an IntersectionObserver on a sentinel, not a scroll
+   listener, so there is no work on the scroll thread. */
+.site-header.is-scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: var(--border);
+  box-shadow: 0 1px 24px rgb(0 0 0 / 0.05);
+}
+/* backdrop-filter unsupported: fall back to an opaque bar rather than letting
+   content scroll through unreadably behind it. */
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header.is-scrolled { background: var(--bg); }
+}
 
 .brand {
   display: flex;
   align-items: center;
   gap: var(--space-2xs);
   margin-right: auto;
-  color: var(--text-on-brand);
+  color: inherit;
   text-decoration: none;
   font-weight: var(--fw-bold);
   font-size: var(--fs-400);
   letter-spacing: -0.01em;
 }
 
-/* Logo treatment: a white chip normalises the mark against the teal bar and
-   keeps it legible in both themes without editing the asset. */
+/* The mark has a cream background baked in — no alpha — so it needs a light
+   chip in both themes regardless of what the bar is doing. */
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  padding: 5px;
-  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  padding: 4px;
+  border-radius: 10px;
   background: #fff;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+  border: 1px solid var(--border);
 }
 .brand-mark img { width: 100%; height: 100%; object-fit: contain; }
 
@@ -260,36 +337,49 @@ html.dark-mode .site-header { background: var(--band); }
 .brand-text small {
   font-size: var(--fs-100);
   font-weight: var(--fw-medium);
-  opacity: 0.8;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--text-muted);
 }
 
-.nav { display: flex; gap: var(--space-3xs); }
+.nav { display: flex; gap: var(--space-2xs); }
+
+/* Active state is a rule under the label, not a filled pill. The pill was a
+   heavy white blob and the only element on the site shaped like that; an
+   underline that grows from the left is the same gesture as the footer links
+   and the realm rows, so hover behaviour is one idea site-wide. */
 .nav a {
-  padding: var(--space-2xs) var(--space-xs);
-  border-radius: var(--radius-sm);
-  color: var(--text-on-brand);
+  position: relative;
+  padding: var(--space-2xs) var(--space-3xs);
+  color: var(--text-muted);
   font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
   text-decoration: none;
   white-space: nowrap;
-  transition: background-color 0.2s;
+  transition: color 0.2s;
 }
-.nav a:hover { background: rgb(255 255 255 / 0.15); }
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: var(--space-3xs);
+  right: var(--space-3xs);
+  bottom: 0;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--brand-fg);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav a:hover,
+.nav a:focus-visible { color: var(--text); }
+.nav a:hover::after { transform: scaleX(1); }
 
-/* Active page: a solid light pill with brand-coloured text. The bar itself is
-   the brand colour, so brand-on-brand text would be invisible — inverting the
-   pill is how the primary colour reads as the active state here. */
 .nav a[aria-current="page"] {
-  background: #fff;
   color: var(--brand-fg);
   font-weight: var(--fw-semibold);
 }
-html.dark-mode .nav a[aria-current="page"] {
-  background: var(--surface);
-}
-.nav a[aria-current="page"]:hover { background: #fff; }
-html.dark-mode .nav a[aria-current="page"]:hover { background: var(--surface); }
+.nav a[aria-current="page"]::after { transform: scaleX(1); }
 
 .icon-btn {
   display: grid;
@@ -298,15 +388,49 @@ html.dark-mode .nav a[aria-current="page"]:hover { background: var(--surface); }
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid rgb(255 255 255 / 0.3);
+  /* --border is a separator tint at 1.2:1 on the page — fine between cards,
+     too faint to read as the edge of a control. Mixed halfway to the text
+     colour it reaches 3.7:1, clearing the 3:1 that WCAG 2.2 §1.4.11 wants for
+     a component boundary. */
+  border: 1px solid color-mix(in srgb, var(--text) 50%, var(--border));
   border-radius: 50%;
   background: transparent;
-  color: var(--text-on-brand);
-  font-size: var(--fs-300);
+  color: inherit;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
-.icon-btn:hover { background: rgb(255 255 255 / 0.15); }
+.icon-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--brand-fg);
+}
+
+/* Both theme icons ship; CSS picks one. Swapping textContent in JS meant the
+   button was empty until the script ran, and emoji render differently on every
+   platform next to a drawn icon set. */
+.theme-toggle .icon-sun { display: none; }
+html.dark-mode .theme-toggle .icon-sun { display: block; }
+html.dark-mode .theme-toggle .icon-moon { display: none; }
+
+/* Two bars crossing into an X. Three is the convention but the middle bar can
+   only fade, which is the part that always looks cheap. */
+.bars {
+  display: grid;
+  gap: 5px;
+  width: 18px;
+}
+.bars span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-toggle[aria-expanded="true"] .bars span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .bars span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+}
 
 .nav-toggle { display: none; }
 
@@ -321,7 +445,8 @@ html.dark-mode .nav a[aria-current="page"]:hover { background: var(--surface); }
     flex-direction: column;
     gap: 0;
     padding: var(--space-2xs) var(--space-s) var(--space-s);
-    background: var(--brand);
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
     display: none;
 
@@ -331,45 +456,160 @@ html.dark-mode .nav a[aria-current="page"]:hover { background: var(--surface); }
     overflow-y: auto;
     overscroll-behavior: contain;
   }
-  html.dark-mode .nav { background: var(--band); }
 
   /* aria-expanded on the button is the single source of truth for open state. */
   .site-header:has(.nav-toggle[aria-expanded="true"]) .nav { display: flex; }
 
   .nav a {
-    padding: var(--space-xs);
-    border-radius: var(--radius-sm);
+    padding: var(--space-xs) var(--space-2xs);
     font-size: var(--fs-300);
   }
-  .nav a + a { border-top: 1px solid rgb(255 255 255 / 0.15); }
-  .nav a[aria-current="page"] { border-top-color: transparent; }
+  .nav a + a { border-top: 1px solid var(--border); }
+  /* The underline would sit on the row divider and read as a thick border. */
+  .nav a::after { display: none; }
+  .nav a[aria-current="page"] {
+    border-left: 2px solid var(--brand-fg);
+    padding-left: var(--space-xs);
+  }
 }
 
 /* Very small screens: drop the strapline so the brand, theme toggle and
    hamburger still fit on one row. */
 @media (max-width: 24rem) {
   .brand-text small { display: none; }
-  .brand-mark { width: 40px; height: 40px; }
+  .brand-mark { width: 38px; height: 38px; }
 }
 
 /* ---------- Footer ---------- */
 
+/* A real sitemap rather than five links and a copyright line. /admission and
+   /blog are not in the top nav, so this is the only durable route to them. */
 .site-footer {
-  padding-block: var(--space-l);
+  padding-block: var(--space-xl) var(--space-l);
   background: var(--brand);
   color: var(--text-on-brand);
-  text-align: center;
   font-size: var(--fs-200);
-  font-weight: var(--fw-medium);
 }
 html.dark-mode .site-footer { background: var(--band); }
-.site-footer a { color: #fff; }
-.site-footer .footer-links {
+
+.footer-top {
+  display: grid;
+  /* Brand column takes more room; the three link columns share what is left. */
+  grid-template-columns: minmax(15rem, 1.5fr) repeat(3, minmax(9rem, 1fr));
+  gap: var(--space-l) var(--space-m);
+  padding-bottom: var(--space-l);
+}
+
+.footer-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 5px;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: var(--space-xs);
+}
+.footer-mark img { width: 100%; height: 100%; object-fit: contain; }
+
+.footer-name {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 var(--space-2xs);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.footer-name span {
+  font-size: var(--fs-100);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.footer-blurb {
+  margin: 0;
+  max-width: 30ch;
+  /* 0.78 is the lowest alpha that clears 4.5:1 against the teal band. */
+  color: rgb(255 255 255 / 0.8);
+}
+
+.footer-col h2 {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--fs-100);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.8);
+}
+.footer-col ul { margin: 0; padding: 0; list-style: none; }
+.footer-col li + li { margin-top: var(--space-3xs); }
+
+/* Underline grows from the left on hover instead of appearing all at once —
+   the same directional logic as the buttons and the realm index rows. */
+.site-footer a {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding-block: 2px;
+}
+.site-footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.site-footer a:hover::after { transform: scaleX(1); }
+
+/* Plain white: the amber only reaches 2.61:1 on the teal band. */
+.footer-n {
+  display: inline-block;
+  min-width: 1.9em;
+  font-weight: var(--fw-medium);
+  color: rgb(255 255 255 / 0.65);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer-plain { color: rgb(255 255 255 / 0.8); }
+
+/* Qualified with .site-footer so it outranks `.site-footer a` (0,1,1) on
+   specificity rather than with !important. */
+.site-footer .footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  margin-top: var(--space-s);
+  font-weight: var(--fw-semibold);
+  color: var(--accent-on-dark);
+}
+.footer-cta [data-icon] { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.footer-cta:hover [data-icon] { transform: translateX(0.3em); }
+
+.footer-bottom {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-s);
-  justify-content: center;
-  margin-bottom: var(--space-s);
+  gap: var(--space-2xs) var(--space-m);
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-m);
+  border-top: 1px solid rgb(255 255 255 / 0.18);
+  color: rgb(255 255 255 / 0.8);
+}
+.footer-bottom p { margin: 0; }
+
+@media (max-width: 60rem) {
+  .footer-top { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 34rem) {
+  .footer-top { grid-template-columns: 1fr; gap: var(--space-m); }
 }
 
 /* ---------- Forms ---------- */

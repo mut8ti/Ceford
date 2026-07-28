@@ -31,6 +31,11 @@
   --accent-hover:   #e08321;
   --accent-on-dark: #e8933a;   /* for hero scrims and other always-dark backdrops */
 
+  /* --accent is a fill colour. As small TEXT on the page background it only
+     reaches 3.47:1, so eyebrows and labels use this darker step instead
+     (4.82:1 on paper, 5.25:1 on white). Icons and fills keep --accent. */
+  --accent-ink:     #a8560e;
+
   /* ---------- Colour: surfaces ----------
      Warm paper, not `beige`. Beige is the dated element and the reason brand
      text failed contrast against the page. */
@@ -70,6 +75,7 @@
   --fs-600: clamp(1.45rem, 1.28rem + 0.85vw, 1.95rem);  /* h3                */
   --fs-700: clamp(1.75rem, 1.45rem + 1.5vw,  2.6rem);   /* h2 / section      */
   --fs-800: clamp(2.2rem,  1.6rem + 3vw,     3.6rem);   /* h1 / hero         */
+  --fs-900: clamp(2.6rem,  1.4rem + 5.4vw,   5.4rem);   /* landing display   */
 
   /* ---------- Weight ----------
      Nunito Sans is loaded as a variable font with a continuous 200–1000 wght
@@ -79,6 +85,7 @@
      Weight compensates optically for size: display type can carry more of it
      before it clogs, small type needs more of it to hold colour against the
      page. Hence a heavy display step and a medium step for fine print. */
+  --fw-light:    250;   /* large numerals only — unreadable at body size */
   --fw-regular:  400;
   --fw-medium:   500;   /* fine print, muted metadata */
   --fw-semibold: 600;   /* labels, buttons, standout links */
@@ -136,6 +143,9 @@ html.dark-mode {
 
   --accent:       var(--accent-on-dark);
   --accent-hover: #f3a95a;
+  /* On dark surfaces the darker ink step would disappear, so accent text uses
+     the same bright amber as fills. */
+  --accent-ink:   var(--accent-on-dark);
 
   --text:       #e8e8e8;
   --text-muted: #a8a8a8;
@@ -154,6 +164,11 @@ html.dark-mode {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms;
+    /* Must be zeroed too. Entrance animations use `backwards` fill, so a
+       surviving delay would hold the element in its hidden `from` state —
+       collapsing only the duration leaves the content invisible for the
+       length of the delay. */
+    animation-delay: 0s;
     animation-iteration-count: 1;
     transition-duration: 0.01ms;
     scroll-behavior: auto;

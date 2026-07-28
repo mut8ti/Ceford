@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
-import Hero from '../components/Hero.astro';
+import PageHead from '../components/PageHead.astro';
 import { realms } from '../data/realms.js';
 
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
@@ -16,11 +16,10 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
   ogImage="/images/programsbg.webp"
 >
 
-  <Hero
-    image="/images/programsbg.webp"
+  <PageHead
     eyebrow={`${totalCourses} courses · 6 realms`}
-    title="Explore Our Programs"
-    lede="Unlock the future with our six realms of AI-driven excellence, from supply chain and business management to health, projects, IT, and humanitarian response."
+    title="Explore our programs"
+    lede="Six realms of AI-driven training, from supply chain and business management to health, projects, IT, and humanitarian response. Every course names the roles it is written for."
   />
 
   <section class="section">

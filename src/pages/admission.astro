@@ -46,7 +46,7 @@ const facts = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>How to apply</h2>
+      <div class="section-head" data-reveal><h2>How to apply</h2></div>
       <ol class="steps" data-reveal-group="left">
         {steps.map(([icon, title, text], i) => (
           <Card as="li" class="step">
@@ -63,7 +63,7 @@ const facts = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Good to know</h2>
+      <div class="section-head" data-reveal><h2>Good to know</h2></div>
       <div class="fact-grid" data-reveal-group="scale">
         {facts.map(([icon, title, text]) => (
           <Card class="fact">
@@ -78,7 +78,7 @@ const facts = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Courses &amp; fees</h2>
+      <div class="section-head" data-reveal><h2>Courses &amp; fees</h2></div>
       <p class="lede">
         Fees are per learner. Expand a realm to see its courses, durations, and fees.
       </p>

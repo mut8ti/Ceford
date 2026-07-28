@@ -5,11 +5,12 @@
 export const realms = [
   {
     slug: "logistics",
+    image: "/images/realms/logistics.webp",
     n: 1,
     icon: "truck",
     title: "AI in Logistics & Supply Chain Management",
-    tagline: "Transforming logistics through intelligent, AI-enhanced systems.",
-    bg: "/images/realm1bg.webp",
+    tagline: "Forecasting, procurement, fleet, and warehouse operations, run on AI.",
+    bg: "/images/realms/logistics-hero.webp",
     overview: "This program equips learners with the knowledge and tools to optimize logistics and supply chains using AI. From predictive procurement to smart warehouse systems and route optimization, participants gain practical skills to drive efficiency and reduce operational costs.",
     idealFor: "Logistics managers, procurement officers, warehouse coordinators, and supply chain professionals.",
     courses: [
@@ -54,11 +55,12 @@ export const realms = [
   },
   {
     slug: "business",
+    image: "/images/realms/business.webp",
     n: 2,
     icon: "briefcase-business",
     title: "AI in Business Management",
-    tagline: "Empowering business leaders with AI-driven decision-making tools.",
-    bg: "/images/realm2bg.webp",
+    tagline: "AI for strategy, operations, finance, and the decisions in between.",
+    bg: "/images/realms/business-hero.webp",
     overview: "This program prepares professionals to harness the power of AI in business strategy, operations, leadership, and decision-making. From AI-powered marketing and sales to automation in finance and HR, participants will gain the tools to lead digital transformation in the business world.",
     idealFor: "Business managers, entrepreneurs, startup leaders, consultants, and future-forward executives.",
     courses: [
@@ -102,11 +104,12 @@ export const realms = [
   },
   {
     slug: "health",
+    image: "/images/realms/health.webp",
     n: 3,
     icon: "heart-pulse",
     title: "AI in Health Management",
-    tagline: "Empowering health professionals with AI for smarter care, analytics, and public health transformation",
-    bg: "/images/bestbghealth.webp",
+    tagline: "AI for patient data, clinical analytics, and public health systems.",
+    bg: "/images/realms/health-hero.webp",
     overview: "This program equips healthcare leaders and professionals to integrate AI into patient care, public health, hospital management, and medical analytics. Participants will explore how machine learning, predictive diagnostics, AI-assisted treatments, and health information systems are reshaping the future of healthcare.",
     idealFor: "Hospital administrators, health project officers, clinicians, medical data analysts, and NGO health managers.",
     courses: [
@@ -150,11 +153,12 @@ export const realms = [
   },
   {
     slug: "project-management",
+    image: "/images/realms/project-management.webp",
     n: 4,
     icon: "trending-up",
     title: "AI in Project Management",
-    tagline: "Unleashing AI to power smarter planning, real-time tracking, and predictive decision-making in project lifecycles.",
-    bg: "/images/realm4bg.webp",
+    tagline: "AI across the program cycle: proposals, budgets, MEL, and donor reporting.",
+    bg: "/images/realms/project-management-hero.webp",
     overview: "This program introduces project managers and development professionals to AI tools that transform the way projects are planned, executed, and evaluated. Learn how AI supports real-time project monitoring, automated risk management, budgeting, and team collaboration. Perfect for: Development practitioners, project coordinators, M&E officers, and grant/project managers.",
     idealFor: "",
     courses: [
@@ -190,11 +194,12 @@ export const realms = [
   },
   {
     slug: "it-digital",
+    image: "/images/realms/it-digital.webp",
     n: 5,
     icon: "cpu",
     title: "AI in IT & Digital Transformation",
-    tagline: "Reclaiming digital thrones through automation, cybersecurity, smart infrastructure, and next-gen IT skills.",
-    bg: "/images/realm5bg.webp",
+    tagline: "Architecture, automation, security, and cloud, for organizations that run on data.",
+    bg: "/images/realms/it-digital-hero.webp",
     overview: "This cutting-edge program equips IT professionals, digital officers, and tech-driven leaders with the skills to integrate AI into systems design, infrastructure, automation, and cybersecurity. Learn how to lead IT transformations that power intelligent operations across industries and humanitarian settings.",
     idealFor: "Digital officers, IT specialists, tech consultants, NGO IT leads, and innovators ready for the AI shift.",
     courses: [
@@ -237,11 +242,12 @@ export const realms = [
   },
   {
     slug: "humanitarian",
+    image: "/images/realms/humanitarian.webp",
     n: 6,
     icon: "hand-heart",
     title: "AI in Humanitarian, Relief & Disaster Management",
-    tagline: "Leveraging AI for effective humanitarian response and development.",
-    bg: "/images/realm6bg.webp",
+    tagline: "Early warning, crisis mapping, relief logistics, and recovery planning.",
+    bg: "/images/realms/humanitarian-hero.webp",
     overview: "This pioneering program prepares professionals to transform humanitarian aid, disaster response, and relief operations using the power of artificial intelligence. It covers emergency preparedness, crisis mapping, early warning systems, logistics coordination, and needs assessmentâ€”enhanced with AI tools for rapid decision-making and predictive response.",
     idealFor: "NGO leaders, disaster responders, humanitarian project officers, and anyone committed to building resilience in the face of crisis.",
     courses: [

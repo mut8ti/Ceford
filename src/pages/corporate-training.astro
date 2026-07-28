@@ -5,7 +5,7 @@ import Card from '../components/Card.astro';
 import Button from '../components/Button.astro';
 import Accordion from '../components/Accordion.astro';
 import AccordionItem from '../components/AccordionItem.astro';
-import Hero from '../components/Hero.astro';
+import PageHead from '../components/PageHead.astro';
 import { corporate } from '../data/corporate.js';
 import { realms } from '../data/realms.js';
 
@@ -32,17 +32,15 @@ const solutions = [
   ogImage="/images/businessmeeting.webp"
 >
 
-  <Hero
-    image="/images/businessmeeting.webp"
-    position="center 30%"
+  <PageHead
     eyebrow="For organizations"
-    title="Corporate Training & Services"
-    lede="AI-powered training and consultancy for organizations, NGOs, and government institutions."
+    title="Corporate training & services"
+    lede="AI-powered training and consultancy for organizations, NGOs, and government institutions, priced per cohort across all six realms."
   >
-    <div class="btn-row" data-hero-item>
-      <Button href="/contact">Request a Proposal</Button>
+    <div class="btn-row">
+      <Button href="/contact">Request a proposal</Button>
     </div>
-  </Hero>
+  </PageHead>
 
   <section class="section">
     <div class="container">
@@ -60,7 +58,7 @@ const solutions = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Training Solutions</h2>
+      <div class="section-head" data-reveal><h2>Training solutions</h2></div>
       <div class="solution-grid" data-reveal-group="scale">
         {solutions.map(([icon, title, text]) => (
           <Card class="solution">
@@ -75,7 +73,7 @@ const solutions = [
 
   <section class="section">
     <div class="container">
-      <h2 class="section-title" data-reveal>Packages &amp; Pricing</h2>
+      <div class="section-head" data-reveal><h2>Packages &amp; pricing</h2></div>
       <p class="lede">
         Pricing is per cohort. Expand a realm to see its training programs and
         consultancy services.
