@@ -1,0 +1,114 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await getCollection('blog');
+---
+
+<BaseLayout
+  title="Blog — CEFORED Institute of Relief"
+  description="Insights, stories, and trends at the intersection of AI, education, and humanitarian impact."
+>
+
+  <section class="section page-head">
+    <div class="container">
+      <h1 data-reveal>Insights &amp; Stories</h1>
+      <p class="lede" data-reveal>
+        Insights, stories, and trends at the intersection of AI, education, and
+        humanitarian impact.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="post-grid" data-reveal-group="scale">
+        {posts.map(post => (
+          <a class="post-card" href={`/blog/${post.id}`}>
+            <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
+            <div class="tags">
+              {post.data.tags.map(t => <span class="tag">#{t.replace(/\s+/g, '')}</span>)}
+            </div>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <span class="post-more">Read the full insight <Icon name="lucide:arrow-right" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band cta-band">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Get these in your inbox</h2>
+      <p class="lede">
+        Subscribe for updates on programs, expert insights, and alumni stories.
+      </p>
+      <div class="btn-row" data-reveal>
+        <a class="btn" href="/newsletter">Subscribe to Updates</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-head { padding-bottom: 0; text-align: center; }
+  .page-head h1 { color: var(--brand); }
+  html.dark-mode .page-head h1 { color: var(--accent); }
+
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+    gap: var(--space-m);
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+
+  .post-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-3xs); }
+  .tag {
+    padding: 0.1em 0.6em;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--brand) 12%, transparent);
+    color: var(--brand);
+    font-size: var(--fs-100);
+    font-weight: 600;
+  }
+  html.dark-mode .tag {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+  }
+
+  .post-card h2 { font-size: var(--fs-500); color: var(--brand); margin: 0; }
+  html.dark-mode .post-card h2 { color: var(--accent); }
+  .post-card p { color: var(--text-muted); font-size: var(--fs-200); }
+
+  .post-more {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    margin-top: auto;
+    font-size: var(--fs-200);
+    font-weight: 600;
+    color: var(--brand);
+  }
+  html.dark-mode .post-more { color: var(--accent); }
+
+  .cta-band .lede { margin-bottom: var(--space-m); }
+</style>

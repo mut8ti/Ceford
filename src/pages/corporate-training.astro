@@ -1,0 +1,281 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { corporate } from '../data/corporate.js';
+import { realms } from '../data/realms.js';
+
+const iconFor = Object.fromEntries(realms.map(r => [r.n, r.icon]));
+
+const solutions = [
+  ['briefcase-business', 'AI for Business & Leadership',
+   'Executive workshops on AI strategy, change management, and digital leadership for C-level, managers, and business units.'],
+  ['truck', 'AI in Logistics & Supply Chain',
+   'Predictive procurement, smart inventory, and AI-powered logistics optimization for supply chain and warehouse teams.'],
+  ['heart-pulse', 'AI for Health & Humanitarian Sectors',
+   'AI in health data, crisis mapping, and emergency response for health officers, administrators, and humanitarian teams.'],
+  ['cpu', 'Digital Transformation & IT Skills',
+   'Cloud, cybersecurity, automation, and IT project management, with custom digital skills bootcamps for staff and leadership.'],
+  ['settings', 'Custom Training & Consulting',
+   'Fully tailored programs built around your goals, with ongoing consulting, coaching, and impact measurement.'],
+];
+---
+
+<BaseLayout
+  title="Corporate Training & Services — CEFORED Institute of Relief"
+  description="AI-powered corporate training and consultancy for organizations, NGOs, and government institutions. Per-cohort pricing across all six CEFORED realms."
+  preloadImage="/images/businessmeeting.webp"
+  ogImage="/images/businessmeeting.webp"
+>
+
+  <section class="hero" data-hero>
+    <div class="hero-inner">
+      <p class="eyebrow" data-hero-item>For organizations</p>
+      <h1>Corporate Training &amp; Services</h1>
+      <p class="hero-lede" data-hero-item>
+        AI-powered training and consultancy for organizations, NGOs, and
+        government institutions.
+      </p>
+      <div class="btn-row" data-hero-item>
+        <a class="btn" href="/contact">Request a Proposal</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="intro" data-reveal>
+        <h2>Our Corporate Training &amp; Services</h2>
+        <p>
+          We deliver cutting-edge corporate training and AI-powered consultancy
+          tailored to the needs of organizations, NGOs, and government institutions.
+          Our corporate offerings are designed to ignite operational excellence and
+          digital transformation across sectors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Training Solutions</h2>
+      <div class="solution-grid" data-reveal-group="scale">
+        {solutions.map(([icon, title, text]) => (
+          <div class="solution">
+            <Icon name={`lucide:${icon}`} class="solution-icon" />
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Packages &amp; Pricing</h2>
+      <p class="lede">
+        Pricing is per cohort. Expand a realm to see its training programs and
+        consultancy services.
+      </p>
+
+      <div class="packages" data-reveal-group>
+        {corporate.map(r => (
+          <details class="package">
+            <summary>
+              <Icon name={`lucide:${iconFor[r.n]}`} class="package-icon" />
+              <span><strong>Realm {r.n}:</strong> {r.title}</span>
+            </summary>
+            <div class="package-body">
+              {r.groups.map(g => (
+                <div class="package-group">
+                  <h3>{g.label}</h3>
+                  <ul class="price-list">
+                    {g.items.map(item => (
+                      <li>
+                        <span class="price-name">{item.name}</span>
+                        <span class="price-tag">{item.price}</span>
+                        {item.note && <span class="price-note">{item.note}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              <a class="btn btn-sm" href="/contact">Request this package</a>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band cta-band">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Need something tailored?</h2>
+      <p class="lede">
+        Tell us your sector, team size, and goals, and we will build a program
+        around them.
+      </p>
+      <div class="btn-row" data-reveal>
+        <a class="btn" href="/contact">Talk to Our Team</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero {
+    display: grid;
+    place-items: center;
+    min-height: min(62vh, 500px);
+    padding: var(--space-2xl) var(--space-m) var(--space-xl);
+    text-align: center;
+    color: #fff;
+    background-image:
+      linear-gradient(
+        180deg,
+        var(--hero-scrim-top) 0%,
+        var(--hero-scrim-mid) 48%,
+        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
+        var(--bg) 100%
+      ),
+      url("/images/businessmeeting.webp");
+    background-size: cover;
+    background-position: center 30%;
+  }
+  .hero-inner { max-width: 46rem; }
+  .eyebrow {
+    margin-bottom: var(--space-2xs);
+    font-size: var(--fs-200);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
+  .hero-lede {
+    margin-bottom: var(--space-l);
+    font-size: var(--fs-400);
+    color: rgb(255 255 255 / 0.92);
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
+  }
+
+  .intro {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .intro h2 { font-size: var(--fs-600); color: var(--brand); }
+  html.dark-mode .intro h2 { color: var(--accent); }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-m);
+  }
+  .solution {
+    padding: var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .solution-icon { width: 2em; height: 2em; color: var(--accent); }
+  .solution h3 { font-size: var(--fs-500); color: var(--brand); }
+  html.dark-mode .solution h3 { color: var(--accent); }
+  .solution p { color: var(--text-muted); font-size: var(--fs-200); margin: 0; }
+
+  .packages {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 54rem;
+    margin-inline: auto;
+  }
+
+  .package {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .package[open] { box-shadow: var(--shadow-lg); }
+
+  .package > summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--fs-400);
+    color: var(--brand);
+    cursor: pointer;
+    list-style: none;
+  }
+  html.dark-mode .package > summary { color: var(--accent); }
+  .package > summary::-webkit-details-marker { display: none; }
+  .package > summary:hover { background: var(--surface-2); }
+  .package-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
+
+  .package > summary::after {
+    content: "";
+    flex: none;
+    width: 0.55em;
+    height: 0.55em;
+    margin-left: auto;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg) translate(-0.12em, -0.12em);
+    transition: transform 0.3s;
+  }
+  .package[open] > summary::after {
+    transform: rotate(-135deg) translate(-0.12em, -0.12em);
+  }
+
+  .package-body {
+    padding: var(--space-s) var(--space-m) var(--space-m);
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .package-group + .package-group { margin-top: var(--space-m); }
+  .package-group h3 {
+    font-size: var(--fs-200);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .price-list { margin: 0; padding: 0; list-style: none; }
+  .price-list li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 var(--space-s);
+    padding: var(--space-2xs) 0;
+    border-top: 1px solid var(--border);
+  }
+  .price-name { font-weight: 600; }
+  .price-tag {
+    justify-self: end;
+    padding: 0.1em 0.6em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-size: var(--fs-200);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .price-note {
+    grid-column: 1 / -1;
+    font-size: var(--fs-200);
+    color: var(--text-muted);
+  }
+
+  .package-body .btn { margin-top: var(--space-m); }
+  .cta-band .lede { margin-bottom: var(--space-m); }
+</style>

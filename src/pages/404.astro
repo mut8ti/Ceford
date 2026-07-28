@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { realms } from '../data/realms.js';
+---
+
+<BaseLayout
+  title="Page not found — CEFORED Institute of Relief"
+  description="The page you were looking for does not exist. Browse our programs, realms, and admissions information instead."
+>
+  <section class="section notfound">
+    <div class="container">
+      <p class="code">404</p>
+      <h1>We couldn't find that page</h1>
+      <p class="lede">
+        The link may be out of date. Here is where most people are heading.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="/">Back to Home</a>
+        <a class="btn" href="/programs">Browse Programs</a>
+        <a class="btn" href="/contact">Contact Us</a>
+      </div>
+
+      <ul class="realm-links">
+        {realms.map(r => (
+          <li><a href={`/realms/${r.slug}`}>Realm {r.n}: {r.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound { text-align: center; padding-block: var(--space-2xl); }
+  .code {
+    font-size: var(--fs-800);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+    margin: 0;
+  }
+  .notfound h1 { color: var(--brand); }
+  html.dark-mode .notfound h1 { color: var(--accent); }
+  .realm-links {
+    max-width: 34rem;
+    margin: var(--space-l) auto 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+  }
+  .realm-links li { border-top: 1px solid var(--border); }
+  .realm-links a {
+    display: block;
+    padding: var(--space-2xs) 0;
+    font-size: var(--fs-200);
+  }
+</style>

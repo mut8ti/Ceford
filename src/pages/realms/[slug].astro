@@ -1,0 +1,331 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { realms } from '../../data/realms.js';
+
+export function getStaticPaths() {
+  return realms.map((realm) => ({ params: { slug: realm.slug }, props: { realm } }));
+}
+
+const { realm } = Astro.props;
+const others = realms.filter((r) => r.slug !== realm.slug);
+
+// Rich results for course listings.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: `Courses in ${realm.title}`,
+  itemListElement: realm.courses.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Course',
+      name: c.name,
+      description: c.objectives || realm.overview,
+      provider: {
+        '@type': 'EducationalOrganization',
+        name: 'CEFORED Institute of Relief and Development',
+        sameAs: 'https://www.ceforedconsultancy.com',
+      },
+    },
+  })),
+};
+
+const detailRows = [
+  ['audience',     'Who it is for', 'users'],
+  ['requirements', 'Requirements',  'clipboard-check'],
+  ['duration',     'Duration',      'clock'],
+];
+---
+
+<BaseLayout
+  title={`Realm ${realm.n}: ${realm.title} — CEFORED Institute of Relief`}
+  description={realm.overview}
+  preloadImage={realm.bg}
+  ogImage={realm.bg}
+  schema={schema}
+>
+
+  <section class="hero" data-hero style={`--realm-bg: url("${realm.bg}")`}>
+    <div class="hero-inner">
+      <p class="eyebrow" data-hero-item>
+        <Icon name={`lucide:${realm.icon}`} /> Realm {realm.n}
+      </p>
+      <h1>{realm.title}</h1>
+      <p class="hero-lede" data-hero-item>{realm.tagline}</p>
+    </div>
+  </section>
+
+  <section class="section overview-section">
+    <div class="container">
+      <div class="overview" data-reveal>
+        <h2>Program overview</h2>
+        <p>{realm.overview}</p>
+        {realm.idealFor && (
+          <p class="ideal"><strong>Ideal for:</strong> {realm.idealFor}</p>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Courses Offered</h2>
+      <p class="lede">
+        {realm.courses.length} courses in this realm. Every course runs online,
+        live-virtual, or in person.
+      </p>
+
+      <div class="courses" data-reveal-group>
+        {realm.courses.map((course) => (
+          <details class="course">
+            <summary>
+              <span class="course-name">{course.name}</span>
+              {course.fee && <span class="course-fee">{course.fee}</span>}
+            </summary>
+            <div class="course-body">
+              {course.objectives && (
+                <p class="course-objectives">{course.objectives}</p>
+              )}
+              <dl class="course-meta">
+                {detailRows.map(([key, label, icon]) => course[key] && (
+                  <div class="meta-row">
+                    <dt><Icon name={`lucide:${icon}`} class="icon-accent" /> {label}</dt>
+                    <dd>{course[key]}</dd>
+                  </div>
+                ))}
+                {course.fee && (
+                  <div class="meta-row">
+                    <dt><Icon name="lucide:tag" class="icon-accent" /> Course fee</dt>
+                    <dd>{course.fee}</dd>
+                  </div>
+                )}
+              </dl>
+              <a class="btn btn-sm" href="/contact">Apply for this course</a>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band cta-band">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Ready to start?</h2>
+      <p class="lede">
+        Talk to our admissions team about intake dates, group rates, and
+        organization-wide training.
+      </p>
+      <div class="btn-row" data-reveal>
+        <a class="btn" href="/admission">Apply Now</a>
+        <a class="btn btn-ghost" href="/contact">Contact Admissions</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Explore other realms</h2>
+      <div class="realm-links" data-reveal-group="scale">
+        {others.map((r) => (
+          <a class="realm-link" href={`/realms/${r.slug}`}>
+            <Icon name={`lucide:${r.icon}`} class="realm-link-icon" />
+            <span class="realm-link-n">Realm {r.n}</span>
+            <span class="realm-link-title">{r.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Hero background comes from the --realm-bg custom property set inline per
+     page, so one rule serves all six realms. */
+  .hero {
+    display: grid;
+    place-items: center;
+    min-height: min(58vh, 460px);
+    padding: var(--space-2xl) var(--space-m) var(--space-xl);
+    text-align: center;
+    color: #fff;
+    background-image:
+      linear-gradient(
+        180deg,
+        var(--hero-scrim-top) 0%,
+        var(--hero-scrim-mid) 48%,
+        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
+        var(--bg) 100%
+      ),
+      var(--realm-bg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-inner { max-width: 46rem; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs);
+    margin-bottom: var(--space-2xs);
+    font-size: var(--fs-200);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
+
+  .hero-lede {
+    font-size: var(--fs-400);
+    color: rgb(255 255 255 / 0.92);
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
+  }
+
+  /* ---------- Overview ---------- */
+  .overview-section { padding-top: var(--space-l); }
+
+  .overview {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .overview h2 { font-size: var(--fs-600); color: var(--brand); }
+  html.dark-mode .overview h2 { color: var(--accent); }
+  .ideal { margin-bottom: 0; color: var(--text-muted); }
+
+  /* ---------- Courses ---------- */
+  .courses {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .course {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .course[open] { box-shadow: var(--shadow-lg); }
+
+  .course > summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding: var(--space-s) var(--space-m);
+    cursor: pointer;
+    list-style: none;
+  }
+  .course > summary::-webkit-details-marker { display: none; }
+  .course > summary:hover { background: var(--surface-2); }
+
+  .course-name {
+    flex: 1;
+    font-size: var(--fs-400);
+    font-weight: 600;
+    color: var(--brand);
+  }
+  html.dark-mode .course-name { color: var(--accent); }
+
+  .course-fee {
+    flex: none;
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--text-on-accent);
+    font-size: var(--fs-200);
+    font-weight: 700;
+  }
+
+  .course > summary::after {
+    content: "";
+    flex: none;
+    width: 0.55em;
+    height: 0.55em;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg) translate(-0.12em, -0.12em);
+    transition: transform 0.3s;
+  }
+  .course[open] > summary::after {
+    transform: rotate(-135deg) translate(-0.12em, -0.12em);
+  }
+
+  .course-body {
+    padding: var(--space-s) var(--space-m) var(--space-m);
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .course-objectives { font-weight: 600; }
+
+  .course-meta { margin: 0 0 var(--space-s); }
+  .meta-row {
+    display: grid;
+    grid-template-columns: minmax(9rem, auto) 1fr;
+    gap: var(--space-2xs) var(--space-s);
+    padding: var(--space-2xs) 0;
+    border-top: 1px solid var(--border);
+  }
+  .meta-row dt {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .meta-row dd { margin: 0; }
+
+  @media (max-width: 34rem) {
+    .meta-row { grid-template-columns: 1fr; gap: 0; }
+    .course > summary { flex-wrap: wrap; }
+  }
+
+  /* ---------- Other realms ---------- */
+  .realm-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--space-m);
+  }
+
+  .realm-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    padding: var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .realm-link:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+
+  .realm-link-icon { width: 1.9em; height: 1.9em; color: var(--accent); }
+  .realm-link-n {
+    font-size: var(--fs-100);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .realm-link-title { font-weight: 600; color: var(--brand); }
+  html.dark-mode .realm-link-title { color: var(--accent); }
+
+  .cta-band .lede { margin-bottom: var(--space-m); }
+</style>

@@ -1,0 +1,409 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { realms } from '../data/realms.js';
+
+const reasons = [
+  ['badge-check',   'Trusted by NGOs, governments, and international organizations'],
+  ['handshake',     'Hands-on, practical training with real tools'],
+  ['brain-circuit', 'AI-powered curriculum tailored to real-world challenges'],
+  ['globe',         'Alumni network across East Africa and beyond'],
+  ['laptop',        'Distance learning, live virtual classes, and in-person options'],
+  ['award',         'Certification backed by applied AI learning'],
+];
+
+const testimonials = [
+  ['We overhauled our disaster preparedness program with CEFORED’s AI approach. Incredible impact.', 'John K.', 'Humanitarian Director'],
+  ['The business strategy course gave us tools we now use daily. Worth every dollar.', 'Mary N.', 'SME Owner'],
+  ['CEFORED’s training brought real transformation to our health systems. The AI dashboards are now central to how we operate.', 'Dr. Amina L.', 'Regional Health Officer'],
+];
+
+const partners = [
+  ['UNlogo.webp', 'UN'], ['UNDPlogo.webp', 'UNDP'], ['UNICEFlogo.webp', 'UNICEF'],
+  ['FAO_logo.svg', 'FAO'], ['NRClogo.webp', 'NRC'], ['carekenya.webp', 'CARE Kenya'],
+  ['worldvisionlogo.webp', 'World Vision'], ['OXFAMlogo.webp', 'OXFAM'],
+  ['savethechildren.webp', 'Save the Children UK'], ['MSFlogo.webp', 'MSF'],
+  ['Actionagainsthungerlogo.webp', 'Action Against Hunger'], ['VSF-LOGO.webp', 'VSF'],
+];
+---
+
+<BaseLayout
+  title="CEFORED Institute of Relief — AI-Driven Education for a Changing World"
+  description="AI-powered training in logistics, business, health, project management, IT and humanitarian response. Trusted by NGOs, governments and international organizations across East Africa."
+  preloadImage="/images/businessmeeting.webp"
+  ogImage="/images/businessmeeting.webp"
+>
+
+  <section class="hero" data-hero>
+    <div class="hero-inner">
+      <p class="eyebrow" data-hero-item>AI-Driven Education for a Changing World</p>
+      <h1>Welcome to CEFORED Institute of Relief</h1>
+      <p class="hero-lede" data-hero-item>
+        Empowering leaders in logistics, business, health, humanitarian aid, and
+        digital transformation with real-time, AI-optimized training.
+      </p>
+      <div class="btn-row" data-hero-item>
+        <a class="btn" href="/programs">Explore Our Programs</a>
+        <a class="btn btn-ghost" href="/admission">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why">
+    <div class="container">
+      <h2 class="section-title" data-reveal>
+        <Icon name="lucide:graduation-cap" class="icon-accent" />
+        Why Choose CEFORED
+      </h2>
+      <ul class="why-list" data-reveal-group="left">
+        {reasons.map(([icon, text]) => (
+          <li>
+            <Icon name={`lucide:${icon}`} class="icon-accent" />
+            <span>{text}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="why-quote" data-reveal>“Start your journey with the leading institute of applied AI training.”</p>
+      <div class="btn-row">
+        <a class="btn" href="/programs">Explore Programs</a>
+        <a class="btn" href="/corporate-training">Corporate Training</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Our AI-Powered Programs</h2>
+      <p class="lede">
+        Our six groundbreaking programs combine real-world expertise with artificial
+        intelligence to prepare you for next-generation leadership. Choose a realm
+        below to begin your journey.
+      </p>
+
+      <div class="realms" data-reveal-group>
+        {realms.map(r => (
+          <details class="realm">
+            <summary>
+              <Icon name={`lucide:${r.icon}`} class="realm-icon" />
+              <span><strong>Realm {r.n}:</strong> {r.title}</span>
+            </summary>
+            <div class="realm-body">
+              <p class="realm-lede">{r.tagline}</p>
+              <h3>Program overview</h3>
+              <p>{r.overview}</p>
+              <p class="realm-who">{r.idealFor}</p>
+              <a class="btn btn-sm" href={`/realms/${r.slug}`}>View more</a>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container card-grid" data-reveal-group="scale">
+      <div class="card">
+        <h2><Icon name="lucide:target" class="icon-accent" /> Our Motto</h2>
+        <p>Empowering education through AI.</p>
+      </div>
+      <div class="card">
+        <h2><Icon name="lucide:graduation-cap" class="icon-accent" /> Programs</h2>
+        <p>Hands-on training in emergency response, health, logistics, and development.</p>
+      </div>
+      <div class="card">
+        <h2><Icon name="lucide:users" class="icon-accent" /> Join Us</h2>
+        <p>Apply today and become part of a community making a real impact across Africa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Testimonials</h2>
+      <p class="lede">
+        Our impact is not just measured in numbers — it is felt in communities,
+        classrooms, and boardrooms across Africa and beyond.
+      </p>
+      <div class="card-grid" data-reveal-group>
+        {testimonials.map(([quote, name, role]) => (
+          <figure class="quote">
+            <Icon name="lucide:quote" class="icon-accent icon-lg" />
+            <p>{quote}</p>
+            <figcaption><strong>{name}</strong><span>{role}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section band partners">
+    <div class="container">
+      <h2 class="section-title" data-reveal>Partners &amp; Accreditation</h2>
+      <p class="lede">
+        We train alongside the organizations shaping humanitarian and development
+        work across the region.
+      </p>
+    </div>
+
+    {/* Marquee: the track holds two identical copies of the logo list and
+        scrolls exactly -50%, so the loop is seamless. The second copy is
+        aria-hidden so screen readers announce each partner once. */}
+    <div class="marquee">
+      <div class="marquee-track">
+        {[0, 1].map(copy => (
+          <ul class="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
+            {partners.map(([file, name]) => (
+              <li>
+                <span class="partner-tile">
+                  <img src={`/images/${file}`} alt={copy === 0 ? name : ''} loading="lazy" />
+                </span>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ---------- Hero ----------
+     The scrim fades from dark at the top to the page background at the bottom,
+     so the hero dissolves into the page instead of ending on a hard edge. */
+  .hero {
+    display: grid;
+    place-items: center;
+    min-height: min(78vh, 640px);
+    padding: var(--space-2xl) var(--space-m) var(--space-xl);
+    text-align: center;
+    color: #fff;
+    background-image:
+      linear-gradient(
+        180deg,
+        var(--hero-scrim-top) 0%,
+        var(--hero-scrim-mid) 48%,
+        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
+        var(--bg) 100%
+      ),
+      url("/images/businessmeeting.webp");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-inner { max-width: 46rem; }
+
+  .eyebrow {
+    margin-bottom: var(--space-2xs);
+    font-size: var(--fs-200);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
+
+  .hero-lede {
+    margin-bottom: var(--space-l);
+    font-size: var(--fs-400);
+    color: rgb(255 255 255 / 0.92);
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
+  }
+
+  /* ---------- Why CEFORED ---------- */
+  .why {
+    background: var(--surface);
+    border-block: 1px solid var(--border);
+  }
+
+  .why-list {
+    max-width: 42rem;
+    margin: 0 auto var(--space-l);
+    padding: 0;
+    list-style: none;
+  }
+  .why-list li {
+    display: flex;
+    gap: var(--space-xs);
+    align-items: center;
+    padding: var(--space-2xs) 0;
+    font-size: var(--fs-400);
+  }
+
+  .why-quote {
+    margin-bottom: var(--space-l);
+    font-size: var(--fs-400);
+    font-style: italic;
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Programs accordion (native <details>) ---------- */
+  .realms {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .realm {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .realm[open] { box-shadow: var(--shadow-lg); }
+
+  .realm > summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-s) var(--space-m);
+    color: var(--brand);
+    font-size: var(--fs-400);
+    cursor: pointer;
+    list-style: none;
+  }
+  .realm > summary::-webkit-details-marker { display: none; }
+  .realm > summary:hover { background: var(--surface-2); }
+  html.dark-mode .realm > summary { color: var(--accent); }
+
+  .realm-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
+
+  .realm > summary::after {
+    content: "";
+    flex: none;
+    width: 0.55em;
+    height: 0.55em;
+    margin-left: auto;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg) translate(-0.12em, -0.12em);
+    transition: transform 0.3s;
+  }
+  .realm[open] > summary::after {
+    transform: rotate(-135deg) translate(-0.12em, -0.12em);
+  }
+
+  .realm-body {
+    padding: var(--space-s) var(--space-m) var(--space-m);
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+  .realm-lede { font-weight: 700; }
+  .realm-who { font-style: italic; color: var(--text-muted); }
+  .realm-body h3 { font-size: var(--fs-500); margin-top: var(--space-s); }
+  .realm-body .btn { margin-top: var(--space-s); }
+
+  /* ---------- Cards ---------- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-m);
+  }
+
+  .card {
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .card h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2xs);
+    font-size: var(--fs-500);
+    color: var(--brand);
+  }
+  html.dark-mode .card h2 { color: var(--accent); }
+  .card p { color: var(--text-muted); }
+
+  /* ---------- Testimonials ---------- */
+  .quote {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin: 0;
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+  .quote p { font-size: var(--fs-400); font-style: italic; }
+  .quote figcaption {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-200);
+  }
+  .quote figcaption strong { color: var(--brand); }
+  html.dark-mode .quote figcaption strong { color: var(--accent); }
+  .quote figcaption span { color: var(--text-muted); }
+
+  /* ---------- Partners marquee ---------- */
+  .partners { padding-bottom: var(--space-xl); }
+
+  .marquee {
+    overflow: hidden;
+    /* Fade the ends so logos enter and leave instead of being cut off. */
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 45s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  @keyframes marquee-scroll {
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-group {
+    display: flex;
+    flex: none;
+    gap: var(--space-s);
+    margin: 0;
+    padding: 0 calc(var(--space-s) / 2);
+    list-style: none;
+  }
+
+  .partner-tile {
+    display: grid;
+    place-items: center;
+    width: 11rem;
+    height: 5.5rem;
+    padding: var(--space-xs) var(--space-s);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.18);
+  }
+
+  /* An explicit height, not max-height: a percentage against an auto-sized
+     grid row is cyclic and browsers drop it, which let the logos overflow. */
+  .partner-tile img {
+    height: 3rem;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* No motion: drop the animation and let the row scroll by hand instead. */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { overflow-x: auto; }
+    .marquee-track { animation: none; }
+  }
+</style>

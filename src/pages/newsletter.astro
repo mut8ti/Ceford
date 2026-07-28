@@ -1,0 +1,119 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const perks = [
+  ['graduation-cap', 'Insider updates on cutting-edge training programs'],
+  ['pen-line',       'Expert blogs and alumni success stories'],
+  ['wrench',         'Tools for humanitarian innovation'],
+  ['brain-circuit',  'The latest in AI for development'],
+];
+---
+
+<BaseLayout
+  title="Newsletter — CEFORED Institute of Relief"
+  description="Subscribe to the CEFORED newsletter for updates on AI-driven training programs, expert insights, alumni stories, and tools for humanitarian innovation."
+>
+
+  <section class="section page-head">
+    <div class="container">
+      <h1 data-reveal>Join the Movement</h1>
+      <p class="lede" data-reveal>
+        Stay ahead with AI and impact. Be part of Africa's most dynamic AI-driven
+        learning revolution.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container newsletter-grid">
+
+      <div class="perks" data-reveal="left">
+        <h2>What you'll get</h2>
+        <ul class="perk-list">
+          {perks.map(([icon, text]) => (
+            <li>
+              <Icon name={`lucide:${icon}`} class="icon-accent" />
+              <span>{text}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="perk-note">
+          Straight to your inbox, only from CEFORED. Unsubscribe any time.
+        </p>
+      </div>
+
+      <form
+        class="newsletter-form"
+        data-firestore="newsletter"
+        data-success="Thank you for subscribing. You are now part of our newsletter."
+        data-reveal="right"
+        novalidate
+      >
+        <h2>Subscribe</h2>
+
+        <div class="field">
+          <label for="name">Name <span aria-hidden="true">*</span></label>
+          <input class="input" type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span aria-hidden="true">*</span></label>
+          <input class="input" type="email" id="email" name="email" required autocomplete="email" placeholder="your.email@example.com" />
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button class="btn" type="submit">Subscribe</button>
+        <p data-form-status=""></p>
+      </form>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .page-head { padding-bottom: 0; text-align: center; }
+  .page-head h1 { color: var(--brand); }
+  html.dark-mode .page-head h1 { color: var(--accent); }
+
+  .newsletter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-l);
+    align-items: start;
+  }
+
+  .perks, .newsletter-form {
+    padding: var(--space-l) var(--space-m);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .perks { border-left: 4px solid var(--accent); }
+
+  .perks h2, .newsletter-form h2 {
+    font-size: var(--fs-500);
+    color: var(--brand);
+  }
+  html.dark-mode .perks h2,
+  html.dark-mode .newsletter-form h2 { color: var(--accent); }
+
+  .perk-list { margin: 0 0 var(--space-s); padding: 0; list-style: none; }
+  .perk-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-2xs) 0;
+  }
+  .perk-note { margin: 0; font-size: var(--fs-200); color: var(--text-muted); }
+</style>
+
+<script>
+  import '../scripts/forms.js';
+</script>

@@ -1,0 +1,105 @@
+/* Design tokens. The ONLY place light/dark values, type sizes and spacing are defined.
+   Dark mode is a variable flip on html.dark-mode — never a per-component override. */
+
+:root {
+  /* ---------- Colour: brand ---------- */
+  --brand:        #008080;
+  --brand-dark:   #006666;
+  --accent:       #ffa500;
+  --accent-hover: #ffc043;
+
+  /* ---------- Colour: surfaces ---------- */
+  --bg:         #f5f5dc;
+  --surface:    #ffffff;
+  --surface-2:  #f8f9fa;
+  --band:       #008080;
+
+  /* ---------- Colour: text ---------- */
+  --text:           #1a1a1a;
+  --text-muted:     #555555;
+  --text-on-brand:  #ffffff;
+  --text-on-accent: #1a1a1a;
+
+  /* ---------- Lines & shadows ---------- */
+  --border:    #e0e0e0;
+  --shadow:    0 2px 8px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 4px 16px rgb(0 0 0 / 0.10);
+  --shadow-xl: 0 12px 32px rgb(0 0 0 / 0.14);
+
+  /* ---------- Type scale ----------
+     Fluid modular scale, ratio ~1.25 (major third). Nothing outside this file
+     should invent a font-size; pick the nearest step instead. */
+  --fs-100: 0.833rem;                                   /* fine print        */
+  --fs-200: 0.94rem;                                    /* small / captions  */
+  --fs-300: 1rem;                                       /* body              */
+  --fs-400: clamp(1.06rem, 1.01rem + 0.24vw, 1.2rem);   /* lede / large body */
+  --fs-500: clamp(1.2rem,  1.11rem + 0.44vw, 1.45rem);  /* h4 / card title   */
+  --fs-600: clamp(1.45rem, 1.28rem + 0.85vw, 1.95rem);  /* h3                */
+  --fs-700: clamp(1.75rem, 1.45rem + 1.5vw,  2.6rem);   /* h2 / section      */
+  --fs-800: clamp(2.2rem,  1.6rem + 3vw,     3.6rem);   /* h1 / hero         */
+
+  --lh-tight: 1.15;
+  --lh-snug:  1.35;
+  --lh-body:  1.65;
+
+  --measure: 68ch;   /* max line length for readable prose */
+
+  /* ---------- Spacing rhythm ----------
+     One scale, ~1.5 ratio. The three largest steps are fluid so vertical
+     rhythm tightens on phones instead of leaving giant gaps. */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   clamp(2rem,   1.7rem + 1.5vw, 2.75rem);
+  --space-xl:  clamp(3rem,   2.4rem + 3vw,   4.5rem);
+  --space-2xl: clamp(4.5rem, 3.4rem + 5vw,   7rem);
+
+  /* ---------- Sizing ---------- */
+  --header-h:  76px;
+  --container: 1140px;
+  --radius:    14px;
+  --radius-sm: 8px;
+
+  /* ---------- Hero ----------
+     Scrim fades from dark at the top to the page background at the bottom, so
+     the hero dissolves into the page instead of ending on a hard edge. */
+  --hero-scrim-top: rgb(0 0 0 / 0.62);
+  --hero-scrim-mid: rgb(0 0 0 / 0.55);
+
+  /* ---------- Band texture ----------
+     A faint line grid, drawn with two gradients. Only used on coloured
+     bands, where a flat slab would otherwise read as empty. */
+  --grid-line: rgb(0 0 0 / 0.07);
+  --grid-size: 56px;
+}
+
+html.dark-mode {
+  --bg:        #14161c;
+  --surface:   #1e2128;
+  --surface-2: #272b34;
+  --band:      #181a20;
+
+  --text:       #e8e8e8;
+  --text-muted: #a8a8a8;
+
+  --border:    #333842;
+  --shadow:    0 2px 8px rgb(0 0 0 / 0.40);
+  --shadow-lg: 0 4px 16px rgb(0 0 0 / 0.50);
+  --shadow-xl: 0 12px 32px rgb(0 0 0 / 0.60);
+
+  --hero-scrim-top: rgb(0 0 0 / 0.72);
+  --hero-scrim-mid: rgb(0 0 0 / 0.66);
+
+  --grid-line: rgb(255 255 255 / 0.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}

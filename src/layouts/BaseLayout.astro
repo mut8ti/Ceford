@@ -1,0 +1,145 @@
+---
+import '@fontsource-variable/inter';
+import Seo from '../components/Seo.astro';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+const { title, description, preloadImage, ogImage, pageType, schema } = Astro.props;
+
+const nav = [
+  { href: '/',                   label: 'Home' },
+  { href: '/about',              label: 'About Us' },
+  { href: '/programs',           label: 'Programs' },
+  { href: '/faqs',               label: 'FAQs' },
+  { href: '/corporate-training', label: 'Corporate Training' },
+  { href: '/contact',            label: 'Contact Us' },
+];
+
+// Trailing-slash-insensitive match so /about and /about/ both highlight.
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  {preloadImage && <link rel="preload" href={preloadImage} as="image" fetchpriority="high" />}
+
+  <Seo title={title} description={description} image={ogImage} type={pageType} schema={schema} />
+
+  <!-- Applies the saved theme before first paint. Must stay inline and blocking. -->
+  <script is:inline>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark-mode');
+      }
+    } catch (e) {}
+
+    /* Motion probe. Only when this class lands does the pre-animation hidden
+       state in base.css apply, so no-JS and reduced-motion users see content. */
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('js-motion');
+    }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark">
+      <img src="/images/logo-final.webp" alt="" width="48" height="48" fetchpriority="high" />
+    </span>
+    <span class="brand-text">
+      CEFORED
+      <small>Institute of Relief</small>
+    </span>
+  </a>
+
+  <nav class="nav" id="main-nav" aria-label="Main">
+    {nav.map(item => (
+      <a href={item.href} aria-current={path === item.href.replace(/\/+$/, '') || (item.href === '/' && path === '/') ? 'page' : undefined}>
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
+  <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">☰</button>
+</header>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="/about">About</a>
+      <a href="/programs">Programs</a>
+      <a href="/admission">Admission</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <p>&copy; {new Date().getFullYear()} CEFORED Institute of Relief. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  /* Motion is loaded dynamically so the ~39KB of GSAP + Lenis is never
+     fetched by users who have asked for reduced motion. If it fails to load
+     or throws, drop js-motion so the pre-animation hidden state lifts and the
+     page is readable — a broken animation must never cost the content. */
+  if (document.documentElement.classList.contains('js-motion')) {
+    import('../scripts/motion.js').catch(() => {
+      document.documentElement.classList.remove('js-motion');
+    });
+  }
+
+  /* Shell behaviour: theme toggle + mobile nav.
+     The programs accordion is native <details>, so it needs no JS. */
+  const root = document.documentElement;
+
+  const themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    const paint = () => {
+      const dark = root.classList.contains('dark-mode');
+      themeBtn.textContent = dark ? '☀️' : '🌙';
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+    paint();
+    themeBtn.addEventListener('click', () => {
+      root.classList.toggle('dark-mode');
+      localStorage.setItem('theme', root.classList.contains('dark-mode') ? 'dark' : 'light');
+      paint();
+    });
+  }
+
+  const navBtn = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.nav');
+  if (navBtn && nav) {
+    const isOpen = () => navBtn.getAttribute('aria-expanded') === 'true';
+    const setOpen = (open) => navBtn.setAttribute('aria-expanded', String(open));
+
+    navBtn.addEventListener('click', () => setOpen(!isOpen()));
+    document.addEventListener('click', (e) => {
+      if (isOpen() && !nav.contains(e.target) && !navBtn.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) { setOpen(false); navBtn.focus(); }
+    });
+    nav.addEventListener('click', (e) => { if (e.target.matches('a')) setOpen(false); });
+  }
+</script>
+
+</body>
+</html>

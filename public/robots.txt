@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.ceforedconsultancy.com/sitemap-index.xml

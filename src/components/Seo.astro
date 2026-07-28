@@ -1,0 +1,44 @@
+---
+/* Canonical URL, Open Graph, Twitter card and JSON-LD.
+   Rendered once per page from BaseLayout — nothing else should emit these. */
+const { title, description, image = '/images/logo-final.webp', type = 'website', schema } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname.replace(/\/+$/, '') || '/', Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
+
+const organisation = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'CEFORED Institute of Relief and Development',
+  alternateName: 'CEFORED Institute',
+  url: Astro.site?.href,
+  logo: new URL('/images/logo-final.webp', Astro.site).href,
+  email: 'info@cefored.com',
+  telephone: '+254755445982',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nairobi',
+    addressCountry: 'KE',
+  },
+  description:
+    'A training institute using AI to transform learning in logistics, business management, health systems, project management, humanitarian relief and digital transformation.',
+};
+---
+
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="CEFORED Institute of Relief" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="en_GB" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={JSON.stringify(organisation)} />
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
