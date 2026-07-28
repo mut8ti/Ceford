@@ -1,6 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import PageHead from '../components/PageHead.astro';
+import Button from '../components/Button.astro';
 import { realms } from '../data/realms.js';
 import { countryCodes } from '../data/country-codes.js';
 
@@ -17,20 +20,17 @@ const details = [
   description="Reach CEFORED Institute of Relief for admissions, course registration, partnerships, or corporate training. Based in Nairobi, Kenya."
 >
 
-  <section class="section page-head">
-    <div class="container">
-      <h1 data-reveal>Contact Us</h1>
-      <p class="lede" data-reveal>
-        For inquiries, course registration, partnership opportunities or corporate
-        training requests, reach us through the form below or contact us directly.
-      </p>
-    </div>
-  </section>
+  <PageHead
+    title="Contact Us"
+    lede="For inquiries, course registration, partnership opportunities or corporate training requests, reach us through the form below or contact us directly."
+  />
 
   <section class="section contact-section">
     <div class="container contact-grid">
 
-      <form
+      <Card
+        as="form"
+        pad="l"
         class="contact-form"
         data-firestore="contacts"
         data-success="Thank you for contacting us. We will get back to you soon."
@@ -78,11 +78,11 @@ const details = [
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
-        <button class="btn" type="submit">Send message</button>
+        <Button type="submit">Send message</Button>
         <p data-form-status=""></p>
-      </form>
+      </Card>
 
-      <aside class="contact-aside" data-reveal="right">
+      <Card as="aside" pad="l" class="contact-aside" data-reveal="right">
         <h2>Reach us directly</h2>
         <p>Let's ignite the future. Reach out for admissions, partnerships, or corporate collaborations.</p>
         <ul class="contact-list">
@@ -96,7 +96,7 @@ const details = [
             </li>
           ))}
         </ul>
-      </aside>
+      </Card>
 
     </div>
   </section>
@@ -104,9 +104,6 @@ const details = [
 </BaseLayout>
 
 <style>
-  .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand-fg); }
-
   .contact-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -117,22 +114,11 @@ const details = [
     .contact-grid { grid-template-columns: 1fr; }
   }
 
-  .contact-form,
-  .contact-aside {
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
   .contact-form h2,
   .contact-aside h2 {
     font-size: var(--fs-500);
     color: var(--brand-fg);
   }
-  html.dark-mode .contact-form h2,
-
 
   .contact-list { margin: 0; padding: 0; list-style: none; }
   .contact-list li {
@@ -143,7 +129,7 @@ const details = [
     padding: var(--space-2xs) 0;
     border-top: 1px solid var(--border);
   }
-  .contact-label { font-weight: 600; color: var(--text-muted); }
+  .contact-label { font-weight: var(--fw-semibold); color: var(--text-muted); }
 </style>
 
 <script>

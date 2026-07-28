@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
 import { realms } from '../data/realms.js';
 ---
 
@@ -15,9 +16,9 @@ import { realms } from '../data/realms.js';
         The link may be out of date. Here is where most people are heading.
       </p>
       <div class="btn-row">
-        <a class="btn" href="/">Back to Home</a>
-        <a class="btn" href="/programs">Browse Programs</a>
-        <a class="btn" href="/contact">Contact Us</a>
+        <Button href="/">Back to Home</Button>
+        <Button href="/programs">Browse Programs</Button>
+        <Button href="/contact">Contact Us</Button>
       </div>
 
       <ul class="realm-links">
@@ -33,7 +34,7 @@ import { realms } from '../data/realms.js';
   .notfound { text-align: center; padding-block: var(--space-2xl); }
   .code {
     font-size: var(--fs-800);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     line-height: 1;
     color: var(--accent);
     margin: 0;

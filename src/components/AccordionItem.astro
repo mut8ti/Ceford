@@ -1,0 +1,70 @@
+---
+/* Native <details>/<summary> — no JS, keyboard and screen-reader behaviour for
+   free, and it still opens with CSS disabled.
+
+   Put the summary content in the "summary" slot; everything else falls into the
+   body. Body content is authored in the *parent's* style scope, so give slotted
+   elements a class if the page needs to style them — a bare element selector in
+   the page will not reach through.
+
+   Replaces five separate implementations that had drifted apart: admission's
+   had lost both the chevron and the open-state shadow. */
+const { open = false, class: className } = Astro.props;
+---
+
+<details class:list={['item', className]} open={open}>
+  <summary>
+    <slot name="summary" />
+  </summary>
+  <div class="item-body">
+    <slot />
+  </div>
+</details>
+
+<style>
+  .item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .item[open] { box-shadow: var(--shadow-lg); }
+
+  summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-semibold);
+    color: var(--brand-fg);
+    cursor: pointer;
+    list-style: none;          /* Firefox */
+  }
+  summary::-webkit-details-marker { display: none; }   /* Safari */
+  summary:hover { background: var(--surface-2); }
+
+  /* Chevron drawn from two borders — no icon request for a shape this simple. */
+  summary::after {
+    content: "";
+    flex: none;
+    width: 0.55em;
+    height: 0.55em;
+    margin-left: auto;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: rotate(45deg) translate(-0.12em, -0.12em);
+    transition: transform 0.3s;
+  }
+  .item[open] > summary::after {
+    transform: rotate(-135deg) translate(-0.12em, -0.12em);
+  }
+
+  .item-body {
+    padding: var(--space-s) var(--space-m) var(--space-m);
+    border-top: 1px solid var(--border);
+    background: var(--surface-2);
+  }
+</style>

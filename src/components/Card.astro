@@ -1,0 +1,47 @@
+---
+/* The surface every panel on the site sits on. Sixteen rules across ten pages
+   declared the same four lines; this owns them.
+
+   It owns *chrome only* — border, radius, surface, shadow, padding, and the
+   link hover. Layout (flex, grid, alignment, max-width) stays in the page,
+   because that is what actually differs between a testimonial and a course
+   card. Pass a class and style it there; Astro puts the page's scope on this
+   component's root element, so page rules reach it.
+
+   `href` renders an <a> and turns on the hover; `as` overrides the element for
+   cases like a <figure> testimonial. */
+const { href, as = 'div', pad = 'm', class: className, ...rest } = Astro.props;
+const Tag = href ? 'a' : as;
+---
+
+<Tag
+  class:list={['card', `card-pad-${pad}`, href && 'card-link', className]}
+  href={href}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .card-pad-m { padding: var(--space-m); }
+  .card-pad-l { padding: var(--space-l) var(--space-m); }
+
+  /* No lift, no glow. The border taking the brand colour says "this is a link"
+     without the card jumping, and it matches how .btn behaves. */
+  .card-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .card-link:hover {
+    border-color: var(--brand-fg);
+    box-shadow: var(--shadow-lg);
+  }
+</style>

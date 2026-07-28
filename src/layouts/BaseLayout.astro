@@ -1,5 +1,10 @@
 ---
 import '@fontsource-variable/nunito-sans';
+/* Real italics. Without this the four italic rules on the site render as a
+   browser-synthesised oblique — the roman slanted by shear, not the drawn
+   italic. unicode-range keeps it from being fetched by anyone who never
+   reaches italic text. */
+import '@fontsource-variable/nunito-sans/wght-italic.css';
 import Seo from '../components/Seo.astro';
 import '../styles/tokens.css';
 import '../styles/base.css';

@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
 import Hero from '../components/Hero.astro';
 import { realms } from '../data/realms.js';
 
@@ -25,7 +27,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     <div class="container">
       <div class="realm-grid" data-reveal-group="scale">
         {realms.map(r => (
-          <a class="program-card" href={`/realms/${r.slug}`}>
+          <Card href={`/realms/${r.slug}`} pad="l" class="program-card">
             <div class="program-head">
               <Icon name={`lucide:${r.icon}`} class="program-icon" />
               <span class="program-n">Realm {r.n}</span>
@@ -42,7 +44,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
               View all {r.courses.length} courses
               <Icon name="lucide:arrow-right" />
             </span>
-          </a>
+          </Card>
         ))}
       </div>
     </div>
@@ -56,8 +58,8 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
         institutions, priced per cohort.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/corporate-training">Corporate Training</a>
-        <a class="btn btn-ghost" href="/contact">Talk to Admissions</a>
+        <Button href="/corporate-training">Corporate Training</Button>
+        <Button href="/contact" variant="ghost">Talk to Admissions</Button>
       </div>
     </div>
   </section>
@@ -75,22 +77,13 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     display: flex;
     flex-direction: column;
     gap: var(--space-2xs);
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    color: var(--text);
-    text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .program-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
 
   .program-head { display: flex; align-items: center; gap: var(--space-2xs); }
   .program-icon { width: 2em; height: 2em; color: var(--accent); }
   .program-n {
     font-size: var(--fs-100);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -117,7 +110,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     gap: var(--space-3xs);
     margin-top: auto;
     font-size: var(--fs-200);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     color: var(--brand-fg);
   }
 

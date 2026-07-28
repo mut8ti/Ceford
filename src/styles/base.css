@@ -19,11 +19,24 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Headings sit on the type scale; nothing else should set a font-size. */
-h1 { font-size: var(--fs-800); line-height: var(--lh-tight); }
-h2 { font-size: var(--fs-700); line-height: var(--lh-tight); }
-h3 { font-size: var(--fs-600); line-height: var(--lh-snug); }
-h4 { font-size: var(--fs-500); line-height: var(--lh-snug); }
+/* Headings sit on the type scale; nothing else should set a font-size or a
+   weight. Until now none of these set font-weight at all, so every heading on
+   the site ran on the browser's default bold — one value out of an 800-step
+   axis. */
+h1 {
+  font-size: var(--fs-800);
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--ls-display);
+}
+h2 {
+  font-size: var(--fs-700);
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+}
+h3 { font-size: var(--fs-600); line-height: var(--lh-snug); font-weight: var(--fw-bold); }
+h4 { font-size: var(--fs-500); line-height: var(--lh-snug); font-weight: var(--fw-bold); }
 h1, h2, h3, h4 {
   margin: 0 0 var(--space-xs);
   text-wrap: balance;      /* avoids one-word orphan lines in headings */
@@ -125,80 +138,71 @@ img, svg, video { max-width: 100%; height: auto; }
 
 /* ---------- Buttons ---------- */
 
-/* Hover traces a line around the perimeter rather than lifting and glowing.
-   Two pseudo-elements each own two sides; staggered transition-delays fire
-   them top -> right -> bottom -> left, so the stroke reads as travelling
-   round the button. Reversing the delays on mouse-out unwinds it the same
-   way instead of snapping off. */
+/* Hover fills the button from the bottom and inverts the label.
+
+   The previous version transitioned border-*-color round the perimeter, which
+   cannot read as a travelling stroke: a border side fades in as a whole, so it
+   showed four edges blinking in sequence, and the corner arcs — each shared by
+   two sides — popped as the sequence handed over.
+
+   A fill rising from the bottom edge covers a centred label evenly, so the
+   label colour can flip mid-sweep without ever sitting on a half-covered
+   background. prefers-reduced-motion collapses the durations in tokens.css, so
+   this degrades to an instant, still-legible state change. */
 .btn {
   position: relative;
+  isolation: isolate;          /* keeps the ::before fill behind the label     */
+  overflow: hidden;            /* clips the fill to the rounded corners        */
   display: inline-block;
   padding: var(--space-xs) var(--space-m);
-  border: none;
+  border: 1px solid transparent;   /* matches .btn-ghost's geometry exactly    */
   border-radius: var(--radius-sm);
   background: var(--accent);
   color: var(--text-on-accent);
   font: inherit;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   line-height: 1.4;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: color 0.18s ease;
 
-  --trace: var(--text-on-accent);
-  --trace-step: 0.13s;
+  --btn-fill:        var(--brand-dark);
+  --btn-label-hover: #fff;
 }
 
-.btn::before,
-.btn::after {
+.btn::before {
   content: "";
   position: absolute;
-  inset: -3px;
-  border: 2px solid transparent;
-  border-radius: calc(var(--radius-sm) + 3px);
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.34s cubic-bezier(0.65, 0, 0.35, 1);
   pointer-events: none;
 }
 
-/* top, then right */
-.btn::before {
-  transition:
-    border-top-color   var(--trace-step) linear calc(var(--trace-step) * 3),
-    border-right-color var(--trace-step) linear calc(var(--trace-step) * 2);
+.btn:hover,
+.btn:focus-visible {
+  color: var(--btn-label-hover);
+  /* Held back so the label flips once the fill is under it, not before it. */
+  transition: color 0.18s ease 0.1s;
 }
-/* bottom, then left */
-.btn::after {
-  transition:
-    border-bottom-color var(--trace-step) linear var(--trace-step),
-    border-left-color   var(--trace-step) linear 0s;
-}
-
 .btn:hover::before,
-.btn:focus-visible::before {
-  border-top-color: var(--trace);
-  border-right-color: var(--trace);
-  transition:
-    border-top-color   var(--trace-step) linear 0s,
-    border-right-color var(--trace-step) linear var(--trace-step);
-}
-.btn:hover::after,
-.btn:focus-visible::after {
-  border-bottom-color: var(--trace);
-  border-left-color: var(--trace);
-  transition:
-    border-bottom-color var(--trace-step) linear calc(var(--trace-step) * 2),
-    border-left-color   var(--trace-step) linear calc(var(--trace-step) * 3);
-}
+.btn:focus-visible::before { transform: scaleY(1); }
 
-.btn:hover { background: var(--accent-hover); }
 .btn:active { transform: translateY(1px); }
 
+/* Sits on hero photography, so the fill goes to white and the label to near
+   black — not var(--text), which is near white in dark mode and would vanish. */
 .btn-ghost {
   background: transparent;
+  border-color: rgb(255 255 255 / 0.45);
   color: #fff;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.45);
-  --trace: #fff;
+
+  --btn-fill:        #fff;
+  --btn-label-hover: #14161c;
 }
-.btn-ghost:hover { background: rgb(255 255 255 / 0.1); }
 
 .btn-sm { padding: var(--space-2xs) var(--space-s); font-size: var(--fs-200); }
 
@@ -233,7 +237,7 @@ html.dark-mode .site-header { background: var(--band); }
   margin-right: auto;
   color: var(--text-on-brand);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   font-size: var(--fs-400);
   letter-spacing: -0.01em;
 }
@@ -255,7 +259,7 @@ html.dark-mode .site-header { background: var(--band); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-text small {
   font-size: var(--fs-100);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   opacity: 0.8;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -279,7 +283,7 @@ html.dark-mode .site-header { background: var(--band); }
 .nav a[aria-current="page"] {
   background: #fff;
   color: var(--brand-fg);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 html.dark-mode .nav a[aria-current="page"] {
   background: var(--surface);
@@ -356,6 +360,7 @@ html.dark-mode .nav a[aria-current="page"]:hover { background: var(--surface); }
   color: var(--text-on-brand);
   text-align: center;
   font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
 }
 html.dark-mode .site-footer { background: var(--band); }
 .site-footer a { color: #fff; }
@@ -374,9 +379,9 @@ html.dark-mode .site-footer { background: var(--band); }
   display: block;
   margin-bottom: var(--space-3xs);
   font-size: var(--fs-200);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
-.field .hint { color: var(--text-muted); font-weight: 400; }
+.field .hint { color: var(--text-muted); font-weight: var(--fw-medium); }
 
 .input,
 .select,
@@ -422,16 +427,18 @@ html.dark-mode .site-footer { background: var(--band); }
   padding: var(--space-2xs) var(--space-xs);
   border-radius: var(--radius-sm);
   font-size: var(--fs-200);
+  font-weight: var(--fw-medium);
 }
 [data-form-status=""] { display: none; }
 [data-form-status="pending"] { color: var(--text-muted); }
+/* Tint only, no leading rule. Raised from 12% because the border was carrying
+   most of the signal; at 12% alone the fill barely registered. The message text
+   states the outcome, so colour is never the only cue. */
 [data-form-status="ok"] {
-  border-left: 3px solid #2e7d32;
-  background: color-mix(in srgb, #2e7d32 12%, transparent);
+  background: color-mix(in srgb, #2e7d32 18%, transparent);
 }
 [data-form-status="error"] {
-  border-left: 3px solid #c62828;
-  background: color-mix(in srgb, #c62828 12%, transparent);
+  background: color-mix(in srgb, #c62828 18%, transparent);
 }
 
 /* ---------- Motion ----------

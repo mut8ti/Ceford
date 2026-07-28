@@ -1,6 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import PageHead from '../components/PageHead.astro';
+import Button from '../components/Button.astro';
 
 const perks = [
   ['graduation-cap', 'Insider updates on cutting-edge training programs'],
@@ -15,20 +18,15 @@ const perks = [
   description="Subscribe to the CEFORED newsletter for updates on AI-driven training programs, expert insights, alumni stories, and tools for humanitarian innovation."
 >
 
-  <section class="section page-head">
-    <div class="container">
-      <h1 data-reveal>Join the Movement</h1>
-      <p class="lede" data-reveal>
-        Stay ahead with AI and impact. Be part of Africa's most dynamic AI-driven
-        learning revolution.
-      </p>
-    </div>
-  </section>
+  <PageHead
+    title="Join the Movement"
+    lede="Stay ahead with AI and impact. Be part of Africa's most dynamic AI-driven learning revolution."
+  />
 
   <section class="section">
     <div class="container newsletter-grid">
 
-      <div class="perks" data-reveal="left">
+      <Card pad="l" class="perks" data-reveal="left">
         <h2>What you'll get</h2>
         <ul class="perk-list">
           {perks.map(([icon, text]) => (
@@ -41,9 +39,11 @@ const perks = [
         <p class="perk-note">
           Straight to your inbox, only from CEFORED. Unsubscribe any time.
         </p>
-      </div>
+      </Card>
 
-      <form
+      <Card
+        as="form"
+        pad="l"
         class="newsletter-form"
         data-firestore="newsletter"
         data-success="Thank you for subscribing. You are now part of our newsletter."
@@ -67,9 +67,9 @@ const perks = [
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
-        <button class="btn" type="submit">Subscribe</button>
+        <Button type="submit">Subscribe</Button>
         <p data-form-status=""></p>
-      </form>
+      </Card>
 
     </div>
   </section>
@@ -77,9 +77,6 @@ const perks = [
 </BaseLayout>
 
 <style>
-  .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand-fg); }
-
   .newsletter-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
@@ -87,19 +84,10 @@ const perks = [
     align-items: start;
   }
 
-  .perks, .newsletter-form {
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
   .perks h2, .newsletter-form h2 {
     font-size: var(--fs-500);
     color: var(--brand-fg);
   }
-  html.dark-mode .perks h2,
 
   .perk-list { margin: 0 0 var(--space-s); padding: 0; list-style: none; }
   .perk-list li {

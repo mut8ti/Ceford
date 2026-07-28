@@ -1,6 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import Accordion from '../components/Accordion.astro';
+import AccordionItem from '../components/AccordionItem.astro';
 import Hero from '../components/Hero.astro';
 import { corporate } from '../data/corporate.js';
 import { realms } from '../data/realms.js';
@@ -36,13 +40,13 @@ const solutions = [
     lede="AI-powered training and consultancy for organizations, NGOs, and government institutions."
   >
     <div class="btn-row" data-hero-item>
-      <a class="btn" href="/contact">Request a Proposal</a>
+      <Button href="/contact">Request a Proposal</Button>
     </div>
   </Hero>
 
   <section class="section">
     <div class="container">
-      <div class="intro" data-reveal>
+      <Card pad="l" class="intro" data-reveal>
         <h2>Our Corporate Training &amp; Services</h2>
         <p>
           We deliver cutting-edge corporate training and AI-powered consultancy
@@ -50,7 +54,7 @@ const solutions = [
           Our corporate offerings are designed to ignite operational excellence and
           digital transformation across sectors.
         </p>
-      </div>
+      </Card>
     </div>
   </section>
 
@@ -59,11 +63,11 @@ const solutions = [
       <h2 class="section-title" data-reveal>Training Solutions</h2>
       <div class="solution-grid" data-reveal-group="scale">
         {solutions.map(([icon, title, text]) => (
-          <div class="solution">
+          <Card class="solution">
             <Icon name={`lucide:${icon}`} class="solution-icon" />
             <h3>{title}</h3>
             <p>{text}</p>
-          </div>
+          </Card>
         ))}
       </div>
     </div>
@@ -77,33 +81,31 @@ const solutions = [
         consultancy services.
       </p>
 
-      <div class="packages" data-reveal-group>
+      <Accordion width="54rem" data-reveal-group>
         {corporate.map(r => (
-          <details class="package">
-            <summary>
+          <AccordionItem>
+            <Fragment slot="summary">
               <Icon name={`lucide:${iconFor[r.n]}`} class="package-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
-            </summary>
-            <div class="package-body">
-              {r.groups.map(g => (
-                <div class="package-group">
-                  <h3>{g.label}</h3>
-                  <ul class="price-list">
-                    {g.items.map(item => (
-                      <li>
-                        <span class="price-name">{item.name}</span>
-                        <span class="price-tag">{item.price}</span>
-                        {item.note && <span class="price-note">{item.note}</span>}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              <a class="btn btn-sm" href="/contact">Request this package</a>
-            </div>
-          </details>
+            </Fragment>
+            {r.groups.map(g => (
+              <div class="package-group">
+                <h3>{g.label}</h3>
+                <ul class="price-list">
+                  {g.items.map(item => (
+                    <li>
+                      <span class="price-name">{item.name}</span>
+                      <span class="price-tag">{item.price}</span>
+                      {item.note && <span class="price-note">{item.note}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <Button href="/contact" size="sm" class="package-cta">Request this package</Button>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </div>
   </section>
 
@@ -115,7 +117,7 @@ const solutions = [
         around them.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/contact">Talk to Our Team</a>
+        <Button href="/contact">Talk to Our Team</Button>
       </div>
     </div>
   </section>
@@ -126,11 +128,6 @@ const solutions = [
   .intro {
     max-width: 52rem;
     margin-inline: auto;
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
   }
   .intro h2 { font-size: var(--fs-600); color: var(--brand-fg); }
 
@@ -139,72 +136,16 @@ const solutions = [
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
     gap: var(--space-m);
   }
-  .solution {
-    padding: var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
   .solution-icon { width: 2em; height: 2em; color: var(--accent); }
   .solution h3 { font-size: var(--fs-500); color: var(--brand-fg); }
   .solution p { color: var(--text-muted); font-size: var(--fs-200); margin: 0; }
 
-  .packages {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    max-width: 54rem;
-    margin-inline: auto;
-  }
-
-  .package {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  .package[open] { box-shadow: var(--shadow-lg); }
-
-  .package > summary {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-s) var(--space-m);
-    font-size: var(--fs-400);
-    color: var(--brand-fg);
-    cursor: pointer;
-    list-style: none;
-  }
-  .package > summary::-webkit-details-marker { display: none; }
-  .package > summary:hover { background: var(--surface-2); }
   .package-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
 
-  .package > summary::after {
-    content: "";
-    flex: none;
-    width: 0.55em;
-    height: 0.55em;
-    margin-left: auto;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: rotate(45deg) translate(-0.12em, -0.12em);
-    transition: transform 0.3s;
-  }
-  .package[open] > summary::after {
-    transform: rotate(-135deg) translate(-0.12em, -0.12em);
-  }
-
-  .package-body {
-    padding: var(--space-s) var(--space-m) var(--space-m);
-    border-top: 1px solid var(--border);
-    background: var(--surface-2);
-  }
   .package-group + .package-group { margin-top: var(--space-m); }
   .package-group h3 {
     font-size: var(--fs-200);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -218,7 +159,7 @@ const solutions = [
     padding: var(--space-2xs) 0;
     border-top: 1px solid var(--border);
   }
-  .price-name { font-weight: 600; }
+  .price-name { font-weight: var(--fw-semibold); }
   .price-tag {
     justify-self: end;
     padding: 0.1em 0.6em;
@@ -226,7 +167,7 @@ const solutions = [
     background: var(--accent);
     color: var(--text-on-accent);
     font-size: var(--fs-200);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     white-space: nowrap;
   }
   .price-note {
@@ -235,6 +176,6 @@ const solutions = [
     color: var(--text-muted);
   }
 
-  .package-body .btn { margin-top: var(--space-m); }
+  .package-cta { margin-top: var(--space-m); }
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

@@ -1,6 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import PageHead from '../components/PageHead.astro';
+import Button from '../components/Button.astro';
+import Accordion from '../components/Accordion.astro';
+import AccordionItem from '../components/AccordionItem.astro';
 import { realms } from '../data/realms.js';
 
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
@@ -29,32 +34,28 @@ const facts = [
   description="How to apply to CEFORED Institute of Relief: choose a course from six AI-driven realms, apply through our admissions team, and study online, virtually, or in person."
 >
 
-  <section class="section page-head">
-    <div class="container">
-      <h1 data-reveal>Admission</h1>
-      <p class="lede" data-reveal>
-        {totalCourses} courses across six realms, open to professionals, students,
-        and organizations. Here is how to join.
-      </p>
-      <div class="btn-row" data-reveal>
-        <a class="btn" href="/contact">Start Your Application</a>
-        <a class="btn" href="/programs">Browse Courses</a>
-      </div>
+  <PageHead
+    title="Admission"
+    lede={`${totalCourses} courses across six realms, open to professionals, students, and organizations. Here is how to join.`}
+  >
+    <div class="btn-row" data-reveal>
+      <Button href="/contact">Start Your Application</Button>
+      <Button href="/programs">Browse Courses</Button>
     </div>
-  </section>
+  </PageHead>
 
   <section class="section">
     <div class="container">
       <h2 class="section-title" data-reveal>How to apply</h2>
       <ol class="steps" data-reveal-group="left">
         {steps.map(([icon, title, text], i) => (
-          <li class="step">
+          <Card as="li" class="step">
             <span class="step-n">{i + 1}</span>
             <div>
               <h3><Icon name={`lucide:${icon}`} class="icon-accent" /> {title}</h3>
               <p>{text}</p>
             </div>
-          </li>
+          </Card>
         ))}
       </ol>
     </div>
@@ -65,11 +66,11 @@ const facts = [
       <h2 class="section-title" data-reveal>Good to know</h2>
       <div class="fact-grid" data-reveal-group="scale">
         {facts.map(([icon, title, text]) => (
-          <div class="fact">
+          <Card class="fact">
             <Icon name={`lucide:${icon}`} class="fact-icon" />
             <h3>{title}</h3>
             <p>{text}</p>
-          </div>
+          </Card>
         ))}
       </div>
     </div>
@@ -81,34 +82,32 @@ const facts = [
       <p class="lede">
         Fees are per learner. Expand a realm to see its courses, durations, and fees.
       </p>
-      <div class="fee-list" data-reveal-group>
+      <Accordion width="52rem" data-reveal-group>
         {realms.map(r => (
-          <details class="fee-realm">
-            <summary>
+          <AccordionItem>
+            <Fragment slot="summary">
               <Icon name={`lucide:${r.icon}`} class="fee-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
               <span class="fee-count">{r.courses.length}</span>
-            </summary>
-            <div class="fee-body">
-              <table class="fee-table">
-                <thead>
-                  <tr><th>Course</th><th>Duration</th><th>Fee</th></tr>
-                </thead>
-                <tbody>
-                  {r.courses.map(c => (
-                    <tr>
-                      <td>{c.name}</td>
-                      <td>{c.duration || '—'}</td>
-                      <td class="fee-cell">{c.fee || '—'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-              <a class="btn btn-sm" href={`/realms/${r.slug}`}>View realm details</a>
-            </div>
-          </details>
+            </Fragment>
+            <table class="fee-table">
+              <thead>
+                <tr><th>Course</th><th>Duration</th><th>Fee</th></tr>
+              </thead>
+              <tbody>
+                {r.courses.map(c => (
+                  <tr>
+                    <td>{c.name}</td>
+                    <td>{c.duration || '—'}</td>
+                    <td class="fee-cell">{c.fee || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <Button href={`/realms/${r.slug}`} size="sm" class="fee-cta">View realm details</Button>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </div>
   </section>
 
@@ -120,8 +119,8 @@ const facts = [
         it from there.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/contact">Apply Now</a>
-        <a class="btn btn-ghost" href="/faqs">Read the FAQs</a>
+        <Button href="/contact">Apply Now</Button>
+        <Button href="/faqs" variant="ghost">Read the FAQs</Button>
       </div>
     </div>
   </section>
@@ -129,10 +128,6 @@ const facts = [
 </BaseLayout>
 
 <style>
-  .page-head { text-align: center; }
-  .page-head h1 { color: var(--brand-fg); }
-  .page-head .btn-row { margin-top: var(--space-m); }
-
   .steps {
     display: grid;
     gap: var(--space-s);
@@ -146,11 +141,6 @@ const facts = [
     display: grid;
     grid-template-columns: auto 1fr;
     gap: var(--space-s);
-    padding: var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
   }
   .step-n {
     display: grid;
@@ -160,7 +150,7 @@ const facts = [
     border-radius: 50%;
     background: var(--accent);
     color: var(--text-on-accent);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
   .step h3 {
     display: flex;
@@ -176,43 +166,10 @@ const facts = [
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
     gap: var(--space-m);
   }
-  .fact {
-    padding: var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
   .fact-icon { width: 1.9em; height: 1.9em; color: var(--accent); }
   .fact h3 { font-size: var(--fs-500); color: var(--brand-fg); }
   .fact p { margin: 0; font-size: var(--fs-200); color: var(--text-muted); }
 
-  .fee-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    max-width: 52rem;
-    margin-inline: auto;
-  }
-  .fee-realm {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  .fee-realm > summary {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-s) var(--space-m);
-    font-size: var(--fs-400);
-    color: var(--brand-fg);
-    cursor: pointer;
-    list-style: none;
-  }
-  .fee-realm > summary::-webkit-details-marker { display: none; }
-  .fee-realm > summary:hover { background: var(--surface-2); }
   .fee-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
   .fee-count {
     margin-left: auto;
@@ -221,15 +178,9 @@ const facts = [
     background: var(--surface-2);
     color: var(--text-muted);
     font-size: var(--fs-200);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
 
-  .fee-body {
-    padding: var(--space-s) var(--space-m) var(--space-m);
-    border-top: 1px solid var(--border);
-    background: var(--surface-2);
-    overflow-x: auto;
-  }
   .fee-table {
     width: 100%;
     border-collapse: collapse;
@@ -247,8 +198,8 @@ const facts = [
     text-transform: uppercase;
     color: var(--text-muted);
   }
-  .fee-cell { font-weight: 700; white-space: nowrap; }
-  .fee-body .btn { margin-top: var(--space-s); }
+  .fee-cell { font-weight: var(--fw-bold); white-space: nowrap; }
+  .fee-cta { margin-top: var(--space-s); }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

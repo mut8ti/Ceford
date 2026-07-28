@@ -71,9 +71,27 @@
   --fs-700: clamp(1.75rem, 1.45rem + 1.5vw,  2.6rem);   /* h2 / section      */
   --fs-800: clamp(2.2rem,  1.6rem + 3vw,     3.6rem);   /* h1 / hero         */
 
+  /* ---------- Weight ----------
+     Nunito Sans is loaded as a variable font with a continuous 200–1000 wght
+     axis, so these are real instances, not synthesised bolds. Nothing outside
+     this file should invent a weight, same rule as font-size.
+
+     Weight compensates optically for size: display type can carry more of it
+     before it clogs, small type needs more of it to hold colour against the
+     page. Hence a heavy display step and a medium step for fine print. */
+  --fw-regular:  400;
+  --fw-medium:   500;   /* fine print, muted metadata */
+  --fw-semibold: 600;   /* labels, buttons, standout links */
+  --fw-bold:     700;   /* h2–h4 */
+  --fw-display:  850;   /* h1 only — where Nunito's character actually lives */
+
   --lh-tight: 1.15;
   --lh-snug:  1.35;
   --lh-body:  1.65;
+
+  /* Large type sets loose at these sizes; pull it back optically. */
+  --ls-display: -0.02em;
+  --ls-tight:   -0.01em;
 
   --measure: 68ch;   /* max line length for readable prose */
 

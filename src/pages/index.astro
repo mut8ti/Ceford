@@ -1,7 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
 import Hero from '../components/Hero.astro';
+import Accordion from '../components/Accordion.astro';
+import AccordionItem from '../components/AccordionItem.astro';
 import { realms } from '../data/realms.js';
 
 const reasons = [
@@ -43,8 +47,8 @@ const partners = [
     lede="Empowering leaders in logistics, business, health, humanitarian aid, and digital transformation with real-time, AI-optimized training."
   >
     <div class="btn-row" data-hero-item>
-      <a class="btn" href="/programs">Explore Our Programs</a>
-      <a class="btn btn-ghost" href="/admission">Apply Now</a>
+      <Button href="/programs">Explore Our Programs</Button>
+      <Button href="/admission" variant="ghost">Apply Now</Button>
     </div>
   </Hero>
 
@@ -64,8 +68,8 @@ const partners = [
       </ul>
       <p class="why-quote" data-reveal>“Start your journey with the leading institute of applied AI training.”</p>
       <div class="btn-row">
-        <a class="btn" href="/programs">Explore Programs</a>
-        <a class="btn" href="/corporate-training">Corporate Training</a>
+        <Button href="/programs">Explore Programs</Button>
+        <Button href="/corporate-training">Corporate Training</Button>
       </div>
     </div>
   </section>
@@ -79,40 +83,38 @@ const partners = [
         below to begin your journey.
       </p>
 
-      <div class="realms" data-reveal-group>
+      <Accordion data-reveal-group>
         {realms.map(r => (
-          <details class="realm">
-            <summary>
+          <AccordionItem>
+            <Fragment slot="summary">
               <Icon name={`lucide:${r.icon}`} class="realm-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
-            </summary>
-            <div class="realm-body">
-              <p class="realm-lede">{r.tagline}</p>
-              <h3>Program overview</h3>
-              <p>{r.overview}</p>
-              <p class="realm-who">{r.idealFor}</p>
-              <a class="btn btn-sm" href={`/realms/${r.slug}`}>View more</a>
-            </div>
-          </details>
+            </Fragment>
+            <p class="realm-lede">{r.tagline}</p>
+            <h3 class="realm-heading">Program overview</h3>
+            <p>{r.overview}</p>
+            <p class="realm-who">{r.idealFor}</p>
+            <Button href={`/realms/${r.slug}`} size="sm" class="realm-cta">View more</Button>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </div>
   </section>
 
   <section class="section">
     <div class="container card-grid" data-reveal-group="scale">
-      <div class="card">
+      <Card pad="l" class="card">
         <h2><Icon name="lucide:target" class="icon-accent" /> Our Motto</h2>
         <p>Empowering education through AI.</p>
-      </div>
-      <div class="card">
+      </Card>
+      <Card pad="l" class="card">
         <h2><Icon name="lucide:graduation-cap" class="icon-accent" /> Programs</h2>
         <p>Hands-on training in emergency response, health, logistics, and development.</p>
-      </div>
-      <div class="card">
+      </Card>
+      <Card pad="l" class="card">
         <h2><Icon name="lucide:users" class="icon-accent" /> Join Us</h2>
         <p>Apply today and become part of a community making a real impact across Africa.</p>
-      </div>
+      </Card>
     </div>
   </section>
 
@@ -125,11 +127,11 @@ const partners = [
       </p>
       <div class="card-grid" data-reveal-group>
         {testimonials.map(([quote, name, role]) => (
-          <figure class="quote">
+          <Card as="figure" pad="l" class="quote">
             <Icon name="lucide:quote" class="icon-accent icon-lg" />
             <p>{quote}</p>
             <figcaption><strong>{name}</strong><span>{role}</span></figcaption>
-          </figure>
+          </Card>
         ))}
       </div>
     </div>
@@ -195,64 +197,14 @@ const partners = [
     color: var(--text-muted);
   }
 
-  /* ---------- Programs accordion (native <details>) ---------- */
-  .realms {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    max-width: 52rem;
-    margin-inline: auto;
-  }
-
-  .realm {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    transition: box-shadow 0.2s;
-  }
-  .realm[open] { box-shadow: var(--shadow-lg); }
-
-  .realm > summary {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    padding: var(--space-s) var(--space-m);
-    color: var(--brand-fg);
-    font-size: var(--fs-400);
-    cursor: pointer;
-    list-style: none;
-  }
-  .realm > summary::-webkit-details-marker { display: none; }
-  .realm > summary:hover { background: var(--surface-2); }
-
+  /* ---------- Programs accordion ----------
+     Structure lives in <Accordion>/<AccordionItem>; only the slotted content
+     is styled here. */
   .realm-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
-
-  .realm > summary::after {
-    content: "";
-    flex: none;
-    width: 0.55em;
-    height: 0.55em;
-    margin-left: auto;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: rotate(45deg) translate(-0.12em, -0.12em);
-    transition: transform 0.3s;
-  }
-  .realm[open] > summary::after {
-    transform: rotate(-135deg) translate(-0.12em, -0.12em);
-  }
-
-  .realm-body {
-    padding: var(--space-s) var(--space-m) var(--space-m);
-    border-top: 1px solid var(--border);
-    background: var(--surface-2);
-  }
-  .realm-lede { font-weight: 700; }
+  .realm-lede { font-weight: var(--fw-bold); }
   .realm-who { font-style: italic; color: var(--text-muted); }
-  .realm-body h3 { font-size: var(--fs-500); margin-top: var(--space-s); }
-  .realm-body .btn { margin-top: var(--space-s); }
+  .realm-heading { font-size: var(--fs-500); margin-top: var(--space-s); }
+  .realm-cta { margin-top: var(--space-s); }
 
   /* ---------- Cards ---------- */
   .card-grid {
@@ -262,11 +214,6 @@ const partners = [
   }
 
   .card {
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
     text-align: center;
   }
   /* No hover state: these three are plain <div>s, not links. A card that
@@ -287,11 +234,6 @@ const partners = [
     flex-direction: column;
     gap: var(--space-xs);
     margin: 0;
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
     text-align: left;
   }
   .quote p { font-size: var(--fs-400); font-style: italic; }

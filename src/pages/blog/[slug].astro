@@ -2,6 +2,8 @@
 import { Icon } from 'astro-icon/components';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import Button from '../../components/Button.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -56,11 +58,11 @@ const schema = {
       <h2 class="section-title" data-reveal>Keep reading</h2>
       <div class="more-grid" data-reveal-group="scale">
         {others.map(p => (
-          <a class="more-card" href={`/blog/${p.id}`}>
+          <Card href={`/blog/${p.id}`} class="more-card">
             <Icon name={`lucide:${p.data.icon}`} class="more-icon" />
             <h3>{p.data.title}</h3>
             <span class="more-link">Read the insight <Icon name="lucide:arrow-right" /></span>
-          </a>
+          </Card>
         ))}
       </div>
     </div>
@@ -73,8 +75,8 @@ const schema = {
         Our six realms turn these trends into practical, certified training.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/programs">Explore Programs</a>
-        <a class="btn btn-ghost" href="/newsletter">Subscribe</a>
+        <Button href="/programs">Explore Programs</Button>
+        <Button href="/newsletter" variant="ghost">Subscribe</Button>
       </div>
     </div>
   </section>
@@ -103,7 +105,7 @@ const schema = {
     background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
     color: var(--brand-fg);
     font-size: var(--fs-100);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
   }
   html.dark-mode .tag {
     background: color-mix(in srgb, var(--accent) 18%, transparent);
@@ -144,16 +146,7 @@ const schema = {
     display: flex;
     flex-direction: column;
     gap: var(--space-2xs);
-    padding: var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    color: var(--text);
-    text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .more-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
   .more-icon { width: 1.8em; height: 1.8em; color: var(--accent); }
   .more-card h3 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .more-link {
@@ -162,7 +155,7 @@ const schema = {
     gap: var(--space-3xs);
     margin-top: auto;
     font-size: var(--fs-200);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     color: var(--brand-fg);
   }
 

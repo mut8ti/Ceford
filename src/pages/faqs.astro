@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import Button from '../components/Button.astro';
+import Accordion from '../components/Accordion.astro';
+import AccordionItem from '../components/AccordionItem.astro';
 import { faqs } from '../data/faqs.js';
 
 // Search engines render this as a rich FAQ result.
@@ -20,26 +24,21 @@ const schema = {
   schema={schema}
 >
 
-  <section class="section page-head">
-    <div class="container">
-      <h1 data-reveal>Frequently Asked Questions</h1>
-      <p class="lede" data-reveal>
-        Everything you need to know about enrolling, studying, and training your
-        team with CEFORED.
-      </p>
-    </div>
-  </section>
+  <PageHead
+    title="Frequently Asked Questions"
+    lede="Everything you need to know about enrolling, studying, and training your team with CEFORED."
+  />
 
   <section class="section">
     <div class="container">
-      <div class="faq-list" data-reveal-group>
+      <Accordion width="48rem" data-reveal-group>
         {faqs.map(f => (
-          <details class="faq">
-            <summary>{f.q}</summary>
-            <div class="faq-answer"><p>{f.a}</p></div>
-          </details>
+          <AccordionItem>
+            <Fragment slot="summary">{f.q}</Fragment>
+            <p class="faq-answer-text">{f.a}</p>
+          </AccordionItem>
         ))}
-      </div>
+      </Accordion>
     </div>
   </section>
 
@@ -50,8 +49,8 @@ const schema = {
         Our admissions team answers enquiries about intakes, fees, and group training.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/contact">Contact Us</a>
-        <a class="btn btn-ghost" href="/programs">Browse Programs</a>
+        <Button href="/contact">Contact Us</Button>
+        <Button href="/programs" variant="ghost">Browse Programs</Button>
       </div>
     </div>
   </section>
@@ -59,61 +58,7 @@ const schema = {
 </BaseLayout>
 
 <style>
-  .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand-fg); }
-
-  .faq-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    max-width: 48rem;
-    margin-inline: auto;
-  }
-
-  .faq {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  .faq[open] { box-shadow: var(--shadow-lg); }
-
-  .faq > summary {
-    display: flex;
-    align-items: center;
-    gap: var(--space-s);
-    padding: var(--space-s) var(--space-m);
-    font-size: var(--fs-400);
-    font-weight: 600;
-    color: var(--brand-fg);
-    cursor: pointer;
-    list-style: none;
-  }
-  .faq > summary::-webkit-details-marker { display: none; }
-  .faq > summary:hover { background: var(--surface-2); }
-
-  .faq > summary::after {
-    content: "";
-    flex: none;
-    width: 0.55em;
-    height: 0.55em;
-    margin-left: auto;
-    border-right: 2px solid var(--text-muted);
-    border-bottom: 2px solid var(--text-muted);
-    transform: rotate(45deg) translate(-0.12em, -0.12em);
-    transition: transform 0.3s;
-  }
-  .faq[open] > summary::after {
-    transform: rotate(-135deg) translate(-0.12em, -0.12em);
-  }
-
-  .faq-answer {
-    padding: var(--space-s) var(--space-m) var(--space-m);
-    border-top: 1px solid var(--border);
-    background: var(--surface-2);
-  }
-  .faq-answer p { margin: 0; }
+  .faq-answer-text { margin: 0; }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

@@ -1,0 +1,20 @@
+---
+/* Wrapper for a stack of <AccordionItem>. Only reason it exists rather than a
+   bare <div class="accordion"> is that four pages each hand-rolled the same
+   flex column with a different max-width. */
+const { width = '52rem', class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['accordion', className]} style={`--accordion-width: ${width}`} {...rest}>
+  <slot />
+</div>
+
+<style>
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    max-width: var(--accordion-width);
+    margin-inline: auto;
+  }
+</style>

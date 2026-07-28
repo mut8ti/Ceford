@@ -1,0 +1,26 @@
+---
+/* The heading block on pages that open with type rather than a photo — the
+   counterpart to <Hero>. Five pages had identical copies of this.
+
+   Bottom padding collapses when there is nothing in the slot, so the head sits
+   tight against the section below; pages that put a button row underneath keep
+   the full section padding. */
+const { title, lede } = Astro.props;
+const hasExtra = Astro.slots.has('default');
+---
+
+<section class:list={['section', 'page-head', !hasExtra && 'page-head-tight']}>
+  <div class="container">
+    <h1 data-reveal>{title}</h1>
+    {lede && <p class="lede" data-reveal>{lede}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-head { text-align: center; }
+  .page-head-tight { padding-bottom: 0; }
+  .page-head h1 { color: var(--brand-fg); }
+  /* The button row is slotted from the page, so it carries the page's scope. */
+  .page-head :global(.btn-row) { margin-top: var(--space-m); }
+</style>

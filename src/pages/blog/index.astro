@@ -2,6 +2,9 @@
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
+import PageHead from '../../components/PageHead.astro';
+import Button from '../../components/Button.astro';
 
 const posts = await getCollection('blog');
 ---
@@ -11,21 +14,16 @@ const posts = await getCollection('blog');
   description="Insights, stories, and trends at the intersection of AI, education, and humanitarian impact."
 >
 
-  <section class="section page-head">
-    <div class="container">
-      <h1 data-reveal>Insights &amp; Stories</h1>
-      <p class="lede" data-reveal>
-        Insights, stories, and trends at the intersection of AI, education, and
-        humanitarian impact.
-      </p>
-    </div>
-  </section>
+  <PageHead
+    title="Insights &amp; Stories"
+    lede="Insights, stories, and trends at the intersection of AI, education, and humanitarian impact."
+  />
 
   <section class="section">
     <div class="container">
       <div class="post-grid" data-reveal-group="scale">
         {posts.map(post => (
-          <a class="post-card" href={`/blog/${post.id}`}>
+          <Card href={`/blog/${post.id}`} pad="l" class="post-card">
             <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
             <div class="tags">
               {post.data.tags.map(t => <span class="tag">#{t.replace(/\s+/g, '')}</span>)}
@@ -33,7 +31,7 @@ const posts = await getCollection('blog');
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
             <span class="post-more">Read the full insight <Icon name="lucide:arrow-right" /></span>
-          </a>
+          </Card>
         ))}
       </div>
     </div>
@@ -46,7 +44,7 @@ const posts = await getCollection('blog');
         Subscribe for updates on programs, expert insights, and alumni stories.
       </p>
       <div class="btn-row" data-reveal>
-        <a class="btn" href="/newsletter">Subscribe to Updates</a>
+        <Button href="/newsletter">Subscribe to Updates</Button>
       </div>
     </div>
   </section>
@@ -54,9 +52,6 @@ const posts = await getCollection('blog');
 </BaseLayout>
 
 <style>
-  .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand-fg); }
-
   .post-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
@@ -67,16 +62,7 @@ const posts = await getCollection('blog');
     display: flex;
     flex-direction: column;
     gap: var(--space-2xs);
-    padding: var(--space-l) var(--space-m);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-    color: var(--text);
-    text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .post-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
 
   .post-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
 
@@ -87,7 +73,7 @@ const posts = await getCollection('blog');
     background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
     color: var(--brand-fg);
     font-size: var(--fs-100);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
   }
   html.dark-mode .tag {
     background: color-mix(in srgb, var(--accent) 18%, transparent);
@@ -103,7 +89,7 @@ const posts = await getCollection('blog');
     gap: var(--space-3xs);
     margin-top: auto;
     font-size: var(--fs-200);
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     color: var(--brand-fg);
   }
 
