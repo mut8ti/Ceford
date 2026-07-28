@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
 import { realms } from '../data/realms.js';
 
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
@@ -13,16 +14,12 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
   ogImage="/images/programsbg.webp"
 >
 
-  <section class="hero" data-hero>
-    <div class="hero-inner">
-      <p class="eyebrow" data-hero-item>{totalCourses} courses · 6 realms</p>
-      <h1>Explore Our Programs</h1>
-      <p class="hero-lede" data-hero-item>
-        Unlock the future with our six realms of AI-driven excellence, from supply
-        chain and business management to health, projects, IT, and humanitarian response.
-      </p>
-    </div>
-  </section>
+  <Hero
+    image="/images/programsbg.webp"
+    eyebrow={`${totalCourses} courses · 6 realms`}
+    title="Explore Our Programs"
+    lede="Unlock the future with our six realms of AI-driven excellence, from supply chain and business management to health, projects, IT, and humanitarian response."
+  />
 
   <section class="section">
     <div class="container">
@@ -68,41 +65,6 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
 </BaseLayout>
 
 <style>
-  .hero {
-    display: grid;
-    place-items: center;
-    min-height: min(58vh, 460px);
-    padding: var(--space-2xl) var(--space-m) var(--space-xl);
-    text-align: center;
-    color: #fff;
-    background-image:
-      linear-gradient(
-        180deg,
-        var(--hero-scrim-top) 0%,
-        var(--hero-scrim-mid) 48%,
-        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
-        var(--bg) 100%
-      ),
-      url("/images/programsbg.webp");
-    background-size: cover;
-    background-position: center;
-  }
-  .hero-inner { max-width: 46rem; }
-  .eyebrow {
-    margin-bottom: var(--space-2xs);
-    font-size: var(--fs-200);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
-  .hero-lede {
-    font-size: var(--fs-400);
-    color: rgb(255 255 255 / 0.92);
-    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
-  }
-
   .realm-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
@@ -120,9 +82,9 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     box-shadow: var(--shadow);
     color: var(--text);
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .program-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .program-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
 
   .program-head { display: flex; align-items: center; gap: var(--space-2xs); }
   .program-icon { width: 2em; height: 2em; color: var(--accent); }
@@ -134,8 +96,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     color: var(--text-muted);
   }
 
-  .program-card h2 { font-size: var(--fs-500); color: var(--brand); margin: 0; }
-  html.dark-mode .program-card h2 { color: var(--accent); }
+  .program-card h2 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .program-tagline { color: var(--text-muted); font-size: var(--fs-200); }
 
   .program-courses {
@@ -157,9 +118,8 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
     margin-top: auto;
     font-size: var(--fs-200);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .program-more { color: var(--accent); }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

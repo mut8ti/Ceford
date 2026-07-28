@@ -1,5 +1,5 @@
 ---
-import '@fontsource-variable/inter';
+import '@fontsource-variable/nunito-sans';
 import Seo from '../components/Seo.astro';
 import '../styles/tokens.css';
 import '../styles/base.css';
@@ -9,14 +9,28 @@ const { title, description, preloadImage, ogImage, pageType, schema } = Astro.pr
 const nav = [
   { href: '/',                   label: 'Home' },
   { href: '/about',              label: 'About Us' },
-  { href: '/programs',           label: 'Programs' },
+  { href: '/programs',           label: 'Programs', also: ['/realms'] },
   { href: '/faqs',               label: 'FAQs' },
-  { href: '/corporate-training', label: 'Corporate Training' },
-  { href: '/contact',            label: 'Contact Us' },
+  { href: '/corporate-training', label: 'Corporate' },
+  { href: '/contact',            label: 'Contact' },
 ];
 
-// Trailing-slash-insensitive match so /about and /about/ both highlight.
-const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+/* build.format is 'file', so pathname arrives as '/about.html'. Normalise to
+   the clean form the hrefs use, or nothing ever matches. */
+const path =
+  Astro.url.pathname
+    .replace(/\.html$/, '')
+    .replace(/\/index$/, '')
+    .replace(/\/+$/, '') || '/';
+
+/* Exact match, or a descendant of the item (so /realms/logistics lights up
+   Programs and /blog/a-post lights up Blog). */
+const isCurrent = (item) => {
+  const targets = [item.href, ...(item.also ?? [])];
+  return targets.some((t) =>
+    t === '/' ? path === '/' : path === t || path.startsWith(t + '/')
+  );
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +81,7 @@ const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
   <nav class="nav" id="main-nav" aria-label="Main">
     {nav.map(item => (
-      <a href={item.href} aria-current={path === item.href.replace(/\/+$/, '') || (item.href === '/' && path === '/') ? 'page' : undefined}>
+      <a href={item.href} aria-current={isCurrent(item) ? 'page' : undefined}>
         {item.label}
       </a>
     ))}

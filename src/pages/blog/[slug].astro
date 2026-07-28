@@ -88,8 +88,7 @@ const schema = {
     border-bottom: 1px solid var(--border);
   }
   .post-icon { width: 2.6em; height: 2.6em; color: var(--accent); }
-  .post-head h1 { color: var(--brand); max-width: 24ch; margin-inline: auto; }
-  html.dark-mode .post-head h1 { color: var(--accent); }
+  .post-head h1 { color: var(--brand-fg); max-width: 24ch; margin-inline: auto; }
 
   .tags {
     display: flex;
@@ -101,8 +100,8 @@ const schema = {
   .tag {
     padding: 0.1em 0.6em;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--brand) 12%, transparent);
-    color: var(--brand);
+    background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
+    color: var(--brand-fg);
     font-size: var(--fs-100);
     font-weight: 600;
   }
@@ -126,9 +125,8 @@ const schema = {
   .post-body :global(h2) {
     margin-top: var(--space-l);
     font-size: var(--fs-600);
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .post-body :global(h2) { color: var(--accent); }
   .post-body :global(h3) {
     margin-top: var(--space-m);
     font-size: var(--fs-500);
@@ -153,12 +151,11 @@ const schema = {
     box-shadow: var(--shadow);
     color: var(--text);
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .more-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .more-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
   .more-icon { width: 1.8em; height: 1.8em; color: var(--accent); }
-  .more-card h3 { font-size: var(--fs-500); color: var(--brand); margin: 0; }
-  html.dark-mode .more-card h3 { color: var(--accent); }
+  .more-card h3 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .more-link {
     display: flex;
     align-items: center;
@@ -166,9 +163,8 @@ const schema = {
     margin-top: auto;
     font-size: var(--fs-200);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .more-link { color: var(--accent); }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

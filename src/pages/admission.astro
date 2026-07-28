@@ -130,8 +130,7 @@ const facts = [
 
 <style>
   .page-head { text-align: center; }
-  .page-head h1 { color: var(--brand); }
-  html.dark-mode .page-head h1 { color: var(--accent); }
+  .page-head h1 { color: var(--brand-fg); }
   .page-head .btn-row { margin-top: var(--space-m); }
 
   .steps {
@@ -168,9 +167,8 @@ const facts = [
     align-items: center;
     gap: var(--space-3xs);
     font-size: var(--fs-500);
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .step h3 { color: var(--accent); }
   .step p { margin: 0; color: var(--text-muted); }
 
   .fact-grid {
@@ -186,8 +184,7 @@ const facts = [
     box-shadow: var(--shadow);
   }
   .fact-icon { width: 1.9em; height: 1.9em; color: var(--accent); }
-  .fact h3 { font-size: var(--fs-500); color: var(--brand); }
-  html.dark-mode .fact h3 { color: var(--accent); }
+  .fact h3 { font-size: var(--fs-500); color: var(--brand-fg); }
   .fact p { margin: 0; font-size: var(--fs-200); color: var(--text-muted); }
 
   .fee-list {
@@ -210,11 +207,10 @@ const facts = [
     gap: var(--space-xs);
     padding: var(--space-s) var(--space-m);
     font-size: var(--fs-400);
-    color: var(--brand);
+    color: var(--brand-fg);
     cursor: pointer;
     list-style: none;
   }
-  html.dark-mode .fee-realm > summary { color: var(--accent); }
   .fee-realm > summary::-webkit-details-marker { display: none; }
   .fee-realm > summary:hover { background: var(--surface-2); }
   .fee-icon { width: 1.4em; height: 1.4em; color: var(--accent); }

@@ -55,8 +55,7 @@ const posts = await getCollection('blog');
 
 <style>
   .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand); }
-  html.dark-mode .page-head h1 { color: var(--accent); }
+  .page-head h1 { color: var(--brand-fg); }
 
   .post-grid {
     display: grid;
@@ -75,9 +74,9 @@ const posts = await getCollection('blog');
     box-shadow: var(--shadow);
     color: var(--text);
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .post-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
 
   .post-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
 
@@ -85,8 +84,8 @@ const posts = await getCollection('blog');
   .tag {
     padding: 0.1em 0.6em;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--brand) 12%, transparent);
-    color: var(--brand);
+    background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
+    color: var(--brand-fg);
     font-size: var(--fs-100);
     font-weight: 600;
   }
@@ -95,8 +94,7 @@ const posts = await getCollection('blog');
     color: var(--accent);
   }
 
-  .post-card h2 { font-size: var(--fs-500); color: var(--brand); margin: 0; }
-  html.dark-mode .post-card h2 { color: var(--accent); }
+  .post-card h2 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .post-card p { color: var(--text-muted); font-size: var(--fs-200); }
 
   .post-more {
@@ -106,9 +104,8 @@ const posts = await getCollection('blog');
     margin-top: auto;
     font-size: var(--fs-200);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .post-more { color: var(--accent); }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

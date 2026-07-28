@@ -105,8 +105,7 @@ const details = [
 
 <style>
   .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand); }
-  html.dark-mode .page-head h1 { color: var(--accent); }
+  .page-head h1 { color: var(--brand-fg); }
 
   .contact-grid {
     display: grid;
@@ -130,12 +129,10 @@ const details = [
   .contact-form h2,
   .contact-aside h2 {
     font-size: var(--fs-500);
-    color: var(--brand);
+    color: var(--brand-fg);
   }
   html.dark-mode .contact-form h2,
-  html.dark-mode .contact-aside h2 { color: var(--accent); }
 
-  .contact-aside { border-left: 4px solid var(--accent); }
 
   .contact-list { margin: 0; padding: 0; list-style: none; }
   .contact-list li {

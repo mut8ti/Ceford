@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
 import { realms } from '../../data/realms.js';
 
 export function getStaticPaths() {
@@ -46,15 +47,13 @@ const detailRows = [
   schema={schema}
 >
 
-  <section class="hero" data-hero style={`--realm-bg: url("${realm.bg}")`}>
-    <div class="hero-inner">
-      <p class="eyebrow" data-hero-item>
-        <Icon name={`lucide:${realm.icon}`} /> Realm {realm.n}
-      </p>
-      <h1>{realm.title}</h1>
-      <p class="hero-lede" data-hero-item>{realm.tagline}</p>
-    </div>
-  </section>
+  <Hero
+    image={realm.bg}
+    icon={realm.icon}
+    eyebrow={`Realm ${realm.n}`}
+    title={realm.title}
+    lede={realm.tagline}
+  />
 
   <section class="section overview-section">
     <div class="container">
@@ -141,51 +140,6 @@ const detailRows = [
 </BaseLayout>
 
 <style>
-  /* Hero background comes from the --realm-bg custom property set inline per
-     page, so one rule serves all six realms. */
-  .hero {
-    display: grid;
-    place-items: center;
-    min-height: min(58vh, 460px);
-    padding: var(--space-2xl) var(--space-m) var(--space-xl);
-    text-align: center;
-    color: #fff;
-    background-image:
-      linear-gradient(
-        180deg,
-        var(--hero-scrim-top) 0%,
-        var(--hero-scrim-mid) 48%,
-        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
-        var(--bg) 100%
-      ),
-      var(--realm-bg);
-    background-size: cover;
-    background-position: center;
-  }
-
-  .hero-inner { max-width: 46rem; }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2xs);
-    margin-bottom: var(--space-2xs);
-    font-size: var(--fs-200);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
-
-  .hero-lede {
-    font-size: var(--fs-400);
-    color: rgb(255 255 255 / 0.92);
-    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
-  }
-
   /* ---------- Overview ---------- */
   .overview-section { padding-top: var(--space-l); }
 
@@ -194,13 +148,11 @@ const detailRows = [
     margin-inline: auto;
     padding: var(--space-l) var(--space-m);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
     border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
   }
-  .overview h2 { font-size: var(--fs-600); color: var(--brand); }
-  html.dark-mode .overview h2 { color: var(--accent); }
+  .overview h2 { font-size: var(--fs-600); color: var(--brand-fg); }
   .ideal { margin-bottom: 0; color: var(--text-muted); }
 
   /* ---------- Courses ---------- */
@@ -237,9 +189,8 @@ const detailRows = [
     flex: 1;
     font-size: var(--fs-400);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .course-name { color: var(--accent); }
 
   .course-fee {
     flex: none;
@@ -312,9 +263,9 @@ const detailRows = [
     box-shadow: var(--shadow);
     color: inherit;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .realm-link:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .realm-link:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
 
   .realm-link-icon { width: 1.9em; height: 1.9em; color: var(--accent); }
   .realm-link-n {
@@ -324,8 +275,7 @@ const detailRows = [
     text-transform: uppercase;
     color: var(--text-muted);
   }
-  .realm-link-title { font-weight: 600; color: var(--brand); }
-  html.dark-mode .realm-link-title { color: var(--accent); }
+  .realm-link-title { font-weight: 600; color: var(--brand-fg); }
 
   .cta-band .lede { margin-bottom: var(--space-m); }
 </style>

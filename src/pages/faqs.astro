@@ -60,8 +60,7 @@ const schema = {
 
 <style>
   .page-head { padding-bottom: 0; text-align: center; }
-  .page-head h1 { color: var(--brand); }
-  html.dark-mode .page-head h1 { color: var(--accent); }
+  .page-head h1 { color: var(--brand-fg); }
 
   .faq-list {
     display: flex;
@@ -87,11 +86,10 @@ const schema = {
     padding: var(--space-s) var(--space-m);
     font-size: var(--fs-400);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
     cursor: pointer;
     list-style: none;
   }
-  html.dark-mode .faq > summary { color: var(--accent); }
   .faq > summary::-webkit-details-marker { display: none; }
   .faq > summary:hover { background: var(--surface-2); }
 

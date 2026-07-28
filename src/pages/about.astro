@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
 import { realms } from '../data/realms.js';
 
 const realmBlurbs = {
@@ -27,16 +28,12 @@ const values = [
   ogImage="/images/about1.webp"
 >
 
-  <section class="hero" data-hero>
-    <div class="hero-inner">
-      <p class="eyebrow" data-hero-item>Who we are</p>
-      <h1>About CEFORED</h1>
-      <p class="hero-lede" data-hero-item>
-        A pioneering training institute leveraging the power of AI to transform
-        learning in the sectors that drive social impact.
-      </p>
-    </div>
-  </section>
+  <Hero
+    image="/images/about1.webp"
+    eyebrow="Who we are"
+    title="About CEFORED"
+    lede="A pioneering training institute leveraging the power of AI to transform learning in the sectors that drive social impact."
+  />
 
   <section class="section">
     <div class="container mv-grid">
@@ -116,41 +113,6 @@ const values = [
 </BaseLayout>
 
 <style>
-  .hero {
-    display: grid;
-    place-items: center;
-    min-height: min(58vh, 460px);
-    padding: var(--space-2xl) var(--space-m) var(--space-xl);
-    text-align: center;
-    color: #fff;
-    background-image:
-      linear-gradient(
-        180deg,
-        var(--hero-scrim-top) 0%,
-        var(--hero-scrim-mid) 48%,
-        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
-        var(--bg) 100%
-      ),
-      url("/images/about1.webp");
-    background-size: cover;
-    background-position: center;
-  }
-  .hero-inner { max-width: 46rem; }
-  .eyebrow {
-    margin-bottom: var(--space-2xs);
-    font-size: var(--fs-200);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
-  .hero-lede {
-    font-size: var(--fs-400);
-    color: rgb(255 255 255 / 0.92);
-    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
-  }
-
   .mv-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
@@ -159,14 +121,12 @@ const values = [
   .mv-card {
     padding: var(--space-l) var(--space-m);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
     border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
   }
   .mv-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
-  .mv-card h2 { font-size: var(--fs-600); color: var(--brand); }
-  html.dark-mode .mv-card h2 { color: var(--accent); }
+  .mv-card h2 { font-size: var(--fs-600); color: var(--brand-fg); }
 
   .realm-grid {
     display: grid;
@@ -178,25 +138,24 @@ const values = [
     flex-direction: column;
     gap: var(--space-3xs);
     padding: var(--space-m);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
     color: var(--text);
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .realm-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
+  .realm-card:hover { border-color: var(--brand-fg); box-shadow: var(--shadow-lg); }
   .realm-card-icon { width: 2em; height: 2em; color: var(--accent); }
-  .realm-card h3 { font-size: var(--fs-500); color: var(--brand); margin: 0; }
-  html.dark-mode .realm-card h3 { color: var(--accent); }
+  .realm-card h3 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .realm-card p { color: var(--text-muted); font-size: var(--fs-200); }
   .realm-card-more {
     margin-top: auto;
     font-size: var(--fs-200);
     font-weight: 600;
-    color: var(--brand);
+    color: var(--brand-fg);
   }
-  html.dark-mode .realm-card-more { color: var(--accent); }
 
   .value-grid {
     display: grid;
@@ -211,8 +170,7 @@ const values = [
     box-shadow: var(--shadow);
     text-align: center;
   }
-  .value h3 { font-size: var(--fs-500); color: var(--brand); }
-  html.dark-mode .value h3 { color: var(--accent); }
+  .value h3 { font-size: var(--fs-500); color: var(--brand-fg); }
   .value p { color: var(--text-muted); font-size: var(--fs-200); margin: 0; }
 
   .team {
@@ -225,7 +183,6 @@ const values = [
     box-shadow: var(--shadow);
     text-align: center;
   }
-  .team h2 { color: var(--brand); }
-  html.dark-mode .team h2 { color: var(--accent); }
+  .team h2 { color: var(--brand-fg); }
   .team .btn-row { margin-top: var(--space-m); }
 </style>

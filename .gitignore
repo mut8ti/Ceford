@@ -34,4 +34,5 @@ yarn-error.log*
 # Astro generated types
 .astro/
 .claude/
+.gemini
 .tokensave

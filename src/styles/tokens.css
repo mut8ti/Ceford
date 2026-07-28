@@ -2,26 +2,59 @@
    Dark mode is a variable flip on html.dark-mode — never a per-component override. */
 
 :root {
-  /* ---------- Colour: brand ---------- */
-  --brand:        #008080;
-  --brand-dark:   #006666;
-  --accent:       #ffa500;
-  --accent-hover: #ffc043;
+  /* ---------- Colour: brand ----------
+     A deep field teal, not the CSS `teal` keyword. The keyword sits at 4.28:1
+     on the page background, which is under the 4.5 threshold, and it has no
+     tonal range — every brand-coloured thing on the site was the same value.
+     This ramp gives a text-safe anchor, a mid tone for large fills, and a
+     light tone that survives on dark backgrounds. */
+  --teal-900:   #0a2e2e;   /* dark-mode bands and header */
+  --teal-800:   #0a4f4b;   /* hover / pressed            */
+  --teal-700:   #0f6b66;   /* primary brand, 6.05:1 on the page bg */
+  --teal-500:   #157e78;   /* large fills, never body text         */
+  --teal-300:   #5fbfb6;   /* brand on dark, 7.4:1 on dark surface */
 
-  /* ---------- Colour: surfaces ---------- */
-  --bg:         #f5f5dc;
+  --brand:      var(--teal-700);
+  --brand-dark: var(--teal-800);
+
+  /* Brand colour used as FOREGROUND — text, icon strokes, borders, tinted
+     fills. Flips per theme, which is what stops dark mode from dropping teal
+     entirely and turning into a monochrome amber site. Anything painted ON a
+     brand-coloured surface (the header, the bands) uses --brand instead. */
+  --brand-fg:   var(--teal-700);
+
+  /* ---------- Colour: accent ----------
+     One signal colour, burnt amber rather than the CSS `orange` keyword.
+     Dark enough to carry as an icon stroke on white (3.78:1) and to hold
+     black button text (4.58:1); `orange` managed neither. */
+  --accent:         #c96a12;
+  --accent-hover:   #e08321;
+  --accent-on-dark: #e8933a;   /* for hero scrims and other always-dark backdrops */
+
+  /* ---------- Colour: surfaces ----------
+     Warm paper, not `beige`. Beige is the dated element and the reason brand
+     text failed contrast against the page. */
+  --bg:         #f7f5f0;
   --surface:    #ffffff;
-  --surface-2:  #f8f9fa;
-  --band:       #008080;
+  --surface-2:  #f1eee7;
+  --band:       var(--brand);
 
   /* ---------- Colour: text ---------- */
   --text:           #1a1a1a;
-  --text-muted:     #555555;
+  --text-muted:     #57534a;
   --text-on-brand:  #ffffff;
   --text-on-accent: #1a1a1a;
 
+  /* ---------- Focus ----------
+     Two-tone. No single colour clears 3:1 against white cards, the teal
+     header AND hero photography at once, so the halo fills the outline-offset
+     gap and whatever the backdrop is, one of the two rings contrasts with it.
+     Deliberately NOT theme-flipped: the pair works on any background. */
+  --focus-ring: #14161c;
+  --focus-halo: #ffffff;
+
   /* ---------- Lines & shadows ---------- */
-  --border:    #e0e0e0;
+  --border:    #e5e1d8;
   --shadow:    0 2px 8px rgb(0 0 0 / 0.08);
   --shadow-lg: 0 4px 16px rgb(0 0 0 / 0.10);
   --shadow-xl: 0 12px 32px rgb(0 0 0 / 0.14);
@@ -79,7 +112,12 @@ html.dark-mode {
   --bg:        #14161c;
   --surface:   #1e2128;
   --surface-2: #272b34;
-  --band:      #181a20;
+  --band:      var(--teal-900);   /* stays in the teal family; #181a20 erased the brand */
+
+  --brand-fg:  var(--teal-300);
+
+  --accent:       var(--accent-on-dark);
+  --accent-hover: #f3a95a;
 
   --text:       #e8e8e8;
   --text-muted: #a8a8a8;

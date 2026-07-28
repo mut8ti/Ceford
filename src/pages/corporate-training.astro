@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
 import { corporate } from '../data/corporate.js';
 import { realms } from '../data/realms.js';
 
@@ -27,19 +28,17 @@ const solutions = [
   ogImage="/images/businessmeeting.webp"
 >
 
-  <section class="hero" data-hero>
-    <div class="hero-inner">
-      <p class="eyebrow" data-hero-item>For organizations</p>
-      <h1>Corporate Training &amp; Services</h1>
-      <p class="hero-lede" data-hero-item>
-        AI-powered training and consultancy for organizations, NGOs, and
-        government institutions.
-      </p>
-      <div class="btn-row" data-hero-item>
-        <a class="btn" href="/contact">Request a Proposal</a>
-      </div>
+  <Hero
+    image="/images/businessmeeting.webp"
+    position="center 30%"
+    eyebrow="For organizations"
+    title="Corporate Training & Services"
+    lede="AI-powered training and consultancy for organizations, NGOs, and government institutions."
+  >
+    <div class="btn-row" data-hero-item>
+      <a class="btn" href="/contact">Request a Proposal</a>
     </div>
-  </section>
+  </Hero>
 
   <section class="section">
     <div class="container">
@@ -124,54 +123,16 @@ const solutions = [
 </BaseLayout>
 
 <style>
-  .hero {
-    display: grid;
-    place-items: center;
-    min-height: min(62vh, 500px);
-    padding: var(--space-2xl) var(--space-m) var(--space-xl);
-    text-align: center;
-    color: #fff;
-    background-image:
-      linear-gradient(
-        180deg,
-        var(--hero-scrim-top) 0%,
-        var(--hero-scrim-mid) 48%,
-        color-mix(in srgb, var(--bg) 60%, transparent) 86%,
-        var(--bg) 100%
-      ),
-      url("/images/businessmeeting.webp");
-    background-size: cover;
-    background-position: center 30%;
-  }
-  .hero-inner { max-width: 46rem; }
-  .eyebrow {
-    margin-bottom: var(--space-2xs);
-    font-size: var(--fs-200);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .hero h1 { text-shadow: 0 2px 12px rgb(0 0 0 / 0.55); }
-  .hero-lede {
-    margin-bottom: var(--space-l);
-    font-size: var(--fs-400);
-    color: rgb(255 255 255 / 0.92);
-    text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
-  }
-
   .intro {
     max-width: 52rem;
     margin-inline: auto;
     padding: var(--space-l) var(--space-m);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--accent);
     border-radius: var(--radius);
     background: var(--surface);
     box-shadow: var(--shadow);
   }
-  .intro h2 { font-size: var(--fs-600); color: var(--brand); }
-  html.dark-mode .intro h2 { color: var(--accent); }
+  .intro h2 { font-size: var(--fs-600); color: var(--brand-fg); }
 
   .solution-grid {
     display: grid;
@@ -186,8 +147,7 @@ const solutions = [
     box-shadow: var(--shadow);
   }
   .solution-icon { width: 2em; height: 2em; color: var(--accent); }
-  .solution h3 { font-size: var(--fs-500); color: var(--brand); }
-  html.dark-mode .solution h3 { color: var(--accent); }
+  .solution h3 { font-size: var(--fs-500); color: var(--brand-fg); }
   .solution p { color: var(--text-muted); font-size: var(--fs-200); margin: 0; }
 
   .packages {
@@ -213,11 +173,10 @@ const solutions = [
     gap: var(--space-xs);
     padding: var(--space-s) var(--space-m);
     font-size: var(--fs-400);
-    color: var(--brand);
+    color: var(--brand-fg);
     cursor: pointer;
     list-style: none;
   }
-  html.dark-mode .package > summary { color: var(--accent); }
   .package > summary::-webkit-details-marker { display: none; }
   .package > summary:hover { background: var(--surface-2); }
   .package-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
