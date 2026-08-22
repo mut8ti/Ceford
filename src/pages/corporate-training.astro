@@ -39,7 +39,7 @@ const solutions = [
     lede="AI-powered training and consultancy for organizations, NGOs, and government institutions, priced per cohort across all six realms."
   >
     <div class="btn-row">
-      <Button href="/contact">Request a proposal</Button>
+      <Button href="/contact?course=corporate-training">Request a proposal</Button>
     </div>
   </PageHead>
 
@@ -101,7 +101,7 @@ const solutions = [
                 </ul>
               </div>
             ))}
-            <Button href="/contact" size="sm" class="package-cta">Request this package</Button>
+            <Button href={`/contact?course=${encodeURIComponent(`Corporate: Realm ${r.n} - ${r.title}`)}`} size="sm" class="package-cta">Request this package</Button>
           </AccordionItem>
         ))}
       </Accordion>
@@ -116,7 +116,7 @@ const solutions = [
         around them.
       </p>
       <div class="btn-row" data-reveal>
-        <Button href="/contact">Talk to Our Team</Button>
+        <Button href="/contact?course=corporate-training">Talk to Our Team</Button>
       </div>
     </div>
   </section>

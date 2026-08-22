@@ -89,3 +89,57 @@ document.querySelectorAll('form[data-firestore]').forEach((form) => {
     }
   });
 });
+
+/* Auto-fill course interest from URL query parameter (e.g. /contact?course=AI%20in%20Procurement) */
+function initCourseAutofill() {
+  const courseSelect = document.getElementById('course');
+  if (!courseSelect) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const courseParam = params.get('course') || params.get('program') || params.get('realm') || params.get('package');
+  if (!courseParam) return;
+
+  const target = courseParam.trim().toLowerCase();
+  let matched = false;
+
+  // 1. Exact match on option value or text (case-insensitive)
+  for (const opt of courseSelect.options) {
+    if (opt.value.toLowerCase() === target || opt.textContent.trim().toLowerCase() === target) {
+      opt.selected = true;
+      courseSelect.value = opt.value;
+      matched = true;
+      break;
+    }
+  }
+
+  // 2. Substring / slug matching (e.g. 'logistics' -> 'Realm 1: AI in Logistics...')
+  if (!matched) {
+    for (const opt of courseSelect.options) {
+      const val = opt.value.toLowerCase();
+      const txt = opt.textContent.toLowerCase();
+      if (val && (val.includes(target) || target.includes(val) || txt.includes(target))) {
+        opt.selected = true;
+        courseSelect.value = opt.value;
+        matched = true;
+        break;
+      }
+    }
+  }
+
+  // 3. Fallback: dynamically add and select option if custom query was supplied
+  if (!matched && courseParam.trim()) {
+    const customOpt = document.createElement('option');
+    customOpt.value = courseParam.trim();
+    customOpt.textContent = courseParam.trim();
+    customOpt.selected = true;
+    courseSelect.appendChild(customOpt);
+    courseSelect.value = courseParam.trim();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCourseAutofill);
+} else {
+  initCourseAutofill();
+}
+

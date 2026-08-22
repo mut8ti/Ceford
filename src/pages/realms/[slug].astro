@@ -130,7 +130,7 @@ const rolesOf = (course) =>
                 <div><dt>Length</dt><dd>{course.duration}</dd></div>
               )}
             </dl>
-            <Button href="/contact" size="sm" class="course-cta">Apply for this course</Button>
+            <Button href={`/contact?course=${encodeURIComponent(course.name)}`} size="sm" class="course-cta">Apply for this course</Button>
           </AccordionItem>
         ))}
       </Accordion>
@@ -146,7 +146,7 @@ const rolesOf = (course) =>
       </p>
       <div class="btn-row" data-reveal>
         <Button href="/admission">Apply Now</Button>
-        <Button href="/contact" variant="ghost">Contact Admissions</Button>
+        <Button href={`/contact?course=${encodeURIComponent(realm.slug)}`} variant="ghost">Contact Admissions</Button>
       </div>
     </div>
   </section>

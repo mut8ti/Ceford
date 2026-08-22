@@ -207,6 +207,16 @@ egg/circle.
 centering, and consistent proportional padding across `sm` and `md` sizes with
 tokenised colour variants (`accent`, `brand`, `neutral`, `outline`).
 
+### Course inquiry autofill
+
+When applying from a specific course row on a realm page (`/realms/[slug]`) or
+requesting a corporate package on `/corporate-training`, the link appends
+`?course=<name>`.
+
+The contact page (`/contact`) groups all 29 courses across the 6 realms plus
+corporate packages in `<optgroup>`s, and `forms.js` auto-selects the requested
+course upon arrival (with exact matching, slug matching, and fallback handling).
+
 ---
 
 ### About page

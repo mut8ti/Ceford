@@ -62,8 +62,21 @@ const details = [
         <div class="field">
           <label for="course">Course interest <span class="hint">(optional)</span></label>
           <select class="select" id="course" name="course">
-            <option value="">Select a course</option>
-            {realms.map(r => <option value={r.slug}>{r.title}</option>)}
+            <option value="">Select a course or program</option>
+            {realms.map(r => (
+              <optgroup label={`Realm ${r.n}: ${r.title}`}>
+                <option value={`All ${r.title} Programs`}>All {r.title} (General)</option>
+                {r.courses.map(c => (
+                  <option value={c.name}>{c.name}</option>
+                ))}
+              </optgroup>
+            ))}
+            <optgroup label="Corporate Training & Services">
+              <option value="Corporate Training (General)">Corporate Training (General)</option>
+              {realms.map(r => (
+                <option value={`Corporate: Realm ${r.n} - ${r.title}`}>Corporate: Realm {r.n} - {r.title}</option>
+              ))}
+            </optgroup>
           </select>
         </div>
 
