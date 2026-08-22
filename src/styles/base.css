@@ -691,3 +691,14 @@ html.js-motion [data-reveal-group] > *,
 html.js-motion [data-hero-item] {
   opacity: 0;
 }
+
+/* A connector that draws in as you scroll through it. Scaled on the Y axis
+   rather than stroked with dashoffset: for a straight line the result is
+   identical, but transform stays on the compositor instead of repainting the
+   stroke every frame, and it avoids SVG length units, which are ambiguous
+   inside a viewBox stretched with preserveAspectRatio="none".
+
+   Fully drawn by default, so no-JS and reduced-motion users get the finished
+   line rather than an empty gutter. */
+[data-draw] { transform-origin: top; }
+html.js-motion [data-draw] { transform: scaleY(0); }

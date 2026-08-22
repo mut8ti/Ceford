@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Card from '../../components/Card.astro';
 import Button from '../../components/Button.astro';
+import Badge from '../../components/Badge.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -39,7 +40,7 @@ const schema = {
       <div class="container">
         <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
         <div class="tags">
-          {post.data.tags.map(t => <span class="tag">#{t.replace(/\s+/g, '')}</span>)}
+          {post.data.tags.map(t => <Badge variant="brand" size="sm">#{t.replace(/\s+/g, '')}</Badge>)}
         </div>
         <h1>{post.data.title}</h1>
         <p class="post-lede">{post.data.description}</p>
@@ -98,18 +99,6 @@ const schema = {
     gap: var(--space-3xs);
     justify-content: center;
     margin-bottom: var(--space-2xs);
-  }
-  .tag {
-    padding: 0.1em 0.6em;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
-    color: var(--brand-fg);
-    font-size: var(--fs-100);
-    font-weight: var(--fw-semibold);
-  }
-  html.dark-mode .tag {
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
-    color: var(--accent);
   }
 
   .post-lede {

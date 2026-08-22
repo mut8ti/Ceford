@@ -6,6 +6,7 @@
  *   data-reveal="left|right" slide in from that side
  *   data-reveal="scale"      settle up from slightly small
  *   data-reveal-group        stagger this element's direct children
+ *   data-draw                connector grows downward as you scroll THROUGH it
  *
  * Anything hidden here is hidden by JS-set CSS (html.js-motion), so with JS
  * off or blocked the page renders fully visible — the content is never
@@ -91,9 +92,35 @@ function initHero() {
     { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out', stagger: 0.12, delay: 0.15 });
 }
 
+/* ---------- Stroke draw ----------
+   Scrubbed rather than fired once: the point is that the line tracks your
+   position through the list, so it reads as the sequence advancing.
+
+   scaleY rather than stroke-dashoffset: identical for a straight connector,
+   but it animates on the compositor and needs no path measuring, so it
+   survives the element being resized. */
+function initDraw() {
+  gsap.utils.toArray('[data-draw]').forEach((el) => {
+    const scope = el.closest('[data-draw-scope]') || el.parentElement;
+    gsap.fromTo(el,
+      { scaleY: 0 },
+      {
+        scaleY: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: scope,
+          start: 'top 72%',
+          end: 'bottom 65%',
+          scrub: 0.6,
+        },
+      });
+  });
+}
+
 initSmoothScroll();
 initHero();
 initReveals();
+initDraw();
 
 // Images settle after first paint and shift trigger positions with them.
 window.addEventListener('load', () => ScrollTrigger.refresh());

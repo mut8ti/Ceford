@@ -6,6 +6,7 @@ import Button from '../components/Button.astro';
 import Accordion from '../components/Accordion.astro';
 import AccordionItem from '../components/AccordionItem.astro';
 import PageHead from '../components/PageHead.astro';
+import Badge from '../components/Badge.astro';
 import { corporate } from '../data/corporate.js';
 import { realms } from '../data/realms.js';
 
@@ -93,7 +94,7 @@ const solutions = [
                   {g.items.map(item => (
                     <li>
                       <span class="price-name">{item.name}</span>
-                      <span class="price-tag">{item.price}</span>
+                      <Badge variant="accent" class="price-tag">{item.price}</Badge>
                       {item.note && <span class="price-note">{item.note}</span>}
                     </li>
                   ))}
@@ -153,20 +154,14 @@ const solutions = [
   .price-list li {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 0 var(--space-s);
+    align-items: start;
+    gap: var(--space-3xs) var(--space-s);
     padding: var(--space-2xs) 0;
     border-top: 1px solid var(--border);
   }
   .price-name { font-weight: var(--fw-semibold); }
   .price-tag {
     justify-self: end;
-    padding: 0.1em 0.6em;
-    border-radius: 999px;
-    background: var(--accent);
-    color: var(--text-on-accent);
-    font-size: var(--fs-200);
-    font-weight: var(--fw-bold);
-    white-space: nowrap;
   }
   .price-note {
     grid-column: 1 / -1;

@@ -6,6 +6,7 @@ import PageHead from '../components/PageHead.astro';
 import Button from '../components/Button.astro';
 import Accordion from '../components/Accordion.astro';
 import AccordionItem from '../components/AccordionItem.astro';
+import Badge from '../components/Badge.astro';
 import { realms } from '../data/realms.js';
 
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
@@ -47,17 +48,27 @@ const facts = [
   <section class="section">
     <div class="container">
       <div class="section-head" data-reveal><h2>How to apply</h2></div>
-      <ol class="steps" data-reveal-group="left">
-        {steps.map(([icon, title, text], i) => (
-          <Card as="li" class="step">
-            <span class="step-n">{i + 1}</span>
-            <div>
-              <h3><Icon name={`lucide:${icon}`} class="icon-accent" /> {title}</h3>
-              <p>{text}</p>
-            </div>
-          </Card>
-        ))}
-      </ol>
+
+      {/* A drawn connector, not decoration: these four are a genuine sequence —
+          you cannot enrol before you apply — so a line advancing with the
+          scroll reports the order rather than inventing one. The steps lost
+          their card chrome for it; a line has to pass between the markers, and
+          card backgrounds were what it would have had to hide behind. */}
+      <div class="steps-wrap" data-draw-scope>
+        <span class="steps-line" data-draw aria-hidden="true"></span>
+
+        <ol class="steps" data-reveal-group="left">
+          {steps.map(([icon, title, text], i) => (
+            <li class="step">
+              <span class="step-n">{i + 1}</span>
+              <div class="step-body">
+                <h3><Icon name={`lucide:${icon}`} class="icon-accent" /> {title}</h3>
+                <p>{text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   </section>
 
@@ -88,7 +99,7 @@ const facts = [
             <Fragment slot="summary">
               <Icon name={`lucide:${r.icon}`} class="fee-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
-              <span class="fee-count">{r.courses.length}</span>
+              <Badge variant="neutral" class="fee-count">{r.courses.length}</Badge>
             </Fragment>
             <table class="fee-table">
               <thead>
@@ -128,29 +139,54 @@ const facts = [
 </BaseLayout>
 
 <style>
-  .steps {
-    display: grid;
-    gap: var(--space-s);
+  /* --marker is the width of a step number; the line and the grid column are
+     both derived from it so the stroke lands dead centre through the markers. */
+  .steps-wrap {
+    --marker: 2.25rem;
+    position: relative;
     max-width: 48rem;
-    margin-inline: auto;
+  }
+
+  /* Inset top and bottom by half a marker so it spans centre-to-centre of the
+     first and last circles rather than overshooting into empty space. */
+  .steps-line {
+    position: absolute;
+    left: calc(var(--marker) / 2 - 1px);
+    top: calc(var(--marker) / 2);
+    bottom: calc(var(--marker) / 2);
+    width: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  .steps {
+    position: relative;   /* lifts the markers above the line */
+    display: grid;
+    gap: var(--space-l);
+    margin: 0;
     padding: 0;
     list-style: none;
-    counter-reset: step;
   }
   .step {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: var(--marker) 1fr;
     gap: var(--space-s);
+    align-items: start;
   }
+  .step-body { padding-top: 0.15rem; }
+
+  /* Opaque, with a page-coloured ring, so the stroke appears to connect the
+     circles instead of running underneath them. */
   .step-n {
     display: grid;
     place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: var(--marker);
+    height: var(--marker);
     border-radius: 50%;
     background: var(--accent);
     color: var(--text-on-accent);
     font-weight: var(--fw-bold);
+    box-shadow: 0 0 0 5px var(--bg);
   }
   .step h3 {
     display: flex;
@@ -173,12 +209,6 @@ const facts = [
   .fee-icon { width: 1.4em; height: 1.4em; color: var(--accent); }
   .fee-count {
     margin-left: auto;
-    padding: 0.1em 0.6em;
-    border-radius: 999px;
-    background: var(--surface-2);
-    color: var(--text-muted);
-    font-size: var(--fs-200);
-    font-weight: var(--fw-bold);
   }
 
   .fee-table {

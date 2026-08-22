@@ -11,7 +11,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name=cefored"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=cefored"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

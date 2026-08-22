@@ -1,0 +1,122 @@
+---
+/* Compact badge/chip component for price tags, counts, metadata and topic tags.
+   Owns pill geometry, sizing, typography and color variants so chips never
+   distort, stretch in grid/flex parents, or suffer from inconsistent padding.
+
+   `variant`:
+     - 'accent': amber fill for prices and prominent highlights (default)
+     - 'brand': tinted brand background for topic/category tags
+     - 'neutral': subtle surface fill for numeric counts and metadata
+     - 'outline': bordered transparent badge
+   `size`:
+     - 'md': standard size for prices and counts (default)
+     - 'sm': compact size for inline tags and metadata
+   `href`: optional URL (renders an <a> instead of a <span>)
+*/
+interface Props {
+  variant?: 'accent' | 'brand' | 'neutral' | 'outline';
+  size?: 'sm' | 'md';
+  href?: string;
+  as?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  variant = 'accent',
+  size = 'md',
+  href,
+  as: ElementTag = 'span',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : ElementTag;
+---
+
+<Tag
+  class:list={[
+    'badge',
+    `badge-${variant}`,
+    `badge-${size}`,
+    href && 'badge-link',
+    className,
+  ]}
+  href={href}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    height: fit-content;
+    align-self: start;
+    flex-shrink: 0;
+    border-radius: 999px;
+    font-family: inherit;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+    font-variant-numeric: tabular-nums;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+
+  /* Sizes */
+  .badge-md {
+    font-size: var(--fs-200);
+    font-weight: var(--fw-bold);
+    padding: 0.22em 0.68em;
+    min-height: 1.6em;
+  }
+
+  .badge-sm {
+    font-size: var(--fs-100);
+    font-weight: var(--fw-semibold);
+    padding: 0.16em 0.55em;
+    min-height: 1.4em;
+  }
+
+  /* Variants */
+  .badge-accent {
+    background: var(--accent);
+    color: var(--text-on-accent);
+  }
+
+  .badge-brand {
+    background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
+    color: var(--brand-fg);
+  }
+  html.dark-mode .badge-brand {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+  }
+
+  .badge-neutral {
+    background: var(--surface-2);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+
+  .badge-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* Interactive badges */
+  .badge-link {
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .badge-link:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+</style>

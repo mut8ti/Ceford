@@ -11,10 +11,10 @@ no longer useful as background.
 | | |
 |---|---|
 | Pages | 19 built |
-| Page-scoped CSS | 824 lines across 12 pages (was 1,009) |
+| Page-scoped CSS | 856 lines across 12 pages (was 1,009) |
 | Component CSS | 284 lines |
 | `!important` in built output | 0 |
-| Components | `PageHead`, `Card`, `Button`, `Accordion`, `AccordionItem`, `RealmIndex`, `Seo` |
+| Components | `PageHead`, `Card`, `Button`, `Accordion`, `AccordionItem`, `Badge`, `RealmIndex`, `Seo` |
 
 ---
 
@@ -121,6 +121,21 @@ to an instant, still-legible state change.
 break any markup still written as `<a class="btn">`, and the fill needs no
 per-instance markup.
 
+**`.btn-ghost` has two contexts and the selector specificity is load-bearing.**
+It defaults to the page background (brand outline and label); anything on an
+always-dark backdrop inverts it via `:where(.band, .on-dark) .btn-ghost`.
+
+The `:where()` is not cosmetic. The resting colour rule must stay at **0,1,0**,
+below `.btn:hover` at 0,2,0. Written plainly as `.band .btn-ghost` it scores
+0,2,0, ties the hover rule, and — being later in the file — wins: the fill swept
+to white while the label stayed white, so the button went blank on hover. Both
+regressions in this variant came from the same place, once from a resting colour
+that assumed a dark backdrop and once from raising specificity above the hover.
+
+Verified by parsing the built CSS and comparing specificity, not by reading the
+source. Note that `:where(...)` contains commas that are **not** selector-list
+separators — split on them and the count comes out wrong.
+
 ---
 
 ### Typography — weight axis and real italics
@@ -175,6 +190,23 @@ Body content is authored in the *parent's* style scope. A bare element selector
 in the page cannot reach it, so slotted elements that need styling get a class
 (`.realm-heading`, `.faq-answer-text`, `.package-cta`, `.fee-cta`).
 
+### `Badge.astro`
+
+Consolidated chips, tags, price pills, and numeric counters across the site
+(`corporate-training`, `admission`, `blog`, `blog/[slug]`).
+
+**Why chips were distorting into circles.** In CSS grid layouts with `display:
+grid; grid-template-columns: 1fr auto;` (such as the corporate training package
+price list), sibling items defaulted to `align-items: stretch`. When a course
+title wrapped onto multiple lines, the price tag was stretched along the Y-axis
+to match the full row height. With `border-radius: 999px` and a short label like
+`$6,500`, a ~48px height against a ~50px width distorted the pill into an
+egg/circle.
+
+`Badge.astro` guarantees `align-self: start`, `flex-shrink: 0`, inline-flex
+centering, and consistent proportional padding across `sm` and `md` sizes with
+tokenised colour variants (`accent`, `brand`, `neutral`, `outline`).
+
 ---
 
 ### About page
@@ -190,6 +222,33 @@ Values are a numbered list matching the homepage.
 
 All original copy is preserved verbatim, including the realm blurbs, which
 differ from the taglines used elsewhere.
+
+### `data-draw` — connector that advances with scroll
+
+New declarative motion attribute alongside `data-reveal` / `data-reveal-group`.
+Used once, on the four `/admission` "How to apply" steps.
+
+**It is on that section and not on "Why CEFORED" deliberately.** Admission's
+steps are a genuine sequence — you cannot enrol before you apply — so a line
+advancing with the scroll reports the order. The six "Why CEFORED" reasons are
+parallel points; their `01`–`06` is enumeration, not order, and a connector
+there would assert a progression that does not exist. That is the same category
+as the side-tabs and the section underline this project spent three passes
+removing.
+
+The steps lost their card chrome for it: a connector has to pass between the
+markers, and the card backgrounds were what it would have had to hide behind.
+Markers carry a page-coloured ring so the line appears to join them.
+
+**Implemented as `scaleY`, not `stroke-dashoffset`.** Identical result for a
+straight connector, but it animates on the compositor rather than repainting a
+stroke every frame, and it sidesteps SVG length units — the minifier rewrote
+`stroke-dashoffset: 1` to `1px`, which is ambiguous inside a viewBox stretched
+with `preserveAspectRatio="none"` because the x and y scales differ. A genuine
+curved path would still need the SVG route.
+
+Fully drawn by default; only `html.js-motion` starts it undrawn, so no-JS and
+reduced-motion users get the finished line rather than an empty gutter.
 
 ### Centring — finished
 
@@ -277,7 +336,28 @@ Superseded and now unreferenced, verified against the built output:
 
 ## Open — ranked
 
-### 1. Button label swap (optional upgrade)
+### 1. Sticky hero + sheet reveal — built, then parked
+
+Built on 2026-07-30 and reverted the same day: Leo wants to think the animation
+through before committing to it. Nothing of it remains in the tree.
+
+What it was: homepage hero `position: sticky`, everything after it wrapped in a
+`.sheet` panel with an opaque background, `z-index: 1` and a rounded top edge,
+riding up over the hero. No JS — layout and paint order only.
+
+Two things any future attempt has to deal with, both learned the hard way:
+
+- **`body { overflow-x: hidden }` in `base.css` kills it silently.** A scroll
+  container anywhere up the ancestor chain disables `position: sticky` on every
+  descendant, with no error. It needs `overflow-x: clip`, which stops
+  horizontal scroll without creating a scroll container.
+- **The hero has to stop being paper-coloured.** The panel sliding over it is
+  `--bg`, so paper-over-paper shows no boundary and the effect is invisible. A
+  brand-coloured field works, but then amber is unusable on it — `--accent-ink`
+  and `--accent-on-dark` are both 2.61:1 on teal, so the eyebrow has to become
+  a white tint (0.8 → 4.68:1).
+
+### 2. Button label swap (optional upgrade)
 
 The current fill crossfades the label colour with a 0.1s delay. During roughly
 150ms of the transition the label sits over a partially-filled background at

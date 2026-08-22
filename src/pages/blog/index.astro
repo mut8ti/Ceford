@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Card from '../../components/Card.astro';
 import PageHead from '../../components/PageHead.astro';
 import Button from '../../components/Button.astro';
+import Badge from '../../components/Badge.astro';
 
 const posts = await getCollection('blog');
 ---
@@ -26,7 +27,7 @@ const posts = await getCollection('blog');
           <Card href={`/blog/${post.id}`} pad="l" class="post-card">
             <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
             <div class="tags">
-              {post.data.tags.map(t => <span class="tag">#{t.replace(/\s+/g, '')}</span>)}
+              {post.data.tags.map(t => <Badge variant="brand" size="sm">#{t.replace(/\s+/g, '')}</Badge>)}
             </div>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
@@ -67,18 +68,6 @@ const posts = await getCollection('blog');
   .post-icon { width: 2.2em; height: 2.2em; color: var(--accent); }
 
   .tags { display: flex; flex-wrap: wrap; gap: var(--space-3xs); }
-  .tag {
-    padding: 0.1em 0.6em;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--brand-fg) 12%, transparent);
-    color: var(--brand-fg);
-    font-size: var(--fs-100);
-    font-weight: var(--fw-semibold);
-  }
-  html.dark-mode .tag {
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
-    color: var(--accent);
-  }
 
   .post-card h2 { font-size: var(--fs-500); color: var(--brand-fg); margin: 0; }
   .post-card p { color: var(--text-muted); font-size: var(--fs-200); }
