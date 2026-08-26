@@ -10,13 +10,9 @@
  * than shipped with the page.
  */
 const config = {
-  apiKey: 'AIzaSyB__VrarOe_CFfI7hKL5jFsEni1Lh3Lnqs',
-  authDomain: 'cefored-institute.firebaseapp.com',
-  projectId: 'cefored-institute',
-  storageBucket: 'cefored-institute.firebasestorage.app',
-  messagingSenderId: '460320160628',
-  appId: '1:460320160628:web:614f9decdecbdfb50a4a21',
-  measurementId: 'G-HMTSZWL569',
+  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY || 'AIzaSyB__VrarOe_CFfI7hKL5jFsEni1Lh3Lnqs',
+  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID || 'cefored-institute',
+  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID || '1:460320160628:web:614f9decdecbdfb50a4a21',
 };
 
 let ready;
