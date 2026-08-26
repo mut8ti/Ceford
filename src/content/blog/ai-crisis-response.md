@@ -1,7 +1,7 @@
 ---
 title: "How AI is Transforming Crisis Response"
 description: "AI is revolutionizing how the world prepares for and responds to disasters, pandemics, and humanitarian crises."
-icon: brain-circuit
+icon: brain
 tags: ["AI", "Crisis Response"]
 ---
 

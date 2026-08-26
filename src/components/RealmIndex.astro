@@ -9,60 +9,66 @@
 
    Realm 1's image is the resting state, so the panel is never empty. */
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import { realms } from '../data/realms.js';
-/* Real emitted sizes, written by .build-realm-images.mjs. Read rather than
-   assumed: sources are never upscaled, so a small original yields a smaller
-   file than the target, and a srcset descriptor claiming 1200w for an 840px
-   image makes the browser pick the wrong candidate and render it soft. */
-import sizes from '../data/realm-images.json';
 
-const srcFor = (r) => {
-  const s = sizes[r.slug];
-  const sm = r.image.replace('.webp', '-sm.webp');
-  return {
-    srcset: `${sm} ${s['-sm'][0]}w, ${r.image} ${s.card[0]}w`,
-    width: s.card[0],
-    height: s.card[1],
-  };
+import logisticsImg from '../assets/images/realms/logistics.webp';
+import businessImg from '../assets/images/realms/business.webp';
+import healthImg from '../assets/images/realms/health.webp';
+import projectManagementImg from '../assets/images/realms/project-management.webp';
+import itDigitalImg from '../assets/images/realms/it-digital.webp';
+import humanitarianImg from '../assets/images/realms/humanitarian.webp';
+
+const realmImages = {
+  logistics: logisticsImg,
+  business: businessImg,
+  health: healthImg,
+  'project-management': projectManagementImg,
+  'it-digital': itDigitalImg,
+  humanitarian: humanitarianImg,
 };
 ---
 
 <div class="index">
   <div class="index-media" aria-hidden="true" data-reveal>
-    {realms.map((r) => (
-      <img
-        class="media-img"
-        data-realm={r.n}
-        src={r.image}
-        srcset={srcFor(r).srcset}
-        sizes="(max-width: 62rem) 1px, 44vw"
-        alt=""
-        width={srcFor(r).width}
-        height={srcFor(r).height}
-        loading="lazy"
-        decoding="async"
-      />
-    ))}
+    {realms.map((r) => {
+      const img = realmImages[r.slug];
+      return (
+        <Image
+          class="media-img"
+          data-realm={r.n}
+          src={img}
+          widths={[400, 600, 800, 1000]}
+          sizes="(max-width: 62rem) 1px, 44vw"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      );
+    })}
   </div>
 
   <ol class="index-list" data-reveal-group>
-    {realms.map((r) => (
-      <li>
-        <a
-          href={`/realms/${r.slug}`}
-          data-realm={r.n}
-          style={`--row-img: url("${r.image.replace('.webp', '-sm.webp')}")`}
-        >
-          <span class="row-n">{String(r.n).padStart(2, '0')}</span>
-          <span class="row-body">
-            <span class="row-title">{r.title}</span>
-            <span class="row-tagline">{r.tagline}</span>
-          </span>
-          <span class="row-count">{r.courses.length} courses</span>
-          <Icon name="lucide:arrow-right" class="row-arrow" />
-        </a>
-      </li>
-    ))}
+    {realms.map((r) => {
+      const img = realmImages[r.slug];
+      return (
+        <li>
+          <a
+            href={`/realms/${r.slug}`}
+            data-realm={r.n}
+            style={`--row-img: url("${img.src}")`}
+          >
+            <span class="row-n">{String(r.n).padStart(2, '0')}</span>
+            <span class="row-body">
+              <span class="row-title">{r.title}</span>
+              <span class="row-tagline">{r.tagline}</span>
+            </span>
+            <span class="row-count">{r.courses.length} courses</span>
+            <Icon name="ph:arrow-right" class="row-arrow" />
+          </a>
+        </li>
+      );
+    })}
   </ol>
 </div>
 

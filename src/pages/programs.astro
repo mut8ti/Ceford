@@ -28,7 +28,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
         {realms.map(r => (
           <Card href={`/realms/${r.slug}`} pad="l" class="program-card">
             <div class="program-head">
-              <Icon name={`lucide:${r.icon}`} class="program-icon" />
+              <Icon name={`ph:${r.icon}`} class="program-icon" />
               <span class="program-n">Realm {r.n}</span>
             </div>
             <h2>{r.title}</h2>
@@ -41,7 +41,7 @@ const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
             </ul>
             <span class="program-more">
               View all {r.courses.length} courses
-              <Icon name="lucide:arrow-right" />
+              <Icon name="ph:arrow-right" />
             </span>
           </Card>
         ))}

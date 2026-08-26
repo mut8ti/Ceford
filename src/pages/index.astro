@@ -1,10 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 import RealmIndex from '../components/RealmIndex.astro';
 import { realms } from '../data/realms.js';
+
+const partnerImages = import.meta.glob('../assets/images/*.{webp,svg}', { eager: true });
 
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
 
@@ -97,7 +100,7 @@ const partners = [
       <div class="quote-grid" data-reveal-group>
         {testimonials.map(([quote, name, role]) => (
           <Card as="figure" pad="l" class="quote">
-            <Icon name="lucide:quote" class="icon-accent icon-lg" />
+            <Icon name="ph:quotes" class="icon-accent icon-lg" />
             <p>{quote}</p>
             <figcaption><strong>{name}</strong><span>{role}</span></figcaption>
           </Card>
@@ -122,13 +125,20 @@ const partners = [
       <div class="marquee-track">
         {[0, 1].map(copy => (
           <ul class="marquee-group" aria-hidden={copy === 1 ? 'true' : undefined}>
-            {partners.map(([file, name]) => (
-              <li>
-                <span class="partner-tile">
-                  <img src={`/images/${file}`} alt={copy === 0 ? name : ''} loading="lazy" />
-                </span>
-              </li>
-            ))}
+            {partners.map(([file, name]) => {
+              const imgData = partnerImages[`../assets/images/${file}`]?.default;
+              return (
+                <li>
+                  <span class="partner-tile">
+                    {imgData ? (
+                      <Image src={imgData} alt={copy === 0 ? name : ''} loading="lazy" />
+                    ) : (
+                      <img src={`/images/${file}`} alt={copy === 0 ? name : ''} loading="lazy" />
+                    )}
+                  </span>
+                </li>
+              );
+            })}
           </ul>
         ))}
       </div>

@@ -1,7 +1,7 @@
 ---
 title: "Digital Tools for Modern Humanitarian Work"
 description: "How technology is transforming fieldwork, coordination, and impact in humanitarian response."
-icon: smartphone
+icon: device-mobile
 tags: ["Digital", "Fieldwork"]
 ---
 

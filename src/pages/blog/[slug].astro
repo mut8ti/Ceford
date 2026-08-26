@@ -38,7 +38,7 @@ const schema = {
   <article>
     <header class="post-head">
       <div class="container">
-        <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
+        <Icon name={`ph:${post.data.icon}`} class="post-icon" />
         <div class="tags">
           {post.data.tags.map(t => <Badge variant="brand" size="sm">#{t.replace(/\s+/g, '')}</Badge>)}
         </div>
@@ -60,9 +60,9 @@ const schema = {
       <div class="more-grid" data-reveal-group="scale">
         {others.map(p => (
           <Card href={`/blog/${p.id}`} class="more-card">
-            <Icon name={`lucide:${p.data.icon}`} class="more-icon" />
+            <Icon name={`ph:${p.data.icon}`} class="more-icon" />
             <h3>{p.data.title}</h3>
-            <span class="more-link">Read the insight <Icon name="lucide:arrow-right" /></span>
+            <span class="more-link">Read the insight <Icon name="ph:arrow-right" /></span>
           </Card>
         ))}
       </div>

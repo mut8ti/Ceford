@@ -13,15 +13,15 @@ import { realms } from '../data/realms.js';
 const iconFor = Object.fromEntries(realms.map(r => [r.n, r.icon]));
 
 const solutions = [
-  ['briefcase-business', 'AI for Business & Leadership',
+  ['briefcase', 'AI for Business & Leadership',
    'Executive workshops on AI strategy, change management, and digital leadership for C-level, managers, and business units.'],
   ['truck', 'AI in Logistics & Supply Chain',
    'Predictive procurement, smart inventory, and AI-powered logistics optimization for supply chain and warehouse teams.'],
-  ['heart-pulse', 'AI for Health & Humanitarian Sectors',
+  ['heartbeat', 'AI for Health & Humanitarian Sectors',
    'AI in health data, crisis mapping, and emergency response for health officers, administrators, and humanitarian teams.'],
   ['cpu', 'Digital Transformation & IT Skills',
    'Cloud, cybersecurity, automation, and IT project management, with custom digital skills bootcamps for staff and leadership.'],
-  ['settings', 'Custom Training & Consulting',
+  ['gear', 'Custom Training & Consulting',
    'Fully tailored programs built around your goals, with ongoing consulting, coaching, and impact measurement.'],
 ];
 ---
@@ -31,7 +31,7 @@ const solutions = [
   description="AI-powered corporate training and consultancy for organizations, NGOs, and government institutions. Per-cohort pricing across all six CEFORED realms."
   preloadImage="/images/businessmeeting.webp"
   ogImage="/images/businessmeeting.webp"
->
+  >
 
   <PageHead
     eyebrow="For organizations"
@@ -63,7 +63,7 @@ const solutions = [
       <div class="solution-grid" data-reveal-group="scale">
         {solutions.map(([icon, title, text]) => (
           <Card class="solution">
-            <Icon name={`lucide:${icon}`} class="solution-icon" />
+            <Icon name={`ph:${icon}`} class="solution-icon" />
             <h3>{title}</h3>
             <p>{text}</p>
           </Card>
@@ -84,7 +84,7 @@ const solutions = [
         {corporate.map(r => (
           <AccordionItem>
             <Fragment slot="summary">
-              <Icon name={`lucide:${iconFor[r.n]}`} class="package-icon" />
+              <Icon name={`ph:${iconFor[r.n]}`} class="package-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
             </Fragment>
             {r.groups.map(g => (

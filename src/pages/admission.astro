@@ -12,21 +12,21 @@ import { realms } from '../data/realms.js';
 const totalCourses = realms.reduce((n, r) => n + r.courses.length, 0);
 
 const steps = [
-  ['search', 'Choose your course',
+  ['magnifying-glass', 'Choose your course',
    'Browse the six realms and pick the course that matches your role. Each listing states its objectives, audience, duration, and fee.'],
-  ['send', 'Send your application',
+  ['paper-plane-tilt', 'Send your application',
    'Submit the contact form with the course you are interested in. Include any questions about prerequisites or intake dates.'],
-  ['messages-square', 'Talk to admissions',
+  ['chat-circle-dots', 'Talk to admissions',
    'Our team confirms your eligibility, the next intake date, and payment details, and answers anything outstanding.'],
   ['graduation-cap', 'Enrol and begin',
    'Choose distance learning, live virtual classes, or in-person delivery. Certification follows successful completion.'],
 ];
 
 const facts = [
-  ['users',    'Who can enrol',  'Professionals, students, and organizations. Each course lists its ideal audience and prerequisites.'],
-  ['monitor',  'How you study',  'Distance learning, live virtual classes, and in-person options for most programs.'],
-  ['award',    'Certification',  'All programs include certification upon successful completion.'],
-  ['building', 'Teams',          'Organizations can train whole cohorts through corporate packages.'],
+  ['users',       'Who can enrol',  'Professionals, students, and organizations. Each course lists its ideal audience and prerequisites.'],
+  ['monitor',     'How you study',  'Distance learning, live virtual classes, and in-person options for most programs.'],
+  ['certificate', 'Certification',  'All programs include certification upon successful completion.'],
+  ['buildings',   'Teams',          'Organizations can train whole cohorts through corporate packages.'],
 ];
 ---
 
@@ -62,7 +62,7 @@ const facts = [
             <li class="step">
               <span class="step-n">{i + 1}</span>
               <div class="step-body">
-                <h3><Icon name={`lucide:${icon}`} class="icon-accent" /> {title}</h3>
+                <h3><Icon name={`ph:${icon}`} class="icon-accent" /> {title}</h3>
                 <p>{text}</p>
               </div>
             </li>
@@ -78,7 +78,7 @@ const facts = [
       <div class="fact-grid" data-reveal-group="scale">
         {facts.map(([icon, title, text]) => (
           <Card class="fact">
-            <Icon name={`lucide:${icon}`} class="fact-icon" />
+            <Icon name={`ph:${icon}`} class="fact-icon" />
             <h3>{title}</h3>
             <p>{text}</p>
           </Card>
@@ -97,7 +97,7 @@ const facts = [
         {realms.map(r => (
           <AccordionItem>
             <Fragment slot="summary">
-              <Icon name={`lucide:${r.icon}`} class="fee-icon" />
+              <Icon name={`ph:${r.icon}`} class="fee-icon" />
               <span><strong>Realm {r.n}:</strong> {r.title}</span>
               <Badge variant="neutral" class="fee-count">{r.courses.length}</Badge>
             </Fragment>

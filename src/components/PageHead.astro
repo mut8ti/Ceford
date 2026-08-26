@@ -11,6 +11,7 @@
    Animation is transform-only under a mask, never opacity, so the largest
    contentful paint is not gated on it. */
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 
 const {
   eyebrow,
@@ -31,7 +32,7 @@ const hasExtra = Astro.slots.has('default');
     {eyebrow && (
       <p class="eyebrow">
         <span>
-          {eyebrowIcon && <Icon name={`lucide:${eyebrowIcon}`} />}
+          {eyebrowIcon && <Icon name={`ph:${eyebrowIcon}`} />}
           {eyebrow}
         </span>
       </p>
@@ -46,14 +47,25 @@ const hasExtra = Astro.slots.has('default');
 
   {image && (
     <div class="page-head-media">
-      <img
-        src={image}
-        alt={imageAlt}
-        width={imageWidth}
-        height={imageHeight}
-        fetchpriority="high"
-        decoding="async"
-      />
+      {typeof image === 'object' ? (
+        <Image
+          src={image}
+          alt={imageAlt}
+          widths={[600, 900, 1200, 1600]}
+          sizes="(max-width: 48rem) 100vw, 1200px"
+          fetchpriority="high"
+          decoding="async"
+        />
+      ) : (
+        <img
+          src={image}
+          alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          fetchpriority="high"
+          decoding="async"
+        />
+      )}
     </div>
   )}
 </section>

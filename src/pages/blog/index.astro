@@ -25,13 +25,13 @@ const posts = await getCollection('blog');
       <div class="post-grid" data-reveal-group="scale">
         {posts.map(post => (
           <Card href={`/blog/${post.id}`} pad="l" class="post-card">
-            <Icon name={`lucide:${post.data.icon}`} class="post-icon" />
+            <Icon name={`ph:${post.data.icon}`} class="post-icon" />
             <div class="tags">
               {post.data.tags.map(t => <Badge variant="brand" size="sm">#{t.replace(/\s+/g, '')}</Badge>)}
             </div>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
-            <span class="post-more">Read the full insight <Icon name="lucide:arrow-right" /></span>
+            <span class="post-more">Read the full insight <Icon name="ph:arrow-right" /></span>
           </Card>
         ))}
       </div>

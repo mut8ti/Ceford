@@ -8,10 +8,10 @@ import { realms } from '../data/realms.js';
 import { countryCodes } from '../data/country-codes.js';
 
 const details = [
-  ['mail',  'Email',    'info@cefored.com',            'mailto:info@cefored.com'],
-  ['phone', 'Phone',    '+254 755 445 982',            'tel:+254755445982'],
-  ['globe', 'Website',  'www.ceforedconsultancy.com',  'https://www.ceforedconsultancy.com'],
-  ['map-pin', 'Location', 'Nairobi, Kenya',            null],
+  ['envelope-simple', 'Email',    'info@cefored.com',            'mailto:info@cefored.com'],
+  ['phone',           'Phone',    '+254 755 445 982',            'tel:+254755445982'],
+  ['globe',           'Website',  'www.ceforedconsultancy.com',  'https://www.ceforedconsultancy.com'],
+  ['map-pin',         'Location', 'Nairobi, Kenya',            null],
 ];
 ---
 
@@ -101,7 +101,7 @@ const details = [
         <ul class="contact-list">
           {details.map(([icon, label, value, href]) => (
             <li>
-              <Icon name={`lucide:${icon}`} class="icon-accent" />
+              <Icon name={`ph:${icon}`} class="icon-accent" />
               <span class="contact-label">{label}</span>
               {href
                 ? <a href={href}>{value}</a>

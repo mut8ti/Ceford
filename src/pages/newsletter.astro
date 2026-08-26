@@ -6,10 +6,10 @@ import PageHead from '../components/PageHead.astro';
 import Button from '../components/Button.astro';
 
 const perks = [
-  ['graduation-cap', 'Insider updates on cutting-edge training programs'],
-  ['pen-line',       'Expert blogs and alumni success stories'],
-  ['wrench',         'Tools for humanitarian innovation'],
-  ['brain-circuit',  'The latest in AI for development'],
+  ['graduation-cap',     'Insider updates on cutting-edge training programs'],
+  ['article',            'Expert blogs and alumni success stories'],
+  ['wrench',             'Tools for humanitarian innovation'],
+  ['brain',              'The latest in AI for development'],
 ];
 ---
 
@@ -31,7 +31,7 @@ const perks = [
         <ul class="perk-list">
           {perks.map(([icon, text]) => (
             <li>
-              <Icon name={`lucide:${icon}`} class="icon-accent" />
+              <Icon name={`ph:${icon}`} class="icon-accent" />
               <span>{text}</span>
             </li>
           ))}

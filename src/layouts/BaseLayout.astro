@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import { realms } from '../data/realms.js';
+import logoImg from '../assets/images/logo-final.webp';
 import '@fontsource-variable/nunito-sans';
 /* Real italics. Without this the four italic rules on the site render as a
    browser-synthesised oblique — the roman slanted by shear, not the drawn
@@ -82,7 +84,7 @@ const isCurrent = (item) => {
 <header class="site-header">
   <a class="brand" href="/">
     <span class="brand-mark">
-      <img src="/images/logo-final.webp" alt="" width="42" height="42" fetchpriority="high" />
+      <Image src={logoImg} alt="CEFORED Logo" width={48} height={48} fetchpriority="high" />
     </span>
     <span class="brand-text">
       CEFORED
@@ -99,8 +101,8 @@ const isCurrent = (item) => {
   </nav>
 
   <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark mode">
-    <Icon name="lucide:moon" class="icon-moon" />
-    <Icon name="lucide:sun" class="icon-sun" />
+    <Icon name="ph:moon" class="icon-moon" />
+    <Icon name="ph:sun" class="icon-sun" />
   </button>
   <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
     <span class="bars" aria-hidden="true"><span></span><span></span></span>
@@ -116,7 +118,7 @@ const isCurrent = (item) => {
     <div class="footer-top">
       <div class="footer-brand">
         <span class="footer-mark">
-          <img src="/images/logo-final.webp" alt="" width="48" height="48" loading="lazy" />
+          <Image src={logoImg} alt="CEFORED Logo" width={48} height={48} loading="lazy" />
         </span>
         <p class="footer-name">CEFORED<span>Institute of Relief and Development</span></p>
         <p class="footer-blurb">
@@ -162,7 +164,7 @@ const isCurrent = (item) => {
         </ul>
         <a class="footer-cta" href="/newsletter">
           Join the newsletter
-          <Icon name="lucide:arrow-right" />
+          <Icon name="ph:arrow-right" />
         </a>
       </div>
     </div>

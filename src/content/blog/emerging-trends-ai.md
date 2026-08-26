@@ -1,7 +1,7 @@
 ---
 title: "Emerging Trends in AI & Development"
 description: "How AI is accelerating progress, inclusion, and innovation in global development."
-icon: trending-up
+icon: trend-up
 tags: ["Trends", "Development"]
 ---
 

@@ -7,7 +7,22 @@ import Accordion from '../../components/Accordion.astro';
 import AccordionItem from '../../components/AccordionItem.astro';
 import PageHead from '../../components/PageHead.astro';
 import { realms } from '../../data/realms.js';
-import sizes from '../../data/realm-images.json';
+
+import logisticsHero from '../../assets/images/realms/logistics-hero.webp';
+import businessHero from '../../assets/images/realms/business-hero.webp';
+import healthHero from '../../assets/images/realms/health-hero.webp';
+import projectManagementHero from '../../assets/images/realms/project-management-hero.webp';
+import itDigitalHero from '../../assets/images/realms/it-digital-hero.webp';
+import humanitarianHero from '../../assets/images/realms/humanitarian-hero.webp';
+
+const heroImages = {
+  logistics: logisticsHero,
+  business: businessHero,
+  health: healthHero,
+  'project-management': projectManagementHero,
+  'it-digital': itDigitalHero,
+  humanitarian: humanitarianHero,
+};
 
 export function getStaticPaths() {
   return realms.map((realm) => ({ params: { slug: realm.slug }, props: { realm } }));
@@ -69,9 +84,7 @@ const rolesOf = (course) =>
     eyebrowIcon={realm.icon}
     title={realm.title}
     lede={realm.tagline}
-    image={realm.bg}
-    imageWidth={sizes[realm.slug]['-hero'][0]}
-    imageHeight={sizes[realm.slug]['-hero'][1]}
+    image={heroImages[realm.slug]}
   />
 
   {/* Prose at a readable measure, not a bordered box. One paragraph inside
@@ -157,7 +170,7 @@ const rolesOf = (course) =>
       <div class="realm-links" data-reveal-group="scale">
         {others.map((r) => (
           <Card href={`/realms/${r.slug}`} class="realm-link">
-            <Icon name={`lucide:${r.icon}`} class="realm-link-icon" />
+            <Icon name={`ph:${r.icon}`} class="realm-link-icon" />
             <span class="realm-link-n">Realm {r.n}</span>
             <span class="realm-link-title">{r.title}</span>
           </Card>
